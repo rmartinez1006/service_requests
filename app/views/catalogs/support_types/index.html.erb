@@ -1,0 +1,25 @@
+<h1>Listing catalogs_support_types</h1>
+
+<table>
+  <tr>
+    <th>Abbr</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalogs_support_types.each do |catalogs_support_type| %>
+  <tr>
+    <td><%= catalogs_support_type.abbr %></td>
+    <td><%= catalogs_support_type.name %></td>
+    <td><%= link_to 'Show', catalogs_support_type %></td>
+    <td><%= link_to 'Edit', edit_catalogs_support_type_path(catalogs_support_type) %></td>
+    <td><%= link_to 'Destroy', catalogs_support_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Support type', new_catalogs_support_type_path %>
