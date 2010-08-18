@@ -1,4 +1,8 @@
 ServiceRequests::Application.routes.draw do
+  namespace :catalogs do resources :comment_types end
+
+  namespace :catalogs do resources :priorities end
+
   namespace :catalogs do resources :request_statuses end
 
   namespace :catalogs do resources :support_types end
