@@ -1,0 +1,2 @@
+module Catalogs::UnitsHelper
+end

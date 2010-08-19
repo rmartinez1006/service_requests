@@ -10,30 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100818041842) do
-
-  create_table "catalogs_comment_types", :force => true do |t|
-    t.string   "abbr"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "catalogs_priorities", :force => true do |t|
-    t.string   "abbr"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "catalogs_request_statuses", :force => true do |t|
-    t.string   "abbr"
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20100819183023) do
 
   create_table "catalogs_support_types", :force => true do |t|
+    t.string   "abbr"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs_ubications", :force => true do |t|
+    t.string   "abbr"
+    t.string   "name"
+    t.string   "responsible"
+    t.string   "tel_ext"
+    t.integer  "unit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs_units", :force => true do |t|
     t.string   "abbr"
     t.string   "name"
     t.datetime "created_at"

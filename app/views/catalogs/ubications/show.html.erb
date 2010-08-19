@@ -1,0 +1,55 @@
+<h1 class="title">Ubicación</h1>
+<p id="notice"><%= notice %></p>
+
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Dependencia:
+    </td>
+    <td>
+      <%= @catalogs_ubication.unit.name %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Abreviación:
+    </td>
+    <td>
+      <%= @catalogs_ubication.abbr %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Nombre:
+    </td>
+    <td>
+      <%= @catalogs_ubication.name %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Responsable:
+    </td>
+    <td>
+      <%= @catalogs_ubication.responsible %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Tel/Ext.:
+    </td>
+    <td>
+      <%= @catalogs_ubication.tel_ext %>
+    </td>
+  </tr>
+</table>
+
+
+<br/>
+
+
+<%= link_to 'Modificar', edit_catalogs_ubication_path(@catalogs_ubication) %> |
+<%= link_to 'Regresar', catalogs_ubications_path %>
+
+<br/>

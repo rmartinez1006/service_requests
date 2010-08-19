@@ -1,10 +1,10 @@
-<%= form_for(@catalogs_support_type) do |f| %>
-  <% if @catalogs_support_type.errors.any? %>
+<%= form_for(@catalogs_unit) do |f| %>
+  <% if @catalogs_unit.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@catalogs_support_type.errors.count, "error") %> prohibited this catalogs_support_type from being saved:</h2>
+      <h2><%= pluralize(@catalogs_unit.errors.count, "error") %> prohibited this catalogs_unit from being saved:</h2>
 
       <ul>
-      <% @catalogs_support_type.errors.full_messages.each do |msg| %>
+      <% @catalogs_unit.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -13,7 +13,7 @@
 
   <table width="990">
     <tr>
-      <td width="80" align="right">        
+      <td width="80" align="right">
         <%= f.label 'Abreviación:' %><br />
       </td>
       <td>

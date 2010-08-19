@@ -1,0 +1,33 @@
+<h1 class="title">Ubicaciones</h1>
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>DEP.</th>
+    <th>ABREV.</th>
+    <th>NOMBRE</th>
+    <th>RESPONSABLE</th>
+    <!-- <th>Tel ext</th> -->    
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalogs_ubications.each do |catalogs_ubication| %>
+  <tr class="table_content">
+    <td><%= catalogs_ubication.unit.abbr %></td>
+    <td><%= catalogs_ubication.abbr %></td>
+    <td><%= catalogs_ubication.name %></td>
+    <td><%= catalogs_ubication.responsible %></td>
+    <!-- <td><%= catalogs_ubication.tel_ext %></td> -->    
+    <td><%= link_to 'Ver', catalogs_ubication %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_ubication_path(catalogs_ubication) %></td>
+    <td><%= link_to 'Eliminar', catalogs_ubication, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Agregar Ubicación', new_catalogs_ubication_path %>
+
+<br />
