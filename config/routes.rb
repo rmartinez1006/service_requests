@@ -1,4 +1,8 @@
 ServiceRequests::Application.routes.draw do
+  namespace :catalogs do resources :ubications end
+
+  namespace :catalogs do resources :units end
+
   namespace :catalogs do resources :comment_types end
 
   namespace :catalogs do resources :priorities end

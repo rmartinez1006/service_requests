@@ -1,4 +1,5 @@
 class Catalogs::SupportTypesController < ApplicationController
+  layout "catalogs"
   # GET /catalogs/support_types
   # GET /catalogs/support_types.xml
   def index
