@@ -1,0 +1,31 @@
+<h1 class="title">Catálogo de status</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Abreviación:
+    </td>
+    <td>
+      <%= @catalogs_request_status.abbr %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Descripción:
+    </td>
+    <td>
+      <%= @catalogs_request_status.description %>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+
+
+<%= link_to 'Modificar', edit_catalogs_request_status_path(@catalogs_request_status) %> |
+<%= link_to 'Regresar', catalogs_request_statuses_path %>
+
+<br />

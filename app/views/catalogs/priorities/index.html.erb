@@ -1,0 +1,27 @@
+<h1 class="title">Catalogo de prioridades</h1>
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>ABREV.</th>
+    <th>DESCRIPCION</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalogs_priorities.each do |catalogs_priority| %>
+  <tr>
+    <td><%= catalogs_priority.abbr %></td>
+    <td><%= catalogs_priority.description %></td>
+    <td><%= link_to 'Ver', catalogs_priority %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_priority_path(catalogs_priority) %></td>
+    <td><%= link_to 'Eliminar', catalogs_priority, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva prioridad', new_catalogs_priority_path %>
+
+<br />

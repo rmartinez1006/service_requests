@@ -1,0 +1,29 @@
+<h1 class="title">Prioridad</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Abreviación:
+    </td>
+    <td>
+      <%= @catalogs_priority.abbr %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Descripción:
+    </td>
+    <td>
+      <%= @catalogs_priority.description %>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+<%= link_to 'Modificar', edit_catalogs_priority_path(@catalogs_priority) %> |
+<%= link_to 'Regresar', catalogs_priorities_path %>
+
+<br />

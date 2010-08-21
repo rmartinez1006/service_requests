@@ -1,0 +1,30 @@
+<h1 class="title">Dependencia</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Abreviación:
+    </td>
+    <td>
+      <%= @catalogs_unit.abbr %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Nombre:
+    </td>
+    <td>
+      <%= @catalogs_unit.name %>
+    </td>
+  </tr>
+</table>
+
+<br />
+
+
+<%= link_to 'Modificar', edit_catalogs_unit_path(@catalogs_unit) %> |
+<%= link_to 'Regresar', catalogs_units_path %>
+
+<br />

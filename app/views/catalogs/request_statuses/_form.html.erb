@@ -1,0 +1,36 @@
+<%= form_for(@catalogs_request_status) do |f| %>
+  <% if @catalogs_request_status.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@catalogs_request_status.errors.count, "error") %> prohibited this catalogs_request_status from being saved:</h2>
+
+      <ul>
+      <% @catalogs_request_status.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table width="990">
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Abreviación:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :abbr , :size => 6%>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Descripción:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :description %>
+      </td>
+    </tr>
+  </table>
+
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>

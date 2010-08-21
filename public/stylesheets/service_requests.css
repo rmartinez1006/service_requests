@@ -1,0 +1,81 @@
+/* 
+    Document   : service_requests
+    Created on : Aug 19, 2010, 9:04:39 AM
+    Author     : martinezo
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+.title{
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    color: #9a1c1c;
+    font-size: 24px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.sub_title1{
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    color: #9a1c1c;
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.sub_title2{
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    color: #9a1c1c;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.field{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+
+.table1{
+   width: 990px;
+   border:1px solid #9a1c1c;
+   border-spacing: 0px;   
+}
+
+.table1 th{
+    border:1px solid #9a1c1c;
+    background-color:#ffdcdc;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right:  4px;
+}
+
+.table1 td{
+    border:1px solid #9a1c1c;
+    padding: 3px;
+}
+
+.table_header{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table_content{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    text-align: center;
+}

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  abbr: MyString
+  name: MyString
+  responsible: MyString
+  tel_ext: MyString
+  unit_id: 1
+
+two:
+  abbr: MyString
+  name: MyString
+  responsible: MyString
+  tel_ext: MyString
+  unit_id: 1
