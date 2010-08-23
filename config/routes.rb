@@ -1,4 +1,10 @@
 ServiceRequests::Application.routes.draw do
+  namespace :administration do resources :user_hierachies end
+
+  namespace :administration do resources :users end
+
+  namespace :administration do resources :user_roles end
+
   namespace :catalogs do resources :ubications end
 
   namespace :catalogs do resources :units end
