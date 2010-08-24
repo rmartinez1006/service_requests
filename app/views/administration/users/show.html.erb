@@ -1,0 +1,57 @@
+<h1 class="title">Usuario</h1>
+
+<p id="notice"><%= notice %></p>
+
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Usuario:
+    </td>
+    <td>
+      <%= @administration_user.user %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Nombre:
+    </td>
+    <td>
+      <%= @administration_user.name %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Correo:
+    </td>
+    <td>
+      <%= @administration_user.email %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Rol:
+    </td>
+    <td>
+      <%= @administration_user.role_id %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Ubicación:
+    </td>
+    <td>
+      <%= @administration_user.ubication_id %>
+    </td>
+  </tr>
+
+
+</table>
+
+
+<br />
+
+<%= link_to 'Modificar', edit_administration_user_path(@administration_user) %> |
+<%= link_to 'Regresar', administration_users_path %>
+
+<br />

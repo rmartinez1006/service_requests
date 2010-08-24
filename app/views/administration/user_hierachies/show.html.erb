@@ -1,0 +1,30 @@
+<h1 class="title">Jerarquias de usuarios</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Rol:
+    </td>
+    <td>
+      <%= @administration_user_hierachy.user_id %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Descripción:
+    </td>
+    <td>
+      <%= @administration_user_hierachy.helper_id %>
+    </td>
+  </tr>
+</table>
+
+
+<br />
+
+<%= link_to 'Modificar', edit_administration_user_hierachy_path(@administration_user_hierachy) %> |
+<%= link_to 'Regresar', administration_user_hierachies_path %>
+
+<br />
