@@ -1,0 +1,2 @@
+module Catalogs::PrioritiesHelper
+end

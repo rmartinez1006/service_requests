@@ -10,9 +10,55 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20100819183023) do
+=======
+ActiveRecord::Schema.define(:version => 20100823045913) do
+
+  create_table "administration_user_hierachies", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "helper_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "administration_user_roles", :force => true do |t|
+    t.string   "rol"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "administration_users", :force => true do |t|
+    t.string   "user"
+    t.string   "name"
+    t.string   "password"
+    t.string   "email"
+    t.integer  "role_id"
+    t.integer  "ubication_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+>>>>>>> 29e0dca8b04d8b1673561bfa843a7d4c99f38010
 
   create_table "catalogs_support_types", :force => true do |t|
+    t.string   "abbr"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs_ubications", :force => true do |t|
+    t.string   "abbr"
+    t.string   "name"
+    t.string   "responsible"
+    t.string   "tel_ext"
+    t.integer  "unit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs_units", :force => true do |t|
     t.string   "abbr"
     t.string   "name"
     t.datetime "created_at"

@@ -1,0 +1,25 @@
+<h1>Listing administration_user_hierachies</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Helper</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_user_hierachies.each do |administration_user_hierachy| %>
+  <tr>
+    <td><%= administration_user_hierachy.user_id %></td>
+    <td><%= administration_user_hierachy.helper_id %></td>
+    <td><%= link_to 'Show', administration_user_hierachy %></td>
+    <td><%= link_to 'Edit', edit_administration_user_hierachy_path(administration_user_hierachy) %></td>
+    <td><%= link_to 'Destroy', administration_user_hierachy, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User hierachy', new_administration_user_hierachy_path %>
