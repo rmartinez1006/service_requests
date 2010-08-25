@@ -11601,3 +11601,184 @@ Rendered layouts/_catalogs_left_menu.html.erb (1.1ms)
 Rendered layouts/_footer.html.erb (0.3ms)
 Rendered catalogs/units/index.html.erb within layouts/catalogs (26.8ms)
 Completed 200 OK in 43ms (Views: 31.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/catalogs/ubications" for 127.0.0.1 at Wed Aug 25 18:53:11 -0500 2010
+  Processing by Catalogs::UbicationsController#index as HTML
+  [1m[35mCatalogs::Ubication Load (0.3ms)[0m  SELECT "catalogs_ubications".* FROM "catalogs_ubications" ORDER BY unit_id, abbr
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Unit Load (0.4ms)[0m  [1mSELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_menu.html.erb (0.4ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.1ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered catalogs/ubications/index.html.erb within layouts/catalogs (122.8ms)
+Completed 200 OK in 139ms (Views: 125.0ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/catalogs/support_types" for 127.0.0.1 at Wed Aug 25 18:53:12 -0500 2010
+  Processing by Catalogs::SupportTypesController#index as HTML
+  [1m[36mCatalogs::SupportType Load (0.3ms)[0m  [1mSELECT "catalogs_support_types".* FROM "catalogs_support_types"[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_support_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.4ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.1ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/support_types/index.html.erb within layouts/catalogs (34.1ms)
+Completed 200 OK in 51ms (Views: 40.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/catalogs/request_statuses" for 127.0.0.1 at Wed Aug 25 18:53:13 -0500 2010
+  Processing by Catalogs::RequestStatusesController#index as HTML
+  [1m[36mCatalogs::RequestStatus Load (0.2ms)[0m  [1mSELECT "catalogs_request_statuses".* FROM "catalogs_request_statuses"[0m
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.4ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.0ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/request_statuses/index.html.erb within layouts/catalogs (16.2ms)
+Completed 200 OK in 30ms (Views: 23.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/catalogs/priorities" for 127.0.0.1 at Wed Aug 25 18:53:15 -0500 2010
+  Processing by Catalogs::PrioritiesController#index as HTML
+  [1m[35mCatalogs::Priority Load (0.3ms)[0m  SELECT "catalogs_priorities".* FROM "catalogs_priorities"
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.4ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.1ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered catalogs/priorities/index.html.erb within layouts/catalogs (17.4ms)
+Completed 200 OK in 88ms (Views: 23.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/catalogs/comment_types" for 127.0.0.1 at Wed Aug 25 18:54:03 -0500 2010
+  Processing by Catalogs::CommentTypesController#index as HTML
+  [1m[36mCatalogs::CommentType Load (0.3ms)[0m  [1mSELECT "catalogs_comment_types".* FROM "catalogs_comment_types"[0m
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.0ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/comment_types/index.html.erb within layouts/catalogs (17.5ms)
+Completed 200 OK in 29ms (Views: 22.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/catalogs/comment_types" for 127.0.0.1 at Wed Aug 25 18:55:57 -0500 2010
+  Processing by Catalogs::CommentTypesController#index as HTML
+  [1m[35mCatalogs::CommentType Load (0.4ms)[0m  SELECT "catalogs_comment_types".* FROM "catalogs_comment_types"
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.4ms)
+Rendered layouts/_catalogs_left_menu.html.erb (2.8ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered catalogs/comment_types/index.html.erb within layouts/catalogs (21.7ms)
+Completed 200 OK in 37ms (Views: 28.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/catalogs/priorities" for 127.0.0.1 at Wed Aug 25 18:56:02 -0500 2010
+  Processing by Catalogs::PrioritiesController#index as HTML
+  [1m[36mCatalogs::Priority Load (0.3ms)[0m  [1mSELECT "catalogs_priorities".* FROM "catalogs_priorities"[0m
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.2ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered catalogs/priorities/index.html.erb within layouts/catalogs (17.9ms)
+Completed 200 OK in 32ms (Views: 24.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/catalogs/request_statuses" for 127.0.0.1 at Wed Aug 25 18:56:04 -0500 2010
+  Processing by Catalogs::RequestStatusesController#index as HTML
+  [1m[35mCatalogs::RequestStatus Load (0.3ms)[0m  SELECT "catalogs_request_statuses".* FROM "catalogs_request_statuses"
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.2ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/request_statuses/index.html.erb within layouts/catalogs (16.5ms)
+Completed 200 OK in 29ms (Views: 21.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/catalogs/support_types" for 127.0.0.1 at Wed Aug 25 18:56:04 -0500 2010
+  Processing by Catalogs::SupportTypesController#index as HTML
+  [1m[36mCatalogs::SupportType Load (0.3ms)[0m  [1mSELECT "catalogs_support_types".* FROM "catalogs_support_types"[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_support_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.1ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/support_types/index.html.erb within layouts/catalogs (24.6ms)
+Completed 200 OK in 40ms (Views: 28.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/catalogs/ubications" for 127.0.0.1 at Wed Aug 25 18:56:05 -0500 2010
+  Processing by Catalogs::UbicationsController#index as HTML
+  [1m[36mCatalogs::Ubication Load (0.4ms)[0m  [1mSELECT "catalogs_ubications".* FROM "catalogs_ubications" ORDER BY unit_id, abbr[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Unit Load (0.2ms)[0m  SELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.2ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered catalogs/ubications/index.html.erb within layouts/catalogs (55.1ms)
+Completed 200 OK in 77ms (Views: 60.0ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/catalogs/units" for 127.0.0.1 at Wed Aug 25 18:56:06 -0500 2010
+  Processing by Catalogs::UnitsController#index as HTML
+  [1m[35mCatalogs::Unit Load (0.3ms)[0m  SELECT "catalogs_units".* FROM "catalogs_units"
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.1ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/units/index.html.erb within layouts/catalogs (26.0ms)
+Completed 200 OK in 42ms (Views: 30.4ms | ActiveRecord: 1.1ms)
