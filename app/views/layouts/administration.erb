@@ -10,12 +10,7 @@
     <table id='layout' width='990'>
       <%= render :partial => 'layouts/header' %>
       <%= render :partial => 'layouts/menu' %>
-      <div id="menu_left">
-        <%= render :partial => 'layouts/catalogs_left_menu' %>
-      </div>
-      <div id="yield_right">
-        <%= yield %>
-      </div>      
+      <%= yield %>
       <br />
       <%= render :partial => 'layouts/footer' %>
     </table>

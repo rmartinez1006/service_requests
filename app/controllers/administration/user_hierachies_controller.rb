@@ -1,6 +1,7 @@
 class Administration::UserHierachiesController < ApplicationController
   # GET /administration/user_hierachies
   # GET /administration/user_hierachies.xml
+  layout "administration"
   def index
     @administration_user_hierachies = Administration::UserHierachy.all
 

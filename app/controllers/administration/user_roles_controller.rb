@@ -1,7 +1,7 @@
 class Administration::UserRolesController < ApplicationController
   # GET /administration/user_roles
   # GET /administration/user_roles.xml
-  layout "catalogs"
+  layout "administration"
   def index
     @administration_user_roles = Administration::UserRole.all
 

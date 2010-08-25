@@ -1,6 +1,7 @@
 class Administration::UsersController < ApplicationController
   # GET /administration/users
   # GET /administration/users.xml
+  layout "administration"
   def index
     @administration_users = Administration::User.all
 
