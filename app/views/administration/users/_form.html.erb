@@ -11,31 +11,55 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user %><br />
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :role_id %><br />
-    <%= f.text_field :role_id %>
-  </div>
-  <div class="field">
-    <%= f.label :ubication_id %><br />
-    <%= f.text_field :ubication_id %>
-  </div>
+
+ <table width="990">
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Usuario:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :user , :size => 20%>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Nombre:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :name %>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Contraseña:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :password %>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Correo:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :email %>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Rol:' %><br />
+      </td>
+      <td>
+        <%= select :administration_user , :role_id, Administration::UserRole.find(:all).collect{|p| [p.description, p.id]}%>
+      </td>
+    </tr>
+
+  </table>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar" %>
   </div>
+
+
+
 <% end %>
