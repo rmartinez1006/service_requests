@@ -53,6 +53,15 @@
         <%= select :administration_user , :role_id, Administration::UserRole.find(:all).collect{|p| [p.description, p.id]}%>
       </td>
     </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Ubicación:' %><br />
+      </td>
+      <td>
+        <%= select :catalogs_user , :ubication_id, Catalogs::Ubication.find(:all).collect{|p| [p.name, p.id]}%>
+      </td>
+    </tr>
+
 
   </table>
 
