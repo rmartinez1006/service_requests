@@ -34,7 +34,16 @@
         <%= f.label 'Contraseña:' %><br />
       </td>
       <td>
-        <%= f.text_field :password %>
+        <%= f.password_field :password, :size => 15 %>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Confirmar Contraseña:' %><br />
+      </td>
+      <td>
+        <%= f.password_field :password_confirmation, :size => 15 %>
       </td>
     </tr>
     <tr>

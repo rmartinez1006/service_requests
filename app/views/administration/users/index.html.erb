@@ -17,8 +17,8 @@
     <td><%= administration_user.user %></td>
     <td><%= administration_user.name %></td>    
     <td><%= administration_user.email %></td>
-    <td><%= administration_user.role_id %></td>
-    <td><%= administration_user.ubication_id %></td>
+    <td><%= administration_user.user_role.description %></td>
+    <td><%= administration_user.ubication.name  %></td>
     <td><%= link_to 'Ver', administration_user %></td>
     <td><%= link_to 'Modificar', edit_administration_user_path(administration_user) %></td>
     <td><%= link_to 'Eliminar', administration_user, :confirm => 'Are you sure?', :method => :delete %></td>
