@@ -17685,3 +17685,1504 @@ NoMethodError (undefined method `new_password?' for #<Administration::User:0xb68
 Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
 Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (53.7ms)
 Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (64.3ms)
+
+
+Started GET "/administration/users/new" for 127.0.0.1 at Sun Aug 29 11:36:00 -0500 2010
+  [1m[36mSQL (56.7ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (22.0ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (3.2ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.3ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (57.1ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (2.7ms)[0m  SHOW TIME ZONE
+  Processing by Administration::UsersController#new as HTML
+  [1m[36mSQL (372.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (156.3ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mAdministration::UserRole Load (35.7ms)[0m  [1mSELECT "administration_user_roles".* FROM "administration_user_roles"[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Ubication Load (53.2ms)[0m  [1mSELECT "catalogs_ubications".* FROM "catalogs_ubications"[0m
+  [1m[35mSQL (1.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/users/_form.html.erb (522.1ms)
+Rendered layouts/_header.html.erb (0.6ms)
+Rendered layouts/_menu.html.erb (0.6ms)
+Rendered layouts/_footer.html.erb (1.2ms)
+Rendered administration/users/new.html.erb within layouts/administration (578.9ms)
+Completed 200 OK in 1015ms (Views: 351.4ms | ActiveRecord: 763.0ms)
+
+
+Started POST "/administration/users" for 127.0.0.1 at Sun Aug 29 11:40:08 -0500 2010
+  [1m[36mSQL (5.4ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.3ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.6ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.2ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (1.5ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (8.8ms)[0m  SHOW TIME ZONE
+  Processing by Administration::UsersController#create as HTML
+  Parameters: {"commit"=>"Guardar", "administration_user"=>{"name"=>"Juan Jose Hernandez", "password_confirmation"=>"[FILTERED]", "role_id"=>"3", "password"=>"[FILTERED]", "user"=>"JHERNADEZ", "email"=>"jhernandez@hotmail.com"}, "authenticity_token"=>"WzuCZd0kx+l6ptS8m0iFYivuBEU/ItTc34HxkbWrO7k=", "_snowman"=>"\342\230\203", "catalogs_user"=>{"ubication_id"=>"1"}}
+  [1m[36mSQL (52.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (3.8ms)[0m  BEGIN
+  [1m[36mSQL (2.1ms)[0m  [1mROLLBACK[0m
+  [1m[35mAdministration::UserRole Load (2.1ms)[0m  SELECT "administration_user_roles".* FROM "administration_user_roles"
+  [1m[36mSQL (1.4ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Ubication Load (1.0ms)[0m  SELECT "catalogs_ubications".* FROM "catalogs_ubications"
+  [1m[36mSQL (1.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/users/_form.html.erb (108.0ms)
+Rendered layouts/_header.html.erb (1.0ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (1.7ms)
+Rendered administration/users/new.html.erb within layouts/administration (160.9ms)
+Completed 200 OK in 294ms (Views: 170.5ms | ActiveRecord: 81.1ms)
+
+
+Started POST "/administration/users" for 127.0.0.1 at Sun Aug 29 11:40:20 -0500 2010
+  Processing by Administration::UsersController#create as HTML
+  Parameters: {"commit"=>"Guardar", "administration_user"=>{"name"=>"Juan Jose Hernandez", "password_confirmation"=>"[FILTERED]", "role_id"=>"3", "password"=>"[FILTERED]", "user"=>"JHERNADEZ", "email"=>"jhernandez@hotmail.com"}, "authenticity_token"=>"WzuCZd0kx+l6ptS8m0iFYivuBEU/ItTc34HxkbWrO7k=", "_snowman"=>"\342\230\203", "catalogs_user"=>{"ubication_id"=>"1"}}
+  [1m[35mSQL (15.3ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.9ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  ROLLBACK
+  [1m[36mAdministration::UserRole Load (1.6ms)[0m  [1mSELECT "administration_user_roles".* FROM "administration_user_roles"[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Ubication Load (2.3ms)[0m  [1mSELECT "catalogs_ubications".* FROM "catalogs_ubications"[0m
+  [1m[35mSQL (2.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/users/_form.html.erb (464.1ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/users/new.html.erb within layouts/administration (481.2ms)
+Completed 200 OK in 660ms (Views: 485.1ms | ActiveRecord: 24.1ms)
+
+
+Started POST "/administration/users" for 127.0.0.1 at Sun Aug 29 11:42:24 -0500 2010
+  Processing by Administration::UsersController#create as HTML
+  Parameters: {"commit"=>"Guardar", "administration_user"=>{"name"=>"Juan Jose Hernandez", "password_confirmation"=>"[FILTERED]", "role_id"=>"3", "password"=>"[FILTERED]", "user"=>"JHERNADEZ", "email"=>"jhernandez@hotmail.com"}, "authenticity_token"=>"WzuCZd0kx+l6ptS8m0iFYivuBEU/ItTc34HxkbWrO7k=", "_snowman"=>"\342\230\203", "catalogs_user"=>{"ubication_id"=>"1"}}
+  [1m[36mSQL (4.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.8ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mROLLBACK[0m
+  [1m[35mAdministration::UserRole Load (2.2ms)[0m  SELECT "administration_user_roles".* FROM "administration_user_roles"
+  [1m[36mSQL (1.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Ubication Load (0.9ms)[0m  SELECT "catalogs_ubications".* FROM "catalogs_ubications"
+  [1m[36mSQL (2.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/users/_form.html.erb (77.6ms)
+Rendered layouts/_header.html.erb (1.2ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered administration/users/new.html.erb within layouts/administration (98.2ms)
+Completed 200 OK in 143ms (Views: 96.4ms | ActiveRecord: 13.5ms)
+
+
+Started POST "/administration/users" for 127.0.0.1 at Sun Aug 29 11:42:31 -0500 2010
+  Processing by Administration::UsersController#create as HTML
+  Parameters: {"commit"=>"Guardar", "administration_user"=>{"name"=>"Juan Jose Hernandez", "ubication_id"=>"1", "password_confirmation"=>"[FILTERED]", "role_id"=>"3", "password"=>"[FILTERED]", "user"=>"JHERNADEZ", "email"=>"jhernandez@hotmail.com"}, "authenticity_token"=>"WzuCZd0kx+l6ptS8m0iFYivuBEU/ItTc34HxkbWrO7k=", "_snowman"=>"\342\230\203"}
+  [1m[35mSQL (7.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (91.5ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_users"'::regclass
+[0m
+  [1m[35mSQL (106.7ms)[0m  INSERT INTO "administration_users" ("created_at", "email", "name", "password", "role_id", "ubication_id", "updated_at", "user") VALUES ('2010-08-29 16:42:31.670236', 'jhernandez@hotmail.com', 'Juan Jose Hernandez', 'jhernandez', 3, 1, '2010-08-29 16:42:31.670236', 'JHERNADEZ') RETURNING "id"
+  [1m[36mSQL (29.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/administration/users/3
+Completed 302 Found in 431ms
+
+
+Started GET "/administration/users/3" for 127.0.0.1 at Sun Aug 29 11:42:32 -0500 2010
+  Processing by Administration::UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (3.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::User Load (1.7ms)[0m  [1mSELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (20.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (4.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (20.4ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1
+  [1m[36mSQL (4.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (1.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Ubication Load (24.7ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (1.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.9ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered administration/users/show.html.erb within layouts/administration (220.3ms)
+Completed 200 OK in 256ms (Views: 156.5ms | ActiveRecord: 82.6ms)
+
+
+Started GET "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 11:46:34 -0500 2010
+  Processing by Administration::UserHierachiesController#index as HTML
+  [1m[36mAdministration::UserHierachy Load (3.2ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies"[0m
+Rendered layouts/_header.html.erb (1.5ms)
+Rendered layouts/_menu.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/index.html.erb within layouts/administration (20.0ms)
+Completed 200 OK in 72ms (Views: 44.6ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 11:46:47 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[35mSQL (3.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/user_hierachies/_form.html.erb (41.9ms)
+Rendered layouts/_header.html.erb (1.7ms)
+Rendered layouts/_menu.html.erb (0.8ms)
+Rendered layouts/_footer.html.erb (0.4ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (105.8ms)
+Completed 200 OK in 163ms (Views: 139.3ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/administration/users" for 127.0.0.1 at Sun Aug 29 11:50:39 -0500 2010
+  Processing by Administration::UsersController#index as HTML
+  [1m[36mAdministration::User Load (12.1ms)[0m  [1mSELECT "administration_users".* FROM "administration_users"[0m
+  [1m[35mSQL (2.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (5.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (1.0ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (9.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Ubication Load (6.9ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (1.3ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserRole Load (1.1ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (0.6ms)
+Rendered layouts/_menu.html.erb (2.5ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/users/index.html.erb within layouts/administration (123.9ms)
+Completed 200 OK in 206ms (Views: 119.3ms | ActiveRecord: 41.9ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 11:53:32 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[36mSQL (2.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/_form.html.erb (9.5ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (23.5ms)
+Completed 200 OK in 32ms (Views: 26.0ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 12:06:21 -0500 2010
+  Processing by Administration::UserHierachiesController#index as HTML
+  [1m[35mAdministration::UserHierachy Load (1.5ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies"
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.5ms)
+Rendered administration/user_hierachies/index.html.erb within layouts/administration (10.0ms)
+Completed 200 OK in 27ms (Views: 12.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:06:28 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[36mSQL (3.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/_form.html.erb (108.2ms)
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (119.8ms)
+Completed 200 OK in 130ms (Views: 122.2ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/administration/users_hierachies" for 127.0.0.1 at Sun Aug 29 12:33:54 -0500 2010
+
+ActionController::RoutingError (No route matches "/administration/users_hierachies"):
+  
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.3ms)
+
+
+Started GET "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 12:34:18 -0500 2010
+  Processing by Administration::UserHierachiesController#index as HTML
+  [1m[35mAdministration::UserHierachy Load (2.7ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies"
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/index.html.erb within layouts/administration (7.9ms)
+Completed 200 OK in 22ms (Views: 10.4ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:34:27 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/_form.html.erb (110.5ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.7ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (122.5ms)
+Completed 200 OK in 132ms (Views: 125.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:34:32 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[35mSQL (1.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/user_hierachies/_form.html.erb (9.5ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (18.8ms)
+Completed 200 OK in 49ms (Views: 22.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:38:10 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[36mSQL (2.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/_form.html.erb (104.3ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (106.0ms)
+Completed   in 118ms
+
+ActionView::Template::Error (uninitialized constant Administration::UserHierachie):
+    14:   <div class="field">
+    15:     <%= f.label :user_id %><br />
+    16:     <%= f.text_field :user_id %>
+    17:     <%= select :user_hierachie , :user_id, Administration::UserHierachie.find(:all).collect{|p| [p.name, p.id]}%>
+    18:   </div>
+    19:   <div class="field">
+    20:     <%= f.label :helper_id %><br />
+  app/views/administration/user_hierachies/_form.html.erb:17:in `_app_views_administration_user_hierachies__form_html_erb__213926567__616984568_529296'
+  app/views/administration/user_hierachies/_form.html.erb:1:in `_app_views_administration_user_hierachies__form_html_erb__213926567__616984568_529296'
+  app/views/administration/user_hierachies/new.html.erb:3:in `_app_views_administration_user_hierachies_new_html_erb__290646585__616972238_0'
+  app/controllers/administration/user_hierachies_controller.rb:30:in `new'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.1ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.1ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:41:31 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[35mSQL (2.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/user_hierachies/_form.html.erb (9.7ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (11.1ms)
+Completed   in 24ms
+
+ActionView::Template::Error (uninitialized constant Administration::UserHierachie):
+    14:   <div class="field">
+    15:     <%= f.label :user_id %><br />
+    16:     <%= f.text_field :user_id %>
+    17:     <%= select :administration_user_hierachie , :user_id, Administration::UserHierachie.find(:all).collect{|p| [p.name, p.id]}%>
+    18:   </div>
+    19:   <div class="field">
+    20:     <%= f.label :helper_id %><br />
+  app/views/administration/user_hierachies/_form.html.erb:17:in `_app_views_administration_user_hierachies__form_html_erb__213926567__616721378_529296'
+  app/views/administration/user_hierachies/_form.html.erb:1:in `_app_views_administration_user_hierachies__form_html_erb__213926567__616721378_529296'
+  app/views/administration/user_hierachies/new.html.erb:3:in `_app_views_administration_user_hierachies_new_html_erb__290646585__616716208_0'
+  app/controllers/administration/user_hierachies_controller.rb:30:in `new'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.6ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.2ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:42:42 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[36mSQL (3.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/_form.html.erb (13.5ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (15.0ms)
+Completed   in 25ms
+
+ActionView::Template::Error (uninitialized constant Administration::UserHierachie):
+    14:   <div class="field">
+    15:     <%= f.label :user_id %><br />
+    16:     <%= f.text_field :user_id %>
+    17:     <%= select :administration_user_hierachie , :user_id, Administration::UserHierachie.find(:all).collect{|p| [p.helper_id, p.id]}%>
+    18:   </div>
+    19:   <div class="field">
+    20:     <%= f.label :helper_id %><br />
+  app/views/administration/user_hierachies/_form.html.erb:17:in `_app_views_administration_user_hierachies__form_html_erb__213926567__617206318_529296'
+  app/views/administration/user_hierachies/_form.html.erb:1:in `_app_views_administration_user_hierachies__form_html_erb__213926567__617206318_529296'
+  app/views/administration/user_hierachies/new.html.erb:3:in `_app_views_administration_user_hierachies_new_html_erb__290646585__617201848_0'
+  app/controllers/administration/user_hierachies_controller.rb:30:in `new'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (12.8ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (78.0ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (95.6ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:44:36 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[35mSQL (3.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::User Load (0.5ms)[0m  [1mSELECT "administration_users".* FROM "administration_users"[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/user_hierachies/_form.html.erb (40.3ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (48.3ms)
+Completed 200 OK in 67ms (Views: 50.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:48:58 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[36mSQL (3.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (0.4ms)[0m  SELECT "administration_users".* FROM "administration_users"
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "administration_users".* FROM "administration_users"
+Rendered administration/user_hierachies/_form.html.erb (96.3ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (114.6ms)
+Completed 200 OK in 127ms (Views: 117.8ms | ActiveRecord: 4.2ms)
+
+
+Started POST "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 12:49:05 -0500 2010
+  Processing by Administration::UserHierachiesController#create as HTML
+  Parameters: {"commit"=>"Create User hierachy", "administration_user_hierachie"=>{"helper_id"=>"3", "user_id"=>"1"}, "authenticity_token"=>"WzuCZd0kx+l6ptS8m0iFYivuBEU/ItTc34HxkbWrO7k=", "_snowman"=>"\342\230\203"}
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.3ms)[0m  BEGIN
+  [1m[36mSQL (2.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (5.5ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_user_hierachies"'::regclass
+  [1m[36mSQL (36.1ms)[0m  [1mINSERT INTO "administration_user_hierachies" ("created_at", "helper_id", "updated_at", "user_id") VALUES ('2010-08-29 17:49:05.119414', NULL, '2010-08-29 17:49:05.119414', NULL) RETURNING "id"[0m
+  [1m[35mSQL (2.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/administration/user_hierachies/1
+Completed 302 Found in 65ms
+
+
+Started GET "/administration/user_hierachies/1" for 127.0.0.1 at Sun Aug 29 12:49:05 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSQL (3.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (0.3ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (9.6ms)
+Completed   in 25ms
+
+ActionView::Template::Error (undefined method `user_id' for nil:NilClass):
+    9:     </td>
+    10:     <td>
+    11:       <%= @administration_user_hierachy.user_id %>
+    12:       <%= @administration_user_hierachy.user_hierachie.user_id %>
+    13:     </td>
+    14:   </tr>
+    15:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:12:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616932648_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (97.2ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (109.6ms)
+
+
+Started POST "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 12:49:48 -0500 2010
+  Processing by Administration::UserHierachiesController#create as HTML
+  Parameters: {"commit"=>"Create User hierachy", "administration_user_hierachie"=>{"helper_id"=>"3", "user_id"=>"1"}, "authenticity_token"=>"WzuCZd0kx+l6ptS8m0iFYivuBEU/ItTc34HxkbWrO7k=", "_snowman"=>"\342\230\203"}
+  [1m[35mSQL (6.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "administration_user_hierachies" ("created_at", "helper_id", "updated_at", "user_id") VALUES ('2010-08-29 17:49:49.025007', NULL, '2010-08-29 17:49:49.025007', NULL) RETURNING "id"[0m
+  [1m[35mSQL (1.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/administration/user_hierachies/2
+Completed 302 Found in 38ms
+
+
+Started GET "/administration/user_hierachies/2" for 127.0.0.1 at Sun Aug 29 12:49:49 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mSQL (14.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (6.6ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 2) LIMIT 1
+  [1m[36mSQL (5.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (19.6ms)
+Completed   in 64ms
+
+ActionView::Template::Error (undefined method `user_id' for nil:NilClass):
+    9:     </td>
+    10:     <td>
+    11:       <%= @administration_user_hierachy.user_id %>
+    12:       <%= @administration_user_hierachy.user_hierachie.user_id %>
+    13:     </td>
+    14:   </tr>
+    15:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:12:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616726008_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.0ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.4ms)
+
+
+Started GET "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 12:51:57 -0500 2010
+  Processing by Administration::UserHierachiesController#index as HTML
+  [1m[35mAdministration::UserHierachy Load (3.8ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies"
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.5ms)
+Rendered administration/user_hierachies/index.html.erb within layouts/administration (18.4ms)
+Completed 200 OK in 30ms (Views: 20.1ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/administration/user_hierachies/1" for 127.0.0.1 at Sun Aug 29 12:52:06 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (3.1ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (5.3ms)
+Completed   in 28ms
+
+ActionView::Template::Error (undefined method `user_id' for nil:NilClass):
+    9:     </td>
+    10:     <td>
+    11:       <%= @administration_user_hierachy.user_id %>
+    12:       <%= @administration_user_hierachy.user_hierachie.user_id %>
+    13:     </td>
+    14:   </tr>
+    15:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:12:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616336788_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.5ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.9ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:52:10 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[36mSQL (2.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (0.6ms)[0m  SELECT "administration_users".* FROM "administration_users"
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "administration_users".* FROM "administration_users"
+Rendered administration/user_hierachies/_form.html.erb (47.1ms)
+Rendered layouts/_header.html.erb (9.2ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (135.2ms)
+Completed 200 OK in 153ms (Views: 138.1ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 12:54:53 -0500 2010
+  Processing by Administration::UserHierachiesController#index as HTML
+  [1m[36mAdministration::UserHierachy Load (2.7ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies"[0m
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/index.html.erb within layouts/administration (10.2ms)
+Completed 200 OK in 25ms (Views: 12.7ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/administration/user_hierachies/new" for 127.0.0.1 at Sun Aug 29 12:54:55 -0500 2010
+  Processing by Administration::UserHierachiesController#new as HTML
+  [1m[35mSQL (1.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::User Load (11.8ms)[0m  [1mSELECT "administration_users".* FROM "administration_users"[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "administration_users".* FROM "administration_users"[0m
+Rendered administration/user_hierachies/_form.html.erb (133.3ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.6ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/new.html.erb within layouts/administration (144.6ms)
+Completed 200 OK in 158ms (Views: 134.1ms | ActiveRecord: 14.1ms)
+
+
+Started POST "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 12:55:01 -0500 2010
+  Processing by Administration::UserHierachiesController#create as HTML
+  Parameters: {"administration_user_hierachy"=>{"helper_id"=>"3", "user_id"=>"1"}, "commit"=>"Create User hierachy", "authenticity_token"=>"WzuCZd0kx+l6ptS8m0iFYivuBEU/ItTc34HxkbWrO7k=", "_snowman"=>"\342\230\203"}
+  [1m[35mSQL (1.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "administration_user_hierachies" ("created_at", "helper_id", "updated_at", "user_id") VALUES ('2010-08-29 17:55:01.190994', 3, '2010-08-29 17:55:01.190994', 1) RETURNING "id"[0m
+  [1m[35mSQL (1.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/administration/user_hierachies/3
+Completed 302 Found in 24ms
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 12:55:01 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (0.3ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (6.2ms)
+Completed   in 18ms
+
+ActionView::Template::Error (undefined method `user_hierachie' for #<Administration::UserHierachy:0xb675e3cc>):
+    9:     </td>
+    10:     <td>
+    11:       <%= @administration_user_hierachy.user_id %>
+    12:       <%= @administration_user_hierachy.user_hierachie.user_id %>
+    13:     </td>
+    14:   </tr>
+    15:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:12:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616899848_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (88.9ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (96.0ms)
+
+
+Started GET "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 12:55:26 -0500 2010
+  Processing by Administration::UserHierachiesController#index as HTML
+  [1m[35mAdministration::UserHierachy Load (1.4ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies"
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.6ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/index.html.erb within layouts/administration (21.1ms)
+Completed 200 OK in 45ms (Views: 28.1ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/administration/user_hierachies" for 127.0.0.1 at Sun Aug 29 12:55:55 -0500 2010
+  Processing by Administration::UserHierachiesController#index as HTML
+  [1m[35mAdministration::UserHierachy Load (2.3ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies"
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.1ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/user_hierachies/index.html.erb within layouts/administration (16.2ms)
+Completed 200 OK in 35ms (Views: 17.7ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 12:55:58 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (1.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (0.4ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (3.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (2.3ms)[0m  [1mSELECT "administration_user_hierachies"."id", "administration_user_hierachies"."user_id", "administration_user_hierachies"."helper_id", "administration_user_hierachies"."created_at", "administration_user_hierachies"."updated_at" FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 1) LIMIT 1[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (9.9ms)
+Completed   in 30ms
+
+ActionView::Template::Error (undefined method `user_id' for nil:NilClass):
+    8:       Rol:
+    9:     </td>
+    10:     <td>      
+    11:       <%= @administration_user_hierachy.user_hierachy.user_id %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616247258_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (11.9ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.8ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 12:56:36 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (2.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (0.6ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (6.1ms)
+Completed   in 26ms
+
+ActionView::Template::Error (undefined method `User' for #<Administration::UserHierachy:0xb6792fb4>):
+    8:       Rol:
+    9:     </td>
+    10:     <td>      
+    11:       <%= @administration_user_hierachy.User.name %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616790988_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.2ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (15.7ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 12:57:58 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (3.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (0.6ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (6.1ms)
+Completed   in 22ms
+
+ActionView::Template::Error (undefined method `user' for #<Administration::UserHierachy:0xb66c0bf4>):
+    8:       Rol:
+    9:     </td>
+    10:     <td>      
+    11:       <%= @administration_user_hierachy.user.name %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__617221458_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.7ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (15.4ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:01:01 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (2.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (0.5ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (1.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (0.6ms)[0m  SELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (40.0ms)
+Completed 200 OK in 57ms (Views: 39.0ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:05:22 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (4.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (0.5ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (0.3ms)[0m  SELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (114.1ms)
+Completed 200 OK in 136ms (Views: 114.2ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:08:08 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (3.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (2.4ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (13.2ms)
+Completed 200 OK in 30ms (Views: 15.4ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:09:06 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (3.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (0.5ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (7.0ms)
+Completed   in 27ms
+
+ActionView::Template::Error (undefined method `user' for 1:Fixnum):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= @administration_user_hierachy.user_id.user.name %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616122568_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.4ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.8ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:09:24 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (1.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (0.4ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (8.5ms)
+Completed   in 24ms
+
+ActionView::Template::Error (undefined method `user' for 1:Fixnum):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= @administration_user_hierachy.user_id.user.name %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616696418_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.0ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.9ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.1ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:10:02 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (2.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (0.9ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (4.9ms)
+Completed   in 22ms
+
+ActionView::Template::Error (undefined method `user' for 1:Fixnum):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= @administration_user_hierachy.user_id.user %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__617156908_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.2ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (21.7ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:10:18 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (1.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (0.3ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (2.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (16.7ms)
+Completed 200 OK in 31ms (Views: 16.8ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:16:54 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (7.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (0.7ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (5.9ms)
+Completed   in 23ms
+
+ActionView::Template::Error (undefined method `name_index' for #<Administration::UserHierachy:0xb67b9448>):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= @administration_user_hierachy.name_index(@administration_user_hierachy.user_id).name %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616712498_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.4ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (14.5ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:17:39 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (4.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (0.4ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (5.6ms)
+Completed   in 84ms
+
+ActionView::Template::Error (undefined method `name' for #<Administration::UserHierachy:0xb68e6974>):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= @administration_user_hierachy.name(@administration_user_hierachy.user_id).name %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616095418_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.6ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.0ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:21:01 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (3.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (0.7ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (9.9ms)
+Completed   in 26ms
+
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::UserHierachy):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= UserHierachy.name_index(@administration_user_hierachy.user_id).name %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616667528_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.9ms)
+  [1m[36mSQL (1.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.8ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.2ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:22:13 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (5.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (3.9ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (7.2ms)
+Completed   in 35ms
+
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::UserHierachy):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= UserHierachy.name_index(@administration_user_hierachy.user_id).to_s %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__617134068_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.6ms)
+  [1m[35mSQL (2.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (12.2ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (81.5ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:22:48 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (2.4ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (0.8ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (5.2ms)
+Completed   in 22ms
+
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::UserHierachy):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= UserHierachy.name_index(@administration_user_hierachy.user_id) %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616362058_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  [1m[36mSQL (12.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (19.5ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (25.9ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:32:52 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (7.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (0.5ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (8.6ms)
+Completed   in 39ms
+
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::User):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= User.id_index(@administration_user_hierachy.user_id).name %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616858848_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.3ms)
+  [1m[35mSQL (3.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (11.8ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.9ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:33:06 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (6.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (0.5ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (8.9ms)
+Completed   in 27ms
+
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::User):
+    8:       Usuario:
+    9:     </td>
+    10:     <td>      
+    11:       <%= User.id_index(@administration_user_hierachy.user_id) %>
+    12:     </td>
+    13:   </tr>
+    14:   <tr>
+  app/views/administration/user_hierachies/show.html.erb:11:in `_app_views_administration_user_hierachies_show_html_erb__310423601__616187708_0'
+  app/controllers/administration/user_hierachies_controller.rb:19:in `show'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.2ms)
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.3ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.3ms)
+
+
+Started GET "/administration/user_hierachies/3" for 127.0.0.1 at Sun Aug 29 13:33:49 -0500 2010
+  Processing by Administration::UserHierachiesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mSQL (1.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserHierachy Load (0.0ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1[0m
+  [1m[35mSQL (2.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_hierachies/show.html.erb within layouts/administration (14.2ms)
+Completed 200 OK in 28ms (Views: 15.4ms | ActiveRecord: 4.0ms)

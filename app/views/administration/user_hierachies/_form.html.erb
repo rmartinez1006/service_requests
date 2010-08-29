@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
+    <%= f.label :user_id %><br />    
+    <%= select :administration_user_hierachy , :user_id, Administration::User.find(:all).collect{|p| [p.name, p.id]}%>
   </div>
   <div class="field">
     <%= f.label :helper_id %><br />
-    <%= f.text_field :helper_id %>
+    <%= select :administration_user_hierachy , :helper_id, Administration::User.find(:all).collect{|p| [p.name, p.id]}%>
   </div>
   <div class="actions">
     <%= f.submit %>
