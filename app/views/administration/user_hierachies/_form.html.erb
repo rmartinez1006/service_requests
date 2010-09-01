@@ -11,15 +11,17 @@
     </div>
   <% end %>
 
+
+
   <div class="field">
-    <%= f.label :user_id %><br />    
+    <%= f.label :Usuario %><br />
     <%= select :administration_user_hierachy , :user_id, Administration::User.find(:all).collect{|p| [p.name, p.id]}%>
   </div>
   <div class="field">
-    <%= f.label :helper_id %><br />
+    <%= f.label :Asistente %><br />
     <%= select :administration_user_hierachy , :helper_id, Administration::User.find(:all).collect{|p| [p.name, p.id]}%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar" %>
   </div>
 <% end %>

@@ -1,9 +1,9 @@
-<h1>Jerarquías de usuario</h1>
+<h1 class="title">Jerarquías de usuario</h1>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Helper</th>
+<table class ="table1">
+  <tr class="table_header">
+    <th>Usuario</th>
+    <th>Asistente</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,15 +11,19 @@
 
 <% @administration_user_hierachies.each do |administration_user_hierachy| %>
   <tr>
-    <td><%= administration_user_hierachy.user_id %></td>
-    <td><%= administration_user_hierachy.helper_id %></td>
-    <td><%= link_to 'Show', administration_user_hierachy %></td>
-    <td><%= link_to 'Edit', edit_administration_user_hierachy_path(administration_user_hierachy) %></td>
-    <td><%= link_to 'Destroy', administration_user_hierachy, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= administration_user_hierachy.user.name %>
+      
+    </td>
+    <td><%= administration_user_hierachy.userhelper.name %></td>
+    <td><%= link_to 'Ver', administration_user_hierachy %></td>
+    <td><%= link_to 'Modificar', edit_administration_user_hierachy_path(administration_user_hierachy) %></td>
+    <td><%= link_to 'Eliminar', administration_user_hierachy, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New User hierachy', new_administration_user_hierachy_path %>
+<%= link_to 'Nueva Jerarquia', new_administration_user_hierachy_path %>
+
+<br />
