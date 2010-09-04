@@ -15,10 +15,12 @@ class Administration::UsersController < ApplicationController
   # GET /administration/users/1.xml
   def show
     @administration_user = Administration::User.find(params[:id])
+    @administration_user_hierachies = Administration::UserHierachy.find( :all, :conditions => ['"user_id" = ?', params[:id]] )
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @administration_user }
+      format.xml  { render :xml => @administration_user_hierachies }
     end
   end
 

@@ -45,8 +45,24 @@
     </td>
   </tr>
 
-
 </table>
+
+<br />
+
+
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>ASISTENTES</th>
+  </tr>
+
+<% @administration_user_hierachies.each do |administration_user_hierachy| %>
+  <tr>
+    <td><%= administration_user_hierachy.userhelper.name %>
+  </tr>
+<% end %>
+</table>
+
 
 
 <br />
