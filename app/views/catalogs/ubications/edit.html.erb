@@ -1,9 +1,8 @@
-<h1 class="title">Modificar ubicación</h1>
+<h1>Modificar ubicación</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Ver', @catalogs_ubication %> |
-<%= link_to 'Regresar', catalogs_ubications_path %>
-
-<br />
+<hr/>
+<%= link_to 'Ver', @catalogs_ubication, :class => 'link-button' %>
+<%= link_to 'Cancelar', catalogs_ubications_path, :class => 'link-button' %>
 

@@ -1,4 +1,4 @@
-<h1 class="title">Dependencias</h1>
+<h1>Dependencias</h1>
 
 <table class ="table1">
   <tr class="table_header">
@@ -15,13 +15,12 @@
     <td><%= catalogs_unit.name %></td>
     <td><%= link_to 'Ver', catalogs_unit %></td>
     <td><%= link_to 'Modificar', edit_catalogs_unit_path(catalogs_unit) %></td>
-    <td><%= link_to 'Editar', catalogs_unit, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Editar', catalogs_unit, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<hr/>
 
-<%= link_to 'Agregar Dependencia', new_catalogs_unit_path %>
+<%= link_to 'Agregar dependencia', new_catalogs_unit_path, :class => 'link-button' %>
 
-<br />

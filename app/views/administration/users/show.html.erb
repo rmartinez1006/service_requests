@@ -58,16 +58,15 @@
 
 <% @administration_user_hierachies.each do |administration_user_hierachy| %>
   <tr>
-    <td><%= administration_user_hierachy.userhelper.name %>
+    <td><%= administration_user_hierachy.userhelper.name %></td>
   </tr>
 <% end %>
 </table>
 
 
 
-<br />
+<hr />
 
-<%= link_to 'Modificar', edit_administration_user_path(@administration_user) %> |
-<%= link_to 'Regresar', administration_users_path %>
+<%= link_to 'Modificar', edit_administration_user_path(@administration_user), :class => 'link-button' %>
+<%= link_to 'Regresar', administration_users_path, :class => 'link-button' %>
 
-<br />

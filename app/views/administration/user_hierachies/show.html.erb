@@ -1,4 +1,4 @@
-<h1 class="title">Jerarquia del usuario</h1>
+<h1>Jerarquia del usuario</h1>
 
 <p id="notice"><%= notice %></p>
 
@@ -22,9 +22,8 @@
 </table>
 
 
-<br />
+<hr />
 
-<%= link_to 'Modificar', edit_administration_user_hierachy_path(@administration_user_hierachy) %> |
-<%= link_to 'Regresar', administration_user_hierachies_path %>
+<%= link_to 'Modificar', edit_administration_user_hierachy_path(@administration_user_hierachy), :class => 'link-button' %>
+<%= link_to 'Regresar', administration_user_hierachies_path, :class => 'link-button' %>
 
-<br />

@@ -1,6 +1,7 @@
-<h1 class="title">Modificar jerarquía del usuario</h1>
+<h1>Modificar jerarquía del usuario</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Ver', @administration_user_hierachy %> |
-<%= link_to 'Cancelar', administration_user_hierachies_path %>
+<hr/>
+<%= link_to 'Ver', @administration_user_hierachy, :class => 'link-button' %>
+<%= link_to 'Cancelar', administration_user_hierachies_path, :class => 'link-button' %>

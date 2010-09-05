@@ -1,4 +1,4 @@
-<h1 class="title">Catalogo de prioridades</h1>
+<h1>Catálogo de prioridades</h1>
 
 <table class ="table1">
   <tr class="table_header">
@@ -15,13 +15,12 @@
     <td><%= catalogs_priority.description %></td>
     <td><%= link_to 'Ver', catalogs_priority %></td>
     <td><%= link_to 'Modificar', edit_catalogs_priority_path(catalogs_priority) %></td>
-    <td><%= link_to 'Eliminar', catalogs_priority, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Eliminar', catalogs_priority, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<hr />
 
-<%= link_to 'Nueva prioridad', new_catalogs_priority_path %>
+<%= link_to 'Agregar prioridad', new_catalogs_priority_path, :class => 'link-button'  %>
 
-<br />
