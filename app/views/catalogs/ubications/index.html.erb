@@ -1,4 +1,4 @@
-<h1 class="title">Ubicaciones</h1>
+<h1>Ubicaciones</h1>
 
 <table class ="table1">
   <tr class="table_header">
@@ -21,13 +21,12 @@
     <!-- <td><%= catalogs_ubication.tel_ext %></td> -->    
     <td><%= link_to 'Ver', catalogs_ubication %></td>
     <td><%= link_to 'Modificar', edit_catalogs_ubication_path(catalogs_ubication) %></td>
-    <td><%= link_to 'Eliminar', catalogs_ubication, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Eliminar', catalogs_ubication, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<hr />
 
-<%= link_to 'Agregar Ubicación', new_catalogs_ubication_path %>
+<%= link_to 'Agregar Ubicación', new_catalogs_ubication_path, :class => 'link-button' %>
 
-<br />

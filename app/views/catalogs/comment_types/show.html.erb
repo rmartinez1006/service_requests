@@ -15,14 +15,13 @@
       Descripción:
     </td>
     <td>
-      <%= @catalogs_comment_type.name %>
+      <%= @catalogs_comment_type.description %>
     </td>
   </tr>
 </table>
 
-<br />
+<hr />
 
-<%= link_to 'Modificar', edit_catalogs_comment_type_path(@catalogs_comment_type) %> |
-<%= link_to 'Regresar', catalogs_comment_types_path %>
+<%= link_to 'Modificar', edit_catalogs_comment_type_path(@catalogs_comment_type), :class => 'link-button'  %>
+<%= link_to 'Regresar', catalogs_comment_types_path, :class => 'link-button'  %>
 
-<br />

@@ -1,6 +1,7 @@
-<h1 class="title">Modificar prioridad</h1>
+<h1>Modificar prioridad</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Ver', @catalogs_priority %> |
-<%= link_to 'Cancelar', catalogs_priorities_path %>
+<hr />
+<%= link_to 'Ver', @catalogs_priority, :class => 'link-button'  %>
+<%= link_to 'Cancelar', catalogs_priorities_path, :class => 'link-button'  %>

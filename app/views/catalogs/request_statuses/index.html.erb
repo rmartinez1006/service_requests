@@ -1,4 +1,4 @@
-<h1 class="title">Catálogo de status</h1>
+<h1>Catálogo de status</h1>
 
 <table class ="table1">
   <tr class="table_header">
@@ -15,11 +15,11 @@
     <td><%= catalogs_request_status.description %></td>
     <td><%= link_to 'Ver', catalogs_request_status %></td>
     <td><%= link_to 'Modificar', edit_catalogs_request_status_path(catalogs_request_status) %></td>
-    <td><%= link_to 'Eliminar', catalogs_request_status, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Eliminar', catalogs_request_status, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<hr />
 
-<%= link_to 'Nuevo Status', new_catalogs_request_status_path %>
+<%= link_to 'Agregar tipo de Status', new_catalogs_request_status_path, :class => 'link-button' %>

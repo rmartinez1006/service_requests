@@ -7,17 +7,18 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
-    <table id='layout' width='990'>
+    
+    <div>
       <%= render :partial => 'layouts/header' %>
       <%= render :partial => 'layouts/menu' %>
-      <div id="menu_left">
-        <%= render :partial => 'layouts/catalogs_left_menu' %>
+      <div id='menu'>
+        <%= render :partial => 'layouts/catalogs_menu' %>
       </div>
-      <div id="yield_right">
+      <div id='content'>
         <%= yield %>
-      </div>      
+      </div>
       <br />
-      <%= render :partial => 'layouts/footer' %>
-    </table>
+
+    </div>
   </body>
 </html>

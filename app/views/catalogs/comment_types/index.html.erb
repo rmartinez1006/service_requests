@@ -15,13 +15,11 @@
     <td><%= catalogs_comment_type.description %></td>
     <td><%= link_to 'Ver', catalogs_comment_type %></td>
     <td><%= link_to 'Modificar', edit_catalogs_comment_type_path(catalogs_comment_type) %></td>
-    <td><%= link_to 'Eliminar', catalogs_comment_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Eliminar', catalogs_comment_type, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<hr />
+<%= link_to 'Agregar tipo de comentario', new_catalogs_comment_type_path, :class => 'link-button'  %>
 
-<%= link_to 'Nuevo tipo de comentario', new_catalogs_comment_type_path %>
-
-<br />

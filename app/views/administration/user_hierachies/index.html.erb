@@ -1,4 +1,4 @@
-<h1 class="title">Jerarquías de usuario</h1>
+<h1>Jerarquías de usuario</h1>
 
 <table class ="table1">
   <tr class="table_header">
@@ -17,13 +17,12 @@
     <td><%= administration_user_hierachy.userhelper.name %></td>
     <td><%= link_to 'Ver', administration_user_hierachy %></td>
     <td><%= link_to 'Modificar', edit_administration_user_hierachy_path(administration_user_hierachy) %></td>
-    <td><%= link_to 'Eliminar', administration_user_hierachy, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Eliminar', administration_user_hierachy, :confirm => 'Confirmar eliminación', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<hr />
 
-<%= link_to 'Nueva Jerarquia', new_administration_user_hierachy_path %>
+<%= link_to 'Nueva Jerarquia', new_administration_user_hierachy_path, :class => 'link-button' %>
 
-<br />
