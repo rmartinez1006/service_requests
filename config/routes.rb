@@ -1,5 +1,11 @@
 ServiceRequests::Application.routes.draw do
 
+  namespace :requests do resources :req_delegations end
+
+  namespace :requests do resources :request_commentaries end
+
+  namespace :requests do resources :support_requests end
+
   namespace :administration do resources :user_hierachies end
 
   namespace :administration do resources :users end

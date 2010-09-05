@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100823045913) do
+ActiveRecord::Schema.define(:version => 20100905231609) do
 
   create_table "administration_user_hierachies", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,41 @@ ActiveRecord::Schema.define(:version => 20100823045913) do
   create_table "catalogs_units", :force => true do |t|
     t.string   "abbr"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "requests_req_delegations", :force => true do |t|
+    t.integer  "request_id"
+    t.integer  "user_id"
+    t.integer  "helper_id"
+    t.integer  "notify"
+    t.integer  "priority_id"
+    t.integer  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "requests_request_commentaries", :force => true do |t|
+    t.integer  "request_id"
+    t.integer  "user_id"
+    t.text     "commentaries"
+    t.integer  "comment_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "requests_support_requests", :force => true do |t|
+    t.integer  "request_no"
+    t.integer  "ubication_id"
+    t.integer  "helper_id"
+    t.integer  "support_type_id"
+    t.string   "name"
+    t.string   "email"
+    t.text     "description"
+    t.text     "tech_description"
+    t.date     "status_chng_date"
+    t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
