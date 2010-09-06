@@ -1,6 +1,7 @@
 class Catalogs::RequestStatusesController < ApplicationController
   # GET /catalogs/request_statuses
   # GET /catalogs/request_statuses.xml
+  before_filter :authorize
   layout "catalogs"
   def index
     @catalogs_request_statuses = Catalogs::RequestStatus.all

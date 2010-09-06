@@ -1,4 +1,5 @@
 class Catalogs::UbicationsController < ApplicationController
+  before_filter :authorize
   layout "catalogs"
   # GET /catalogs/ubications
   # GET /catalogs/ubications.xml

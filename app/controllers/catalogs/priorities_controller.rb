@@ -1,6 +1,7 @@
 class Catalogs::PrioritiesController < ApplicationController
   # GET /catalogs/priorities
   # GET /catalogs/priorities.xml
+  before_filter :authorize
   layout "catalogs"
   def index
     @catalogs_priorities = Catalogs::Priority.all

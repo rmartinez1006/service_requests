@@ -1,4 +1,16 @@
 ServiceRequests::Application.routes.draw do
+  namespace :administration do
+    match 'login', :to => 'user_sessions#new', :as => 'login'
+    match 'logout', :to => 'user_sessions#destroy', :as => 'logout'
+  end
+
+  namespace :administration do resources :user_sessions end
+
+  get "user_sessions/new"
+
+  get "user_sessions/create"
+
+  get "user_sessions/destroy"
 
   namespace :administration do resources :user_hierachies end
 

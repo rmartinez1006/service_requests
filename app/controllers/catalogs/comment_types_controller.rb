@@ -2,6 +2,7 @@ class Catalogs::CommentTypesController < ApplicationController
   # GET /catalogs/comment_types
   # GET /catalogs/comment_types.xml
   layout "catalogs"
+  before_filter :authorize
   def index
     @catalogs_comment_types = Catalogs::CommentType.all
 

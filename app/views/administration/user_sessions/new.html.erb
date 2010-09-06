@@ -1,0 +1,25 @@
+<h1 class="title">Loggin</h1>
+
+<%= form_for(@administration_user_session) do |f| %>
+  <% if @administration_user_session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@administration_user_session.errors.count, "error") %> prohibited this administration_user from being saved:</h2>
+
+      <ul>
+      <% @administration_user_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p>
+  <%= f.label :username, 'Usuario:' %><br />
+  <%= f.text_field :username %><br />
+</p>
+<p>
+  <%= f.label :password, 'Contrseña:' %><br />
+  <%= f.password_field :password %><br />
+</p>
+<p><%=  f.submit "Entrar" %></p>
+<% end %>

@@ -1,4 +1,5 @@
 class Catalogs::UnitsController < ApplicationController
+  before_filter :authorize
   layout "catalogs"
   # GET /catalogs/units
   # GET /catalogs/units.xml

@@ -123,9 +123,10 @@ h3{
 
 .link-button {
     border: 4px outset;
+    border-color:#9a1c1c;
     padding-left: 4px;
     padding-right: 4px;
     text-decoration: none;
-    background-color:#f0f0f0;
+    background-color:#ffdcdc;
     float: right;
  }

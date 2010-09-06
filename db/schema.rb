@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100823045913) do
+ActiveRecord::Schema.define(:version => 20100905225853) do
 
   create_table "administration_user_hierachies", :force => true do |t|
     t.integer  "user_id"
@@ -27,14 +27,16 @@ ActiveRecord::Schema.define(:version => 20100823045913) do
   end
 
   create_table "administration_users", :force => true do |t|
-    t.string   "user"
+    t.string   "username"
     t.string   "name"
-    t.string   "password"
+    t.string   "crypted_password"
     t.string   "email"
     t.integer  "role_id"
     t.integer  "ubication_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_salt"
+    t.string   "persistence_token"
   end
 
   create_table "catalogs_comment_types", :force => true do |t|
