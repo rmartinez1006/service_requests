@@ -1,0 +1,41 @@
+<%= form_for(@requests_req_delegation) do |f| %>
+  <% if @requests_req_delegation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@requests_req_delegation.errors.count, "error") %> prohibited this requests_req_delegation from being saved:</h2>
+
+      <ul>
+      <% @requests_req_delegation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :request_id %><br />
+    <%= f.text_field :request_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :helper_id %><br />
+    <%= f.text_field :helper_id %>
+  </div>
+  <div class="field">
+    <%= f.label :notify %><br />
+    <%= f.text_field :notify %>
+  </div>
+  <div class="field">
+    <%= f.label :priority_id %><br />
+    <%= f.text_field :priority_id %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.text_field :active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
