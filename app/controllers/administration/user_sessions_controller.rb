@@ -1,4 +1,5 @@
 class Administration::UserSessionsController < ApplicationController
+  #layout "administration"
   def new
       @administration_user_session = Administration::UserSession.new
   end
