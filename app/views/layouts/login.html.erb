@@ -7,13 +7,9 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
-
+    
     <div>
-      <%= render :partial => 'layouts/header' %>
-      <%= render :partial => 'layouts/menu' %>
-      <div id='v_menu'>
-        <%= render :partial => 'layouts/administration_menu' %>
-      </div>
+      <%= render :partial => 'layouts/header' %>            
       <div id='content'>
         <%= yield %>
       </div>

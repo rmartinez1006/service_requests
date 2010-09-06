@@ -1,4 +1,5 @@
 class Administration::UserSessionsController < ApplicationController
+  layout "login"
   def new
       @administration_user_session = Administration::UserSession.new
   end
@@ -17,7 +18,7 @@ class Administration::UserSessionsController < ApplicationController
     @administration_user_session = Administration::UserSession.find
     @administration_user_session.destroy
     flash[:notice] = "Sessión de usuario cerrada."
-    redirect_to "www.google.com"
+    redirect_to administration_login_path
   end
 
 end

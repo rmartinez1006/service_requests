@@ -1,5 +1,3 @@
-<h1 class="title">Loggin</h1>
-
 <%= form_for(@administration_user_session) do |f| %>
   <% if @administration_user_session.errors.any? %>
     <div id="error_explanation">
@@ -13,13 +11,29 @@
     </div>
   <% end %>
 
-<p>
-  <%= f.label :username, 'Usuario:' %><br />
-  <%= f.text_field :username %><br />
-</p>
-<p>
-  <%= f.label :password, 'Contrseña:' %><br />
-  <%= f.password_field :password %><br />
-</p>
-<p><%=  f.submit "Entrar" %></p>
+<br/>
+
+<div id="login">
+  <table>
+    <tr>
+      <td><%= f.label :username, 'Usuario:' %></td>
+      <td><%= f.text_field :username, :size => '15' %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :password, 'Contrseña:' %></td>
+      <td><%= f.password_field :password , :size => '15'%></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td align="center"><%=  f.submit "Entrar" %></td>
+    </tr>
+  </table>
+    
+  
+  <br />
+  
+</div>
+
+
+
 <% end %>

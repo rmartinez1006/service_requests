@@ -1,3 +1,6 @@
-<div>
-  <img src="/images/menu.gif"
+<div id="h_menu">
+  <%= link_to 'SOLICITUDES', requests_support_requests_path, :class => "h_menu_element" %> |
+  <%= link_to 'CATALOGOS', catalogs_units_path, :class => "h_menu_element" %> |
+  <%= link_to 'ADMINISTRACION', administration_users_path %> |
+  <%= link_to 'CERRAR SESSION', administration_logout_path %>
 </div>
