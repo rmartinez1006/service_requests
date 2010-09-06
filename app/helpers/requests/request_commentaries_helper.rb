@@ -1,0 +1,2 @@
+module Requests::RequestCommentariesHelper
+end
