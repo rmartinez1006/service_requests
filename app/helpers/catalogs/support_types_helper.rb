@@ -1,2 +1,0 @@
-module Catalogs::SupportTypesHelper
-end

@@ -1,2 +1,0 @@
-module Requests::SupportRequestsHelper
-end
