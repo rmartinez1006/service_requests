@@ -23747,6 +23747,79 @@ Rendered layouts/_menu.html.erb (0.3ms)
 Rendered layouts/_footer.html.erb (0.3ms)
 Rendered administration/users/show.html.erb within layouts/administration (94.3ms)
 Completed 200 OK in 232ms (Views: 84.3ms | ActiveRecord: 19.5ms)
+<<<<<<< HEAD
+
+
+Started GET "/administration/users" for 127.0.0.1 at Sun Sep 05 15:04:50 -0500 2010
+  [1m[36mSQL (10.7ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.5ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.3ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (1.2ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TIME ZONE
+  Processing by Administration::UsersController#index as HTML
+  [1m[36mSQL (198.9ms)[0m  [1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35mAdministration::User Load (21.8ms)[0m  SELECT "administration_users".* FROM "administration_users"
+  [1m[36mSQL (46.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserRole Load (22.2ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Ubication Load (33.3ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (2.9ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mCACHE (1.0ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (0.7ms)
+Rendered layouts/_menu.html.erb (1.3ms)
+Rendered layouts/_footer.html.erb (0.5ms)
+Rendered administration/users/index.html.erb within layouts/administration (286.1ms)
+Completed 200 OK in 599ms (Views: 199.4ms | ActiveRecord: 341.9ms)
+
+
+Started GET "/administration/users/1" for 127.0.0.1 at Sun Sep 05 15:04:58 -0500 2010
+  [1m[35mSQL (5.4ms)[0m  SHOW client_min_messages
+  [1m[36mSQL (0.2ms)[0m  [1mSET client_min_messages TO 'panic'[0m
+  [1m[35mSQL (0.5ms)[0m  SET standard_conforming_strings = on
+  [1m[36mSQL (0.2ms)[0m  [1mSET client_min_messages TO 'notice'[0m
+  [1m[35mSQL (1.0ms)[0m  SET time zone 'UTC'
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW TIME ZONE[0m
+  Processing by Administration::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSQL (23.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
   [1m[36mSQL (39.3ms)[0m  [1mSHOW client_min_messages[0m
   [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'panic'
   [1m[36mSQL (0.1ms)[0m  [1mSET standard_conforming_strings = on[0m
@@ -23856,11 +23929,45 @@ Migrating to CreateAdministrationUserHierachies (20100823045913)
  ORDER BY i.relname
 [0m
   [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"administration_users"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+  [1m[36mAdministration::User Load (26.6ms)[0m  [1mSELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1[0m
+  [1m[35mAdministration::UserHierachy Load (18.5ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("user_id" = '1')
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserRole Load (3.4ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (16.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Ubication Load (0.7ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
   [1m[36mPK and serial sequence (3.8ms)[0m  [1m SELECT attr.attname, seq.relname
  FROM pg_class seq,
  pg_attribute attr,
@@ -24008,12 +24115,61 @@ Migrating to CreateAdministrationUserHierachies (20100823045913)
  AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
  ORDER BY i.relname
   [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_ubications"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
 [0m
+<<<<<<< HEAD
+  [1m[35mSQL (1.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::User Load (3.3ms)[0m  [1mSELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 3) LIMIT 1[0m
+  [1m[35mAdministration::User Load (2.5ms)[0m  SELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 4) LIMIT 1
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/users/show.html.erb within layouts/administration (97.8ms)
+Completed 200 OK in 224ms (Views: 84.3ms | ActiveRecord: 107.6ms)
+
+
+Started GET "/administration/user_roles" for 127.0.0.1 at Sun Sep 05 15:05:40 -0500 2010
+  Processing by Administration::UserRolesController#index as HTML
+  [1m[36mAdministration::UserRole Load (1.7ms)[0m  [1mSELECT "administration_user_roles".* FROM "administration_user_roles"[0m
+  [1m[35mSQL (3.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.0ms)
+Rendered layouts/_footer.html.erb (0.8ms)
+Rendered administration/user_roles/index.html.erb within layouts/administration (25.9ms)
+Completed 200 OK in 59ms (Views: 38.2ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/administration/user_roles/1" for 127.0.0.1 at Sun Sep 05 15:47:39 -0500 2010
+  Processing by Administration::UserRolesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSQL (1.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (1.4ms)[0m  SELECT "administration_user_roles".* FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+=======
   [1m[35mPK and serial sequence (2.6ms)[0m   SELECT attr.attname, seq.relname
  FROM pg_class seq,
  pg_attribute attr,
@@ -24144,10 +24300,57 @@ Started GET "/catalogs/units" for 127.0.0.1 at Sun Sep 05 15:36:21 -0500 2010
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_units"'::regclass
+>>>>>>> origin/master
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
 [0m
 Rendered layouts/_header.html.erb (0.3ms)
+<<<<<<< HEAD
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/user_roles/show.html.erb within layouts/administration (12.6ms)
+Completed 200 OK in 48ms (Views: 37.8ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/administration/user_roles/2" for 127.0.0.1 at Sun Sep 05 15:47:44 -0500 2010
+  Processing by Administration::UserRolesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mSQL (3.3ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserRole Load (0.6ms)[0m  [1mSELECT "administration_user_roles".* FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/user_roles/show.html.erb within layouts/administration (14.5ms)
+Completed 200 OK in 28ms (Views: 16.2ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/administration/user_roles/1" for 127.0.0.1 at Sun Sep 05 15:47:48 -0500 2010
+  Processing by Administration::UserRolesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (2.3ms)[0m  SELECT "administration_user_roles".* FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1
+  [1m[36mSQL (1.4ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+=======
 Rendered layouts/_menu.html.erb (0.3ms)
 Rendered catalogs/units/index.html.erb within layouts/catalogs (64.6ms)
 Completed   in 81ms
@@ -24241,10 +24444,145 @@ Started GET "/catalogs/units" for 127.0.0.1 at Sun Sep 05 15:40:13 -0500 2010
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_units"'::regclass
+>>>>>>> origin/master
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
 [0m
 Rendered layouts/_header.html.erb (0.3ms)
+<<<<<<< HEAD
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.5ms)
+Rendered administration/user_roles/show.html.erb within layouts/administration (13.8ms)
+Completed 200 OK in 26ms (Views: 15.6ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/administration/users" for 127.0.0.1 at Sun Sep 05 15:47:56 -0500 2010
+  Processing by Administration::UsersController#index as HTML
+  [1m[35mAdministration::User Load (0.3ms)[0m  SELECT "administration_users".* FROM "administration_users"
+  [1m[36mSQL (2.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (3.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserRole Load (4.5ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Ubication Load (2.5ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (5.6ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.2ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/users/index.html.erb within layouts/administration (85.9ms)
+Completed 200 OK in 104ms (Views: 68.7ms | ActiveRecord: 20.4ms)
+
+
+Started GET "/administration/users/1" for 127.0.0.1 at Sun Sep 05 15:47:59 -0500 2010
+  Processing by Administration::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSQL (4.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::User Load (0.5ms)[0m  [1mSELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1[0m
+  [1m[35mAdministration::UserHierachy Load (1.0ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("user_id" = '1')
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (1.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserRole Load (6.8ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (2.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Ubication Load (0.2ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (1.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::User Load (2.2ms)[0m  [1mSELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 3) LIMIT 1[0m
+  [1m[35mAdministration::User Load (0.7ms)[0m  SELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 4) LIMIT 1
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/users/show.html.erb within layouts/administration (91.8ms)
+Completed 200 OK in 232ms (Views: 78.1ms | ActiveRecord: 23.8ms)
+
+
+Started GET "/administration/users/3" for 127.0.0.1 at Sun Sep 05 15:48:03 -0500 2010
+  Processing by Administration::UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (3.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (1.6ms)[0m  SELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 3) LIMIT 1
+  [1m[36mAdministration::UserHierachy Load (0.4ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("user_id" = '3')[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+=======
 Rendered catalogs/units/index.html.erb within layouts/catalogs (19.2ms)
 Completed   in 35ms
 
@@ -24612,11 +24950,80 @@ Started GET "/catalogs/ubications" for 127.0.0.1 at Sun Sep 05 16:08:27 -0500 20
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_ubications"'::regclass
+>>>>>>> origin/master
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
   [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+<<<<<<< HEAD
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (1.9ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (1.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Ubication Load (0.5ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered administration/users/show.html.erb within layouts/administration (191.4ms)
+Completed 200 OK in 249ms (Views: 188.2ms | ActiveRecord: 11.8ms)
+
+
+Started GET "/administration/users/1" for 127.0.0.1 at Sun Sep 05 15:48:40 -0500 2010
+  Processing by Administration::UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSQL (1.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (0.8ms)[0m  SELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1
+  [1m[36mAdministration::UserHierachy Load (2.6ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("user_id" = '1')[0m
+  [1m[35mSQL (1.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (3.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (1.2ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (1.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
  WHERE a.attrelid = '"catalogs_units"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
@@ -24720,11 +25127,618 @@ Started GET "/catalogs/ubications" for 127.0.0.1 at Sun Sep 05 16:12:57 -0500 20
   Processing by Catalogs::UbicationsController#index as HTML
   [1m[36mCatalogs::Ubication Load (0.4ms)[0m  [1mSELECT "catalogs_ubications".* FROM "catalogs_ubications" ORDER BY unit_id, abbr[0m
   [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_ubications"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+  [1m[36mCatalogs::Ubication Load (0.4ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (2.0ms)[0m  SELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 3) LIMIT 1
+  [1m[36mAdministration::User Load (0.8ms)[0m  [1mSELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 4) LIMIT 1[0m
+Rendered layouts/_header.html.erb (0.2ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/users/show.html.erb within layouts/administration (72.3ms)
+Completed 200 OK in 106ms (Views: 62.1ms | ActiveRecord: 17.5ms)
+
+
+Started GET "/administration/users/1/edit" for 127.0.0.1 at Sun Sep 05 15:49:53 -0500 2010
+  Processing by Administration::UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSQL (3.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::User Load (1.4ms)[0m  [1mSELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserRole Load (0.3ms)[0m  [1mSELECT "administration_user_roles".* FROM "administration_user_roles"[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Ubication Load (2.9ms)[0m  [1mSELECT "catalogs_ubications".* FROM "catalogs_ubications"[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered administration/users/_form.html.erb (118.3ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.0ms)
+Rendered administration/users/edit.html.erb within layouts/administration (135.4ms)
+Completed 200 OK in 169ms (Views: 143.2ms | ActiveRecord: 9.6ms)
+
+
+Started GET "/administration/user_hierachies" for 127.0.0.1 at Sun Sep 05 16:25:43 -0500 2010
+  Processing by Administration::UserHierachiesController#index as HTML
+  [1m[36mAdministration::UserHierachy Load (1.7ms)[0m  [1mSELECT "administration_user_hierachies".* FROM "administration_user_hierachies"[0m
+  [1m[35mSQL (2.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (3.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (0.1ms)[0m  SELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1
+  [1m[36mSQL (1.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (2.9ms)[0m  SELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1[0m
+  [1m[35mAdministration::User Load (0.4ms)[0m  SELECT "administration_users"."id", "administration_users"."user", "administration_users"."name", "administration_users"."password", "administration_users"."email", "administration_users"."role_id", "administration_users"."ubication_id", "administration_users"."created_at", "administration_users"."updated_at" FROM "administration_users" WHERE ("administration_users"."id" = 4) LIMIT 1
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/user_hierachies/index.html.erb within layouts/administration (64.4ms)
+Completed 200 OK in 92ms (Views: 71.0ms | ActiveRecord: 12.3ms)
+
+
+Started GET "/administration/user_hierachies/3/edit" for 127.0.0.1 at Sun Sep 05 16:26:01 -0500 2010
+  Processing by Administration::UserHierachiesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mSQL (2.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserHierachy Load (23.4ms)[0m  SELECT "administration_user_hierachies".* FROM "administration_user_hierachies" WHERE ("administration_user_hierachies"."id" = 3) LIMIT 1
+  [1m[36mSQL (1.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (0.4ms)[0m  SELECT "administration_users".* FROM "administration_users"
+  [1m[36mSQL (2.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "administration_users".* FROM "administration_users"
+Rendered administration/user_hierachies/_form.html.erb (127.3ms)
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.5ms)
+Rendered administration/user_hierachies/edit.html.erb within layouts/administration (148.2ms)
+Completed 200 OK in 208ms (Views: 167.9ms | ActiveRecord: 31.0ms)
+
+
+Started GET "/administration/users" for 127.0.0.1 at Sun Sep 05 16:28:04 -0500 2010
+  Processing by Administration::UsersController#index as HTML
+  [1m[36mAdministration::User Load (2.6ms)[0m  [1mSELECT "administration_users".* FROM "administration_users"[0m
+  [1m[35mSQL (3.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (2.4ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (3.3ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Ubication Load (0.3ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserRole Load (1.4ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/users/index.html.erb within layouts/administration (83.4ms)
+Completed 200 OK in 107ms (Views: 73.8ms | ActiveRecord: 15.1ms)
+
+
+Started GET "/administration/users/1/edit" for 127.0.0.1 at Sun Sep 05 16:28:10 -0500 2010
+  Processing by Administration::UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSQL (1.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (0.3ms)[0m  SELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::UserRole Load (0.7ms)[0m  SELECT "administration_user_roles".* FROM "administration_user_roles"
+  [1m[36mSQL (1.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Ubication Load (0.0ms)[0m  SELECT "catalogs_ubications".* FROM "catalogs_ubications"
+  [1m[36mSQL (1.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered administration/users/_form.html.erb (72.0ms)
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_footer.html.erb (0.7ms)
+Rendered administration/users/edit.html.erb within layouts/administration (87.9ms)
+Completed 200 OK in 118ms (Views: 84.9ms | ActiveRecord: 7.5ms)
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.2ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.2ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.2ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (2.2ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.6ms)[0m  SHOW TIME ZONE
+  [1m[36mSQL (11.2ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (4.7ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (16.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (20.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (0.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (2.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.6ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateCatalogsSupportTypes (20100808022537)
+Migrating to CreateCatalogsUnits (20100819175847)
+Migrating to CreateCatalogsUbications (20100819183023)
+Migrating to CreateCatalogsRequestStatuses (20100820023323)
+Migrating to CreateCatalogsPriorities (20100820023509)
+Migrating to CreateCatalogsCommentTypes (20100820023722)
+Migrating to CreateAdministrationUserRoles (20100823004509)
+Migrating to CreateAdministrationUsers (20100823045643)
+Migrating to CreateAdministrationUserHierachies (20100823045913)
+Migrating to CreateRequestsSupportRequests (20100905225610)
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (336.8ms)[0m  CREATE TABLE "requests_support_requests" ("id" serial primary key, "request_no" integer, "ubication_id" integer, "helper_id" integer, "support_type_id" integer, "name" character varying(255), "email" character varying(255), "description" text, "tech_description" text, "status_chng_date" date, "status_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (2.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (32.8ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (2.0ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mPK and serial sequence (2.7ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (14.3ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (42.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20100905225610')
+  [1m[36mPK and serial sequence (2.3ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+[0m
+  [1m[35mPK and custom sequence (1.5ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+  [1m[36mSQL (2.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+  [1m[36mSQL (1.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.5ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.4ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_user_hierachies"'::regclass
+[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW search_path
+  [1m[36mSQL (2.2ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_user_hierachies'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (3.3ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_user_roles"'::regclass
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_user_roles'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.3ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_users"'::regclass
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (6.3ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_comment_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.4ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_comment_types"'::regclass
+[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_comment_types'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_priorities"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.4ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_priorities"'::regclass
+  [1m[36mSQL (4.7ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_priorities'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (3.4ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_request_statuses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.2ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_request_statuses"'::regclass
+[0m
+  [1m[35mSQL (1.8ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_request_statuses'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_support_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.7ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_support_types"'::regclass
+  [1m[36mSQL (1.4ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_support_types'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
   [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
@@ -25127,18 +26141,467 @@ Started GET "/catalogs/ubications" for 127.0.0.1 at Sun Sep 05 16:15:51 -0500 20
   Processing by Catalogs::UbicationsController#index as HTML
   [1m[35mCatalogs::Ubication Load (0.4ms)[0m  SELECT "catalogs_ubications".* FROM "catalogs_ubications" ORDER BY unit_id, abbr
   [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_ubications"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+  [1m[36mPK and serial sequence (3.0ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_ubications"'::regclass
+[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_ubications'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (2.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
 [0m
   [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_units"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+[0m
+  [1m[35mPK and serial sequence (2.3ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_units"'::regclass
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_units'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_support_requests"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (3.1ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"requests_support_requests"'::regclass
+[0m
+  [1m[35mSQL (1.5ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'requests_support_requests'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+
+
+Started GET "/requests/support_requests" for 127.0.0.1 at Sun Sep 05 17:57:31 -0500 2010
+  Processing by Requests::SupportRequestsController#index as HTML
+  [1m[35mRequests::SupportRequest Load (6.6ms)[0m  SELECT "requests_support_requests".* FROM "requests_support_requests"
+Rendered requests/support_requests/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 30ms (Views: 21.5ms | ActiveRecord: 6.6ms)
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.3ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.2ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.2ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (1.1ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW TIME ZONE
+  [1m[36mSQL (11.1ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (2.0ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (4.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.6ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (5.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateCatalogsSupportTypes (20100808022537)
+Migrating to CreateCatalogsUnits (20100819175847)
+Migrating to CreateCatalogsUbications (20100819183023)
+Migrating to CreateCatalogsRequestStatuses (20100820023323)
+Migrating to CreateCatalogsPriorities (20100820023509)
+Migrating to CreateCatalogsCommentTypes (20100820023722)
+Migrating to CreateAdministrationUserRoles (20100823004509)
+Migrating to CreateAdministrationUsers (20100823045643)
+Migrating to CreateAdministrationUserHierachies (20100823045913)
+Migrating to CreateRequestsSupportRequests (20100905225610)
+Migrating to CreateRequestsRequestCommentaries (20100905230705)
+  [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (41.2ms)[0m  CREATE TABLE "requests_request_commentaries" ("id" serial primary key, "request_id" integer, "user_id" integer, "commentaries" text, "comment_type_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (11.6ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (9.2ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mPK and serial sequence (12.1ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (2.4ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (4.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20100905230705')
+  [1m[36mPK and serial sequence (2.6ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+[0m
+  [1m[35mPK and custom sequence (4.2ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+  [1m[36mSQL (13.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (1.6ms)[0m   SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.4ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_user_hierachies"'::regclass
+[0m
+  [1m[35mSQL (0.5ms)[0m  SHOW search_path
+  [1m[36mSQL (1.9ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_user_hierachies'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (3.3ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_user_roles"'::regclass
+[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_user_roles'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (6.1ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_users"'::regclass
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_comment_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.3ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_comment_types"'::regclass
+[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_comment_types'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (1.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_priorities"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.4ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_priorities"'::regclass
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_priorities'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_request_statuses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (3.2ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_request_statuses"'::regclass
+[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_request_statuses'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
   [1m[36mCatalogs::Unit Load (0.2ms)[0m  [1mSELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1[0m
   [1m[35mSQL (0.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
  FROM pg_attribute a LEFT JOIN pg_attrdef d
@@ -25344,12 +26807,40 @@ Started GET "/catalogs/support_types" for 127.0.0.1 at Sun Sep 05 16:17:32 -0500
   Processing by Catalogs::SupportTypesController#index as HTML
   [1m[35mCatalogs::SupportType Load (0.3ms)[0m  SELECT "catalogs_support_types".* FROM "catalogs_support_types"
   [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_support_types"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
 [0m
+<<<<<<< HEAD
+  [1m[35mPK and serial sequence (2.2ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_support_types"'::regclass
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_support_types'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
 Rendered layouts/_header.html.erb (0.3ms)
 Rendered layouts/_menu.html.erb (0.2ms)
 Rendered layouts/_catalogs_menu.html.erb (0.9ms)
@@ -25423,18 +26914,111 @@ Started GET "/catalogs/ubications" for 127.0.0.1 at Sun Sep 05 16:18:58 -0500 20
   Processing by Catalogs::UbicationsController#index as HTML
   [1m[36mCatalogs::Ubication Load (0.4ms)[0m  [1mSELECT "catalogs_ubications".* FROM "catalogs_ubications" ORDER BY unit_id, abbr[0m
   [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_ubications"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+  [1m[36mPK and serial sequence (2.5ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_ubications"'::regclass
+[0m
+  [1m[35mSQL (1.5ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_ubications'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
   [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_units"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
 [0m
+<<<<<<< HEAD
+  [1m[35mPK and serial sequence (2.5ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_units"'::regclass
+  [1m[36mSQL (1.0ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_units'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_request_commentaries"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.1ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"requests_request_commentaries"'::regclass
+[0m
+  [1m[35mSQL (2.3ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'requests_request_commentaries'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_support_requests"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (7.0ms)[0m   SELECT attr.attname, seq.relname
+=======
   [1m[35mCatalogs::Unit Load (0.3ms)[0m  SELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1
   [1m[36mSQL (0.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
  FROM pg_attribute a LEFT JOIN pg_attrdef d
@@ -29920,6 +31504,7 @@ Started POST "/administration/user_roles" for 127.0.0.1 at Sun Sep 05 17:29:49 -
  ORDER BY a.attnum
 [0m
   [1m[35mPK and serial sequence (2.7ms)[0m   SELECT attr.attname, seq.relname
+>>>>>>> origin/master
  FROM pg_class seq,
  pg_attribute attr,
  pg_depend dep,
@@ -29932,6 +31517,261 @@ Started POST "/administration/user_roles" for 127.0.0.1 at Sun Sep 05 17:29:49 -
  AND attr.attrelid = cons.conrelid
  AND attr.attnum = cons.conkey[1]
  AND cons.contype = 'p'
+<<<<<<< HEAD
+ AND dep.refobjid = '"requests_support_requests"'::regclass
+  [1m[36mSQL (1.3ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'requests_support_requests'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+
+
+Started GET "/requests/request_commentaries" for 127.0.0.1 at Sun Sep 05 18:10:10 -0500 2010
+  Processing by Requests::RequestCommentariesController#index as HTML
+  [1m[36mRequests::RequestCommentary Load (1.4ms)[0m  [1mSELECT "requests_request_commentaries".* FROM "requests_request_commentaries"[0m
+Rendered requests/request_commentaries/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 16ms (Views: 7.6ms | ActiveRecord: 1.4ms)
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.2ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.3ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.4ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (1.3ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TIME ZONE
+  [1m[36mSQL (11.2ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (2.4ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (4.4ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (4.5ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+  [1m[36mSQL (1.4ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateCatalogsSupportTypes (20100808022537)
+Migrating to CreateCatalogsUnits (20100819175847)
+Migrating to CreateCatalogsUbications (20100819183023)
+Migrating to CreateCatalogsRequestStatuses (20100820023323)
+Migrating to CreateCatalogsPriorities (20100820023509)
+Migrating to CreateCatalogsCommentTypes (20100820023722)
+Migrating to CreateAdministrationUserRoles (20100823004509)
+Migrating to CreateAdministrationUsers (20100823045643)
+Migrating to CreateAdministrationUserHierachies (20100823045913)
+Migrating to CreateRequestsSupportRequests (20100905225610)
+Migrating to CreateRequestsRequestCommentaries (20100905230705)
+Migrating to CreateRequestsReqDelegations (20100905231609)
+  [1m[36mSQL (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (41.2ms)[0m  CREATE TABLE "requests_req_delegations" ("id" serial primary key, "request_id" integer, "user_id" integer, "helper_id" integer, "notify" integer, "priority_id" integer, "active" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (14.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (9.6ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (11.2ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mPK and serial sequence (12.8ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+  [1m[36mPK and custom sequence (12.1ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (2.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20100905231609')
+  [1m[36mPK and serial sequence (2.9ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"schema_migrations"'::regclass
+[0m
+  [1m[35mPK and custom sequence (7.9ms)[0m   SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"schema_migrations"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+  [1m[36mSQL (7.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mSQL (11.0ms)[0m   SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+  [1m[36mSQL (1.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (2.4ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (2.2ms)[0m  [1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (7.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_user_hierachies"'::regclass
+[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW search_path
+  [1m[36mSQL (2.8ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_user_hierachies'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (1.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (3.3ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_user_roles"'::regclass
+[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_user_roles'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (2.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
  AND dep.refobjid = '"administration_user_roles"'::regclass
   [1m[36mSQL (27.2ms)[0m  [1mINSERT INTO "administration_user_roles" ("created_at", "description", "rol", "updated_at") VALUES ('2010-09-05 22:29:49.694810', 'Administrador', 'ADM', '2010-09-05 22:29:49.694810') RETURNING "id"[0m
   [1m[35mSQL (10.3ms)[0m  COMMIT
@@ -30237,11 +32077,16 @@ Started POST "/administration/users" for 127.0.0.1 at Sun Sep 05 17:37:55 -0500 
   Processing by Administration::UsersController#create as HTML
   Parameters: {"commit"=>"Guardar", "administration_user"=>{"name"=>"Ramon Martínez Olvera", "ubication_id"=>"1", "password_confirmation"=>"[FILTERED]", "role_id"=>"1", "password"=>"[FILTERED]", "user"=>"martinezo", "email"=>"martinezo@inb.unam.mx"}, "authenticity_token"=>"U4hdsrQ64mGG3cPsr4QRW4flijU916K4Pg++vYz8nBs=", "_snowman"=>"\342\230\203"}
   [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"administration_users"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+[0m
+  [1m[35mPK and serial sequence (3.4ms)[0m   SELECT attr.attname, seq.relname
+=======
   [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
   [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
  FROM pg_attribute a LEFT JOIN pg_attrdef d
@@ -30250,6 +32095,7 @@ Started POST "/administration/users" for 127.0.0.1 at Sun Sep 05 17:37:55 -0500 
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
   [1m[36mPK and serial sequence (2.7ms)[0m  [1m SELECT attr.attname, seq.relname
+>>>>>>> origin/master
  FROM pg_class seq,
  pg_attribute attr,
  pg_depend dep,
@@ -30263,6 +32109,139 @@ Started POST "/administration/users" for 127.0.0.1 at Sun Sep 05 17:37:55 -0500 
  AND attr.attnum = cons.conkey[1]
  AND cons.contype = 'p'
  AND dep.refobjid = '"administration_users"'::regclass
+<<<<<<< HEAD
+  [1m[36mSQL (4.5ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_comment_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.3ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_comment_types"'::regclass
+[0m
+  [1m[35mSQL (2.3ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_comment_types'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_priorities"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.2ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_priorities"'::regclass
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_priorities'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_request_statuses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.4ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_request_statuses"'::regclass
+[0m
+  [1m[35mSQL (1.3ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_request_statuses'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (1.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_support_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.4ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_support_types"'::regclass
+  [1m[36mSQL (1.5ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_support_types'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+=======
 [0m
   [1m[35mSQL (27.8ms)[0m  INSERT INTO "administration_users" ("created_at", "email", "name", "password", "role_id", "ubication_id", "updated_at", "user") VALUES ('2010-09-05 22:37:55.599111', 'martinezo@inb.unam.mx', 'Ramon Martínez Olvera', '123', 1, 1, '2010-09-05 22:37:55.599111', 'martinezo') RETURNING "id"
   [1m[36mSQL (10.2ms)[0m  [1mCOMMIT[0m
@@ -30332,10 +32311,185 @@ Started GET "/administration/users" for 127.0.0.1 at Sun Sep 05 17:38:13 -0500 2
  WHERE a.attrelid = '"administration_users"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+>>>>>>> origin/master
 [0m
   [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+<<<<<<< HEAD
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_ubications"'::regclass
+[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_ubications'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.1ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_units"'::regclass
+  [1m[36mSQL (2.2ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_units'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_req_delegations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.2ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"requests_req_delegations"'::regclass
+[0m
+  [1m[35mSQL (1.7ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'requests_req_delegations'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_request_commentaries"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (1.9ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"requests_request_commentaries"'::regclass
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'requests_request_commentaries'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_support_requests"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.1ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"requests_support_requests"'::regclass
+[0m
+  [1m[35mSQL (5.8ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'requests_support_requests'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+
+
+Started GET "/requests/req_delegations" for 127.0.0.1 at Sun Sep 05 18:16:43 -0500 2010
+  Processing by Requests::ReqDelegationsController#index as HTML
+  [1m[35mRequests::ReqDelegation Load (1.9ms)[0m  SELECT "requests_req_delegations".* FROM "requests_req_delegations"
+Rendered requests/req_delegations/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 18ms (Views: 9.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/administration/users" for 127.0.0.1 at Sun Sep 05 18:22:16 -0500 2010
+  [1m[36mSQL (0.8ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.2ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.3ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.2ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (1.3ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.2ms)[0m  SHOW TIME ZONE
+  Processing by Administration::UsersController#index as HTML
+  [1m[36mSQL (12.8ms)[0m  [1m SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+[0m
+  [1m[35mAdministration::User Load (1.0ms)[0m  SELECT "administration_users".* FROM "administration_users"
+  [1m[36mSQL (4.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
  WHERE a.attrelid = '"administration_user_roles"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
@@ -30453,33 +32607,51 @@ Started GET "/administration/users" for 127.0.0.1 at Sun Sep 05 17:38:37 -0500 2
   Processing by Administration::UsersController#index as HTML
   [1m[35mAdministration::User Load (0.4ms)[0m  SELECT "administration_users".* FROM "administration_users"
   [1m[36mSQL (1.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"administration_users"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
 [0m
+<<<<<<< HEAD
+  [1m[35mSQL (0.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
   [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"administration_user_roles"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+  [1m[36mAdministration::UserRole Load (3.7ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
   [1m[36mAdministration::UserRole Load (0.3ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1[0m
   [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"administration_user_roles"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+  [1m[36mSQL (1.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
   [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_ubications"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
 [0m
+<<<<<<< HEAD
+  [1m[35mCatalogs::Ubication Load (4.3ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+=======
   [1m[35mCatalogs::Ubication Load (0.3ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+>>>>>>> origin/master
   [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
@@ -30487,6 +32659,29 @@ Started GET "/administration/users" for 127.0.0.1 at Sun Sep 05 17:38:37 -0500 2
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
 [0m
+<<<<<<< HEAD
+  [1m[35mAdministration::UserRole Load (0.4ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 3) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_menu.html.erb (0.5ms)
+Rendered layouts/_footer.html.erb (0.5ms)
+Rendered administration/users/index.html.erb within layouts/administration (119.3ms)
+Completed 200 OK in 175ms (Views: 104.5ms | ActiveRecord: 33.9ms)
+
+
+Started GET "/administration/users/1/edit" for 127.0.0.1 at Sun Sep 05 18:22:20 -0500 2010
+  [1m[35mSQL (0.9ms)[0m  SHOW client_min_messages
+  [1m[36mSQL (0.0ms)[0m  [1mSET client_min_messages TO 'panic'[0m
+  [1m[35mSQL (0.3ms)[0m  SET standard_conforming_strings = on
+  [1m[36mSQL (0.1ms)[0m  [1mSET client_min_messages TO 'notice'[0m
+  [1m[35mSQL (2.7ms)[0m  SET time zone 'UTC'
+  [1m[36mSQL (0.5ms)[0m  [1mSHOW TIME ZONE[0m
+  Processing by Administration::UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSQL (21.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
 Rendered layouts/_header.html.erb (0.3ms)
 Rendered layouts/_menu.html.erb (0.2ms)
 Rendered layouts/_administration_menu.html.erb (1.2ms)
@@ -30498,11 +32693,22 @@ Started GET "/administration/users" for 127.0.0.1 at Sun Sep 05 17:40:42 -0500 2
   Processing by Administration::UsersController#index as HTML
   [1m[35mAdministration::User Load (0.3ms)[0m  SELECT "administration_users".* FROM "administration_users"
   [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"administration_users"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+  [1m[36mAdministration::User Load (3.4ms)[0m  [1mSELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (4.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mAdministration::UserRole Load (0.7ms)[0m  [1mSELECT "administration_user_roles".* FROM "administration_user_roles"[0m
+=======
 [0m
   [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
  FROM pg_attribute a LEFT JOIN pg_attrdef d
@@ -30511,26 +32717,153 @@ Started GET "/administration/users" for 127.0.0.1 at Sun Sep 05 17:40:42 -0500 2
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
   [1m[36mAdministration::UserRole Load (2.0ms)[0m  [1mSELECT "administration_user_roles"."id", "administration_user_roles"."rol", "administration_user_roles"."description", "administration_user_roles"."created_at", "administration_user_roles"."updated_at" FROM "administration_user_roles" WHERE ("administration_user_roles"."id" = 1) LIMIT 1[0m
+>>>>>>> origin/master
   [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"administration_user_roles"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+  [1m[36mCatalogs::Ubication Load (1.3ms)[0m  [1mSELECT "catalogs_ubications".* FROM "catalogs_ubications"[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
   [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_ubications"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+Rendered administration/users/_form.html.erb (86.8ms)
+Rendered layouts/_header.html.erb (1.9ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered administration/users/edit.html.erb within layouts/administration (102.2ms)
+Completed 200 OK in 145ms (Views: 97.7ms | ActiveRecord: 37.2ms)
+
+
+Started GET "/catalogs/ubications" for 127.0.0.1 at Sun Sep 05 18:22:31 -0500 2010
+  Processing by Catalogs::UbicationsController#index as HTML
+  [1m[36mCatalogs::Ubication Load (2.1ms)[0m  [1mSELECT "catalogs_ubications".* FROM "catalogs_ubications" ORDER BY unit_id, abbr[0m
+  [1m[35mSQL (2.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+=======
 [0m
   [1m[35mCatalogs::Ubication Load (0.4ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
   [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+>>>>>>> origin/master
  FROM pg_attribute a LEFT JOIN pg_attrdef d
  ON a.attrelid = d.adrelid AND a.attnum = d.adnum
  WHERE a.attrelid = '"catalogs_ubications"'::regclass
  AND a.attnum > 0 AND NOT a.attisdropped
  ORDER BY a.attnum
+<<<<<<< HEAD
+  [1m[36mSQL (1.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Unit Load (27.2ms)[0m  SELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.2ms)
+Rendered layouts/_catalogs_left_menu.html.erb (0.9ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered catalogs/ubications/index.html.erb within layouts/catalogs (93.7ms)
+Completed 200 OK in 110ms (Views: 64.7ms | ActiveRecord: 33.7ms)
+
+
+Started GET "/catalogs/units" for 127.0.0.1 at Sun Sep 05 18:22:38 -0500 2010
+  Processing by Catalogs::UnitsController#index as HTML
+  [1m[35mCatalogs::Unit Load (3.7ms)[0m  SELECT "catalogs_units".* FROM "catalogs_units"
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.5ms)
+Rendered layouts/_menu.html.erb (0.0ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.0ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/units/index.html.erb within layouts/catalogs (25.7ms)
+Completed 200 OK in 157ms (Views: 28.2ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/catalogs/support_types" for 127.0.0.1 at Sun Sep 05 18:22:42 -0500 2010
+  Processing by Catalogs::SupportTypesController#index as HTML
+  [1m[35mCatalogs::SupportType Load (30.5ms)[0m  SELECT "catalogs_support_types".* FROM "catalogs_support_types"
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_support_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.0ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.0ms)
+Rendered layouts/_footer.html.erb (0.2ms)
+Rendered catalogs/support_types/index.html.erb within layouts/catalogs (18.5ms)
+Completed 200 OK in 59ms (Views: 20.1ms | ActiveRecord: 31.3ms)
+
+
+Started GET "/catalogs/request_statuses" for 127.0.0.1 at Sun Sep 05 18:22:44 -0500 2010
+  Processing by Catalogs::RequestStatusesController#index as HTML
+  [1m[35mCatalogs::RequestStatus Load (8.5ms)[0m  SELECT "catalogs_request_statuses".* FROM "catalogs_request_statuses"
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_request_statuses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.0ms)
+Rendered layouts/_catalogs_left_menu.html.erb (1.2ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/request_statuses/index.html.erb within layouts/catalogs (22.9ms)
+Completed 200 OK in 43ms (Views: 26.8ms | ActiveRecord: 9.1ms)
+
+
+Started GET "/catalogs/priorities" for 127.0.0.1 at Sun Sep 05 18:22:46 -0500 2010
+  Processing by Catalogs::PrioritiesController#index as HTML
+  [1m[35mCatalogs::Priority Load (15.3ms)[0m  SELECT "catalogs_priorities".* FROM "catalogs_priorities"
+  [1m[36mSQL (3.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_priorities"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+Rendered layouts/_header.html.erb (0.0ms)
+Rendered layouts/_menu.html.erb (0.3ms)
+Rendered layouts/_catalogs_left_menu.html.erb (0.9ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/priorities/index.html.erb within layouts/catalogs (30.8ms)
+Completed 200 OK in 57ms (Views: 30.2ms | ActiveRecord: 18.4ms)
+
+
+Started GET "/catalogs/comment_types" for 127.0.0.1 at Sun Sep 05 18:22:50 -0500 2010
+  Processing by Catalogs::CommentTypesController#index as HTML
+  [1m[35mCatalogs::CommentType Load (0.8ms)[0m  SELECT "catalogs_comment_types".* FROM "catalogs_comment_types"
+Rendered layouts/_header.html.erb (0.3ms)
+Rendered layouts/_menu.html.erb (0.0ms)
+Rendered layouts/_catalogs_left_menu.html.erb (0.4ms)
+Rendered layouts/_footer.html.erb (0.3ms)
+Rendered catalogs/comment_types/index.html.erb within layouts/catalogs (12.3ms)
+Completed 200 OK in 24ms (Views: 14.8ms | ActiveRecord: 0.8ms)
+=======
 [0m
 Rendered layouts/_header.html.erb (0.3ms)
 Rendered layouts/_menu.html.erb (0.4ms)
@@ -30731,6 +33064,7 @@ Rendered layouts/_menu.html.erb (0.3ms)
 Rendered layouts/_administration_menu.html.erb (1.4ms)
 Rendered administration/user_hierachies/index.html.erb within layouts/administration (12.6ms)
 Completed 200 OK in 28ms (Views: 19.0ms | ActiveRecord: 0.3ms)
+<<<<<<< HEAD
 
 
 Started GET "/administration/user_hierachies" for 127.0.0.1 at Sun Sep 05 17:57:14 -0500 2010
@@ -36692,3 +39026,342 @@ Started GET "/administration/login" for 127.0.0.1 at Sun Sep 05 19:05:13 -0500 2
 [0m
 Rendered administration/user_sessions/new.html.erb within layouts/application (6.9ms)
 Completed 200 OK in 37ms (Views: 16.0ms | ActiveRecord: 1.0ms)
+=======
+>>>>>>> origin/master
+>>>>>>> 0c9ebfad01a198b613c13b75fe2f8bc9271b5f53
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.1ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (0.3ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW TIME ZONE
+  [1m[36mSQL (2.4ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (1.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.3ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateCatalogsSupportTypes (20100808022537)
+Migrating to CreateCatalogsUnits (20100819175847)
+Migrating to CreateCatalogsUbications (20100819183023)
+Migrating to CreateCatalogsRequestStatuses (20100820023323)
+Migrating to CreateCatalogsPriorities (20100820023509)
+Migrating to CreateCatalogsCommentTypes (20100820023722)
+Migrating to CreateAdministrationUserRoles (20100823004509)
+Migrating to CreateAdministrationUsers (20100823045643)
+Migrating to CreateAdministrationUserHierachies (20100823045913)
+Migrating to PrepareUserTableToUseAuthlogic (20100905225853)
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (0.5ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_hierachies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.9ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_user_hierachies"'::regclass
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW search_path[0m
+  [1m[35mSQL (1.6ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_user_hierachies'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_user_roles"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.2ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_user_roles"'::regclass
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_user_roles'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.9ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"administration_users"'::regclass
+[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'administration_users'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_comment_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (5.3ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_comment_types"'::regclass
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_comment_types'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.8ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_priorities"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.7ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_priorities"'::regclass
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_priorities'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.8ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_request_statuses"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.9ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_request_statuses"'::regclass
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_request_statuses'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_support_types"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.8ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_support_types"'::regclass
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_support_types'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.7ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (2.7ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_ubications"'::regclass
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_ubications'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mPK and serial sequence (2.8ms)[0m  [1m SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"catalogs_units"'::regclass
+[0m
+  [1m[35mSQL (1.0ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'catalogs_units'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+
+
+Started GET "/requests/support_requests" for 127.0.0.1 at Sun Sep 05 19:19:04 -0500 2010
+  [1m[36mSQL (0.2ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.1ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (0.3ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW TIME ZONE
+
+ActionController::RoutingError (uninitialized constant Requests):
+  
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.8ms)

@@ -6,11 +6,11 @@ ServiceRequests::Application.routes.draw do
 
   namespace :administration do resources :user_sessions end
 
-  get "user_sessions/new"
+  namespace :requests do resources :req_delegations end
 
-  get "user_sessions/create"
+  namespace :requests do resources :request_commentaries end
 
-  get "user_sessions/destroy"
+  namespace :requests do resources :support_requests end
 
   namespace :administration do resources :user_hierachies end
 
