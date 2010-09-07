@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
-<h1 style="border-bottom-style: ridge;border-bottom-color: #FC6; text-align: right;" class="title">Acceso al sistema</h1>
+<h1 class="text_underline_rigth">Acceso al sistema</h1>
 
->>>>>>> ecba2abf881c1fea94ab5e2778b3f300c05c7711
 <%= form_for(@administration_user_session) do |f| %>
   <% if @administration_user_session.errors.any? %>
     <div id="error_explanation">
@@ -16,48 +13,24 @@
     </div>
   <% end %>
 
-<<<<<<< HEAD
+
 <br/>
 
-<div id="login">
-  <table>
-    <tr>
-      <td><%= f.label :username, 'Usuario:' %></td>
-      <td><%= f.text_field :username, :size => '15' %></td>
-    </tr>
-    <tr>
-      <td><%= f.label :password, 'Contrseña:' %></td>
-      <td><%= f.password_field :password , :size => '15'%></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td align="center"><%=  f.submit "Entrar" %></td>
-    </tr>
-  </table>
-    
-  
-  <br />
-  
-</div>
-
-
-=======
-
-    <table width="400" align="center" style="width:200px;height:100px;border:2px solid #9A1C1C;">
+    <table id="table-login">
       <tr>
-	<td class="table_header_h2" align="right" width="100">
+	<td class="table_header_h2">
 	  <label for="Usuario">Usuario:</label>
 	</td>
-	<td align="left" width="50">
-	  <%= f.text_field :username %><br />
+	<td align="left">
+	  <%= f.text_field :username , :size => '12' %><br />
 	</td>
       </tr>
       <tr>
-	<td class="table_header_h2" align="right" width=100">
+	<td class="table_header_h2">
 	  <label for="Contrasena">Contraseña:</label>
 	</td>
-	<td  width="50">
-	  <%=   f.password_field :password %><br />
+	<td >
+	  <%=   f.password_field :password, :size => '12' %><br />
 	</td>
       </tr>
 
@@ -70,6 +43,5 @@
         </td>
       </tr>
     </table>
->>>>>>> ecba2abf881c1fea94ab5e2778b3f300c05c7711
 
 <% end %>
