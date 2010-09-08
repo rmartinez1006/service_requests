@@ -10,7 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20100906210138) do
+=======
 ActiveRecord::Schema.define(:version => 20100905231609) do
+>>>>>>> ecba2abf881c1fea94ab5e2778b3f300c05c7711
 
   create_table "administration_user_hierachies", :force => true do |t|
     t.integer  "user_id"
@@ -119,4 +123,19 @@ ActiveRecord::Schema.define(:version => 20100905231609) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
+  create_table "stock_transactions", :force => true do |t|
+    t.integer  "type"
+    t.integer  "item_id"
+    t.integer  "quantity"
+    t.string   "document"
+    t.integer  "document_type_id"
+    t.integer  "user_id"
+    t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+=======
+>>>>>>> ecba2abf881c1fea94ab5e2778b3f300c05c7711
 end

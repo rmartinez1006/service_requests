@@ -18,8 +18,13 @@ root {
 a:hover{
     background-color: white;
     color:black;
-
 }
+
+a:link, a:visited{
+    color:dimgray;
+}
+
+
 
 h1{
     font-family: Arial,Helvetica,sans-serif;
@@ -86,6 +91,9 @@ h3{
         color: #FFFFFF;
         background-color: #9A1C1C;
         border-top: 1px solid #369;
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: right;
 }
 
 .table_content{
@@ -94,8 +102,42 @@ h3{
     text-align: center;
 }
 
+.table_content_c2{
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14px;
+        color: #0;
+        background-color: #E4E6E5;
+        border-top: 1px solid #369;
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: right;
+}
+
+.table_content_c3{
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14px;
+        color: #0;
+        background-color: #EFEFEF;
+        border-top: 1px solid #369;
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: right;
+}
 
 
+.link-button {
+    border: 4px outset;
+    border-color:#9a1c1c;
+    padding-left: 4px;
+    padding-right: 4px;
+    text-decoration: none;
+    background-color:#ffdcdc;
+    float: right;
+ }
+
+.text_area {
+width: 600pt;
+}
 
 /*#menu_left{
      width: 160px ;
@@ -112,19 +154,64 @@ h3{
      float:  left ;
      padding-left: 20px;
 }
-*/
 
-#menu_element{
+
+.menu_element{
     width: 160px ;
     height: 62px;
 }
+*/
 
 /*--------------------------------------------- */
 
-#menu{
+#v_menu{
      width: 160px ;
      float:  left ;
 }
+
+#h_menu{     
+     float:  left ;
+     height: 17px;
+     width: 982px;
+     background-color:darkgoldenrod;
+     padding: 4px;
+     font-weight:bolder;
+     font-size:smaller;
+     color: white;
+     text-align: right;
+}
+
+#h_menu a:visited , #h_menu a:link{
+     color: white;
+     text-decoration:none;
+     background-color:transparent;
+}
+
+#h_menu a:hover{
+     color:#ffdcdc;
+     text-decoration:none;
+     background-color:transparent;
+}
+
+
+
+
+#header{
+    width: 990px ;
+    height: 125px;
+    float:  left ;
+    background-image: url('/images/csaj_header.png');
+}
+
+#unam_logo{
+    height: 125px;
+    background-image: url('/images/unam.gif');
+    background-repeat:no-repeat;
+    position:relative;
+    left: 840px;
+    top: 10px;
+}
+
 
 #content{
      width: 810px ;
@@ -132,12 +219,29 @@ h3{
      padding-left: 20px;
 }
 
-.link-button {
-    border: 4px outset;
-    border-color:#9a1c1c;
-    padding-left: 4px;
-    padding-right: 4px;
-    text-decoration: none;
-    background-color:#ffdcdc;
-    float: right;
- }
+#login{
+    width: 240px ;
+    height: 100px;
+    position:absolute;
+    left: 375px
+}
+
+#table-login{
+    margin-left:auto;
+    margin-right:auto;
+    border:2px solid #9A1C1C;
+}
+
+.text_underline_rigth{
+    border-bottom-style: ridge;
+    border-bottom-color: #FC6;    
+    text-align: right;
+    padding-bottom: 5px;
+}
+
+.text_underline_left{
+    border-bottom-style: ridge;
+    border-bottom-color: #FC6;
+    text-align: left;
+    padding-bottom: 5px;
+}
