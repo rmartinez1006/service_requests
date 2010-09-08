@@ -1,0 +1,29 @@
+<h1>Rol de usuario</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Rol:
+    </td>
+    <td>
+      <%= @administration_user_role.rol %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Descripción:
+    </td>
+    <td>
+      <%= @administration_user_role.description %>
+    </td>
+  </tr>
+</table>
+
+
+<hr />
+
+<%= link_to 'Modificar', edit_administration_user_role_path(@administration_user_role), :class => 'link-button' %>
+<%= link_to 'Regresar', administration_user_roles_path, :class => 'link-button' %>
+

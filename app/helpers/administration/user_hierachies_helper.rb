@@ -1,0 +1,2 @@
+module Administration::UserHierachiesHelper
+end

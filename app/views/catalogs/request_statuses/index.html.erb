@@ -1,0 +1,25 @@
+<h1>Catálogo de status</h1>
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>ABREV.</th>
+    <th>NOMBRE</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalogs_request_statuses.each do |catalogs_request_status| %>
+  <tr class="table_content">
+    <td><%= catalogs_request_status.abbr %></td>
+    <td><%= catalogs_request_status.description %></td>
+    <td><%= link_to 'Ver', catalogs_request_status %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_request_status_path(catalogs_request_status) %></td>
+    <td><%= link_to 'Eliminar', catalogs_request_status, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Agregar tipo de Status', new_catalogs_request_status_path, :class => 'link-button' %>

@@ -1,0 +1,26 @@
+<h1>Dependencias</h1>
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>Abbr</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalogs_units.each do |catalogs_unit| %>
+  <tr class="table_content">
+    <td><%= catalogs_unit.abbr %></td>
+    <td><%= catalogs_unit.name %></td>
+    <td><%= link_to 'Ver', catalogs_unit %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_unit_path(catalogs_unit) %></td>
+    <td><%= link_to 'Editar', catalogs_unit, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr/>
+
+<%= link_to 'Agregar dependencia', new_catalogs_unit_path, :class => 'link-button' %>
+

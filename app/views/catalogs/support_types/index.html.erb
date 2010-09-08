@@ -1,0 +1,26 @@
+<h1 class="title">Tipos de soporte</h1>
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>ABREV.</th>
+    <th>NOMBRE</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalogs_support_types.each do |catalogs_support_type| %>
+  <tr class="table_content">
+    <td><%= catalogs_support_type.abbr %></td>
+    <td><%= catalogs_support_type.name %></td>
+    <td><%= link_to 'Ver', catalogs_support_type %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_support_type_path(catalogs_support_type) %></td>
+    <td><%= link_to 'Eliminar', catalogs_support_type, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Nuevo tipo de soporte', new_catalogs_support_type_path, :class => "link-button" %>
+

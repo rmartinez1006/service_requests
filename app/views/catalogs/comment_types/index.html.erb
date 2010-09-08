@@ -1,0 +1,25 @@
+<h1 class="title">Tipos de comentario</h1>
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>ABREV.</th>
+    <th>DESCRIPCION</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalogs_comment_types.each do |catalogs_comment_type| %>
+  <tr>
+    <td><%= catalogs_comment_type.abbr %></td>
+    <td><%= catalogs_comment_type.description %></td>
+    <td><%= link_to 'Ver', catalogs_comment_type %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_comment_type_path(catalogs_comment_type) %></td>
+    <td><%= link_to 'Eliminar', catalogs_comment_type, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr />
+<%= link_to 'Agregar tipo de comentario', new_catalogs_comment_type_path, :class => 'link-button'  %>
+

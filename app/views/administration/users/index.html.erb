@@ -1,0 +1,31 @@
+<h1>Usuarios</h1>
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>USUARIO</th>
+    <th>NOMBRE</th>    
+    <th>CORREO</th>
+    <!--<th>ROL</th>
+    <th>UBICACION</th> -->
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_users.each do |administration_user| %>
+  <tr>
+    <td><%= administration_user.username %></td>
+    <td><%= administration_user.name %></td>    
+    <td><%= administration_user.email %></td>
+    <!--<td><%= administration_user.user_role.description %></td>
+    <td><%= administration_user.ubication.name  %></td> -->
+    <td><%= link_to 'Ver', administration_user %></td>
+    <td><%= link_to 'Modificar', edit_administration_user_path(administration_user) %></td>
+    <td><%= link_to 'Eliminar', administration_user, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Nuevo usuario', new_administration_user_path, :class => 'link-button' %>

@@ -1,0 +1,26 @@
+<h1 class="title">Roles de usuario</h1>
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>ROL</th>
+    <th>DESCRIPCION</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_user_roles.each do |administration_user_role| %>
+  <tr>
+    <td><%= administration_user_role.rol %></td>
+    <td><%= administration_user_role.description %></td>
+    <td><%= link_to 'Ver', administration_user_role %></td>
+    <td><%= link_to 'Modificar', edit_administration_user_role_path(administration_user_role) %></td>
+    <td><%= link_to 'Eliminar', administration_user_role, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Agregar rol de usuario', new_administration_user_role_path, :class => 'link-button' %>
+

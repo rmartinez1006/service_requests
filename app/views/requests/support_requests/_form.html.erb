@@ -1,0 +1,57 @@
+<%= form_for(@requests_support_request) do |f| %>
+  <% if @requests_support_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@requests_support_request.errors.count, "error") %> prohibited this requests_support_request from being saved:</h2>
+
+      <ul>
+      <% @requests_support_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :request_no %><br />
+    <%= f.text_field :request_no %>
+  </div>
+  <div class="field">
+    <%= f.label :ubication_id %><br />
+    <%= f.text_field :ubication_id %>
+  </div>
+  <div class="field">
+    <%= f.label :helper_id %><br />
+    <%= f.text_field :helper_id %>
+  </div>
+  <div class="field">
+    <%= f.label :support_type_id %><br />
+    <%= f.text_field :support_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :tech_description %><br />
+    <%= f.text_area :tech_description %>
+  </div>
+  <div class="field">
+    <%= f.label :status_chng_date %><br />
+    <%= f.date_select :status_chng_date %>
+  </div>
+  <div class="field">
+    <%= f.label :status_id %><br />
+    <%= f.text_field :status_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

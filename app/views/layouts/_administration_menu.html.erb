@@ -1,0 +1,10 @@
+<br />   
+<div id="menu_element">
+  <%=  if params[:controller]=='administration/user_roles' then raw("<img src='/images/vm_administration_user_roles.gif'/>") else raw("<a href=#{administration_user_roles_path}><img src='/images/vm_administration_user_roles_off.gif' border=0 /></a>") end %>
+</div>
+<div id="menu_element">
+  <%=  if params[:controller]=='administration/users' then raw("<img src='/images/vm_administration_users.gif'/>") else raw("<a href=#{administration_users_path}><img src='/images/vm_administration_users_off.gif' border=0 /></a>") end %>
+</div>
+<div id="menu_element">
+  <%=  if params[:controller]=='administration/user_hierachies' then raw("<img src='/images/vm_administration_user_hierachies.gif'/>") else raw("<a href=#{administration_user_hierachies_path}><img src='/images/vm_administration_user_hierachies_off.gif' border=0 /></a>") end %>
+</div>

@@ -1,0 +1,2 @@
+module Catalogs::CommentTypesHelper
+end

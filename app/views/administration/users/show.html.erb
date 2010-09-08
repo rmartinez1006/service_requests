@@ -1,0 +1,72 @@
+<h1 class="title">Usuario</h1>
+
+<p id="notice"><%= notice %></p>
+
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Usuario:
+    </td>
+    <td>
+      <%= @administration_user.username %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Nombre:
+    </td>
+    <td>
+      <%= @administration_user.name %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Correo:
+    </td>
+    <td>
+      <%= @administration_user.email %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Rol:
+    </td>
+    <td>
+      <%= @administration_user.user_role.description %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Ubicación:
+    </td>
+    <td>
+      <%= @administration_user.ubication.name %>
+    </td>
+  </tr>
+
+</table>
+
+<br />
+
+
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>ASISTENTES</th>
+  </tr>
+
+<% @administration_user_hierachies.each do |administration_user_hierachy| %>
+  <tr>
+    <td><%= administration_user_hierachy.userhelper.name %></td>
+  </tr>
+<% end %>
+</table>
+
+
+
+<hr />
+
+<%= link_to 'Modificar', edit_administration_user_path(@administration_user), :class => 'link-button' %>
+<%= link_to 'Regresar', administration_users_path, :class => 'link-button' %>
+

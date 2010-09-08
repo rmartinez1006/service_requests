@@ -1,0 +1,45 @@
+<h1 style="border-bottom-style: ridge;border-bottom-color: #FC6; text-align: right;" class="title">Acceso al sistema</h1>
+
+<%= form_for(@administration_user_session) do |f| %>
+  <% if @administration_user_session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@administration_user_session.errors.count, "error") %> prohibited this administration_user from being saved:</h2>
+
+      <ul>
+      <% @administration_user_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+    <table width="400" align="center" style="width:200px;height:100px;border:2px solid #9A1C1C;">
+      <tr>
+	<td class="table_header_h2" align="right" width="100">
+	  <label for="Usuario">Usuario:</label>
+	</td>
+	<td align="left" width="50">
+	  <%= f.text_field :username %><br />
+	</td>
+      </tr>
+      <tr>
+	<td class="table_header_h2" align="right" width=100">
+	  <label for="Contrasena">Contraseña:</label>
+	</td>
+	<td  width="50">
+	  <%=   f.password_field :password %><br />
+	</td>
+      </tr>
+
+      <tr>
+        <td>
+      
+        </td>
+        <td align="right">
+          <p><%=  f.submit "Entrar", :class => 'link-button' %></p>
+        </td>
+      </tr>
+    </table>
+
+<% end %>

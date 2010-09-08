@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Request no:</b>
+  <%= @requests_support_request.request_no %>
+</p>
+
+<p>
+  <b>Ubication:</b>
+  <%= @requests_support_request.ubication_id %>
+</p>
+
+<p>
+  <b>Helper:</b>
+  <%= @requests_support_request.helper_id %>
+</p>
+
+<p>
+  <b>Support type:</b>
+  <%= @requests_support_request.support_type_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @requests_support_request.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @requests_support_request.email %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @requests_support_request.description %>
+</p>
+
+<p>
+  <b>Tech description:</b>
+  <%= @requests_support_request.tech_description %>
+</p>
+
+<p>
+  <b>Status chng date:</b>
+  <%= @requests_support_request.status_chng_date %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @requests_support_request.status_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_requests_support_request_path(@requests_support_request) %> |
+<%= link_to 'Back', requests_support_requests_path %>

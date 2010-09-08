@@ -1,0 +1,30 @@
+<h1>Tipo de soporte</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Abreviación:
+    </td>
+    <td>
+      <%= @catalogs_support_type.abbr %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Nombre:
+    </td>
+    <td>
+      <%= @catalogs_support_type.name %>
+    </td>
+  </tr>
+</table>
+
+<hr />
+
+
+<%= link_to 'Modificar', edit_catalogs_support_type_path(@catalogs_support_type), :class => "link-button" %>
+<%= link_to 'Regresar', catalogs_support_types_path, :class => "link-button" %>
+
+
