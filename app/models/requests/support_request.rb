@@ -10,7 +10,8 @@ class Requests::SupportRequest < ActiveRecord::Base
       self.request_no = request_number
     end
     if self.status_id == nil
-      self.status_id= 1
+      self.status_id = 1
+#      self.helper_id = 2
       self.status_chng_date=Time.now
     end
   end
@@ -25,9 +26,8 @@ class Requests::SupportRequest < ActiveRecord::Base
 
   def atiende
     
-
     if self.helper_id == nil
-       r = '...'
+       r = '---'
     else
       r=self.userhelper.name
     end          
@@ -37,4 +37,17 @@ class Requests::SupportRequest < ActiveRecord::Base
   def request_number
     return Time.now
   end
+
+ def img_status(status)
+    if status == 1 or estado = nil
+      return "ST01.png"
+    else
+      if status == 2
+        return "ST02.png"
+      else
+        return "ST03.png"
+      end
+    end
+  end
+
 end

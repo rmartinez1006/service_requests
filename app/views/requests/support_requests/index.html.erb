@@ -4,10 +4,9 @@
   <tr class="table_header">
     <th>FEC. MOV.</th>    
     <th>UBIC.</th>
-    <th>SOLICITANTE</th>
-    <th>ATIENDE</th>    
+    <th>SOLICITANTE</th>    
     <th>DESCRIPCION</th>    
-    <th>ESTATUS</th>
+    <th>ESTAT.</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,12 +14,11 @@
 
 <% @requests_support_requests.each do |requests_support_request| %>
   <tr>
-    <td><%= requests_support_request.status_chng_date %></td>    
+    <td><%= requests_support_request.status_chng_date.strftime("%m/%d/%Y") %></td>
     <td><%= requests_support_request.ubication.abbr %></td>
-    <td><%= requests_support_request.name %></td>    
-    <td><%= requests_support_request.atiende %></td>
+    <td><%= requests_support_request.name %></td>        
     <td><%= requests_support_request.description_left(38) %></td>
-    <td><%= requests_support_request.requests_status.abbr %></td>
+    <td align ="center" ><%= image_tag(requests_support_request.img_status(requests_support_request.status_id.to_i)) %></td>
     <td><%= link_to 'Ver', requests_support_request %></td>
     <td><%= link_to 'Modificar', edit_requests_support_request_path(requests_support_request) %></td>
     <td><%= link_to 'Eliminar', requests_support_request, :confirm => 'Are you sure?', :method => :delete %></td>
