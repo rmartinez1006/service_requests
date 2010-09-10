@@ -68194,3 +68194,239 @@ Rendered layouts/_header.html.erb (2.4ms)
 Rendered layouts/_menu.html.erb (126.7ms)
 Rendered requests/support_requests/index.html.erb within layouts/requests (319.0ms)
 Completed 200 OK in 341ms (Views: 312.9ms | ActiveRecord: 14.8ms)
+
+
+Started GET "/catalogs/ubications" for 127.0.0.1 at Fri Sep 10 15:05:47 -0500 2010
+  [1m[36mSQL (2.3ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.2ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.2ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (1.1ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW TIME ZONE
+  Processing by Catalogs::UbicationsController#index as HTML
+  [1m[36mSQL (182.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (65.7ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (1.4ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"administration_users"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mAdministration::User Load (31.7ms)[0m  SELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "administration_users".* FROM "administration_users" WHERE ("administration_users"."id" = 1) LIMIT 1[0m
+  [1m[35mCatalogs::Ubication Load (12.8ms)[0m  SELECT "catalogs_ubications".* FROM "catalogs_ubications" ORDER BY unit_id, abbr
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (2.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Unit Load (32.8ms)[0m  [1mSELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (2.3ms)
+Rendered layouts/_catalogs_menu.html.erb (2.9ms)
+Rendered catalogs/ubications/index.html.erb within layouts/catalogs (167.5ms)
+Completed 200 OK in 660ms (Views: 147.0ms | ActiveRecord: 335.1ms)
+
+
+Started GET "/requests/support_requests" for 127.0.0.1 at Fri Sep 10 15:08:28 -0500 2010
+  Processing by Requests::SupportRequestsController#index as HTML
+DEPRECATION WARNING: Base#before_save has been deprecated, please use Base.before_save :method instead. (called from /home/martinezo/rails3/service_requests/app/models/requests/support_request.rb:8)
+  [1m[36mRequests::SupportRequest Load (26.4ms)[0m  [1mSELECT "requests_support_requests".* FROM "requests_support_requests"[0m
+  [1m[35mSQL (1.2ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_support_requests"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+Rendered requests/support_requests/index.html.erb within layouts/requests (137.3ms)
+Completed   in 193ms
+
+ActionView::Template::Error (undefined method `catalogs_ubication' for #<Requests::SupportRequest:0xb6e95a64>):
+    15: <% @requests_support_requests.each do |requests_support_request| %>
+    16:   <tr>
+    17:     <td><%= requests_support_request.status_chng_date.strftime("%m/%d/%Y") %></td>
+    18:     <td><%= requests_support_request.catalogs_ubication.unit.abbr %></td>
+    19:     <td><%= requests_support_request.name %></td>        
+    20:     <td><%= requests_support_request.description_left(38) %></td>
+    21:     <td align ="center" ><%= image_tag(requests_support_request.img_status(requests_support_request.status_id.to_i)) %></td>
+  app/views/requests/support_requests/index.html.erb:18:in `_app_views_requests_support_requests_index_html_erb__1004490865__613118568_0'
+  app/views/requests/support_requests/index.html.erb:15:in `each'
+  app/views/requests/support_requests/index.html.erb:15:in `_app_views_requests_support_requests_index_html_erb__1004490865__613118568_0'
+  app/controllers/requests/support_requests_controller.rb:9:in `index'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.4ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (18.8ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.1ms)
+
+
+Started GET "/requests/support_requests" for 127.0.0.1 at Fri Sep 10 15:10:21 -0500 2010
+  Processing by Requests::SupportRequestsController#index as HTML
+DEPRECATION WARNING: Base#before_save has been deprecated, please use Base.before_save :method instead. (called from /home/martinezo/rails3/service_requests/app/models/requests/support_request.rb:8)
+  [1m[36mRequests::SupportRequest Load (14.0ms)[0m  [1mSELECT "requests_support_requests".* FROM "requests_support_requests"[0m
+  [1m[35mSQL (22.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_support_requests"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (8.0ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Ubication Load (18.4ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+  [1m[36mSQL (2.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (2.9ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Unit Load (1.2ms)[0m  [1mSELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCACHE (1.1ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.4ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1
+Rendered layouts/_header.html.erb (0.6ms)
+Rendered layouts/_menu.html.erb (3.5ms)
+Rendered requests/support_requests/index.html.erb within layouts/requests (221.9ms)
+Completed 200 OK in 256ms (Views: 167.0ms | ActiveRecord: 71.7ms)
+
+
+Started GET "/requests/support_requests" for 127.0.0.1 at Fri Sep 10 15:11:12 -0500 2010
+  Processing by Requests::SupportRequestsController#index as HTML
+DEPRECATION WARNING: Base#before_save has been deprecated, please use Base.before_save :method instead. (called from /home/martinezo/rails3/service_requests/app/models/requests/support_request.rb:8)
+  [1m[36mRequests::SupportRequest Load (2.1ms)[0m  [1mSELECT "requests_support_requests".* FROM "requests_support_requests"[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_support_requests"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Ubication Load (0.0ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+  [1m[36mSQL (1.2ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (1.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Unit Load (1.5ms)[0m  [1mSELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1[0m
+Rendered requests/support_requests/index.html.erb within layouts/requests (248.3ms)
+Completed   in 269ms
+
+ActionView::Template::Error (undefined method `+@' for "-":String):
+    15: <% @requests_support_requests.each do |requests_support_request| %>
+    16:   <tr>
+    17:     <td><%= requests_support_request.status_chng_date.strftime("%m/%d/%Y") %></td>
+    18:     <td><%= requests_support_request.ubication.unit.abbr +"-"+requests_support_request.ubication.abbr %></td>
+    19:     <td><%= requests_support_request.name %></td>        
+    20:     <td><%= requests_support_request.description_left(38) %></td>
+    21:     <td align ="center" ><%= image_tag(requests_support_request.img_status(requests_support_request.status_id.to_i)) %></td>
+  app/views/requests/support_requests/index.html.erb:18:in `_app_views_requests_support_requests_index_html_erb__1004490865__612933648_0'
+  app/views/requests/support_requests/index.html.erb:15:in `each'
+  app/views/requests/support_requests/index.html.erb:15:in `_app_views_requests_support_requests_index_html_erb__1004490865__612933648_0'
+  app/controllers/requests/support_requests_controller.rb:9:in `index'
+
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (21.1ms)
+Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.0.0.rc/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (29.2ms)
+
+
+Started GET "/requests/support_requests" for 127.0.0.1 at Fri Sep 10 15:11:41 -0500 2010
+  Processing by Requests::SupportRequestsController#index as HTML
+DEPRECATION WARNING: Base#before_save has been deprecated, please use Base.before_save :method instead. (called from /home/martinezo/rails3/service_requests/app/models/requests/support_request.rb:8)
+  [1m[35mRequests::SupportRequest Load (2.5ms)[0m  SELECT "requests_support_requests".* FROM "requests_support_requests"
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"requests_support_requests"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (1.7ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mCatalogs::Ubication Load (6.0ms)[0m  [1mSELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (1.3ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_ubications"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (4.3ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCatalogs::Unit Load (0.7ms)[0m  SELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"catalogs_units"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1[0m
+  [1m[35mCACHE (1.7ms)[0m  SELECT "catalogs_ubications"."id", "catalogs_ubications"."abbr", "catalogs_ubications"."name", "catalogs_ubications"."responsible", "catalogs_ubications"."tel_ext", "catalogs_ubications"."unit_id", "catalogs_ubications"."created_at", "catalogs_ubications"."updated_at" FROM "catalogs_ubications" WHERE ("catalogs_ubications"."id" = 1) LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "catalogs_units"."id", "catalogs_units"."abbr", "catalogs_units"."name", "catalogs_units"."created_at", "catalogs_units"."updated_at" FROM "catalogs_units" WHERE ("catalogs_units"."id" = 1) LIMIT 1[0m
+Rendered layouts/_header.html.erb (0.4ms)
+Rendered layouts/_menu.html.erb (3.4ms)
+Rendered requests/support_requests/index.html.erb within layouts/requests (174.8ms)
+Completed 200 OK in 191ms (Views: 161.6ms | ActiveRecord: 26.1ms)

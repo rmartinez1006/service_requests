@@ -15,7 +15,7 @@
 <% @requests_support_requests.each do |requests_support_request| %>
   <tr>
     <td><%= requests_support_request.status_chng_date.strftime("%m/%d/%Y") %></td>
-    <td><%= requests_support_request.ubication.abbr %></td>
+    <td><%= requests_support_request.ubication.unit.abbr + "-" +requests_support_request.ubication.abbr %></td>
     <td><%= requests_support_request.name %></td>        
     <td><%= requests_support_request.description_left(38) %></td>
     <td align ="center" ><%= image_tag(requests_support_request.img_status(requests_support_request.status_id.to_i)) %></td>
