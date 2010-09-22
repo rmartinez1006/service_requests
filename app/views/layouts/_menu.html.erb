@@ -1,4 +1,5 @@
 <div id="h_menu">
+  <div id="username"><%= Administration::UserSession.find.record.attributes['name']%></div>
   <%= link_to 'SOLICITUDES', requests_support_requests_path, :class => "h_menu_element" %> |
   <%= link_to 'CATALOGOS', catalogs_units_path, :class => "h_menu_element" %> |
   <%= link_to 'ADMINISTRACION', administration_users_path %> |

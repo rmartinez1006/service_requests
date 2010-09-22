@@ -245,3 +245,17 @@ width: 600pt;
     text-align: left;
     padding-bottom: 5px;
 }
+
+
+#username{
+    text-align: left;
+    width: 240px ;
+    position:absolute;
+    padding-left: 10px
+}
+
+
+#content_center {
+width: 990px;
+margin: 0 auto;
+}

@@ -1,0 +1,94 @@
+(in /home/martinezo/rails3/service_requests)
+             administration_login        /administration/login                              {:controller=>"administration/user_sessions", :action=>"new"}
+            administration_logout        /administration/logout                             {:controller=>"administration/user_sessions", :action=>"destroy"}
+                                  GET    /administration/user_sessions(.:format)            {:controller=>"administration/user_sessions", :action=>"index"}
+     administration_user_sessions POST   /administration/user_sessions(.:format)            {:controller=>"administration/user_sessions", :action=>"create"}
+  new_administration_user_session GET    /administration/user_sessions/new(.:format)        {:controller=>"administration/user_sessions", :action=>"new"}
+                                  GET    /administration/user_sessions/:id(.:format)        {:controller=>"administration/user_sessions", :action=>"show"}
+                                  PUT    /administration/user_sessions/:id(.:format)        {:controller=>"administration/user_sessions", :action=>"update"}
+      administration_user_session DELETE /administration/user_sessions/:id(.:format)        {:controller=>"administration/user_sessions", :action=>"destroy"}
+ edit_administration_user_session GET    /administration/user_sessions/:id/edit(.:format)   {:controller=>"administration/user_sessions", :action=>"edit"}
+                                  GET    /requests/req_delegations(.:format)                {:controller=>"requests/req_delegations", :action=>"index"}
+         requests_req_delegations POST   /requests/req_delegations(.:format)                {:controller=>"requests/req_delegations", :action=>"create"}
+      new_requests_req_delegation GET    /requests/req_delegations/new(.:format)            {:controller=>"requests/req_delegations", :action=>"new"}
+                                  GET    /requests/req_delegations/:id(.:format)            {:controller=>"requests/req_delegations", :action=>"show"}
+                                  PUT    /requests/req_delegations/:id(.:format)            {:controller=>"requests/req_delegations", :action=>"update"}
+          requests_req_delegation DELETE /requests/req_delegations/:id(.:format)            {:controller=>"requests/req_delegations", :action=>"destroy"}
+     edit_requests_req_delegation GET    /requests/req_delegations/:id/edit(.:format)       {:controller=>"requests/req_delegations", :action=>"edit"}
+                                  GET    /requests/request_commentaries(.:format)           {:controller=>"requests/request_commentaries", :action=>"index"}
+    requests_request_commentaries POST   /requests/request_commentaries(.:format)           {:controller=>"requests/request_commentaries", :action=>"create"}
+  new_requests_request_commentary GET    /requests/request_commentaries/new(.:format)       {:controller=>"requests/request_commentaries", :action=>"new"}
+                                  GET    /requests/request_commentaries/:id(.:format)       {:controller=>"requests/request_commentaries", :action=>"show"}
+                                  PUT    /requests/request_commentaries/:id(.:format)       {:controller=>"requests/request_commentaries", :action=>"update"}
+      requests_request_commentary DELETE /requests/request_commentaries/:id(.:format)       {:controller=>"requests/request_commentaries", :action=>"destroy"}
+ edit_requests_request_commentary GET    /requests/request_commentaries/:id/edit(.:format)  {:controller=>"requests/request_commentaries", :action=>"edit"}
+                                  GET    /requests/support_requests(.:format)               {:controller=>"requests/support_requests", :action=>"index"}
+        requests_support_requests POST   /requests/support_requests(.:format)               {:controller=>"requests/support_requests", :action=>"create"}
+     new_requests_support_request GET    /requests/support_requests/new(.:format)           {:controller=>"requests/support_requests", :action=>"new"}
+                                  GET    /requests/support_requests/:id(.:format)           {:controller=>"requests/support_requests", :action=>"show"}
+                                  PUT    /requests/support_requests/:id(.:format)           {:controller=>"requests/support_requests", :action=>"update"}
+         requests_support_request DELETE /requests/support_requests/:id(.:format)           {:controller=>"requests/support_requests", :action=>"destroy"}
+    edit_requests_support_request GET    /requests/support_requests/:id/edit(.:format)      {:controller=>"requests/support_requests", :action=>"edit"}
+                                  GET    /administration/user_hierachies(.:format)          {:controller=>"administration/user_hierachies", :action=>"index"}
+   administration_user_hierachies POST   /administration/user_hierachies(.:format)          {:controller=>"administration/user_hierachies", :action=>"create"}
+ new_administration_user_hierachy GET    /administration/user_hierachies/new(.:format)      {:controller=>"administration/user_hierachies", :action=>"new"}
+                                  GET    /administration/user_hierachies/:id(.:format)      {:controller=>"administration/user_hierachies", :action=>"show"}
+                                  PUT    /administration/user_hierachies/:id(.:format)      {:controller=>"administration/user_hierachies", :action=>"update"}
+     administration_user_hierachy DELETE /administration/user_hierachies/:id(.:format)      {:controller=>"administration/user_hierachies", :action=>"destroy"}
+edit_administration_user_hierachy GET    /administration/user_hierachies/:id/edit(.:format) {:controller=>"administration/user_hierachies", :action=>"edit"}
+                                  GET    /administration/users(.:format)                    {:controller=>"administration/users", :action=>"index"}
+             administration_users POST   /administration/users(.:format)                    {:controller=>"administration/users", :action=>"create"}
+          new_administration_user GET    /administration/users/new(.:format)                {:controller=>"administration/users", :action=>"new"}
+                                  GET    /administration/users/:id(.:format)                {:controller=>"administration/users", :action=>"show"}
+                                  PUT    /administration/users/:id(.:format)                {:controller=>"administration/users", :action=>"update"}
+              administration_user DELETE /administration/users/:id(.:format)                {:controller=>"administration/users", :action=>"destroy"}
+         edit_administration_user GET    /administration/users/:id/edit(.:format)           {:controller=>"administration/users", :action=>"edit"}
+                                  GET    /administration/user_roles(.:format)               {:controller=>"administration/user_roles", :action=>"index"}
+        administration_user_roles POST   /administration/user_roles(.:format)               {:controller=>"administration/user_roles", :action=>"create"}
+     new_administration_user_role GET    /administration/user_roles/new(.:format)           {:controller=>"administration/user_roles", :action=>"new"}
+                                  GET    /administration/user_roles/:id(.:format)           {:controller=>"administration/user_roles", :action=>"show"}
+                                  PUT    /administration/user_roles/:id(.:format)           {:controller=>"administration/user_roles", :action=>"update"}
+         administration_user_role DELETE /administration/user_roles/:id(.:format)           {:controller=>"administration/user_roles", :action=>"destroy"}
+    edit_administration_user_role GET    /administration/user_roles/:id/edit(.:format)      {:controller=>"administration/user_roles", :action=>"edit"}
+                                  GET    /catalogs/ubications(.:format)                     {:controller=>"catalogs/ubications", :action=>"index"}
+              catalogs_ubications POST   /catalogs/ubications(.:format)                     {:controller=>"catalogs/ubications", :action=>"create"}
+           new_catalogs_ubication GET    /catalogs/ubications/new(.:format)                 {:controller=>"catalogs/ubications", :action=>"new"}
+                                  GET    /catalogs/ubications/:id(.:format)                 {:controller=>"catalogs/ubications", :action=>"show"}
+                                  PUT    /catalogs/ubications/:id(.:format)                 {:controller=>"catalogs/ubications", :action=>"update"}
+               catalogs_ubication DELETE /catalogs/ubications/:id(.:format)                 {:controller=>"catalogs/ubications", :action=>"destroy"}
+          edit_catalogs_ubication GET    /catalogs/ubications/:id/edit(.:format)            {:controller=>"catalogs/ubications", :action=>"edit"}
+                                  GET    /catalogs/units(.:format)                          {:controller=>"catalogs/units", :action=>"index"}
+                   catalogs_units POST   /catalogs/units(.:format)                          {:controller=>"catalogs/units", :action=>"create"}
+                new_catalogs_unit GET    /catalogs/units/new(.:format)                      {:controller=>"catalogs/units", :action=>"new"}
+                                  GET    /catalogs/units/:id(.:format)                      {:controller=>"catalogs/units", :action=>"show"}
+                                  PUT    /catalogs/units/:id(.:format)                      {:controller=>"catalogs/units", :action=>"update"}
+                    catalogs_unit DELETE /catalogs/units/:id(.:format)                      {:controller=>"catalogs/units", :action=>"destroy"}
+               edit_catalogs_unit GET    /catalogs/units/:id/edit(.:format)                 {:controller=>"catalogs/units", :action=>"edit"}
+                                  GET    /catalogs/comment_types(.:format)                  {:controller=>"catalogs/comment_types", :action=>"index"}
+           catalogs_comment_types POST   /catalogs/comment_types(.:format)                  {:controller=>"catalogs/comment_types", :action=>"create"}
+        new_catalogs_comment_type GET    /catalogs/comment_types/new(.:format)              {:controller=>"catalogs/comment_types", :action=>"new"}
+                                  GET    /catalogs/comment_types/:id(.:format)              {:controller=>"catalogs/comment_types", :action=>"show"}
+                                  PUT    /catalogs/comment_types/:id(.:format)              {:controller=>"catalogs/comment_types", :action=>"update"}
+            catalogs_comment_type DELETE /catalogs/comment_types/:id(.:format)              {:controller=>"catalogs/comment_types", :action=>"destroy"}
+       edit_catalogs_comment_type GET    /catalogs/comment_types/:id/edit(.:format)         {:controller=>"catalogs/comment_types", :action=>"edit"}
+                                  GET    /catalogs/priorities(.:format)                     {:controller=>"catalogs/priorities", :action=>"index"}
+              catalogs_priorities POST   /catalogs/priorities(.:format)                     {:controller=>"catalogs/priorities", :action=>"create"}
+            new_catalogs_priority GET    /catalogs/priorities/new(.:format)                 {:controller=>"catalogs/priorities", :action=>"new"}
+                                  GET    /catalogs/priorities/:id(.:format)                 {:controller=>"catalogs/priorities", :action=>"show"}
+                                  PUT    /catalogs/priorities/:id(.:format)                 {:controller=>"catalogs/priorities", :action=>"update"}
+                catalogs_priority DELETE /catalogs/priorities/:id(.:format)                 {:controller=>"catalogs/priorities", :action=>"destroy"}
+           edit_catalogs_priority GET    /catalogs/priorities/:id/edit(.:format)            {:controller=>"catalogs/priorities", :action=>"edit"}
+                                  GET    /catalogs/request_statuses(.:format)               {:controller=>"catalogs/request_statuses", :action=>"index"}
+        catalogs_request_statuses POST   /catalogs/request_statuses(.:format)               {:controller=>"catalogs/request_statuses", :action=>"create"}
+      new_catalogs_request_status GET    /catalogs/request_statuses/new(.:format)           {:controller=>"catalogs/request_statuses", :action=>"new"}
+                                  GET    /catalogs/request_statuses/:id(.:format)           {:controller=>"catalogs/request_statuses", :action=>"show"}
+                                  PUT    /catalogs/request_statuses/:id(.:format)           {:controller=>"catalogs/request_statuses", :action=>"update"}
+          catalogs_request_status DELETE /catalogs/request_statuses/:id(.:format)           {:controller=>"catalogs/request_statuses", :action=>"destroy"}
+     edit_catalogs_request_status GET    /catalogs/request_statuses/:id/edit(.:format)      {:controller=>"catalogs/request_statuses", :action=>"edit"}
+                                  GET    /catalogs/support_types(.:format)                  {:controller=>"catalogs/support_types", :action=>"index"}
+           catalogs_support_types POST   /catalogs/support_types(.:format)                  {:controller=>"catalogs/support_types", :action=>"create"}
+        new_catalogs_support_type GET    /catalogs/support_types/new(.:format)              {:controller=>"catalogs/support_types", :action=>"new"}
+                                  GET    /catalogs/support_types/:id(.:format)              {:controller=>"catalogs/support_types", :action=>"show"}
+                                  PUT    /catalogs/support_types/:id(.:format)              {:controller=>"catalogs/support_types", :action=>"update"}
+            catalogs_support_type DELETE /catalogs/support_types/:id(.:format)              {:controller=>"catalogs/support_types", :action=>"destroy"}
+       edit_catalogs_support_type GET    /catalogs/support_types/:id/edit(.:format)         {:controller=>"catalogs/support_types", :action=>"edit"}

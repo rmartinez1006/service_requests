@@ -39,6 +39,9 @@ class Administration::UsersController < ApplicationController
   # GET /administration/users/1/edit
   def edit
     @administration_user = Administration::User.find(params[:id])
+    unless @administration_user.id == Administration::UserSession.find.record.attributes['id']
+      redirect_to(administration_users_path, :notice => 'Solo el propietario de esta cuenta puede modificarla!!') 
+    end
   end
 
   # POST /administration/users
