@@ -5,4 +5,5 @@ class ChangeRequestsSupportCost < ActiveRecord::Migration
 
   def self.down
   end
+  
 end
