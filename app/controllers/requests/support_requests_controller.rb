@@ -39,6 +39,12 @@ class Requests::SupportRequestsController < ApplicationController
     @requests_support_request = Requests::SupportRequest.find(params[:id])
   end
 
+  # GET /requests/support_requests/1/scale
+  def scale
+    @requests_support_request = Requests::SupportRequest.find(params[:id])
+  end
+
+
   # POST /requests/support_requests
   # POST /requests/support_requests.xml
   def create

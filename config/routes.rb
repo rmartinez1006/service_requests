@@ -12,6 +12,13 @@ ServiceRequests::Application.routes.draw do
 
   namespace :requests do resources :support_requests end
 
+  namespace :requests do
+#    match 'cancel', :to => 'support_requests#cancel', :as => 'cancel'
+    match 'support_requests/:id/scale' => 'support_requests#scale', :as => :scale
+  end
+   
+
+
   namespace :administration do resources :user_hierachies end
 
   namespace :administration do resources :users end
