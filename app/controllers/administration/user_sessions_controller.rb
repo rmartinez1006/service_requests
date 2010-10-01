@@ -9,7 +9,7 @@ class Administration::UserSessionsController < ApplicationController
   def create
     @administration_user_session = Administration::UserSession.new(params[:administration_user_session])
     if @administration_user_session.save
-      flash[:notice] = "Sessión de usuario abierta"
+      flash[:notice] = "Sesión de usuario abierta"
       redirect_to administration_users_path
     else
       render :action => 'new'
@@ -19,7 +19,7 @@ class Administration::UserSessionsController < ApplicationController
   def destroy
     @administration_user_session = Administration::UserSession.find
     @administration_user_session.destroy
-    flash[:notice] = "Sessión de usuario cerrada."
+    flash[:notice] = "Sesión de usuario cerrada."
     redirect_to administration_login_path
   end
 

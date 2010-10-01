@@ -1,6 +1,7 @@
 class Requests::ReqDelegationsController < ApplicationController
   # GET /requests/req_delegations
   # GET /requests/req_delegations.xml
+  before_filter :authorize
   def index
     @requests_req_delegations = Requests::ReqDelegation.all
 

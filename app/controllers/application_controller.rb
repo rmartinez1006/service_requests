@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def authorize
     unless current_user
       store_location
-      flash[:notice] = "Es necesario iniciar la sessión como usuario."
+      flash[:notice] = "Es necesario iniciar la sesión como usuario."
       redirect_to administration_login_path
       return false
     end

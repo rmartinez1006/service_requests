@@ -1,7 +1,7 @@
 class Requests::SupportRequestsController < ApplicationController
   # GET /requests/support_requests
   # GET /requests/support_requests.xml
-  
+  before_filter :authorize
   layout "requests"
   def index
     @requests_support_requests = Requests::SupportRequest.all
