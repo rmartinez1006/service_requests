@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Abbr:</b>
+  <%= @catalogs_workmanship.abbr %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @catalogs_workmanship.description %>
+</p>
+
+<p>
+  <b>Unit cost:</b>
+  <%= @catalogs_workmanship.unit_cost %>
+</p>
+
+<p>
+  <b>Unit measure:</b>
+  <%= @catalogs_workmanship.unit_measure %>
+</p>
+
+
+<%= link_to 'Edit', edit_catalogs_workmanship_path(@catalogs_workmanship) %> |
+<%= link_to 'Back', catalogs_workmanships_path %>

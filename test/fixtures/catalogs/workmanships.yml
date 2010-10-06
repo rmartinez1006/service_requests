@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  abbr: MyString
+  description: MyString
+  unit_cost: 9.99
+  unit_measure: MyString
+
+two:
+  abbr: MyString
+  description: MyString
+  unit_cost: 9.99
+  unit_measure: MyString
