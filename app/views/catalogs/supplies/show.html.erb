@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Abbr:</b>
+  <%= @catalogs_supply.abbr %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @catalogs_supply.description %>
+</p>
+
+<p>
+  <b>Unit cost:</b>
+  <%= @catalogs_supply.unit_cost %>
+</p>
+
+<p>
+  <b>Unit measure:</b>
+  <%= @catalogs_supply.unit_measure %>
+</p>
+
+
+<%= link_to 'Edit', edit_catalogs_supply_path(@catalogs_supply) %> |
+<%= link_to 'Back', catalogs_supplies_path %>

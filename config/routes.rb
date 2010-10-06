@@ -1,4 +1,6 @@
 ServiceRequests::Application.routes.draw do
+  namespace :catalogs do resources :supplies end
+
   namespace :administration do
     match 'login', :to => 'user_sessions#new', :as => 'login'
     match 'logout', :to => 'user_sessions#destroy', :as => 'logout'

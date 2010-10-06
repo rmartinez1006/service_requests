@@ -1,0 +1,33 @@
+<%= form_for(@catalogs_supply) do |f| %>
+  <% if @catalogs_supply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@catalogs_supply.errors.count, "error") %> prohibited this catalogs_supply from being saved:</h2>
+
+      <ul>
+      <% @catalogs_supply.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :abbr %><br />
+    <%= f.text_field :abbr %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_cost %><br />
+    <%= f.text_field :unit_cost %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_measure %><br />
+    <%= f.text_field :unit_measure %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
