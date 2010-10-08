@@ -4,4 +4,5 @@ class Catalogs::Ubication < ActiveRecord::Base
   validates :unit_id, :presence => true
 
   belongs_to :unit, :class_name => 'Catalogs::Unit'
+  
 end

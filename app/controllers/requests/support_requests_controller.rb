@@ -3,8 +3,26 @@ class Requests::SupportRequestsController < ApplicationController
   # GET /requests/support_requests.xml
   before_filter :authorize
   layout "requests"
+
   def index
-    @requests_support_requests = Requests::SupportRequest.all
+    #@requests_support_requests = Requests::SupportRequest.all
+    #@requests_support_requests = Requests::SupportRequest.find(:all, :conditions => 'ubication_id = 1' )    
+     @user_ubication_id= Administration::UserSession.find.record.attributes['ubication_id']
+     @ubication_id = Catalogs::Ubication.find(@user_ubication_id)
+     unit_id =  @ubication_id.unit_id
+
+     lv_sql ="SELECT r.* FROM requests_support_requests as r
+               INNER JOIN catalogs_ubications as c ON
+                 c.id = r.ubication_id
+               INNER JOIN catalogs_units as u ON
+                 u.id = r.ubication_id
+               WHERE u.id = ".concat(unit_id.to_s)
+    
+    @requests_support_requests = Requests::SupportRequest.find_by_sql(lv_sql)
+    
+
+     #@unit_id = Catalogs::Unit.find.record.attributes['ubication_id']
+
 
     respond_to do |format|
       format.html # index.html.erb

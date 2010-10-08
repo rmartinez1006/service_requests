@@ -4,6 +4,9 @@ class Requests::SupportRequest < ActiveRecord::Base
   belongs_to :userhelper, :class_name => "Administration::User", :foreign_key => "helper_id"
   belongs_to :requests_status, :class_name => "Catalogs::RequestStatus", :foreign_key => "status_id"
 
+  has_many :ubications, :class_name => 'Catalogs::Ubication'
+  
+  
 
   def before_save
     if  self.request_no == nil
