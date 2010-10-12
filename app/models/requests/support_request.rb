@@ -1,10 +1,14 @@
 class Requests::SupportRequest < ActiveRecord::Base
 
+  
   belongs_to :ubication, :class_name => 'Catalogs::Ubication'
   belongs_to :userhelper, :class_name => "Administration::User", :foreign_key => "helper_id"
   belongs_to :requests_status, :class_name => "Catalogs::RequestStatus", :foreign_key => "status_id"
 
+  belongs_to :supporttype, :class_name => 'Catalogs::SupportType', :foreign_key => 'support_type_id'
+
   has_many :ubications, :class_name => 'Catalogs::Ubication'
+  
   
   
 
@@ -27,7 +31,9 @@ class Requests::SupportRequest < ActiveRecord::Base
     r
   end
 
-  def atiende
+
+# Validar Helper (Atiende)
+  def helper
     
     if self.helper_id == nil
        r = '---'
@@ -36,6 +42,31 @@ class Requests::SupportRequest < ActiveRecord::Base
     end          
     r
   end
+
+# Validar SupportType (Tipo de Soporte)
+  def support_type
+
+    if self.support_type_id == nil
+       r = '---'
+    else
+      r=self.supporttype.name
+    end
+    r
+  end
+
+# No. de Folio
+  def num_sequence
+
+    if self.id == nil
+       r = '---'
+    else
+      r=self.ubication.unit.abbr + '-' + self.id.to_s
+    end
+    r
+  end
+
+
+
 
   def request_number
     return Time.now
