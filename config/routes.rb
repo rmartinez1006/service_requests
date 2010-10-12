@@ -1,4 +1,6 @@
 ServiceRequests::Application.routes.draw do
+  namespace :catalogs do resources :suppliers end
+
   namespace :catalogs do resources :workmanships end
 
   namespace :catalogs do resources :supplies end

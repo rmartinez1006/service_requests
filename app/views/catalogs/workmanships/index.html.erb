@@ -1,11 +1,11 @@
-<h1>Listing catalogs_workmanships</h1>
+<h1>Mano de obra</h1>
 
-<table>
-  <tr>
-    <th>Abbr</th>
-    <th>Description</th>
-    <th>Unit cost</th>
-    <th>Unit measure</th>
+<table class ="table1">
+  <tr class="table_header">
+    <th>ABREV.</th>
+    <th>DESCRIPCION</th>
+    <th>PRECIO. U.</th>
+    <th>U. DE MEDIDA</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,13 +17,13 @@
     <td><%= catalogs_workmanship.description %></td>
     <td><%= catalogs_workmanship.unit_cost %></td>
     <td><%= catalogs_workmanship.unit_measure %></td>
-    <td><%= link_to 'Show', catalogs_workmanship %></td>
-    <td><%= link_to 'Edit', edit_catalogs_workmanship_path(catalogs_workmanship) %></td>
-    <td><%= link_to 'Destroy', catalogs_workmanship, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', catalogs_workmanship %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_workmanship_path(catalogs_workmanship) %></td>
+    <td><%= link_to 'Eliminar', catalogs_workmanship, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<hr />
 
-<%= link_to 'New Workmanship', new_catalogs_workmanship_path %>
+<%= link_to 'New Workmanship', new_catalogs_workmanship_path, :class => 'link-button' %>

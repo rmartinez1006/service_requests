@@ -1,0 +1,58 @@
+<h1>Proveedor</h1>
+<p id="notice"><%= notice %></p>
+
+
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Abreviación:
+    </td>
+    <td>
+      <%= @catalogs_supplier.abbr %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Razón Social:
+    </td>
+    <td>
+      <%= @catalogs_supplier.trade_name %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Contacto:
+    </td>
+    <td>
+      <%= @catalogs_supplier.contact_name %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Dirección:
+    </td>
+    <td>
+      <%= @catalogs_supplier.address %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Tel. Celular:
+    </td>
+    <td>
+      <%= @catalogs_supplier.mobile_phone %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Tel. Oficina:
+    </td>
+    <td>
+      <%= @catalogs_supplier.business_phone %>
+    </td>
+  </tr>
+</table>
+
+<hr/>
+<%= link_to 'Modificar', edit_catalogs_supplier_path(@catalogs_supplier), :class => 'link-button' %>
+<%= link_to 'Regresar', catalogs_suppliers_path, :class => 'link-button' %>

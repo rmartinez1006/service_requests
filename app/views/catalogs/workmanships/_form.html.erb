@@ -11,23 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :abbr %><br />
-    <%= f.text_field :abbr %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :unit_cost %><br />
-    <%= f.text_field :unit_cost %>
-  </div>
-  <div class="field">
-    <%= f.label :unit_measure %><br />
-    <%= f.text_field :unit_measure %>
-  </div>
+  <table width="990">
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Abreviación:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :abbr , :size => 6%>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Descripción:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :description %>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Precio Unitario:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :unit_cost %>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Unidad de Medida:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :unit_measure %>
+      </td>
+    </tr>
+  </table>
+
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar"%>
   </div>
 <% end %>

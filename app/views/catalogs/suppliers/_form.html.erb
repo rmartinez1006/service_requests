@@ -1,0 +1,68 @@
+<%= form_for(@catalogs_supplier) do |f| %>
+  <% if @catalogs_supplier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@catalogs_supplier.errors.count, "error") %> prohibited this catalogs_supplier from being saved:</h2>
+
+      <ul>
+      <% @catalogs_supplier.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<table width="990">
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Abreviación:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :abbr , :size => 6%>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Razón Social:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :trade_name %>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Contacto:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :contact_name %>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Dirección:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :address, :rows => '5', :cols => '50' %>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Tel. Celular:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :mobile_phone%>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Tel. Oficina:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :business_phone%>
+      </td>
+    </tr>
+</table>
+
+  <div class="actions">
+    <%= f.submit "Guardar"%>
+  </div>
+<% end %>

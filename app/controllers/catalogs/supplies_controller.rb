@@ -1,6 +1,8 @@
 class Catalogs::SuppliesController < ApplicationController
   # GET /catalogs/supplies
   # GET /catalogs/supplies.xml
+  before_filter :authorize
+  layout "catalogs"
   def index
     @catalogs_supplies = Catalogs::Supply.all
 
