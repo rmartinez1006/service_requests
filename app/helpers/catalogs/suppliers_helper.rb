@@ -1,0 +1,2 @@
+module Catalogs::SuppliersHelper
+end

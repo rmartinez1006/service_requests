@@ -1,25 +1,43 @@
+<h1>Mano de obra</h1>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Abbr:</b>
-  <%= @catalogs_workmanship.abbr %>
-</p>
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Abreviación:
+    </td>
+    <td>
+      <%= @catalogs_workmanship.abbr %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Descripción:
+    </td>
+    <td>
+      <%= @catalogs_workmanship.description %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Precio Unit.:
+    </td>
+    <td>
+      <%= @catalogs_workmanship.unit_cost %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      U. de medida:
+    </td>
+    <td>
+      <%= @catalogs_workmanship.unit_measure %>
+    </td>
+  </tr>
+</table>
 
-<p>
-  <b>Description:</b>
-  <%= @catalogs_workmanship.description %>
-</p>
-
-<p>
-  <b>Unit cost:</b>
-  <%= @catalogs_workmanship.unit_cost %>
-</p>
-
-<p>
-  <b>Unit measure:</b>
-  <%= @catalogs_workmanship.unit_measure %>
-</p>
+<hr/>
 
 
-<%= link_to 'Edit', edit_catalogs_workmanship_path(@catalogs_workmanship) %> |
-<%= link_to 'Back', catalogs_workmanships_path %>
+<%= link_to 'Modificar', edit_catalogs_workmanship_path(@catalogs_workmanship), :class => 'link-button' %>
+<%= link_to 'Cancelar', catalogs_workmanships_path , :class => 'link-button'%>

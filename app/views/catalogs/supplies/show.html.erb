@@ -1,25 +1,43 @@
+<h1>Material</h1>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Abbr:</b>
-  <%= @catalogs_supply.abbr %>
-</p>
+<table class="table1">
+  <tr>
+    <td width="90" align="right">
+      Abreviación:
+    </td>
+    <td>
+      <%= @catalogs_supply.abbr %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Descripción:
+    </td>
+    <td>
+      <%= @catalogs_supply.description %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      Precio Unit.:
+    </td>
+    <td>
+      <%= @catalogs_supply.unit_cost %>
+    </td>
+  </tr>
+  <tr>
+    <td width="90" align="right">
+      U. de medida:
+    </td>
+    <td>
+      <%= @catalogs_supply.unit_measure %>
+    </td>
+  </tr>
+</table>
 
-<p>
-  <b>Description:</b>
-  <%= @catalogs_supply.description %>
-</p>
+<hr/>
 
-<p>
-  <b>Unit cost:</b>
-  <%= @catalogs_supply.unit_cost %>
-</p>
-
-<p>
-  <b>Unit measure:</b>
-  <%= @catalogs_supply.unit_measure %>
-</p>
-
-
-<%= link_to 'Edit', edit_catalogs_supply_path(@catalogs_supply) %> |
-<%= link_to 'Back', catalogs_supplies_path %>
+<%= link_to 'Modificar', edit_catalogs_supply_path(@catalogs_supply), :class => 'link-button' %> 
+<%= link_to 'Regresar', catalogs_supplies_path, :class => 'link-button' %>

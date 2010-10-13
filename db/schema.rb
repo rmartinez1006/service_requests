@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101006203615) do
+ActiveRecord::Schema.define(:version => 20101012210842) do
 
   create_table "administration_user_hierachies", :force => true do |t|
     t.integer  "user_id"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(:version => 20101006203615) do
   create_table "catalogs_request_statuses", :force => true do |t|
     t.string   "abbr"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs_suppliers", :force => true do |t|
+    t.string   "abbr"
+    t.string   "trade_name"
+    t.string   "contact_name"
+    t.string   "address"
+    t.string   "mobile_phone"
+    t.string   "business_phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -135,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20101006203615) do
     t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "cost"
   end
 
 end

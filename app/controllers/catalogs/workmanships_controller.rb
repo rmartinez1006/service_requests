@@ -1,6 +1,8 @@
 class Catalogs::WorkmanshipsController < ApplicationController
   # GET /catalogs/workmanships
   # GET /catalogs/workmanships.xml
+  before_filter :authorize
+  layout "catalogs"
   def index
     @catalogs_workmanships = Catalogs::Workmanship.all
 

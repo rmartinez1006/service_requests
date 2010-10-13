@@ -1,11 +1,11 @@
-<h1>Listing catalogs_supplies</h1>
+<h1>Materiales</h1>
 
-<table>
-  <tr>
-    <th>Abbr</th>
-    <th>Description</th>
-    <th>Unit cost</th>
-    <th>Unit measure</th>
+<table class ="table1">
+  <tr class="table_header">
+    <th>ABREV.</th>
+    <th>DESCRIPCION</th>
+    <th>PRECIO. U.</th>
+    <th>U. DE MEDIDA</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,13 +17,13 @@
     <td><%= catalogs_supply.description %></td>
     <td><%= catalogs_supply.unit_cost %></td>
     <td><%= catalogs_supply.unit_measure %></td>
-    <td><%= link_to 'Show', catalogs_supply %></td>
-    <td><%= link_to 'Edit', edit_catalogs_supply_path(catalogs_supply) %></td>
-    <td><%= link_to 'Destroy', catalogs_supply, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', catalogs_supply %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_supply_path(catalogs_supply) %></td>
+    <td><%= link_to 'Eliminar', catalogs_supply, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<hr />
 
-<%= link_to 'New Supply', new_catalogs_supply_path %>
+<%= link_to 'Agregar Material', new_catalogs_supply_path, :class => 'link-button' %>

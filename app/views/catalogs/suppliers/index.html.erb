@@ -1,0 +1,29 @@
+<h1>Proveedores</h1>
+
+<table class ="table1">
+  <tr class="table_header">
+    <th>ABBR.</th>
+    <th>RAZON SOCIAL</th>
+    <th>TEL. CELULAR</th>
+    <th>TEL. OFICINA</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalogs_suppliers.each do |catalogs_supplier| %>
+  <tr class="table_content">
+    <td><%= catalogs_supplier.abbr %></td>
+    <td><%= catalogs_supplier.trade_name %></td>        
+    <td><%= catalogs_supplier.mobile_phone %></td>
+    <td><%= catalogs_supplier.business_phone %></td>
+    <td><%= link_to 'Ver', catalogs_supplier %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_supplier_path(catalogs_supplier) %></td>
+    <td><%= link_to 'Eliminar', catalogs_supplier, :confirm => 'Confirmar eliminación.', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<hr />
+
+<%= link_to 'Agregar Proveedor', new_catalogs_supplier_path, :class => 'link-button' %>
