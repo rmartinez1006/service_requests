@@ -89,14 +89,14 @@
   </td>
 </tr>
 
-
+<%= form_for(@requests_support_request) do |f| %>
 <tr class="table_content_c2">
   <td width="80" align=right >
      <b>Escalar a:</b>
   </td>
   <td align="left">
-     <%= select :requests_support_request , :helper_id,
-      Administration::UserHierachy.find (:all, :conditions => {:user_id => Administration::UserSession.find.record.attributes['id']}).collect{|p| [p.userhelper.name, p.id]}%>
+     <%= select :requests_support_request, :helper_id,
+      Administration::UserHierachy.find (:all, :conditions => {:user_id => Administration::UserSession.find.record.attributes['id']}).collect{|p| [p.userhelper.name, p.helper_id]}%>
   </td>
 </tr>
 
@@ -106,5 +106,10 @@
 
 <hr/>
 
+
+  <div class="actions">
+    <%= f.submit "Guardar"%>
+  </div>
+<% end %>
 
 <%= link_to 'Cancelar', requests_support_requests_path %>

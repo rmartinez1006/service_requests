@@ -61,7 +61,7 @@ class Requests::SupportRequest < ActiveRecord::Base
        r = '---'
     else
       r=self.ubication.unit.abbr + '-' + "%04d" % self.id.to_s + '-' +
-        self.created_at.strftime("%Y")
+        self.created_at.strftime("%y")
     end
     r
   end
