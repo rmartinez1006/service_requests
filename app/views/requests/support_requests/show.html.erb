@@ -89,16 +89,65 @@
      <b>Descripción Técnica:</b>
   </td>
   <td align="left">
-     <%= @requests_support_request.tech_description %>
+     <%= @requests_support_request.tech_description %>     
   </td>
 </tr>
 
 </table>
 
+<hr/>
+
+<% @requests_request_commentaries.each do |requests_request_commentary| %>
+<table width="950">
+  <tr class="table_content_c2">
+    <td width="80" align=right >
+      <b>Comentario ID:</b>
+    </td>
+    <td align="left">
+      <%= requests_request_commentary.request_id %>
+    </td>
+  </tr>
+
+  <tr class="table_content_c3">
+    <td width="80" align=right >
+      <b>Usuario:</b>
+    </td>
+    <td align="left">
+      <%= requests_request_commentary.user.name %>
+    </td>
+  </tr>
+
+  <tr class="table_content_c2">
+    <td width="80" align=right >
+      <b>Comentario:</b>
+    </td>
+    <td align="left">
+      <%= requests_request_commentary.commentaries.gsub(/\n/,'<br>') %>
+    </td>
+  </tr>
+</table>
+<% end %>
 
 <hr/>
 
 
+<table>
+<%= form_for(@requests_support_request) do |f| %>
+<tr class="table_content_c2">
+  <td width="80" align=right >
+     <b>Comentario:</b>
+  </td>
+  <td align="left">
+    <%= f.text_area :commentaries_to_add, :size => '120x5'%>
+  </td>
+</tr>
+</table>
+
+<hr/>
+
+
+
+<% end %>
 
 <%= link_to 'Cambiar', edit_requests_support_request_path(@requests_support_request) %> |
 <%= link_to 'Regresar', requests_support_requests_path %>

@@ -40,10 +40,13 @@ class Requests::SupportRequestsController < ApplicationController
   # GET /requests/support_requests/1.xml
   def show
     @requests_support_request = Requests::SupportRequest.find(params[:id])
+#   Mostrar Comentarios
+    @requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions => ['"request_id" = ?', params[:id]] )
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @requests_support_request }
+      format.xml  { render :xml => @requests_request_commentaries }
     end
   end
 
@@ -108,7 +111,7 @@ class Requests::SupportRequestsController < ApplicationController
        requests_req_delegation.save
     end
 
-    
+
 
 
 

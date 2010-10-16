@@ -7,10 +7,16 @@ class Requests::SupportRequest < ActiveRecord::Base
 
   belongs_to :supporttype, :class_name => 'Catalogs::SupportType', :foreign_key => 'support_type_id'
 
-  has_many :ubications, :class_name => 'Catalogs::Ubication'
+#  has_many :ubications, :class_name => 'Catalogs::Ubication'
+
+  has_many :reqdelegation, :class_name => 'Requests::ReqDelegation'
+  has_many :commentary, :class_name => 'Requests::RequestCommentary'
   
-  
-  
+  attr_accessor :commentaries_to_add
+
+HUMAN_ATTRIBUTES = {
+    :commentaries_to_add => 'Comentario.'
+  }
 
   def before_save
     if  self.request_no == nil
