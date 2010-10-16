@@ -85,4 +85,26 @@ class Requests::SupportRequest < ActiveRecord::Base
     end
   end
 
+
+  def valida_escalar
+    user_id = Administration::UserSession.find.record.attributes['id']
+    id_req= self.id
+    r = false
+#   Si no esta asignado un responsable: Se puede escalar
+    if self.helper_id == nil
+       r = true
+    else
+#     Si es el usuario actual(de la sesion) es el que esta asigando para su atención
+      if self.helper_id == user_id
+         r = true
+      end
+
+    end
+
+#    if self.helper_id != nil
+#    end
+
+
+  end
+
 end

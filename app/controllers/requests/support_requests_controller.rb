@@ -99,6 +99,19 @@ class Requests::SupportRequestsController < ApplicationController
         format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
       end
     end
+    if @requests_support_request.helper_id != nil
+       user_id = Administration::UserSession.find.record.attributes['id']
+       requests_req_delegation = Requests::ReqDelegation.new
+       requests_req_delegation.request_id = @requests_support_request.id
+       requests_req_delegation.user_id = user_id
+       requests_req_delegation.helper_id = @requests_support_request.helper_id
+       requests_req_delegation.save
+    end
+
+    
+
+
+
   end
 
   # DELETE /requests/support_requests/1
