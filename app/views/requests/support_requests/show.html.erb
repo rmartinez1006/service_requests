@@ -14,9 +14,9 @@
      <%= @requests_support_request.num_sequence  %>
   </td>
   <td> <b> Creado el:</b></td>
-  <td align="left"><%=  @requests_support_request.created_at.strftime("%m/%d/%Y") %></td>
+  <td align="left"><%=  @requests_support_request.created_at.strftime("%d/%m/%Y") %></td>
   <td> <b> Ultimo cambio:</b></td>
-  <td align="left"><%=  @requests_support_request.status_chng_date.strftime("%m/%d/%Y") %></td>  
+  <td align="left"><%=  @requests_support_request.status_chng_date.strftime("%d/%m/%Y") %></td>
 </tr>
 </table>
 
@@ -101,27 +101,27 @@
 <table width="950">
   <tr class="table_content_c2">
     <td width="80" align=right >
-      <b>Comentario ID:</b>
+      <b>Fecha:</b>
     </td>
     <td align="left">
-      <%= requests_request_commentary.request_id %>
+      <%= requests_request_commentary.created_at.strftime("%d/%m/%Y %I:%M%p") %>
     </td>
-  </tr>
-
-  <tr class="table_content_c3">
     <td width="80" align=right >
       <b>Usuario:</b>
     </td>
     <td align="left">
       <%= requests_request_commentary.user.name %>
     </td>
-  </tr>
 
-  <tr class="table_content_c2">
+  </tr>
+</table>
+
+<table width="950">
+  <tr class="table_content_c3">
     <td width="80" align=right >
       <b>Comentario:</b>
     </td>
-    <td align="left">
+    <td align="left" >
       <%= requests_request_commentary.commentaries.gsub(/\n/,'<br>') %>
     </td>
   </tr>
@@ -145,7 +145,9 @@
 
 <hr/>
 
-
+  <div class="actions">
+     <td  ><%= f.submit 'Agregar comentario', :name => 'comment' %></td>
+  </div>
 
 <% end %>
 

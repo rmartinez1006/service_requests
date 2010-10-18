@@ -93,6 +93,8 @@ class Requests::SupportRequestsController < ApplicationController
   def update
     @requests_support_request = Requests::SupportRequest.find(params[:id])
 
+
+
     respond_to do |format|
       if @requests_support_request.update_attributes(params[:requests_support_request])
         format.html { redirect_to(@requests_support_request, :notice => 'Support request was successfully updated.') }
@@ -102,16 +104,37 @@ class Requests::SupportRequestsController < ApplicationController
         format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
       end
     end
-    if @requests_support_request.helper_id != nil
-       user_id = Administration::UserSession.find.record.attributes['id']
-       requests_req_delegation = Requests::ReqDelegation.new
-       requests_req_delegation.request_id = @requests_support_request.id
-       requests_req_delegation.user_id = user_id
-       requests_req_delegation.helper_id = @requests_support_request.helper_id
-       requests_req_delegation.save
+#   usuario (autentificado)
+    user_id = Administration::UserSession.find.record.attributes['id']
+
+#   Agregar comentario durante resolución
+    if params.keys[0] == 'comment'
+
+        @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")
+        
+
+        
+        request_commentary = Requests::RequestCommentary.new
+        request_commentary.request_id =  @requests_support_request.id
+        request_commentary.user_id = user_id
+        request_commentary.commentaries = @requests_support_request.commentaries_to_add
+        request_commentary.comment_type_id = @catalogs_comment_types.id
+        request_commentary.save
+
     end
 
+#   Guardar movimientos de escalado de solicitud
+    if params.keys[0] == 'commit'
+       if @requests_support_request.helper_id != nil          
+          requests_req_delegation = Requests::ReqDelegation.new
+          requests_req_delegation.request_id = @requests_support_request.id
+          requests_req_delegation.user_id = user_id
+          requests_req_delegation.helper_id = @requests_support_request.helper_id
+          requests_req_delegation.save
+       end
+    end
 
+    
 
 
 
