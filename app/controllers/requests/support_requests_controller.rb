@@ -26,13 +26,23 @@ class Requests::SupportRequestsController < ApplicationController
     
     @requests_support_requests = Requests::SupportRequest.find_by_sql(lv_sql)
     
+#   Solicitudes en la que esta involucrado
+     lv_sql ="SELECT DISTINCT s.*
+                FROM requests_support_requests as s
+              INNER JOIN requests_req_delegations as r
+                  ON s.id = r.request_id
+               WHERE s.helper_id <> r.helper_id
+                 AND r.helper_id = ".concat(user_id.to_s)
 
-     #@unit_id = Catalogs::Unit.find.record.attributes['ubication_id']
+    @requests_support_requests_deleg = Requests::SupportRequest.find_by_sql(lv_sql)
+
+
 
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @requests_support_requests }
+      format.xml  { render :xml => @requests_support_requests_deleg }
     end
   end
 
@@ -130,6 +140,7 @@ class Requests::SupportRequestsController < ApplicationController
           requests_req_delegation.request_id = @requests_support_request.id
           requests_req_delegation.user_id = user_id
           requests_req_delegation.helper_id = @requests_support_request.helper_id
+          requests_req_delegation.notify = @requests_support_request.notify
           requests_req_delegation.save
        end
     end

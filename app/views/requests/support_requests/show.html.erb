@@ -122,7 +122,7 @@
       <b>Comentario:</b>
     </td>
     <td align="left" >
-      <%= requests_request_commentary.commentaries.gsub(/\n/,'<br>') %>
+      <%= requests_request_commentary.commentaries.gsub(/\n/, "<br />") %>
     </td>
   </tr>
 </table>
@@ -143,6 +143,11 @@
 </tr>
 </table>
 
+  
+
+
+
+
 <hr/>
 
   <div class="actions">
@@ -151,10 +156,11 @@
 
 <% end %>
 
-<%= link_to 'Cambiar', edit_requests_support_request_path(@requests_support_request) %> |
-<%= link_to 'Regresar', requests_support_requests_path %>
-<%= link_to 'Escalar',
+<%= link_to 'Cambiar', edit_requests_support_request_path(@requests_support_request),:class => 'link-button' %> |
+<%= link_to 'Regresar', requests_support_requests_path,:class => 'link-button' %>
+<%= link_to 'Escalar',  
     :controller => "support_requests",
+    :class => "link-button",
     :action => "scale",
     :id => @requests_support_request.id %>
 

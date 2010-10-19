@@ -97,17 +97,31 @@
   <td align="left">
      <%= select :requests_support_request, :helper_id,
       Administration::UserHierachy.find (:all, :conditions => {:user_id => Administration::UserSession.find.record.attributes['id']}).collect{|p| [p.userhelper.name, p.helper_id]}%>
+
+     <%= f.check_box :notify %>
+     <b>Después de escalada la solicitud continuar recibiendo notificaciones durante el proceso de resolución.</b>
+
+
   </td>
 </tr>
 
-
 </table>
+
+
+
+
+
+
 
 <hr/>
 
   <div class="actions">
     <%= f.submit "Guardar"%>
   </div>
+
+
+
+
 <% end %>
 
 <%= link_to 'Cancelar', requests_support_requests_path %>

@@ -12,10 +12,11 @@ class Requests::SupportRequest < ActiveRecord::Base
   has_many :reqdelegation, :class_name => 'Requests::ReqDelegation'
   has_many :commentary, :class_name => 'Requests::RequestCommentary'
   
-  attr_accessor :commentaries_to_add
+  attr_accessor :commentaries_to_add, :notify
 
 HUMAN_ATTRIBUTES = {
-    :commentaries_to_add => 'Comentario.'
+    :commentaries_to_add => 'Comentario.',
+    :notify => 'Notificar.'
   }
 
   def before_save
