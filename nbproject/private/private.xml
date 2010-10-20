@@ -6,12 +6,4 @@
             <line>7</line>
         </file>
     </editor-bookmarks>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/1">
-        <file>file:/media/sda7/martinezo/martinezo/computo/rails/service_requests/public/stylesheets/service_requests.css</file>
-        <file>file:/media/sda7/martinezo/martinezo/computo/rails/service_requests/app/views/administration/user_sessions/new.html.erb</file>
-        <file>file:/media/sda7/martinezo/martinezo/computo/rails/service_requests/app/views/layouts/_menu.html.erb</file>
-        <file>file:/media/sda7/martinezo/martinezo/computo/rails/service_requests/app/views/administration/users/index.html.erb</file>
-        <file>file:/media/sda7/martinezo/martinezo/computo/rails/service_requests/app/controllers/administration/users_controller.rb</file>
-        <file>file:/media/sda7/martinezo/martinezo/computo/rails/service_requests/app/views/layouts/administration.erb</file>
-    </open-files>
 </project-private>

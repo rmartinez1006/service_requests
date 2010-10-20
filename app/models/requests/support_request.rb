@@ -7,10 +7,18 @@ class Requests::SupportRequest < ActiveRecord::Base
 
   belongs_to :supporttype, :class_name => 'Catalogs::SupportType', :foreign_key => 'support_type_id'
 
-  has_many :ubications, :class_name => 'Catalogs::Ubication'
+#  has_many :ubications, :class_name => 'Catalogs::Ubication'
+
+  has_many :reqdelegation, :class_name => 'Requests::ReqDelegation'
+  has_many :commentary, :class_name => 'Requests::RequestCommentary'
   
-  
-  
+  attr_accessor :commentaries_to_add, :notify,:req_ubication
+
+HUMAN_ATTRIBUTES = {
+    :commentaries_to_add => 'Comentario.',
+    :req_ubication => 'Ubicación',
+    :notify => 'Notificar.'
+  }
 
   def before_save
     if  self.request_no == nil
@@ -57,20 +65,36 @@ class Requests::SupportRequest < ActiveRecord::Base
 # No. de Folio
   def num_sequence
 
+    if self.ubication_id == nil
+       lv_unit = '????'
+    else
+       lv_unit = self.ubication.unit.abbr    
+    end
+    
     if self.id == nil
        r = '---'
     else
-      r=self.ubication.unit.abbr + '-' + self.id.to_s
+      r= lv_unit + '-' + "%04d" % self.id.to_s + '-' +
+        self.created_at.strftime("%y")
     end
     r
   end
 
-
+# Descripcion de la ubicación
+def ubication_name
+  if self.ubication_id == nil
+     r = '--'
+  else
+     r = self.ubication.name
+  r
+  end
+end  
 
 
   def request_number
     return Time.now
   end
+
 
  def img_status(status)
     if status == 1 or estado = nil
@@ -82,6 +106,28 @@ class Requests::SupportRequest < ActiveRecord::Base
         return "ST03.png"
       end
     end
+  end
+
+
+  def valida_escalar
+    user_id = Administration::UserSession.find.record.attributes['id']
+    id_req= self.id
+    r = false
+#   Si no esta asignado un responsable: Se puede escalar
+    if self.helper_id == nil
+       r = true
+    else
+#     Si es el usuario actual(de la sesion) es el que esta asigando para su atención
+      if self.helper_id == user_id
+         r = true
+      end
+
+    end
+
+#    if self.helper_id != nil
+#    end
+
+
   end
 
 end
