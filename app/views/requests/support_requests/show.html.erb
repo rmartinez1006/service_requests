@@ -37,7 +37,7 @@
     <b>Ubicación:</b>
   </td>
   <td align="left">
-    <%= @requests_support_request.ubication.name %>
+    <%= @requests_support_request.ubication_name %>
   </td>
   <td width="60" align=right>
     <b>Atiende:</b>
@@ -63,6 +63,20 @@
   </td>
 </tr>
 </table>
+
+<% @requests_request_req_ubication.each do |requests_request_req_ubication| %>
+ <table width="950">
+  <tr class="table_content_c2">
+    <td width="80" align=right >
+      <b>Ubicación Fisica:</b>
+    </td>
+    <td align="left">
+      <%= requests_request_req_ubication.commentaries.gsub(/\n/, "<br />") %>
+    </td>
+  </tr>
+ </table>
+<% end %>
+
 
 <table width="950">
 <tr class="table_content_c3">
@@ -96,9 +110,10 @@
 </table>
 
 <hr/>
+<h3>Comentarios:</h3>
 
 <% @requests_request_commentaries.each do |requests_request_commentary| %>
-<table width="950">
+ <table width="950">
   <tr class="table_content_c2">
     <td width="80" align=right >
       <b>Fecha:</b>
@@ -114,9 +129,10 @@
     </td>
 
   </tr>
-</table>
+ </table>
 
-<table width="950">
+
+ <table width="950">
   <tr class="table_content_c3">
     <td width="80" align=right >
       <b>Comentario:</b>
@@ -125,7 +141,7 @@
       <%= requests_request_commentary.commentaries.gsub(/\n/, "<br />") %>
     </td>
   </tr>
-</table>
+ </table>
 <% end %>
 
 <hr/>
@@ -144,10 +160,6 @@
 </table>
 
   
-
-
-
-
 <hr/>
 
   <div class="actions">
@@ -155,6 +167,10 @@
   </div>
 
 <% end %>
+
+
+
+
 
 <%= link_to 'Cambiar', edit_requests_support_request_path(@requests_support_request),:class => 'link-button' %> |
 <%= link_to 'Regresar', requests_support_requests_path,:class => 'link-button' %>

@@ -12,10 +12,11 @@ class Requests::SupportRequest < ActiveRecord::Base
   has_many :reqdelegation, :class_name => 'Requests::ReqDelegation'
   has_many :commentary, :class_name => 'Requests::RequestCommentary'
   
-  attr_accessor :commentaries_to_add, :notify
+  attr_accessor :commentaries_to_add, :notify,:req_ubication
 
 HUMAN_ATTRIBUTES = {
     :commentaries_to_add => 'Comentario.',
+    :req_ubication => 'Ubicación',
     :notify => 'Notificar.'
   }
 
@@ -64,21 +65,36 @@ HUMAN_ATTRIBUTES = {
 # No. de Folio
   def num_sequence
 
+    if self.ubication_id == nil
+       lv_unit = '????'
+    else
+       lv_unit = self.ubication.unit.abbr    
+    end
+    
     if self.id == nil
        r = '---'
     else
-      r=self.ubication.unit.abbr + '-' + "%04d" % self.id.to_s + '-' +
+      r= lv_unit + '-' + "%04d" % self.id.to_s + '-' +
         self.created_at.strftime("%y")
     end
     r
   end
 
-
+# Descripcion de la ubicación
+def ubication_name
+  if self.ubication_id == nil
+     r = '--'
+  else
+     r = self.ubication.name
+  r
+  end
+end  
 
 
   def request_number
     return Time.now
   end
+
 
  def img_status(status)
     if status == 1 or estado = nil

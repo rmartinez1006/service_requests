@@ -37,8 +37,6 @@ class Requests::SupportRequestsController < ApplicationController
     @requests_support_requests_deleg = Requests::SupportRequest.find_by_sql(lv_sql)
 
 
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @requests_support_requests }
@@ -50,13 +48,29 @@ class Requests::SupportRequestsController < ApplicationController
   # GET /requests/support_requests/1.xml
   def show
     @requests_support_request = Requests::SupportRequest.find(params[:id])
-#   Mostrar Comentarios
-    @requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions => ['"request_id" = ?', params[:id]] )
+    # Mostrar Comentarios
+    lv_sql ="SELECT * FROM requests_request_commentaries
+              WHERE request_id = " + params[:id] +
+            " AND comment_type_id IN
+                (SELECT id FROM catalogs_comment_types
+                 WHERE abbr IN ('RESOL'))"
+  # @requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"request_id" = ?', params[:id]] )
+    @requests_request_commentaries = Requests::RequestCommentary.find_by_sql(lv_sql)
+
+    # Ubicación Fisica del problema (Tabla de cometarios)
+    lv_sql ="SELECT DISTINCT * FROM requests_request_commentaries
+              WHERE request_id = " + params[:id] +
+            " AND comment_type_id IN
+                (SELECT id FROM catalogs_comment_types
+                 WHERE abbr IN ('UBICA'))"  
+    @requests_request_req_ubication = Requests::RequestCommentary.find_by_sql(lv_sql)
+
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @requests_support_request }
       format.xml  { render :xml => @requests_request_commentaries }
+      format.xml  { render :xml => @requests_request_req_ubication }
     end
   end
 
@@ -87,10 +101,20 @@ class Requests::SupportRequestsController < ApplicationController
   def create
     @requests_support_request = Requests::SupportRequest.new(params[:requests_support_request])
 
+
     respond_to do |format|
       if @requests_support_request.save
         format.html { redirect_to(@requests_support_request, :notice => 'Support request was successfully created.') }
         format.xml  { render :xml => @requests_support_request, :status => :created, :location => @requests_support_request }
+        # Guardar la ubicación fisica
+        @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
+        request_commentary = Requests::RequestCommentary.new
+        request_commentary.request_id =  @requests_support_request.id
+        request_commentary.user_id = 0
+        request_commentary.commentaries = @requests_support_request.req_ubication
+        request_commentary.comment_type_id = @catalogs_comment_types.id
+        request_commentary.save
+
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
@@ -121,9 +145,7 @@ class Requests::SupportRequestsController < ApplicationController
     if params.keys[0] == 'comment'
 
         @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")
-        
-
-        
+                
         request_commentary = Requests::RequestCommentary.new
         request_commentary.request_id =  @requests_support_request.id
         request_commentary.user_id = user_id

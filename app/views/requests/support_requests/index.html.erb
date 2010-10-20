@@ -11,21 +11,19 @@
     <th width ="520">DESCRIPCION</th>
     <th>ESTAT.</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <th></th>    
     <th></th>
   </tr>
 
 <% @requests_support_requests.each do |requests_support_request| %>
   <tr>
-    <td><%= requests_support_request.created_at.strftime("%m/%d/%Y") %></td>
+    <td><%= requests_support_request.created_at.strftime("%d/%m/%Y") %></td>
     <td><%= requests_support_request.num_sequence %></td>
     <td><%= requests_support_request.name %></td>        
     <td><%= requests_support_request.description_left(50) %></td>
     <td align ="center" ><%= image_tag(requests_support_request.img_status(requests_support_request.status_id.to_i)) %></td>
     <td><%= link_to 'Ver', requests_support_request %></td>
-    <td><%= link_to 'Modificar', edit_requests_support_request_path(requests_support_request) %></td>
-    <td><%= link_to 'Eliminar', requests_support_request, :confirm => 'Are you sure?', :method => :delete %></td>   
+    <td><%= link_to 'Modificar', edit_requests_support_request_path(requests_support_request) %></td>    
     <td><%= link_to_if requests_support_request.valida_escalar(), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_support_request.id %></td>
   </tr>
 <% end %>
@@ -44,21 +42,19 @@
     <th width ="520">DESCRIPCION</th>
     <th>ESTAT.</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <th></th>    
     <th></th>
   </tr>
 
 <% @requests_support_requests_deleg.each do |requests_support_request_deleg| %>
   <tr>
-    <td><%= requests_support_request_deleg.created_at.strftime("%m/%d/%Y") %></td>
+    <td><%= requests_support_request_deleg.created_at.strftime("%d/%m/%Y") %></td>
     <td><%= requests_support_request_deleg.num_sequence %></td>
     <td><%= requests_support_request_deleg.name %></td>
     <td><%= requests_support_request_deleg.description_left(50) %></td>
     <td align ="center" ><%= image_tag(requests_support_request_deleg.img_status(requests_support_request_deleg.status_id.to_i)) %></td>
     <td><%= link_to 'Ver', requests_support_request_deleg %></td>
-    <td><%= link_to 'Modificar', edit_requests_support_request_path(requests_support_request_deleg) %></td>
-    <td><%= link_to 'Eliminar', requests_support_request_deleg, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Modificar', edit_requests_support_request_path(requests_support_request_deleg) %></td>    
     <td><%= link_to_if requests_support_request_deleg.valida_escalar(), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_support_request_deleg.id %></td>
   </tr>
 <% end %>
