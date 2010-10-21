@@ -1,8 +1,4 @@
 ServiceRequests::Application.routes.draw do
-  namespace :catalogs do resources :suppliers end
-
-  namespace :catalogs do resources :workmanships end
-
   namespace :catalogs do resources :supplies end
 
   namespace :administration do
@@ -42,6 +38,8 @@ ServiceRequests::Application.routes.draw do
   namespace :catalogs do resources :request_statuses end
 
   namespace :catalogs do resources :support_types end
+
+  namespace :catalogs do resources :suppliers end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
