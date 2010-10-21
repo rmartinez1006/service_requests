@@ -126,13 +126,25 @@ class Requests::SupportRequestsController < ApplicationController
   # PUT /requests/support_requests/1.xml
   def update
     @requests_support_request = Requests::SupportRequest.find(params[:id])
-
-
+      
 
     respond_to do |format|
       if @requests_support_request.update_attributes(params[:requests_support_request])
         format.html { redirect_to(@requests_support_request, :notice => 'Support request was successfully updated.') }
         format.xml  { head :ok }
+
+        #   Ubicar el comentario (Ubicación fisica)
+        @comment =Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
+        if @comment != nil
+           @requests_support_req_ubication = Requests::RequestCommentary.find(:first,
+                        :conditions => "request_id = " + params[:id] + "  AND comment_type_id = " + @comment.id.to_s)
+           if @requests_support_req_ubication != nil
+              @requests_support_req_ubication.commentaries = @requests_support_request.req_ubication
+              @requests_support_req_ubication.save
+           end
+        end
+        #  Fin
+
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }

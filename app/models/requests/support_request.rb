@@ -91,6 +91,17 @@ def ubication_name
 end  
 
 
+# Descripcion Fisica de la ubicación
+def request_ubication (ubication)
+  if ubication == nil
+     r = '--'
+  else
+     r = ubication.gsub(/\\n/, "<br />")
+  r
+  end
+end
+
+# Ubicación Fisica
   def request_number
     return Time.now
   end

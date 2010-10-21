@@ -71,7 +71,7 @@
       <b>Ubicación Fisica:</b>
     </td>
     <td align="left">
-      <%= requests_request_req_ubication.commentaries.gsub(/\n/, "<br />") %>
+      <%= @requests_support_request.request_ubication(requests_request_req_ubication.commentaries) %>
     </td>
   </tr>
  </table>
