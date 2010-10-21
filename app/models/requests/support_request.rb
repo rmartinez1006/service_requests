@@ -90,7 +90,6 @@ def ubication_name
   end
 end  
 
-
 # Descripcion Fisica de la ubicación
 def request_ubication (ubication)
   if ubication == nil

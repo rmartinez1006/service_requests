@@ -143,7 +143,7 @@ class Requests::SupportRequestsController < ApplicationController
               @requests_support_req_ubication.save
            end
         end
-        #  Fin
+        #  Fin  Ubicar el comentario (Ubicación fisica)
 
       else
         format.html { render :action => "edit" }
