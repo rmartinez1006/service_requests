@@ -95,7 +95,7 @@ def request_ubication (ubication)
   if ubication == nil
      r = '--'
   else
-     r = ubication.gsub(/\\n/, "<br />")
+     r = ubication.gsub(/\n/, "<br />")
   r
   end
 end
@@ -118,6 +118,16 @@ end
     end
   end
 
+# Convertir Texto a formato html
+def text_to_html (text1)
+  if text1 == nil
+     r = '--'
+  else
+     r = text1.gsub(/\n/, "<br />")
+  r
+  end
+end
+ 
 
   def valida_escalar
     user_id = Administration::UserSession.find.record.attributes['id']

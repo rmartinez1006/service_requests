@@ -88,6 +88,17 @@ class Requests::SupportRequestsController < ApplicationController
   # GET /requests/support_requests/1/edit
   def edit
     @requests_support_request = Requests::SupportRequest.find(params[:id])
+    # Obtener el comentario de Ubicación Fisica
+    lv_sql ="SELECT DISTINCT * FROM requests_request_commentaries
+              WHERE request_id = " + params[:id] +
+            " AND comment_type_id IN
+                (SELECT id FROM catalogs_comment_types
+                 WHERE abbr IN ('UBICA'))"
+    @requests_request_req_ubication = Requests::RequestCommentary.find_by_sql(lv_sql)
+    if @requests_request_req_ubication.size > 0
+       @requests_support_request.req_ubication = @requests_request_req_ubication[0].commentaries
+    end
+
   end
 
   # GET /requests/support_requests/1/scale
