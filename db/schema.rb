@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101012210842) do
+ActiveRecord::Schema.define(:version => 20101023151214) do
 
   create_table "administration_user_hierachies", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20101012210842) do
     t.string   "unit_measure"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "type"
   end
 
   create_table "catalogs_support_types", :force => true do |t|
@@ -100,6 +101,15 @@ ActiveRecord::Schema.define(:version => 20101012210842) do
   create_table "catalogs_units", :force => true do |t|
     t.string   "abbr"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs_workmanships", :force => true do |t|
+    t.string   "abbr"
+    t.string   "description"
+    t.decimal  "unit_cost",    :precision => 10, :scale => 2, :default => 0.0
+    t.string   "unit_measure"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -137,7 +147,6 @@ ActiveRecord::Schema.define(:version => 20101012210842) do
     t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "cost"
   end
 
 end
