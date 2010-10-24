@@ -24,6 +24,31 @@
 <% end %>
 </table>
 
+<h1>Mano de Obra</h1>
+<table class ="table1">
+  <tr class="table_header">
+    <th>ABREV.</th>
+    <th>DESCRIPCION</th>
+    <th>PRECIO. U.</th>
+    <th>U. DE MEDIDA</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @catalogs_workmanship.each do |catalogs_workmanship| %>
+  <tr>
+    <td><%= catalogs_workmanship.abbr %></td>
+    <td><%= catalogs_workmanship.description %></td>
+    <td><%= catalogs_workmanship.unit_cost %></td>
+    <td><%= catalogs_workmanship.unit_measure %></td>
+    <td><%= link_to 'Ver', catalogs_workmanship %></td>
+    <td><%= link_to 'Modificar', edit_catalogs_supply_path(catalogs_workmanship) %></td>
+    <td><%= link_to 'Eliminar', catalogs_workmanship, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
 <hr />
 
-<%= link_to 'Agregar Material', new_catalogs_supply_path, :class => 'link-button' %>
+<%= link_to 'Agregar Material/Mano de Obra', new_catalogs_supply_path, :class => 'link-button' %>

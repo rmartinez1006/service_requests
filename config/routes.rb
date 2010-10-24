@@ -1,4 +1,8 @@
 ServiceRequests::Application.routes.draw do
+  namespace :budgets do resources :budget_supplies end
+
+  namespace :budgets do resources :budgets end
+
   namespace :catalogs do resources :supplies end
 
   namespace :administration do

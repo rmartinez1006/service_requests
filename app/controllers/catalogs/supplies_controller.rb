@@ -4,11 +4,16 @@ class Catalogs::SuppliesController < ApplicationController
   before_filter :authorize
   layout "catalogs"
   def index
-    @catalogs_supplies = Catalogs::Supply.all
+    # Materiales
+    @catalogs_supplies = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1")
+    # Mano de Obra
+    @catalogs_workmanship = Catalogs::Supply.find(:all,  :conditions => "type_supply = 2")
+
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @catalogs_supplies }
+      format.xml  { render :xml => @catalogs_workmanship }
     end
   end
 

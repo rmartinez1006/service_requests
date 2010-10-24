@@ -1,0 +1,31 @@
+<h1>Listing budgets_budgets</h1>
+
+<table>
+  <tr>
+    <th>Request</th>
+    <th>Supplier</th>
+    <th>Total cost</th>
+    <th>Budget date</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @budgets_budgets.each do |budgets_budget| %>
+  <tr>
+    <td><%= budgets_budget.request_id %></td>
+    <td><%= budgets_budget.supplier_id %></td>
+    <td><%= budgets_budget.total_cost %></td>
+    <td><%= budgets_budget.budget_date %></td>
+    <td><%= budgets_budget.user_id %></td>
+    <td><%= link_to 'Show', budgets_budget %></td>
+    <td><%= link_to 'Edit', edit_budgets_budget_path(budgets_budget) %></td>
+    <td><%= link_to 'Destroy', budgets_budget, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Budget', new_budgets_budget_path %>

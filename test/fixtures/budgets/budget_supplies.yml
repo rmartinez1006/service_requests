@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type_supply: 1
+  budget_id: 1
+  description: MyString
+  unit_cost: 9.99
+  quantity: 9.99
+  unit_measure: 9.99
+
+two:
+  type_supply: 1
+  budget_id: 1
+  description: MyString
+  unit_cost: 9.99
+  quantity: 9.99
+  unit_measure: 9.99

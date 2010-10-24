@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  request_id: 1
+  supplier_id: 1
+  total_cost: 9.99
+  budget_date: 2010-10-24
+  user_id: 1
+
+two:
+  request_id: 1
+  supplier_id: 1
+  total_cost: 9.99
+  budget_date: 2010-10-24
+  user_id: 1

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Request:</b>
+  <%= @budgets_budget.request_id %>
+</p>
+
+<p>
+  <b>Supplier:</b>
+  <%= @budgets_budget.supplier_id %>
+</p>
+
+<p>
+  <b>Total cost:</b>
+  <%= @budgets_budget.total_cost %>
+</p>
+
+<p>
+  <b>Budget date:</b>
+  <%= @budgets_budget.budget_date %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @budgets_budget.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_budgets_budget_path(@budgets_budget) %> |
+<%= link_to 'Back', budgets_budgets_path %>
