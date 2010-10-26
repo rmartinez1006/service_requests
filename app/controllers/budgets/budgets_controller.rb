@@ -24,6 +24,7 @@ class Budgets::BudgetsController < ApplicationController
   # GET /budgets/budgets/new
   # GET /budgets/budgets/new.xml
   def new
+    
     @budgets_budget = Budgets::Budget.new
 
     respond_to do |format|
@@ -80,4 +81,21 @@ class Budgets::BudgetsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+    # GET /requests/support_requests/1/scale
+  def new_budget
+    @requests_support_request = Requests::SupportRequest.find(params[:id])
+
+    @budgets_budget = Budgets::Budget.new
+
+    @budgets_budget.request_id = params[:id]
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @budgets_budget }
+      format.xml  { render :xml => @requests_support_request }
+    end
+
+  end
+
 end

@@ -13,6 +13,7 @@
     <th></th>
     <th></th>    
     <th></th>
+    <th></th>
   </tr>
 
 <% @requests_support_requests.each do |requests_support_request| %>
@@ -25,9 +26,11 @@
     <td><%= link_to 'Ver', requests_support_request %></td>
     <td><%= link_to 'Modificar', edit_requests_support_request_path(requests_support_request) %></td>    
     <td><%= link_to_if requests_support_request.valida_escalar(), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_support_request.id %></td>
+    <td><%= link_to "Presupuestar", :controller=>'/budgets/budgets' , :action => "new_budget", :id => requests_support_request.id %></td>
   </tr>
 <% end %>
 </table>
+
 
 
 <hr/>

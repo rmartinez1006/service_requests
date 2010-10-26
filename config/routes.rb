@@ -3,6 +3,16 @@ ServiceRequests::Application.routes.draw do
 
   namespace :budgets do resources :budgets end
 
+  #RMO
+  namespace :budgets do 
+     match 'budgets/:id/main_budget' => 'budgets#new_budget', :as => :new_budget
+  end
+
+   
+
+
+
+
   namespace :catalogs do resources :supplies end
 
   namespace :administration do
@@ -18,11 +28,16 @@ ServiceRequests::Application.routes.draw do
 
   namespace :requests do resources :support_requests end
 
+  #RMO
   namespace :requests do
-#    match 'cancel', :to => 'support_requests#cancel', :as => 'cancel'
     match 'support_requests/:id/scale' => 'support_requests#scale', :as => :scale
   end
-   
+
+#  resources :requests do
+#    resources :budgets do
+#      resources :main_budget
+#    end
+#  end
 
 
   namespace :administration do resources :user_hierachies end
