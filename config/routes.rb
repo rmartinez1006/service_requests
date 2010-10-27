@@ -8,10 +8,6 @@ ServiceRequests::Application.routes.draw do
      match 'budgets/:id/main_budget' => 'budgets#new_budget', :as => :new_budget
   end
 
-   
-
-
-
 
   namespace :catalogs do resources :supplies end
 

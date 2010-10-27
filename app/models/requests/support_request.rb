@@ -14,11 +14,11 @@ class Requests::SupportRequest < ActiveRecord::Base
   
   attr_accessor :commentaries_to_add, :notify,:req_ubication
 
-HUMAN_ATTRIBUTES = {
-    :commentaries_to_add => 'Comentario.',
-    :req_ubication => 'Ubicación',
-    :notify => 'Notificar.'
-  }
+#HUMAN_ATTRIBUTES = {
+#    :commentaries_to_add => 'Comentario.',
+#    :req_ubication => 'Ubicación',
+#    :notify => 'Notificar.'
+#  }
 
   def before_save
     if  self.request_no == nil
