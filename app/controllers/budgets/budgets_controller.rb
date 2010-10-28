@@ -1,4 +1,6 @@
 class Budgets::BudgetsController < ApplicationController
+
+  layout "budgets"
   # GET /budgets/budgets
   # GET /budgets/budgets.xml
   def index
@@ -82,8 +84,8 @@ class Budgets::BudgetsController < ApplicationController
     end
   end
 
-    # GET /requests/support_requests/1/scale
-  def new_budget
+    # GET /budgets/budgets/1/budget_fm1
+  def budget_fm1
     @requests_support_request = Requests::SupportRequest.find(params[:id])
 
     @budgets_budget = Budgets::Budget.new
@@ -95,7 +97,24 @@ class Budgets::BudgetsController < ApplicationController
       format.xml  { render :xml => @budgets_budget }
       format.xml  { render :xml => @requests_support_request }
     end
-
   end
+
+
+    # GET /budgets/budgets/1/budget_fm1
+  def budget_fm2
+    @requests_support_request = Requests::SupportRequest.find(params[:id])
+
+    @budgets_budget = Budgets::Budget.new
+
+    @budgets_budget.request_id = params[:id]
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @budgets_budget }
+      format.xml  { render :xml => @requests_support_request }
+    end
+  end
+
+
 
 end
