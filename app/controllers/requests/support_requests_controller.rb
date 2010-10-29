@@ -167,8 +167,7 @@ class Requests::SupportRequestsController < ApplicationController
 #   Agregar comentario durante resolución
     if params.keys[0] == 'comment'
 
-        @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")
-                
+        @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")                
         request_commentary = Requests::RequestCommentary.new
         request_commentary.request_id =  @requests_support_request.id
         request_commentary.user_id = user_id

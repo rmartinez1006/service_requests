@@ -100,7 +100,7 @@ def request_ubication (ubication)
   end
 end
 
-# Ubicación Fisica
+# No. de solicitud
   def request_number
     return Time.now
   end

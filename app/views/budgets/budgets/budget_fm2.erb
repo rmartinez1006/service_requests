@@ -78,35 +78,50 @@
     </div>
   <% end %>
 
-<table width="950">
-  <tr class="table_content_c3">
+<table width="950" class="table_content_c4">
+  <tr>
     <td width="80" align="right" valign="top">
-      <%= f.label :description, 'Descripción de Trabajos' %>
+      <b> Descripción Técnica </b>
+    </td>
+    <td align="left" colspan="3">
+      <%= f.text_area :tech_description,  :size => '120x4'  %>
+    </td>
+  </tr>
+  <tr>
+    <td width="80" align="right" valign="top">
+      <b> Descripción de Trabajos </b>
+    </td>
+    <td align="left"  colspan="3">
+      <%= f.text_area :description,  :size => '120x4'  %>
+    </td>
+  </tr>
+  <tr>
+    <td width="80" align="right">
+       <b> Empresa:</b>
     </td>
     <td align="left">
-      <%= f.text_area :description,  :size => '120x3'  %>
+       <%= select :budgets_budget , :supplier_id, Catalogs::Supplier.find(:all).collect{|p| [p.trade_name, p.id]}%>
+    </td>
+    <td align="right" width="80">
+      <b> Costo: </b>
+    </td>
+    <td align="left" width="80">
+      <%= f.text_field :total_cost, :size=>"13" %>
+    </td>
+  </tr>
+  <tr>
+    <td width="80" align="right">
+       <b> Tipo de Soporte:</b>
+    </td>
+    <td align="left" colspan="3">
+       <%= select :budgets_budget , :support_type_id, Catalogs::SupportType.find(:all).collect{|p| [p.name, p.id]}%>
     </td>
   </tr>
 
-
-  <div class="field">
-    <%= f.label :supplier_id %><br />
-    <%= f.text_field :supplier_id %>
-  </div>
-  <div class="field">
-    <%= f.label :total_cost %><br />
-    <%= f.text_field :total_cost %>
-  </div>
-  <div class="field">
-    <%= f.label :budget_date %><br />
-    <%= f.date_select :budget_date %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 </table>
+<div class="actions">
+    <%= f.submit %>
+</div>
+
+
 <% end %>
