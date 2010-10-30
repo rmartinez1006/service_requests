@@ -16,6 +16,7 @@
 </tr>
 </table>
 
+
 <table width="950">
 
 <tr class="table_content_c3">
@@ -78,6 +79,8 @@
     </div>
   <% end %>
 
+ <%=  f.text_field :request_id, :type => "hidden" %>
+
 <table width="950" class="table_content_c4">
   <tr>
     <td width="80" align="right" valign="top">
@@ -106,7 +109,7 @@
       <b> Costo: </b>
     </td>
     <td align="left" width="80">
-      <%= f.text_field :total_cost, :size=>"13" %>
+      <%= f.text_field :total_cost, :size=>"13", :style => "text-align: right" %>
     </td>
   </tr>
   <tr>

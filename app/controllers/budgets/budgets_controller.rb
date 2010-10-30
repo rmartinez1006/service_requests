@@ -107,6 +107,9 @@ class Budgets::BudgetsController < ApplicationController
     @budgets_budget = Budgets::Budget.new
 
     @budgets_budget.request_id = params[:id]
+    @budgets_budget.tech_description = @requests_support_request.tech_description
+    @budgets_budget.support_type_id = @requests_support_request.support_type_id
+
 
     respond_to do |format|
       format.html # new.html.erb

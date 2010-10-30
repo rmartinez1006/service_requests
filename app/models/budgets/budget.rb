@@ -13,5 +13,18 @@ class Budgets::Budget < ActiveRecord::Base
       self.user_id = lv_user_id
     end
   end
+
+
+  def after_save
+    unless self.request_id == nil
+#      Actuself.request_idalizar la descripción Tecnica y Tipo de Soporte
+        @requests_support_request = Requests::SupportRequest.find(self.request_id)
+        @requests_support_request.tech_description = self.tech_description
+        @requests_support_request.support_type_id = self.support_type_id
+        @requests_support_request.save
+
+    end
+
+  end
   
 end

@@ -129,6 +129,7 @@ def text_to_html (text1)
 end
  
 
+# Validación para determinar activar el link de escalar
   def valida_escalar
     user_id = Administration::UserSession.find.record.attributes['id']
     id_req= self.id
@@ -144,10 +145,21 @@ end
 
     end
 
-#    if self.helper_id != nil
-#    end
-
 
   end
+
+
+# Validación para determinar activar el link de Presupesto
+# Si no existe presupuesto, entonces, activar el link, si existe no activar
+  def valida_presupuesto(req_id)
+    @budget = Budgets::Budget.find(:all, :conditions => "request_id = " + req_id.to_s)
+    r = true
+#   Si NO EXISTE (Se puede crear)
+    if @budget.size >0
+       r = false
+    end
+    r
+  end
+
 
 end
