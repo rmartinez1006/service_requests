@@ -47,11 +47,16 @@ class Budgets::BudgetsController < ApplicationController
 
     respond_to do |format|
       if @budgets_budget.save
-        format.html { redirect_to(@budgets_budget, :notice => 'Budget was successfully created.') }
-        format.xml  { render :xml => @budgets_budget, :status => :created, :location => @budgets_budget }
+         @budgets_budgets = Budgets::Budget.all
+         #format.html { redirect_to(@budgets_budget, :notice => 'El presupuesto fue creado correctamente.') }
+         #format.xml  { render :xml => @budgets_budget, :status => :created, :location => @budgets_budget }                  
+         flash[:notice] = 'El presupuesto fue creado correctamente.'
+         format.html { render :action => "index" }
+         format.xml  { render :xml => @budgets_budgets }
+        
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @budgets_budget.errors, :status => :unprocessable_entity }
+        format.html { render :action => "budget_fm2" }
+        format.xml  { render :xml => @budgets_budget.errors, :status => :unprocessable_entity }        
       end
     end
   end
@@ -109,15 +114,12 @@ class Budgets::BudgetsController < ApplicationController
     @budgets_budget.request_id = params[:id]
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
-
-
+    
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @budgets_budget }
+      format.html # new.html.erb      
+      format.xml  { render :xml => @budgets_budget}
       format.xml  { render :xml => @requests_support_request }
     end
   end
-
-
 
 end

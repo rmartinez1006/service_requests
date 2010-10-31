@@ -1,69 +1,6 @@
 <h1>Presupuesto Externo</h1>
 
-<table width="950">
-<tr class="table_content_c2">
-
-  <td width="80" align=right >
-     <b>Folio:</b>
-  </td>
-  <td align="left">
-     <%= @requests_support_request.num_sequence  %>
-  </td>
-  <td> <b> Creado el:</b></td>
-  <td align="left"><%=  @requests_support_request.created_at.strftime("%d/%m/%Y") %></td>
-  <td> <b> Ultimo cambio:</b></td>
-  <td align="left"><%=  @requests_support_request.status_chng_date.strftime("%d/%m/%Y") %></td>
-</tr>
-</table>
-
-
-<table width="950">
-
-<tr class="table_content_c3">
-  <td width="30" align=right >
-    <b>Ubicación:</b>
-  </td>
-  <td align="left">
-    <%= @requests_support_request.ubication_name %>
-  </td>
-  <td width="60" align=right>
-    <b>Atiende:</b>
-  </td>
-  <td align ="left">
-    <%= @requests_support_request.helper %>
-  </td>
-</tr>
-
-
-<tr class="table_content_c2">
-  <td width="30" align=right >
-    <b>Nombre:</b>
-  </td>
-  <td align="left">
-    <%= @requests_support_request.name %>
-  </td>
-  <td width="70" align=right>
-    <b>Correo E.:</b>
-  </td>
-  <td align ="left">
-    <%= @requests_support_request.email %>
-  </td>
-</tr>
-</table>
-
-
-<table width="950">
-<tr class="table_content_c2">
-  <td width="80" align=right >
-     <b>Descripción:</b>
-  </td>
-  <td align="left">
-     <%= raw(@requests_support_request.text_to_html(@requests_support_request.description)) %>
-  </td>
-</tr>
-
-</table>
-
+ <%= render :partial => 'request' %>
 
 <%= form_for(@budgets_budget) do |f| %>
 
@@ -123,7 +60,7 @@
 
 </table>
 <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Guardar Presupuesto' %>
 </div>
 
 
