@@ -7,13 +7,13 @@
      <b>Folio:</b>
   </td>
   <td align="left">
-     <%= @requests_support_request.num_sequence %>
+     <%= @budgets_budget.request.num_sequence %>
   </td>
 
   <td> <b> Creado el:</b></td>
-  <td align="left"><%=  @requests_support_request.created_at.strftime("%d/%m/%Y") %></td>
+  <td align="left"><%=  @budgets_budget.request.created_at.strftime("%d/%m/%Y") %></td>
   <td> <b> Ultimo cambio:</b></td>
-  <td align="left"><%=  @requests_support_request.status_chng_date.strftime("%d/%m/%Y") %></td>
+  <td align="left"><%=  @budgets_budget.request.status_chng_date.strftime("%d/%m/%Y") %></td>
 </tr>
 </table>
 
@@ -25,13 +25,13 @@
     <b>Ubicación:</b>
   </td>
   <td align="left">
-    <%= @requests_support_request.ubication_name %>
+    <%= @budgets_budget.request.ubication_name %>
   </td>
   <td width="60" align=right>
     <b>Atiende:</b>
   </td>
   <td align ="left">
-    <%= @requests_support_request.helper %>
+    <%= @budgets_budget.request.helper %>
   </td>
 </tr>
 
@@ -41,13 +41,13 @@
     <b>Nombre:</b>
   </td>
   <td align="left">
-    <%= @requests_support_request.name %>
+    <%= @budgets_budget.request.name %>
   </td>
   <td width="70" align=right>
     <b>Correo E.:</b>
   </td>
   <td align ="left">
-    <%= @requests_support_request.email %>
+    <%= @budgets_budget.request.email %>
   </td>
 </tr>
 </table>
@@ -59,7 +59,7 @@
      <b>Descripción:</b>
   </td>
   <td align="left">
-     <%= raw(@requests_support_request.text_to_html(@requests_support_request.description)) %>
+     <%= raw(@budgets_budget.request.text_to_html(@budgets_budget.request.description)) %>
   </td>
 </tr>
 

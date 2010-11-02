@@ -100,7 +100,7 @@ class Budgets::BudgetsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @budgets_budget }
-      format.xml  { render :xml => @requests_support_request }
+      #format.xml  { render :xml => @requests_support_request }
     end
   end
 
@@ -115,10 +115,10 @@ class Budgets::BudgetsController < ApplicationController
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
     
-    respond_to do |format|
+    respond_to do |format|      
       format.html # new.html.erb      
       format.xml  { render :xml => @budgets_budget}
-      format.xml  { render :xml => @requests_support_request }
+      format.xml  { render :xml => @requests_support_request }      
     end
   end
 
