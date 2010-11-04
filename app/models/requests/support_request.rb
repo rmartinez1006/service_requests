@@ -14,11 +14,11 @@ class Requests::SupportRequest < ActiveRecord::Base
   
   attr_accessor :commentaries_to_add, :notify,:req_ubication
 
-HUMAN_ATTRIBUTES = {
-    :commentaries_to_add => 'Comentario.',
-    :req_ubication => 'Ubicación',
-    :notify => 'Notificar.'
-  }
+#HUMAN_ATTRIBUTES = {
+#    :commentaries_to_add => 'Comentario.',
+#    :req_ubication => 'Ubicación',
+#    :notify => 'Notificar.'
+#  }
 
   def before_save
     if  self.request_no == nil
@@ -90,25 +90,47 @@ def ubication_name
   end
 end  
 
+# Descripcion Fisica de la ubicación
+def request_ubication (ubication)
+  if ubication == nil
+     r = '--'
+  else
+     r = ubication.gsub(/\n/, "<br />")
+  r
+  end
+end
 
+# No. de solicitud
   def request_number
     return Time.now
   end
 
 
  def img_status(status)
+
     if status == 1 or estado = nil
       return "ST01.png"
     else
       if status == 2
         return "ST02.png"
       else
-        return "ST03.png"
+        return "st07.png"
       end
     end
   end
 
+# Convertir Texto a formato html
+def text_to_html (text1)
+  if text1 == nil
+     r = '--'
+  else
+     r = text1.gsub(/\n/, "<br />")
+  r
+  end
+end
+ 
 
+# Validación para determinar activar el link de escalar
   def valida_escalar
     user_id = Administration::UserSession.find.record.attributes['id']
     id_req= self.id
@@ -124,10 +146,21 @@ end
 
     end
 
-#    if self.helper_id != nil
-#    end
-
 
   end
+
+
+# Validación para determinar activar el link de Presupesto
+# Si no existe presupuesto, entonces, activar el link, si existe no activar
+  def valida_presupuesto(req_id)
+    @budget = Budgets::Budget.find(:all, :conditions => "request_id = " + req_id.to_s)
+    r = true
+#   Si NO EXISTE (Se puede crear)
+    if @budget.size >0
+       r = false
+    end
+    r
+  end
+
 
 end

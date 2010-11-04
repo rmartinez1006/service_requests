@@ -1,0 +1,41 @@
+<%= form_for(@budgets_budget_supply) do |f| %>
+  <% if @budgets_budget_supply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@budgets_budget_supply.errors.count, "error") %> prohibited this budgets_budget_supply from being saved:</h2>
+
+      <ul>
+      <% @budgets_budget_supply.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type_supply %><br />
+    <%= f.text_field :type_supply %>
+  </div>
+  <div class="field">
+    <%= f.label :budget_id %><br />
+    <%= f.text_field :budget_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_cost %><br />
+    <%= f.text_field :unit_cost %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_measure %><br />
+    <%= f.text_field :unit_measure %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

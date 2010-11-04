@@ -14,6 +14,10 @@
 
 <table width="990">
     <tr>
+       <td  width="80" align="right"><%= f.label 'Tipo:' %><br /> </td>
+       <td> <%= select( :catalogs_supply, :type_supply, { "Materiales" => 1, "Mano de Obra" => 2}) %> </td>
+    </tr>
+    <tr>
       <td width="80" align="right">
         <%= f.label 'Abreviación:' %><br />
       </td>

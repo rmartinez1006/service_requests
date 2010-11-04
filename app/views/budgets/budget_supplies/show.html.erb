@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type supply:</b>
+  <%= @budgets_budget_supply.type_supply %>
+</p>
+
+<p>
+  <b>Budget:</b>
+  <%= @budgets_budget_supply.budget_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @budgets_budget_supply.description %>
+</p>
+
+<p>
+  <b>Unit cost:</b>
+  <%= @budgets_budget_supply.unit_cost %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%= @budgets_budget_supply.quantity %>
+</p>
+
+<p>
+  <b>Unit measure:</b>
+  <%= @budgets_budget_supply.unit_measure %>
+</p>
+
+
+<%= link_to 'Edit', edit_budgets_budget_supply_path(@budgets_budget_supply) %> |
+<%= link_to 'Back', budgets_budget_supplies_path %>

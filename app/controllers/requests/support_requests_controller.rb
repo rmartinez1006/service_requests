@@ -88,6 +88,17 @@ class Requests::SupportRequestsController < ApplicationController
   # GET /requests/support_requests/1/edit
   def edit
     @requests_support_request = Requests::SupportRequest.find(params[:id])
+    # Obtener el comentario de Ubicación Fisica
+    lv_sql ="SELECT DISTINCT * FROM requests_request_commentaries
+              WHERE request_id = " + params[:id] +
+            " AND comment_type_id IN
+                (SELECT id FROM catalogs_comment_types
+                 WHERE abbr IN ('UBICA'))"
+    @requests_request_req_ubication = Requests::RequestCommentary.find_by_sql(lv_sql)
+    if @requests_request_req_ubication.size > 0
+       @requests_support_request.req_ubication = @requests_request_req_ubication[0].commentaries
+    end
+
   end
 
   # GET /requests/support_requests/1/scale
@@ -126,13 +137,25 @@ class Requests::SupportRequestsController < ApplicationController
   # PUT /requests/support_requests/1.xml
   def update
     @requests_support_request = Requests::SupportRequest.find(params[:id])
-
-
+      
 
     respond_to do |format|
       if @requests_support_request.update_attributes(params[:requests_support_request])
         format.html { redirect_to(@requests_support_request, :notice => 'Support request was successfully updated.') }
         format.xml  { head :ok }
+
+        #   Ubicar el comentario (Ubicación fisica)
+        @comment =Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
+        if @comment != nil
+           @requests_support_req_ubication = Requests::RequestCommentary.find(:first,
+                        :conditions => "request_id = " + params[:id] + "  AND comment_type_id = " + @comment.id.to_s)
+           if @requests_support_req_ubication != nil
+              @requests_support_req_ubication.commentaries = @requests_support_request.req_ubication
+              @requests_support_req_ubication.save
+           end
+        end
+        #  Fin  Ubicar el comentario (Ubicación fisica)
+
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
@@ -144,8 +167,7 @@ class Requests::SupportRequestsController < ApplicationController
 #   Agregar comentario durante resolución
     if params.keys[0] == 'comment'
 
-        @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")
-                
+        @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")                
         request_commentary = Requests::RequestCommentary.new
         request_commentary.request_id =  @requests_support_request.id
         request_commentary.user_id = user_id

@@ -71,7 +71,7 @@
       <b>Ubicación Fisica:</b>
     </td>
     <td align="left">
-      <%= requests_request_req_ubication.commentaries.gsub(/\n/, "<br />") %>
+      <%= raw(@requests_support_request.request_ubication(requests_request_req_ubication.commentaries)) %>
     </td>
   </tr>
  </table>
@@ -93,7 +93,7 @@
      <b>Descripción:</b>
   </td>
   <td align="left">
-     <%= @requests_support_request.description %>
+     <%= raw(@requests_support_request.text_to_html(@requests_support_request.description)) %>
   </td>
 </tr>
 
@@ -103,24 +103,22 @@
      <b>Descripción Técnica:</b>
   </td>
   <td align="left">
-     <%= @requests_support_request.tech_description %>     
+     <%= raw(@requests_support_request.text_to_html(@requests_support_request.tech_description)) %>
   </td>
 </tr>
 
 </table>
 
-<hr/>
+<hr size="0" width="950"></hr>
+
 <h3>Comentarios:</h3>
 
 <% @requests_request_commentaries.each do |requests_request_commentary| %>
  <table width="950">
   <tr class="table_content_c2">
-    <td width="80" align=right >
-      <b>Fecha:</b>
-    </td>
-    <td align="left">
+    <td rowspan="2" width="100" align="center">      
       <%= requests_request_commentary.created_at.strftime("%d/%m/%Y %I:%M%p") %>
-    </td>
+    </td>    
     <td width="80" align=right >
       <b>Usuario:</b>
     </td>
@@ -129,22 +127,17 @@
     </td>
 
   </tr>
- </table>
 
-
- <table width="950">
+ 
   <tr class="table_content_c3">
-    <td width="80" align=right >
-      <b>Comentario:</b>
-    </td>
-    <td align="left" >
-      <%= requests_request_commentary.commentaries.gsub(/\n/, "<br />") %>
+    <td align="left" colspan="2">
+      <%= raw(requests_request_commentary.commentaries.gsub(/\n/, "<br />")) %>
     </td>
   </tr>
  </table>
 <% end %>
 
-<hr/>
+<hr size="0" width="950">
 
 
 <table>
@@ -160,7 +153,7 @@
 </table>
 
   
-<hr/>
+<hr size="0" width="950">
 
   <div class="actions">
      <td  ><%= f.submit 'Agregar comentario', :name => 'comment' %></td>

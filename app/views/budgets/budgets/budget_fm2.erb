@@ -1,0 +1,67 @@
+<h1>Presupuesto Externo</h1>
+
+ <%= render :partial => 'request' %>
+
+<%= form_for(@budgets_budget) do |f| %>
+
+  <% if @budgets_budget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@budgets_budget.errors.count, "error") %> prohibited this budgets_budget from being saved:</h2>
+
+      <ul>
+      <% @budgets_budget.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <%=  f.text_field :request_id, :type => "hidden" %>
+
+<table width="950" class="table_content_c4">
+  <tr>
+    <td width="80" align="right" valign="top">
+      <b> Descripción Técnica </b>
+    </td>
+    <td align="left" colspan="3">
+      <%= f.text_area :tech_description,  :size => '120x4'  %>
+    </td>
+  </tr>
+  <tr>
+    <td width="80" align="right" valign="top">
+      <b> Descripción de Trabajos </b>
+    </td>
+    <td align="left"  colspan="3">
+      <%= f.text_area :description,  :size => '120x4'  %>
+    </td>
+  </tr>
+  <tr>
+    <td width="80" align="right">
+       <b> Empresa:</b>
+    </td>
+    <td align="left">
+       <%= select :budgets_budget , :supplier_id, Catalogs::Supplier.find(:all).collect{|p| [p.trade_name, p.id]}%>
+    </td>
+    <td align="right" width="80">
+      <b> Costo: </b>
+    </td>
+    <td align="left" width="80">
+      <%= f.text_field :total_cost, :size=>"13", :style => "text-align: right" %>
+    </td>
+  </tr>
+  <tr>
+    <td width="80" align="right">
+       <b> Tipo de Soporte:</b>
+    </td>
+    <td align="left" colspan="3">
+       <%= select :budgets_budget , :support_type_id, Catalogs::SupportType.find(:all).collect{|p| [p.name, p.id]}%>
+    </td>
+  </tr>
+
+</table>
+<div class="actions">
+    <%= f.submit 'Guardar Presupuesto' %>
+</div>
+
+
+<% end %>

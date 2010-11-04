@@ -125,6 +125,17 @@ h3{
 }
 
 
+.table_content_c4{
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 14px;
+        color: #0;        
+        border-top: 1px solid #369;
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: right;
+        background-color:#FFFFCC;
+}
+
 .link-button {
     border: 4px outset;
     border-color:#9a1c1c;

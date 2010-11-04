@@ -1,4 +1,18 @@
 ServiceRequests::Application.routes.draw do
+<<<<<<< HEAD
+=======
+  namespace :budgets do resources :budget_supplies end
+
+  namespace :budgets do resources :budgets end
+
+  #RMO
+  namespace :budgets do 
+     match 'budgets/:id/budget_fm1' => 'budgets#budget_fm1', :as => :budget_fm1
+     match 'budgets/:id/budget_fm2' => 'budgets#budget_fm2', :as => :budget_fm2
+  end
+
+
+>>>>>>> 067c099ae284e1f47379492cebc6f46fbb939fe8
   namespace :catalogs do resources :supplies end
 
   namespace :administration do
@@ -14,11 +28,16 @@ ServiceRequests::Application.routes.draw do
 
   namespace :requests do resources :support_requests end
 
+  #RMO
   namespace :requests do
-#    match 'cancel', :to => 'support_requests#cancel', :as => 'cancel'
     match 'support_requests/:id/scale' => 'support_requests#scale', :as => :scale
   end
-   
+
+#  resources :requests do
+#    resources :budgets do
+#      resources :main_budget
+#    end
+#  end
 
 
   namespace :administration do resources :user_hierachies end
