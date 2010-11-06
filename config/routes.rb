@@ -1,6 +1,5 @@
 ServiceRequests::Application.routes.draw do
-<<<<<<< HEAD
-=======
+
   namespace :budgets do resources :budget_supplies end
 
   namespace :budgets do resources :budgets end
@@ -11,8 +10,6 @@ ServiceRequests::Application.routes.draw do
      match 'budgets/:id/budget_fm2' => 'budgets#budget_fm2', :as => :budget_fm2
   end
 
-
->>>>>>> 067c099ae284e1f47379492cebc6f46fbb939fe8
   namespace :catalogs do resources :supplies end
 
   namespace :administration do

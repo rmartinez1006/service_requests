@@ -1,0 +1,77 @@
+@charset "utf-8";
+body {
+	margin: 0;
+	padding: 0;
+	background: url(/images/img01.jpg) repeat-x #F5F5F5
+}
+#wrapper {
+	width: 990px;
+	margin-left:auto;
+	margin-right: auto;
+	padding: 0 5px 5px 5px;
+}
+#header-logo {
+	background: url(/images/csaj_header.png) no-repeat;
+	height: 125px;
+}
+#unam-logo {
+	float: right;
+	width: 100px;
+	height: 100px;
+	padding: 12px 40px;
+}
+#h-menu {
+	height: 18px;
+	background:#FFF;
+	padding: 5px 10px 5px 10px;
+	margin: 5px 0 5px 0;
+	background: #C90;
+}
+
+#username {
+	float:left;
+	text-transform: uppercase;
+	font-size: 11px;
+	color: #FFFFFF;
+	}
+
+#h-menu-options {
+	float: right;
+}
+#h-menu-options ul {
+	margin: 0;
+	list-style: none;
+	line-height: normal;
+}
+#h-menu-options li {
+	float: left;
+	text-align: center;
+}
+
+#h-menu-options a {
+	display: block;
+	padding: 0 30px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 11px;
+	color: #FFFFFF;
+}
+#v-menu {
+	background: #FFF;
+	width: 160px;
+        height: 600px;
+	float: left;
+}
+#page {
+	background: #FFF;
+	float:  right;
+	width: 810px;
+        height: 600px;
+	padding: 0px 10px 0px 10px;
+}
+#footer {
+	padding: 5px 15px 5px 15px;
+	background: #E5E5E5;
+	margin-top: 30px;
+        font-size: 9px;
+}

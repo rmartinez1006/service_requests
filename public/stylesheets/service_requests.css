@@ -207,28 +207,12 @@ width: 600pt;
 
 
 
-#header{
-    width: 990px ;
-    height: 125px;
-    float:  left ;
-    background-image: url('/images/csaj_header.png');
-}
-
-#unam_logo{
-    height: 125px;
-    background-image: url('/images/unam.gif');
-    background-repeat:no-repeat;
-    position:relative;
-    left: 840px;
-    top: 10px;
-}
 
 
-#content{
-     width: 810px ;
-     float:  left ;
-     padding-left: 20px;
-}
+
+
+
+
 
 #login{
     width: 240px ;
@@ -257,13 +241,6 @@ width: 600pt;
     padding-bottom: 5px;
 }
 
-
-#username{
-    text-align: left;
-    width: 240px ;
-    position:absolute;
-    padding-left: 10px
-}
 
 
 #content_center {
