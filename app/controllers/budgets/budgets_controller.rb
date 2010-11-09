@@ -43,6 +43,7 @@ class Budgets::BudgetsController < ApplicationController
   # POST /budgets/budgets
   # POST /budgets/budgets.xml
   def create
+
     @budgets_budget = Budgets::Budget.new(params[:budgets_budget])
 
     respond_to do |format|
@@ -64,6 +65,8 @@ class Budgets::BudgetsController < ApplicationController
   # PUT /budgets/budgets/1
   # PUT /budgets/budgets/1.xml
   def update
+
+
     @budgets_budget = Budgets::Budget.find(params[:id])
 
     respond_to do |format|
@@ -91,6 +94,7 @@ class Budgets::BudgetsController < ApplicationController
 
     # GET /budgets/budgets/1/budget_fm1
   def budget_fm1
+
     @requests_support_request = Requests::SupportRequest.find(params[:id])
 
     @budgets_budget = Budgets::Budget.new
@@ -109,17 +113,31 @@ class Budgets::BudgetsController < ApplicationController
   def budget_fm2
     @requests_support_request = Requests::SupportRequest.find(params[:id])
 
+    #Nuevo Presupuesto
     @budgets_budget = Budgets::Budget.new
-
     @budgets_budget.request_id = params[:id]
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
-    
+
     respond_to do |format|      
       format.html # new.html.erb      
       format.xml  { render :xml => @budgets_budget}
       format.xml  { render :xml => @requests_support_request }      
     end
   end
+
+
+def add_supply
+  begin
+#   product = Product.find(params[:id])
+#   rescue ActiveRecord::RecordNotFound
+#   logger.error("Attempt to access invalid product #{params[:id]}" )
+#   redirect_to_index("Invalid product" )
+  else
+#   @cart = find_cart
+#   @cart.add_product(product)
+  end
+end
+
 
 end

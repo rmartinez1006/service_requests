@@ -3,7 +3,7 @@ class Budgets::Budget < ActiveRecord::Base
   belongs_to :supplier, :class_name => "Catalogs::Supplier", :foreign_key => "supplier_id"
 # belongs_to :supplier, :class_name => 'Catalogs::Supplier'
   
-  attr_accessor :support_type_id, :tech_description
+  attr_accessor :support_type_id, :tech_description, :description_supply
 
 #validates_format_of :total_cost, :with => /\d{0,10}\./
 # validates_format_of :total_cost, :with => /\d{0,10}\.\d{2}/
