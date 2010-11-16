@@ -8,7 +8,7 @@ class Budgets::BudgetsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @budgets_budgets }
+      format.xml  { render :xml => @budgets_budgets }      
     end
   end
 
@@ -43,41 +43,76 @@ class Budgets::BudgetsController < ApplicationController
   # POST /budgets/budgets
   # POST /budgets/budgets.xml
   def create
-
+    
     @budgets_budget = Budgets::Budget.new(params[:budgets_budget])
-
     respond_to do |format|
-      if @budgets_budget.save
-         @budgets_budgets = Budgets::Budget.all
-         #format.html { redirect_to(@budgets_budget, :notice => 'El presupuesto fue creado correctamente.') }
-         #format.xml  { render :xml => @budgets_budget, :status => :created, :location => @budgets_budget }                  
-         flash[:notice] = 'El presupuesto fue creado correctamente.'
-         format.html { render :action => "index" }
-         format.xml  { render :xml => @budgets_budgets }
-        
-      else
-        format.html { render :action => "budget_fm2" }
-        format.xml  { render :xml => @budgets_budget.errors, :status => :unprocessable_entity }        
-      end
+         if @budgets_budget.save
+            #lv_buget_id = @budgets_budget.id
+            @budgets_budgets = Budgets::Budget.all
+            #format.html { redirect_to(@budgets_budget, :notice => 'El presupuesto fue creado correctamente.') }
+            #format.xml  { render :xml => @budgets_budget, :status => :created, :location => @budgets_budget }
+            if params.keys[0]== 'commit'
+               flash[:notice] = 'El presupuesto fue creado correctamente.'
+               format.html { render :action => "index" }
+               format.xml  { render :xml => @budgets_budgets }
+            end
+         else
+            format.html { render :action => "budget_fm2" }
+            format.xml  { render :xml => @budgets_budget.errors, :status => :unprocessable_entity }
+         end       
     end
+    # Agregar material
+    if params.keys[6] == "material"          
+          @budgets_budget_supply = Budgets::BudgetSupply.create!(params[:budgets_budget_supply])
+          Budgets::BudgetSupply.new(params[:budgets_budget_supply])
+          @budgets_budget_supply.budget_id = @budgets_budget.id
+          @budgets_budget_supply.save
+          respond_to do |format|
+            #format.html { render :action => "budget_fm1", :id => @budgets_budgets.id }
+            #redirect_to(:controller=>'/budgets/budgets', :action => "budget_fm1",  :id => 3)
+            #return
+            #format.xml  { render :xml => @budgets_budgets }
+          end
+    end
+
+
+
   end
 
   # PUT /budgets/budgets/1
   # PUT /budgets/budgets/1.xml
   def update
 
-
     @budgets_budget = Budgets::Budget.find(params[:id])
 
     respond_to do |format|
       if @budgets_budget.update_attributes(params[:budgets_budget])
-        format.html { redirect_to(@budgets_budget, :notice => 'Budget was successfully updated.') }
-        format.xml  { head :ok }
+        if params.keys[0]== 'commit'
+           format.html { redirect_to(@budgets_budget, :notice => 'Budget was successfully updated.') }
+           format.xml  { head :ok }
+        end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @budgets_budget.errors, :status => :unprocessable_entity }
       end
     end
+
+# Validar el botón de "Agregar material"
+    # Agregar material
+    if params.keys[8] == "material"
+          @budgets_budget_supply = Budgets::BudgetSupply.create!(params[:budgets_budget_supply])
+          Budgets::BudgetSupply.new(params[:budgets_budget_supply])
+          @budgets_budget_supply.budget_id = @budgets_budget.id
+          @budgets_budget_supply.save
+          respond_to do |format|
+            #format.html { render :action => "budget_fm1", :id => @budgets_budgets.id }
+            redirect_to(:controller=>'/budgets/budgets', :action => "budget_fm1",  :id => 3)
+            return
+            #format.xml  { render :xml => @budgets_budgets }
+          end
+    end
+
+
   end
 
   # DELETE /budgets/budgets/1
@@ -94,19 +129,44 @@ class Budgets::BudgetsController < ApplicationController
 
     # GET /budgets/budgets/1/budget_fm1
   def budget_fm1
-
     @requests_support_request = Requests::SupportRequest.find(params[:id])
 
-    @budgets_budget = Budgets::Budget.new
-
-    @budgets_budget.request_id = params[:id]
-
+#   Buscar si existe el presupeusto
+    @budgets_budget = Budgets::Budget.find(:first, :conditions => "request_id ="+ params[:id] )
+    if @budgets_budget == nil
+#     NO existe Presupeusto: CREAR EL PRESUPUESTO
+      @budgets_budget = Budgets::Budget.new
+      @budgets_budget.request_id = params[:id]
+#     Auxiliar
+      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
+    else
+#     Existe Presupuesto:
+#     Buscar los materiales que corresponden al presupuesto
+      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
+    end
+#    @budgets_budget_supplies = Budgets::BudgetSupply.all
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @budgets_budget }
       #format.xml  { render :xml => @requests_support_request }
     end
   end
+
+ # GET /budgets/budgets/1/budget_fm1_edit
+  def budget_fm1_edit
+    @requests_support_request = Requests::SupportRequest.find(params[:id])
+    @budgets_budget = Budgets::Budget.new
+    @budgets_budget.request_id = params[:id]
+
+#   Buscar los materiales que corresponden al presupuesto
+    @budgets_budget_supplies = Budgets::BudgetSupply.all
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @budgets_budget }
+      #format.xml  { render :xml => @requests_support_request }
+    end
+  end
+
 
 
     # GET /budgets/budgets/1/budget_fm1
@@ -128,16 +188,12 @@ class Budgets::BudgetsController < ApplicationController
 
 
 def add_supply
-  begin
-#   product = Product.find(params[:id])
-#   rescue ActiveRecord::RecordNotFound
-#   logger.error("Attempt to access invalid product #{params[:id]}" )
-#   redirect_to_index("Invalid product" )
-  else
-#   @cart = find_cart
-#   @cart.add_product(product)
-  end
+   @supply = Supply.create!(params[:supply])
+   flash[:notice] = "Thanks for commenting!"
+   respond_to do |format|
+      format.html { redirect_to budgets_budget_supply_path }
+      format.js
+   end
 end
-
 
 end

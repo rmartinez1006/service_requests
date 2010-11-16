@@ -1,32 +1,38 @@
-<h1>Listing budgets_budget_supplies</h1>
+<h1>Lista de Materiales/Servicios</h1>
+
+<div id="comment-notice"</div>
+
+<script type="text/javascript" src="/javascripts/funciones.js">
+</script>
 
 <table>
-  <tr>
-    <th>Type supply</th>
-    <th>Budget</th>
-    <th>Description</th>
-    <th>Unit cost</th>
-    <th>Quantity</th>
-    <th>Unit measure</th>
-    <th></th>
-    <th></th>
-    <th></th>
+  <tr><td>
+      <tbody id="specifications">
+          Hola
+      </tbody>
+      </td>
   </tr>
-
-<% @budgets_budget_supplies.each do |budgets_budget_supply| %>
-  <tr>
-    <td><%= budgets_budget_supply.type_supply %></td>
-    <td><%= budgets_budget_supply.budget_id %></td>
-    <td><%= budgets_budget_supply.description %></td>
-    <td><%= budgets_budget_supply.unit_cost %></td>
-    <td><%= budgets_budget_supply.quantity %></td>
-    <td><%= budgets_budget_supply.unit_measure %></td>
-    <td><%= link_to 'Show', budgets_budget_supply %></td>
-    <td><%= link_to 'Edit', edit_budgets_budget_supply_path(budgets_budget_supply) %></td>
-    <td><%= link_to 'Destroy', budgets_budget_supply, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
 </table>
+
+
+
+<div id="supplies">
+  <%= render :partial => 'supplies', :locals => { :list => true }%>
+</div>
+
+<div id="date-picker"></div>
+<li> XXXXXXXXXXX </li>
+
+
+
+
+<%= form_for Budgets::BudgetSupply.new, :remote => true do |f| %>
+	<%= f.label :type_supply, "Tipo Material" %><br />
+	<%= f.text_field :type_supply %><br />
+	<%= f.label :description, "Descripción" %><br />
+	<%= f.text_area :description, :rows => 3 %><br />
+	<%= f.submit "Agregar Material" %>
+<% end %>
 
 <br />
 

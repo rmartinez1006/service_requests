@@ -1,6 +1,6 @@
 <h1>Presupuesto</h1>
 
- <%= render :partial => 'request' %>
+<%= render :partial => 'request' %>
 
 <%= form_for(@budgets_budget) do |f| %>
 
@@ -46,29 +46,61 @@
 
 </table>
 
-<table>
-  <tr>
-    <td> Materiales: </td>
-
-  </tr>
-  <tr>
-    <td>Material</td>
-    <td align="left" colspan="3">
-       <%= select :budgets_budget , :description_supply, Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.description]}%>
-    </td>
-    <td>
-    
-
-    </td>
-    <td>Cantidad</td>
-    <td>Unidad</td>
-    <td>Precio</td>
-    <td>Importe</td>
-  </tr>
-</table>
 <div class="actions">
-    <%= f.submit 'Guardar Presupuesto' %>
+    <%= f.submit 'Guardar Presupuesto'%>
+</div>
+
+<script type="text/javascript">
+       function toggleCheckBox() {
+
+                 this.document.getElementById('unit_cost').value= 1000   ; //this.document.getElementById('descript').value;
+
+	}
+</script>
+
+
+<a href="#" id="combo" onchange="toggleCheckBox()">
+  <%= select :budgets_budget , :description_supply, Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.description]}%>
+</a>
+
+
+
+<% form_for Budgets::BudgetSupply.new, :remote => true do |f2| %>
+   <table>
+     <tr>
+       <td>
+        <%= f2.label :description, "Material:" %>
+        <%= select :budgets_budget_supply , :description, Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.description]}%>
+       </td>
+       <td>
+        <%= f2.label :quantity, "Cantidad:" %>
+        <%= f2.text_field :quantity, :size => 9 %>
+       </td>
+       <td>
+        <%= f2.label :unit_cost, "Importe:" %>
+        <%= f2.text_field :unit_cost, :size => 9 %>
+       </td>
+       <div class="actions">
+          <td  ><%= f2.submit 'Agregar material', :name => 'material' %></td>
+       </div>
+
+     </tr>
+     <tr>
+     </tr>
+   </table>
+<% end %>
+
+<div id="supplies">
+  <%= render :partial => 'supplies', :locals => { :list => true }%>
 </div>
 
 
+
+
 <% end %>
+
+
+
+
+
+

@@ -2,12 +2,13 @@ class Budgets::BudgetSuppliesController < ApplicationController
   # GET /budgets/budget_supplies
   # GET /budgets/budget_supplies.xml
   def index
+    
     @budgets_budget_supplies = Budgets::BudgetSupply.all
-
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @budgets_budget_supplies }
+      format.rss
     end
+        
   end
 
   # GET /budgets/budget_supplies/1
@@ -40,12 +41,15 @@ class Budgets::BudgetSuppliesController < ApplicationController
   # POST /budgets/budget_supplies
   # POST /budgets/budget_supplies.xml
   def create
-    @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
 
+    @budgets_budget_supply = Budgets::BudgetSupply.create!(params[:budgets_budget_supply])
+#    @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
     respond_to do |format|
       if @budgets_budget_supply.save
-        format.html { redirect_to(@budgets_budget_supply, :notice => 'Budget supply was successfully created.') }
-        format.xml  { render :xml => @budgets_budget_supply, :status => :created, :location => @budgets_budget_supply }
+        format.html { redirect_to budgets_budget_supplies_path }
+#        format.html { redirect_to(@budgets_budget_supply, :notice => 'Budget supply was successfully created.') }
+#        format.xml  { render :xml => @budgets_budget_supply, :status => :created, :location => @budgets_budget_supply }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @budgets_budget_supply.errors, :status => :unprocessable_entity }
@@ -80,4 +84,9 @@ class Budgets::BudgetSuppliesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+
+  
+
 end

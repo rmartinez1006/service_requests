@@ -7,7 +7,7 @@ ServiceRequests::Application.routes.draw do
   #RMO
   namespace :budgets do 
      match 'budgets/:id/budget_fm1' => 'budgets#budget_fm1', :as => :budget_fm1
-     match 'budgets/:id/budget_fm2' => 'budgets#budget_fm2', :as => :budget_fm2
+     match 'budgets/:id/budget_fm2' => 'budgets#budget_fm2', :as => :budget_fm2     
   end
 
   namespace :catalogs do resources :supplies end

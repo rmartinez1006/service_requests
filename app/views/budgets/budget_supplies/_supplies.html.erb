@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>Type supply</th>
+    <th>Budget</th>
+    <th>Description</th>
+    <th>Unit cost</th>
+    <th>Quantity</th>
+    <th>Unit measure</th>
+    <th></th>
+  </tr>
+
+<% @budgets_budget_supplies.each do |budgets_budget_supply| %>
+  <tr>
+    <td><%= budgets_budget_supply.type_supply %></td>
+    <td><%= budgets_budget_supply.budget_id %></td>
+    <td><%= budgets_budget_supply.description %></td>
+    <td><%= budgets_budget_supply.unit_cost %></td>
+    <td><%= budgets_budget_supply.quantity %></td>
+    <td><%= budgets_budget_supply.unit_measure %></td>
+    <td><%= link_to 'Destroy', budgets_budget_supply, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
