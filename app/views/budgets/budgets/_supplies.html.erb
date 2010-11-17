@@ -8,6 +8,7 @@
     <th>Cantidad</th>
     <th>Unidad</th>
     <th>Importe</th>
+    <th></th>
   </tr>
 
 <% @budgets_budget_supplies.each do |budgets_budget_supply| %>
@@ -19,6 +20,7 @@
     <td align="right"><%= budgets_budget_supply.quantity %></td>
     <td><%= budgets_budget_supply.unit_measure %></td>
     <td align="right"><%= budgets_budget_supply.importe( budgets_budget_supply.unit_cost,  budgets_budget_supply.quantity )  %></td>
+    <td><%= link_to 'Borrar', budgets_budget_supply, :confirm => '¿Borrar?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
