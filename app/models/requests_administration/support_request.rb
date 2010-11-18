@@ -1,4 +1,4 @@
-class Requests::SupportRequest < ActiveRecord::Base
+class RequestsAdministration::SupportRequest < ActiveRecord::Base
 
   
   belongs_to :ubication, :class_name => 'Catalogs::Ubication'

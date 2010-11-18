@@ -17,7 +17,7 @@
     <th></th>
   </tr>
 
-<% @requests_support_requests.each do |requests_support_request| %>
+<% @request_support_requests.each do |requests_support_request| %>
   <tr>
     <td><%= requests_administration_support_request.created_at.strftime("%d/%m/%Y") %></td>
     <td><%= requests_administration_support_request.num_sequence %></td>
@@ -51,7 +51,7 @@
     <th></th>
   </tr>
 
-<% @requests_support_requests_deleg.each do |requests_support_request_deleg| %>
+<% @request_support_requests_deleg.each do |requests_support_request_deleg| %>
   <tr>
     <td><%= requests_administration_support_request_deleg.created_at.strftime("%d/%m/%Y") %></td>
     <td><%= requests_administration_support_request_deleg.num_sequence %></td>
@@ -70,4 +70,4 @@
 
 
 
-<%= link_to 'Nueva sol. de soporte', new_requests_support_request_path, :class => 'link-button' %>
+<%#=  link_to 'Nueva sol. de soporte', new_requests_administration_support_request_path, :class => 'link-button' %>
