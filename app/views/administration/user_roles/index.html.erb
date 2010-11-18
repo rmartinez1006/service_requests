@@ -10,7 +10,7 @@
   </tr>
 
 <% @administration_user_roles.each do |administration_user_role| %>
-  <tr>
+  <tr class="table_content">
     <td><%= administration_user_role.rol %></td>
     <td><%= administration_user_role.description %></td>
     <td><%= link_to 'Ver', administration_user_role %></td>

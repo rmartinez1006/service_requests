@@ -12,7 +12,7 @@
   </tr>
 
 <% @catalogs_supplies.each do |catalogs_supply| %>
-  <tr>
+  <tr class="table_content">
     <td><%= catalogs_supply.abbr %></td>
     <td><%= catalogs_supply.description %></td>
     <td><%= catalogs_supply.unit_cost %></td>
@@ -37,7 +37,7 @@
   </tr>
 
 <% @catalogs_workmanship.each do |catalogs_workmanship| %>
-  <tr>
+  <tr class="table_content">
     <td><%= catalogs_workmanship.abbr %></td>
     <td><%= catalogs_workmanship.description %></td>
     <td><%= catalogs_workmanship.unit_cost %></td>

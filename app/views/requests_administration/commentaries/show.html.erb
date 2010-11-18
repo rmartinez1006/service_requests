@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Request:</b>
+  <%= @requests_request_commentary.request_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @requests_request_commentary.user_id %>
+</p>
+
+<p>
+  <b>Commentaries:</b>
+  <%= @requests_request_commentary.commentaries %>
+</p>
+
+<p>
+  <b>Comment type:</b>
+  <%= @requests_request_commentary.comment_type_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_requests_administration_request_commentary_path(@requests_request_commentary) %> |
+<%= link_to 'Back', requests_administration_request_commentaries_path %>

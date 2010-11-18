@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Request:</b>
+  <%= @requests_administration_delegation.request_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @requests_administration_delegation.user.name %>
+</p>
+
+<p>
+  <b>Helper:</b>
+  <%= @requests_administration_delegation.userhelper.name %>
+</p>
+
+<p>
+  <b>Notify:</b>
+  <%= @requests_administration_delegation.notify %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @requests_administration_delegation.priority_id %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @requests_administration_delegation.active %>
+</p>
+
+
+<%= link_to 'Edit', edit_requests_administration_req_delegation_path(@requests_req_delegation) %> |
+<%= link_to 'Back', requests_administration_req_delegations_path %>

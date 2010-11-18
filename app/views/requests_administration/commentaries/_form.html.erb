@@ -1,0 +1,33 @@
+<%= form_for(@requests_request_commentary) do |f| %>
+  <% if @requests_request_commentary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@requests_request_commentary.errors.count, "error") %> prohibited this requests_request_commentary from being saved:</h2>
+
+      <ul>
+      <% @requests_request_commentary.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :request_id %><br />
+    <%= f.text_field :request_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :commentaries %><br />
+    <%= f.text_area :commentaries %>
+  </div>
+  <div class="field">
+    <%= f.label :comment_type_id %><br />
+    <%= f.text_field :comment_type_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

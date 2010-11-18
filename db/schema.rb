@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101115160400) do
+ActiveRecord::Schema.define(:version => 20101118011246) do
 
   create_table "administration_user_hierachies", :force => true do |t|
     t.integer  "user_id"
@@ -127,31 +127,22 @@ ActiveRecord::Schema.define(:version => 20101115160400) do
     t.datetime "updated_at"
   end
 
-  create_table "catalogs_workmanships", :force => true do |t|
-    t.string   "abbr"
-    t.string   "description"
-    t.decimal  "unit_cost",    :precision => 10, :scale => 2, :default => 0.0
-    t.string   "unit_measure"
+  create_table "request_commentaries", :force => true do |t|
+    t.integer  "request_id"
+    t.integer  "user_id"
+    t.text     "commentaries"
+    t.integer  "comment_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "requests_req_delegations", :force => true do |t|
+  create_table "request_delegations", :force => true do |t|
     t.integer  "request_id"
     t.integer  "user_id"
     t.integer  "helper_id"
     t.integer  "notify"
     t.integer  "priority_id"
     t.integer  "active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "requests_request_commentaries", :force => true do |t|
-    t.integer  "request_id"
-    t.integer  "user_id"
-    t.text     "commentaries"
-    t.integer  "comment_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -169,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20101115160400) do
     t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "cost"
   end
 
 end

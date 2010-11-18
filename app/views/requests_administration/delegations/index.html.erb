@@ -1,0 +1,33 @@
+<h1>Listing requests_req_delegations</h1>
+
+<table>
+  <tr>
+    <th>Request</th>
+    <th>User</th>
+    <th>Helper</th>
+    <th>Notify</th>
+    <th>Priority</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @requests_administration_delegations.each do |requests_req_delegation| %>
+  <tr>
+    <td><%= requests_req_delegation.request_id %></td>
+    <td><%= requests_req_delegation.user_id %></td>
+    <td><%= requests_req_delegation.helper_id %></td>
+    <td><%= requests_req_delegation.notify %></td>
+    <td><%= requests_req_delegation.priority_id %></td>
+    <td><%= requests_req_delegation.active %></td>
+    <td><%= link_to 'Show', requests_administration_delegation %></td>
+    <td><%= link_to 'Edit', edit_requests_administration_delegation_path(requests_req_delegation) %></td>
+    <td><%= link_to 'Destroy', requests_administration_delegation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Req delegation', new_requests_administration_delegation_path %>

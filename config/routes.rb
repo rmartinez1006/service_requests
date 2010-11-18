@@ -19,14 +19,14 @@ ServiceRequests::Application.routes.draw do
 
   namespace :administration do resources :user_sessions end
 
-  namespace :requests do resources :req_delegations end
+  namespace :requests_administration do resources :delegations end
 
-  namespace :requests do resources :request_commentaries end
+  namespace :requests_administration do resources :commentaries end
 
-  namespace :requests do resources :support_requests end
+  namespace :requests_administration do resources :support_requests end
 
   #RMO
-  namespace :requests do
+  namespace :requests_administration do
     match 'support_requests/:id/scale' => 'support_requests#scale', :as => :scale
   end
 

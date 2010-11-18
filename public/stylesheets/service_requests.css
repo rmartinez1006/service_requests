@@ -11,14 +11,17 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
-root { 
+
+
+
+
+
+
+/*root {
     display: block;
 }
 
-a:hover{
-    background-color: white;
-    color:black;
-}
+
 
 a:link, a:visited{
     color:dimgray;
@@ -26,81 +29,11 @@ a:link, a:visited{
 
 
 
-h1{
-    font-family: Arial,Helvetica,sans-serif;
-    font-weight: bold;
-    color: #9a1c1c;
-    font-size: 24px;
-    vertical-align: middle;
-    text-align: left;
-}
 
-h2{
-    font-family: Arial,Helvetica,sans-serif;
-    font-weight: bold;
-    color: #9a1c1c;
-    font-size: 18px;
-    vertical-align: middle;
-    text-align: left;
-}
 
-h3{
-    font-family: Arial,Helvetica,sans-serif;
-    font-weight: bold;
-    color: #9a1c1c;
-    font-size: 14px;
-    vertical-align: middle;
-    text-align: left;
-}
 
-.field{
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 12px;
-}
 
-.table1{
-   width: 810px;
-   border:1px solid #9a1c1c;
-   border-spacing: 0px;   
-}
 
-.table1 th{
-    border:1px solid #9a1c1c;
-    background-color:#ffdcdc;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 4px;
-    padding-right:  4px;
-}
-
-.table1 td{
-    border:1px solid #9a1c1c;
-    padding: 3px;
-}
-
-.table_header{
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 12px;
-    text-align: center;
-    font-weight: bold;
-}
-
-.table_header_h2{
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 14px;
-        color: #FFFFFF;
-        background-color: #9A1C1C;
-        border-top: 1px solid #369;
-        padding-left: 5px;
-        padding-right: 5px;
-        text-align: right;
-}
-
-.table_content{
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 10px;
-    text-align: center;
-}
 
 .table_content_c2{
 	font-family: Arial,Helvetica,sans-serif;
@@ -136,15 +69,7 @@ h3{
         background-color:#FFFFCC;
 }
 
-.link-button {
-    border: 4px outset;
-    border-color:#9a1c1c;
-    padding-left: 4px;
-    padding-right: 4px;
-    text-decoration: none;
-    background-color:#ffdcdc;
-    float: right;
- }
+
 
 .text_area {
 width: 600pt;
@@ -173,42 +98,12 @@ width: 600pt;
 }
 */
 
-/*--------------------------------------------- */
+/*
 
 #v_menu{
      width: 160px ;
      float:  left ;
 }
-
-#h_menu{     
-     float:  left ;
-     height: 17px;
-     width: 982px;
-     background-color:darkgoldenrod;
-     padding: 4px;
-     font-weight:bolder;
-     font-size:smaller;
-     color: white;
-     text-align: right;
-}
-
-#h_menu a:visited , #h_menu a:link{
-     color: white;
-     text-decoration:none;
-     background-color:transparent;
-}
-
-#h_menu a:hover{
-     color:#ffdcdc;
-     text-decoration:none;
-     background-color:transparent;
-}
-
-
-
-
-
-
 
 
 
@@ -246,4 +141,4 @@ width: 600pt;
 #content_center {
 width: 990px;
 margin: 0 auto;
-}
+}*/

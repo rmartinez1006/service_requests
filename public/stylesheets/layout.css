@@ -1,77 +1,208 @@
 @charset "utf-8";
+
 body {
-	margin: 0;
-	padding: 0;
-	background: url(/images/img01.jpg) repeat-x #F5F5F5
+    margin: 0;
+    padding: 0;
+    background: url(/images/img01.jpg) repeat-x #F5F5F5
 }
+
+
+/* HEADERS */
+
+h1{
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    color: #9a1c1c;
+    font-size: 24px;
+    vertical-align: middle;
+    text-align: left;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+}
+
+h2{
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    color: #9a1c1c;
+    font-size: 18px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+h3{
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    color: #9a1c1c;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+
+/* TABLES */
+
+.table1 th{
+    border:1px solid #9a1c1c;
+    background-color:#ffdcdc;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    padding-right:  4px;
+}
+
+.table_header{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.table1{
+    width: 810px;
+    border:1px solid #9a1c1c;
+    border-spacing: 0px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+
+.table1 td{
+    border:1px solid #9a1c1c;
+    padding: 3px;
+}
+
+.table_content{        
+    text-align: center;
+}
+
+/* PAGE LAYOUT */
+
 #wrapper {
-	width: 990px;
-	margin-left:auto;
-	margin-right: auto;
-	padding: 0 5px 5px 5px;
+    width: 990px;
+    margin-left:auto;
+    margin-right: auto;
+    padding: 0 5px 5px 5px;
 }
 #header-logo {
-	background: url(/images/csaj_header.png) no-repeat;
-	height: 125px;
+    background: url(/images/csaj_header.png) no-repeat;
+    height: 125px;
 }
 #unam-logo {
-	float: right;
-	width: 100px;
-	height: 100px;
-	padding: 12px 40px;
-}
-#h-menu {
-	height: 18px;
-	background:#FFF;
-	padding: 5px 10px 5px 10px;
-	margin: 5px 0 5px 0;
-	background: #C90;
+    float: right;
+    width: 100px;
+    height: 100px;
+    padding: 12px 40px;
 }
 
-#username {
-	float:left;
-	text-transform: uppercase;
-	font-size: 11px;
-	color: #FFFFFF;
-	}
+#page {
+    background: #FFF;
+    float:  right;
+    width: 810px;
+    height: 800px;
+    padding: 0px 10px 0px 10px;
+}
+
+#footer {
+    clear: both;
+    padding: 5px 15px 5px 15px;
+    background: #E5E5E5;
+    margin-top: 30px;
+    font-size: 9px;
+}
+
+
+/* MENUS */
+
+#h-menu {
+    height: 14px;
+    padding: 8px 10px 5px 10px;
+    margin: 0px 0 3px 0;
+    background: #C90;
+}
 
 #h-menu-options {
-	float: right;
+    float: right;
 }
 #h-menu-options ul {
-	margin: 0;
-	list-style: none;
-	line-height: normal;
-}
-#h-menu-options li {
-	float: left;
-	text-align: center;
+    margin: 0;
+    list-style: none;
+    line-height: normal;
 }
 
-#h-menu-options a {
-	display: block;
-	padding: 0 30px;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: 11px;
-	color: #FFFFFF;
+#h-menu-options li {
+    float: left;
+    text-align: center;
 }
+
 #v-menu {
-	background: #FFF;
-	width: 160px;
-        height: 600px;
-	float: left;
+    background: #FFF;
+    width: 160px;
+    height: 800px;
+    float: left;
 }
-#page {
-	background: #FFF;
-	float:  right;
-	width: 810px;
-        height: 600px;
-	padding: 0px 10px 0px 10px;
+
+
+/* LINKS AND BUTTONS */
+
+
+#h-menu-options a {
+    display: block;
+    padding: 0 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;    
 }
-#footer {
-	padding: 5px 15px 5px 15px;
-	background: #E5E5E5;
-	margin-top: 30px;
-        font-size: 9px;
+
+#h-menu-options a:hover{
+    background-color: #C90;
+    color: white;
+    font-weight: bold;
 }
+
+#v-menu a:hover{
+    background-color: white;
+}
+
+
+a.link-button {
+    color: black;
+    border: 2px outset;
+    border-color:gray;
+    padding: 2px 4px 2px 4px;
+    text-decoration: none;
+    background-color: lightgray;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+input {
+    
+}
+
+/* OTHERS */
+
+#username {
+    float:left;
+    text-transform: uppercase;
+    color: #ffdcdc;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+
+label{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+}
+
+#table-login{
+    padding: 4px 4px 0px 4px;
+    background-color: #ffdcdc;
+    width: 210px;
+    margin-left:auto;
+    margin-right:auto;
+    border:2px solid #9A1C1C;
+}
+
