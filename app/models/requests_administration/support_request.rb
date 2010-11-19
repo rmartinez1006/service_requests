@@ -107,7 +107,7 @@ end
 
  def img_status(status)
 
-    if status == 1 or estado = nil
+    if status == 1 or estado == nil
       return "ST01.png"
     else
       if status == 2

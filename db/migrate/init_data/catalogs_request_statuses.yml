@@ -1,0 +1,31 @@
+espera:
+  abbr: ST01
+  description: No asignado para su atención.
+
+atendido:
+  abbr: ST02
+  description: Atendido.
+
+cancelado:
+  abbr: ST03
+  description: Cancelado.
+
+detenido:
+  abbr: ST04
+  description: Detenido.
+
+termindo:
+  abbr: ST05
+  description: Terminado.
+
+cerrado:
+  abbr: ST06
+  description: Cerrado.
+
+presupuestado:
+  abbr: ST07
+  description: Presupuestado.
+
+presupuestado_autorizado:
+  abbr: ST08
+  description: Presupuesto autorizado.

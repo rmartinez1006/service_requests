@@ -1,0 +1,14 @@
+seguimiento:
+  id: 1
+  abbr: SEG
+  description: Segimiento de solicitud.
+
+resolucion:
+  id: 2
+  abbr: RESOL
+  description: Resolución de solicitud.
+
+ubicacion:
+  id: 3
+  abbr: UBICA
+  description: Ubicacion física.

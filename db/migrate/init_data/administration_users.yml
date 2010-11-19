@@ -1,0 +1,19 @@
+roberto:
+  username: rmartinez
+  name: Roberto Martíenez Olvera
+  crypted_password: a4ab1667c6da4327e9900a610303c69e3d53d806085c08b028cf87b665cef124a2916d52892ab803258063244ba2a4dd0cf8519916df940e87595b3bbca0c94f
+  email: rmartinez1006@prodigy.net.mx
+  role_id: 1
+  ubication_id: 1
+  password_salt: PHnupbl7EKk8GSX3q28c
+  persistence_token: 90b0609a35bd320b80586899e7abf4adea93714c098c99ae0f096a05dc0d512e61e3f8bc62b0512362f5dec1ce700c69c6550a575e6f0e71db3100ff263c7682
+
+ramon:
+  username: martinezo
+  name: Ramón Martíenez Olvera
+  crypted_password: 820a7a5e1b563158945119699fb3fe2afe403fb0197d7139880b5b661f8e21033bcec493be47abf180b77136d92770b26fb8d042458db838b62e5e22fd5224dc
+  email: martinezo@inb.unam.mx
+  role_id: 1
+  ubication_id: 1
+  password_salt: cejf156yO4u_Qd3znWZU
+  persistence_token: c2236b4c2a28a82372a7a3f4801c2862d654b7e4532d4588ee3a9e8e0ceb82464d192d82986f7c08e0b303745ef5cd71c435503e1aa384742ca6bf83afad7736

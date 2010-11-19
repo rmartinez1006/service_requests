@@ -1,0 +1,14 @@
+administrator:
+  id: 1
+  rol: ADMIN
+  description: Administrador del sistema (superuser)
+
+cordinator:
+  id: 2
+  rol: COORD
+  description: Coordinador
+
+tec_sec:
+  id: 3
+  rol: STEC
+  description: Secretario Técnico

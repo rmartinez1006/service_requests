@@ -1,0 +1,14 @@
+baja:
+  id: 1
+  abbr: BAJA
+  description: No urgente
+
+media:
+  id: 2
+  abbr: MEDIA
+  description: Importante
+
+alta:
+  id: 3
+  abbr: ALTA
+  description: Urgente
