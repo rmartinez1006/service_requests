@@ -1,5 +1,17 @@
 ServiceRequests::Application.routes.draw do
 
+  #get "support_request/index"
+
+  #get "support_request/show"
+
+  #get "support_request/new"
+
+  #get "support_request/cancel"
+
+  #get "support_request/comment"
+
+  namespace :requests do resources :support_requests end
+
   namespace :budgets do resources :budget_supplies end
 
   namespace :budgets do resources :budgets end

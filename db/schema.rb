@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101118011246) do
+ActiveRecord::Schema.define(:version => 20101118235751) do
 
   create_table "administration_user_hierachies", :force => true do |t|
     t.integer  "user_id"
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(:version => 20101118011246) do
   end
 
   create_table "budgets_budgets", :force => true do |t|
-    t.integer  "request_id"
+    t.integer  "support_request_id"
     t.integer  "supplier_id"
-    t.decimal  "total_cost",  :precision => 10, :scale => 2, :default => 0.0
+    t.decimal  "total_cost",         :precision => 10, :scale => 2, :default => 0.0
     t.date     "budget_date"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20101118011246) do
   end
 
   create_table "request_commentaries", :force => true do |t|
-    t.integer  "request_id"
+    t.integer  "support_request_id"
     t.integer  "user_id"
     t.text     "commentaries"
     t.integer  "comment_type_id"
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(:version => 20101118011246) do
   end
 
   create_table "request_delegations", :force => true do |t|
-    t.integer  "request_id"
+    t.integer  "support_request_id"
     t.integer  "user_id"
     t.integer  "helper_id"
     t.integer  "notify"
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(:version => 20101118011246) do
     t.datetime "updated_at"
   end
 
-  create_table "requests_support_requests", :force => true do |t|
+  create_table "request_support_requests", :force => true do |t|
     t.integer  "request_no"
     t.integer  "ubication_id"
     t.integer  "helper_id"
@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(:version => 20101118011246) do
     t.text     "description"
     t.text     "tech_description"
     t.date     "status_chng_date"
-    t.integer  "status_id"
+    t.integer  "request_status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "cost"

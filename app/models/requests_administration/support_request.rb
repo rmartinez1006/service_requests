@@ -4,7 +4,6 @@ class RequestsAdministration::SupportRequest < ActiveRecord::Base
   belongs_to :ubication, :class_name => 'Catalogs::Ubication'
   belongs_to :userhelper, :class_name => "Administration::User", :foreign_key => "helper_id"
   belongs_to :requests_status, :class_name => "Catalogs::RequestStatus", :foreign_key => "status_id"
-
   belongs_to :supporttype, :class_name => 'Catalogs::SupportType', :foreign_key => 'support_type_id'
 
 #  has_many :ubications, :class_name => 'Catalogs::Ubication'
