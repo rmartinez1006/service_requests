@@ -7,7 +7,6 @@
   <% if @budgets_budget.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@budgets_budget.errors.count, "error") %> prohibited this budgets_budget from being saved:</h2>
-
       <ul>
       <% @budgets_budget.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -16,15 +15,15 @@
     </div>
   <% end %>
 
- <%=  f.text_field :request_id, :type => "hidden" %>
+ <%=  f.text_field :support_request_id, :type => "hidden" %>
 
-<table width="950" class="table_content_c4">
+<table width="950" class="table1">
   <tr>
     <td width="80" align="right" valign="top">
       <b> Descripción Técnica </b>
     </td>
     <td align="left" colspan="3">
-      <%= f.text_area :tech_description,  :size => '120x4'  %>
+      <%= f.text_area :tech_description,  :size => '98x4'  %>
     </td>
   </tr>
   <tr>
@@ -32,7 +31,7 @@
       <b> Descripción de Trabajos </b>
     </td>
     <td align="left"  colspan="3">
-      <%= f.text_area :description,  :size => '120x4'  %>
+      <%= f.text_area :description,  :size => '98x4'  %>
     </td>
   </tr>
   <tr>

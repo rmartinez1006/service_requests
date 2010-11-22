@@ -23,7 +23,7 @@ class RequestsAdministration::SupportRequest < ActiveRecord::Base
     if  self.request_no == nil
       self.request_no = request_number
     end
-    if self.status_id == nil
+    if self.request_status_id == nil
       self.status_id = 1
 #      self.helper_id = 2
       self.status_chng_date=Time.now
@@ -107,7 +107,7 @@ end
 
  def img_status(status)
 
-    if status == 1 or estado == nil
+    if status == 1 or status == nil
       return "ST01.png"
     else
       if status == 2
@@ -152,7 +152,7 @@ end
 # Validación para determinar activar el link de Presupesto
 # Si no existe presupuesto, entonces, activar el link, si existe no activar
   def valida_presupuesto(req_id)
-    @budget = Budgets::Budget.find(:all, :conditions => "request_id = " + req_id.to_s)
+    @budget = Budgets::Budget.find(:all, :conditions => "support_request_id = " + req_id.to_s)
     r = true
 #   Si NO EXISTE (Se puede crear)
     if @budget.size >0

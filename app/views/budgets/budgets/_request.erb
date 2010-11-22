@@ -1,7 +1,7 @@
 
 
-<table width="950">
-<tr class="table_content_c2">
+<table class="table1" width="950">
+<tr>
 
   <td width="80" align=right >
      <b>Folio:</b>
@@ -15,12 +15,8 @@
   <td> <b> Ultimo cambio:</b></td>
   <td align="left"><%=  @budgets_budget.request.status_chng_date.strftime("%d/%m/%Y") %></td>
 </tr>
-</table>
 
-
-<table width="950">
-
-<tr class="table_content_c3">
+<tr>
   <td width="30" align=right >
     <b>Ubicación:</b>
   </td>
@@ -30,7 +26,7 @@
   <td width="60" align=right>
     <b>Atiende:</b>
   </td>
-  <td align ="left">
+  <td align ="left" colspan="3">
     <%= @budgets_budget.request.helper %>
   </td>
 </tr>
@@ -46,19 +42,17 @@
   <td width="70" align=right>
     <b>Correo E.:</b>
   </td>
-  <td align ="left">
+  <td align ="left" colspan="3">
     <%= @budgets_budget.request.email %>
   </td>
 </tr>
-</table>
 
 
-<table width="950">
 <tr class="table_content_c2">
   <td width="80" align=right >
      <b>Descripción:</b>
   </td>
-  <td align="left">
+  <td align="left" colspan="5">
      <%= raw(@budgets_budget.request.text_to_html(@budgets_budget.request.description)) %>
   </td>
 </tr>

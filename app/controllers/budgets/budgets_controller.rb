@@ -1,6 +1,7 @@
 class Budgets::BudgetsController < ApplicationController
 
   layout "budgets"
+
   # GET /budgets/budgets
   # GET /budgets/budgets.xml
   def index
@@ -120,14 +121,14 @@ class Budgets::BudgetsController < ApplicationController
 
     # GET /budgets/budgets/1/budget_fm1
   def budget_fm1
-    @requests_support_request = Requests::SupportRequest.find(params[:id])
+    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
 
 #   Buscar si existe el presupeusto
-    @budgets_budget = Budgets::Budget.find(:first, :conditions => "request_id ="+ params[:id] )
+    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
     if @budgets_budget == nil
 #     NO existe Presupeusto: CREAR EL PRESUPUESTO
       @budgets_budget = Budgets::Budget.new
-      @budgets_budget.request_id = params[:id]
+      @budgets_budget.support_request_id = params[:id]
 #     Auxiliar
       @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
     else
@@ -147,7 +148,7 @@ class Budgets::BudgetsController < ApplicationController
   def budget_fm1_edit
     @requests_support_request = Requests::SupportRequest.find(params[:id])
     @budgets_budget = Budgets::Budget.new
-    @budgets_budget.request_id = params[:id]
+    @budgets_budget.support_request_id = params[:id]
 
 #   Buscar los materiales que corresponden al presupuesto
     @budgets_budget_supplies = Budgets::BudgetSupply.all
@@ -162,11 +163,11 @@ class Budgets::BudgetsController < ApplicationController
 
     # GET /budgets/budgets/1/budget_fm1
   def budget_fm2
-    @requests_support_request = Requests::SupportRequest.find(params[:id])
+    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
 
     #Nuevo Presupuesto
     @budgets_budget = Budgets::Budget.new
-    @budgets_budget.request_id = params[:id]
+    @budgets_budget.support_request_id = params[:id]
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
 

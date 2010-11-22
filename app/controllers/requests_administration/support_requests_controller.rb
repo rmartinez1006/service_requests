@@ -24,23 +24,23 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
                 SELECT r.* FROM request_support_requests as r
                  WHERE r.helper_id = ".concat(user_id.to_s)
     
-    @request_support_requests = RequestsAdministration::SupportRequest.find_by_sql(lv_sql)
+    @requests_administration_support_requests = RequestsAdministration::SupportRequest.find_by_sql(lv_sql)
     
 #   Solicitudes en la que esta involucrado
      lv_sql ="SELECT DISTINCT s.*
                 FROM request_support_requests as s
               INNER JOIN request_delegations as r
-                  ON s.id = r.request_id
+                  ON s.id = r.support_request_id
                WHERE s.helper_id <> r.helper_id
                  AND r.helper_id = ".concat(user_id.to_s)
 
-    @request_support_requests_deleg = RequestsAdministration::SupportRequest.find_by_sql(lv_sql)
+    @requests_administration_support_requests_deleg = RequestsAdministration::SupportRequest.find_by_sql(lv_sql)
 
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @request_support_requests }
-      format.xml  { render :xml => @request_support_requests_deleg }
+      format.xml  { render :xml => @requests_administration_support_requests }
+      format.xml  { render :xml => @requests_administration_support_requests_deleg }
     end
   end
 
@@ -50,25 +50,26 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
     @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
     # Mostrar Comentarios
     lv_sql ="SELECT * FROM request_commentaries
-              WHERE request_id = " + params[:id] +
+              WHERE support_request_id = " + params[:id] +
             " AND comment_type_id IN
                 (SELECT id FROM catalogs_comment_types
                  WHERE abbr IN ('RESOL'))"
-  # @requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"request_id" = ?', params[:id]] )
-    @requests_request_commentaries = RequestsAdministration::RequestCommentary.find_by_sql(lv_sql)
+  #@requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"support_request_id" = ?', params[:id]] )
+    @requests_request_commentaries = RequestsAdministration::Commentary.find_by_sql(lv_sql)
 
     # Ubicación Fisica del problema (Tabla de cometarios)
     lv_sql ="SELECT DISTINCT * FROM request_commentaries
-              WHERE request_id = " + params[:id] +
+              WHERE support_request_id = " + params[:id] +
             " AND comment_type_id IN
                 (SELECT id FROM catalogs_comment_types
                  WHERE abbr IN ('UBICA'))"  
-    @requests_request_req_ubication = RequestsAdministration::RequestCommentary.find_by_sql(lv_sql)
+    @requests_request_req_ubication = RequestsAdministration::Commentary.find_by_sql(lv_sql)
 
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @requests_support_request }
+      
       format.xml  { render :xml => @requests_request_commentaries }
       format.xml  { render :xml => @requests_request_req_ubication }
     end
@@ -90,11 +91,11 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
     @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
     # Obtener el comentario de Ubicación Fisica
     lv_sql ="SELECT DISTINCT * FROM request_commentaries
-              WHERE request_id = " + params[:id] +
+              WHERE support_request_id = " + params[:id] +
             " AND comment_type_id IN
                 (SELECT id FROM catalogs_comment_types
                  WHERE abbr IN ('UBICA'))"
-    @requests_request_req_ubication = RequestsAdministration::RequestCommentary.find_by_sql(lv_sql)
+    @requests_request_req_ubication = RequestsAdministration::Commentary.find_by_sql(lv_sql)
     if @requests_request_req_ubication.size > 0
        @requests_support_request.req_ubication = @requests_request_req_ubication[0].commentaries
     end
@@ -136,19 +137,18 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
   # PUT /requests/request_support_requests/1
   # PUT /requests/request_support_requests/1.xml
   def update
-    @requests_support_request = Requests::SupportRequest.find(params[:id])
+    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
       
-
     respond_to do |format|
-      if @requests_support_request.update_attributes(params[:requests_support_request])
+      if @requests_support_request.update_attributes(params[:requests_administration_support_request])
         format.html { redirect_to(@requests_support_request, :notice => 'Support request was successfully updated.') }
         format.xml  { head :ok }
 
         #   Ubicar el comentario (Ubicación fisica)
         @comment =Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
         if @comment != nil
-           @requests_support_req_ubication = Requests::RequestCommentary.find(:first,
-                        :conditions => "request_id = " + params[:id] + "  AND comment_type_id = " + @comment.id.to_s)
+           @requests_support_req_ubication =  RequestsAdministration::Commentary.find(:first,
+                        :conditions => "support_request_id = " + params[:id] + "  AND comment_type_id = " + @comment.id.to_s)
            if @requests_support_req_ubication != nil
               @requests_support_req_ubication.commentaries = @requests_support_request.req_ubication
               @requests_support_req_ubication.save
@@ -168,8 +168,8 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
     if params.keys[0] == 'comment'
 
         @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")                
-        request_commentary = Requests::RequestCommentary.new
-        request_commentary.request_id =  @requests_support_request.id
+        request_commentary = RequestsAdministration::Commentary.new
+        request_commentary.support_request_id =  @requests_support_request.id
         request_commentary.user_id = user_id
         request_commentary.commentaries = @requests_support_request.commentaries_to_add
         request_commentary.comment_type_id = @catalogs_comment_types.id
