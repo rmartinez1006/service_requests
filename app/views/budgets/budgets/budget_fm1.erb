@@ -1,3 +1,31 @@
+<head>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+          
+      $(".combo").change(function(){
+
+        var temp = new Array();
+        b = $(".combo  option:selected").text();
+        temp = b.split('$');
+        //alert(temp[0]);
+        var x=(document).getElementById('importe');
+        x.value = temp[1];
+          //alert(x.value);
+        //$(this).hide() eOK
+        //$("ul").append("<li>Ultima</li>")
+        //$(".tipo").hide() OK
+
+        return false;
+      });
+
+
+    });
+    </script>
+
+</head>
+
+
 <h1>Presupuesto</h1>
 
 <%= render :partial => 'request' %>
@@ -50,19 +78,6 @@
     <%= f.submit 'Guardar Presupuesto'%>
 </div>
 
-<script type="text/javascript">
-       function toggleCheckBox() {
-
-                 this.document.getElementById('unit_cost').value= 1000   ; //this.document.getElementById('descript').value;
-
-	}
-</script>
-
-
-<a href="#" id="combo" onchange="toggleCheckBox()">
-  <%= select :budgets_budget , :description_supply, Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.description]}%>
-</a>
-
 
 
 <% form_for Budgets::BudgetSupply.new, :remote => true do |f2| %>
@@ -70,15 +85,17 @@
      <tr>
        <td>
         <%= f2.label :description, "Material:" %>
-        <%= select :budgets_budget_supply , :description, Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.description]}%>
+        <div class="combo">
+        <%= select :budgets_budget_supply , :description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description + " $ " + p.unit_cost.to_s, p.description]} %>
+        </div>
        </td>
        <td>
         <%= f2.label :quantity, "Cantidad:" %>
-        <%= f2.text_field :quantity, :size => 9 %>
+        <%= f2.text_field :quantity, :size=>"9", :style => "text-align: right", :id=>"cantidad" %>
        </td>
        <td>
         <%= f2.label :unit_cost, "Importe:" %>
-        <%= f2.text_field :unit_cost, :size => 9 %>
+        <%= f2.text_field :unit_cost, :size=>"9", :style => "text-align: right", :id=>"importe" %>
        </td>
        <div class="actions">
           <td  ><%= f2.submit 'Agregar material', :name => 'material' %></td>

@@ -123,6 +123,9 @@ class Budgets::BudgetsController < ApplicationController
   def budget_fm1
     @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
 
+
+#    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
+
 #   Buscar si existe el presupeusto
     @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
     if @budgets_budget == nil
@@ -149,6 +152,7 @@ class Budgets::BudgetsController < ApplicationController
     @requests_support_request = Requests::SupportRequest.find(params[:id])
     @budgets_budget = Budgets::Budget.new
     @budgets_budget.support_request_id = params[:id]
+    
 
 #   Buscar los materiales que corresponden al presupuesto
     @budgets_budget_supplies = Budgets::BudgetSupply.all
@@ -171,6 +175,7 @@ class Budgets::BudgetsController < ApplicationController
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
 
+   
     respond_to do |format|      
       format.html # new.html.erb      
       format.xml  { render :xml => @budgets_budget}
