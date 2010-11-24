@@ -79,6 +79,10 @@ class Budgets::BudgetsController < ApplicationController
 
     @budgets_budget = Budgets::Budget.find(params[:id])
 
+#   Ubicar la solicitud
+    @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
+    @budgets_budget.tech_description = @requests_support_request.tech_description
+
 #   Validar el botón de "Agregar material"
     if params.keys[8] == "material"
           @budgets_budget_supply = Budgets::BudgetSupply.create!(params[:budgets_budget_supply])
@@ -89,7 +93,7 @@ class Budgets::BudgetsController < ApplicationController
 #         Buscar los materiales que corresponden al presupuesto
           @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
           #render(:partial => 'supplies', :locals => { :list => true }) and return
-          render(:controller=>'/budgets/budgets', :action => "budget_fm1",  :id => 3 ) and return
+          render(:controller=>'/budgets/budgets', :action => "budget_fm1",  :id => @budgets_budget.support_request_id.to_s) and return
     end
 
 #   Actualizar Presupuesto    
@@ -138,6 +142,7 @@ class Budgets::BudgetsController < ApplicationController
 #     Existe Presupuesto:
 #     Buscar los materiales que corresponden al presupuesto
       @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
+      @budgets_budget.tech_description = @requests_support_request.tech_description
     end
 #    @budgets_budget_supplies = Budgets::BudgetSupply.all
     respond_to do |format|
@@ -152,6 +157,7 @@ class Budgets::BudgetsController < ApplicationController
     @requests_support_request = Requests::SupportRequest.find(params[:id])
     @budgets_budget = Budgets::Budget.new
     @budgets_budget.support_request_id = params[:id]
+    @budgets_budget.tech_description = @requests_support_request.tech_description
     
 
 #   Buscar los materiales que corresponden al presupuesto

@@ -1,6 +1,10 @@
 class Budgets::BudgetSuppliesController < ApplicationController
   # GET /budgets/budget_supplies
   # GET /budgets/budget_supplies.xml
+validates_numericality_of :unit_cost, :on => :create, :message => "Debe ser númerico."
+validates_numericality_of :quantity, :on => :create, :message => "Debe ser númerico."
+
+
   def index
     
     @budgets_budget_supplies = Budgets::BudgetSupply.all
