@@ -43,7 +43,8 @@ class Budgets::BudgetsController < ApplicationController
 
   # POST /budgets/budgets
   # POST /budgets/budgets.xml
-  def create    
+  def create
+
     @budgets_budget = Budgets::Budget.new(params[:budgets_budget])
     respond_to do |format|
          if @budgets_budget.save
@@ -66,6 +67,8 @@ class Budgets::BudgetsController < ApplicationController
 
 #   Guardar el presupuesto y salir
          @budgets_budgets = Budgets::Budget.all
+
+
          flash[:notice] = 'El presupuesto fue creado correctamente.'
          format.html { render :action => "index" }
          format.xml  { render :xml => @budgets_budgets }
@@ -76,7 +79,6 @@ class Budgets::BudgetsController < ApplicationController
   # PUT /budgets/budgets/1
   # PUT /budgets/budgets/1.xml
   def update
-
     @budgets_budget = Budgets::Budget.find(params[:id])
 
 #   Ubicar la solicitud
@@ -96,12 +98,22 @@ class Budgets::BudgetsController < ApplicationController
           render(:controller=>'/budgets/budgets', :action => "budget_fm1",  :id => @budgets_budget.support_request_id.to_s) and return
     end
 
-#   Actualizar Presupuesto    
+#   Obtener el Importe Total (Gran Total)
+#   primero, buscar los materiales que corresponden al presupuesto
+
+@budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
+sum = 0
+sum = @budgets_budget.suma_total(@budgets_budget_supplies)
+#@budgets_budget_supplies.inject(0) { |sum,n| n.unit_cost * n.quantity + sum  }
+
+#   Actualizar Presupuesto
+    @budgets_budget.total_cost = sum
     respond_to do |format|
       if @budgets_budget.update_attributes(params[:budgets_budget])
         if params.keys[0]== 'commit'
-           format.html { redirect_to(@budgets_budget, :notice => 'Budget was successfully updated.') }
-           format.xml  { head :ok }
+         @budgets_budgets = Budgets::Budget.all
+         format.html { render :action => "index" }
+         format.xml  { render :xml => @budgets_budgets }
         end
       else
         format.html { render :action => "edit" }

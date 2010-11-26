@@ -1,12 +1,11 @@
-<h1>Listing budgets_budgets</h1>
+<h1>Presupuestos</h1>
 
-<table>
+<table class="table1">
   <tr>
-    <th>Request</th>
-    <th>Supplier</th>
-    <th>Total cost</th>
-    <th>Budget date</th>
-    <th>User</th>
+    <th>Solicitud</th>
+    <th>Costo Total</th>
+    <th>Fecha</th>
+    <th>Responsable</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,8 +13,7 @@
 
 <% @budgets_budgets.each do |budgets_budget| %>
   <tr>
-    <td><%= budgets_budget.support_request_id %></td>
-    <td><%= budgets_budget.supplier_id %></td>
+    <td><%= budgets_budget.request.num_sequence %></td>    
     <td><%= budgets_budget.total_cost %></td>
     <td><%= budgets_budget.budget_date %></td>
     <td><%= budgets_budget.user_id %></td>

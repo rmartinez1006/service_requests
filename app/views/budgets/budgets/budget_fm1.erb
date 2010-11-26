@@ -2,8 +2,14 @@
 
     <script type="text/javascript">
     $(document).ready(function(){
-          
+
+      
+      
       $(".combo").change(function(){
+
+        
+        
+        
 
         var temp = new Array();
         var i=0;
@@ -23,11 +29,16 @@
         var x=(document).getElementById('unidad');
         x.value = temp[1];
 
+        $('.tsupplies').append("<tr><td> liliana </td></tr>");
 
         //alert(x.value);
         //$(this).hide() eOK
         //$("ul").append("<li>Ultima</li>")
         //$(".tipo").hide() OK
+
+      
+
+
 
         return false;
       });
@@ -123,6 +134,11 @@
           <td  ><%= f2.submit 'Agregar', :name => 'material' %></td>
        </div>
 
+       <div class="actions">
+          <td  ><%= f2.submit 'refresh', :name => 'refresh' %></td>
+       </div>
+
+
      </tr>
      <tr>
      </tr>
@@ -138,6 +154,7 @@
 
 <% end %>
 
+   
 
 
 

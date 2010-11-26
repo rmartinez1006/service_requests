@@ -34,4 +34,14 @@ validates_numericality_of :total_cost, :on => :create, :message => "Debe ser nú
   end
 
 
+#Obtener el total de los materiales o mano de obra
+ def suma_total(budgets_supplies)
+   sum = 0
+   for item in budgets_supplies
+     sum = sum + item.unit_cost * item.quantity
+   end
+   sum
+ end
+
+
 end

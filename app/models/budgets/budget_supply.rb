@@ -8,4 +8,7 @@ class Budgets::BudgetSupply < ActiveRecord::Base
   end
   r
  end
+
+
+
 end
