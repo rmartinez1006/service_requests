@@ -13,12 +13,12 @@
 
 <% @budgets_budgets.each do |budgets_budget| %>
   <tr>
-    <td><%= budgets_budget.request.num_sequence %></td>    
+    <td><%= budgets_budget.request.num_sequence %></td>
     <td><%= budgets_budget.total_cost %></td>
     <td><%= budgets_budget.budget_date %></td>
     <td><%= budgets_budget.user_id %></td>
     <td><%= link_to 'Show', budgets_budget %></td>
-    <td><%= link_to 'Edit', edit_budgets_budget_path(budgets_budget) %></td>
+    <td><%= link_to 'Edit', :controller=>'/budgets/budgets', :action => "budget_fm1",  :id => budgets_budget.support_request_id %></td>
     <td><%= link_to 'Destroy', budgets_budget, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

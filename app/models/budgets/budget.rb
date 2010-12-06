@@ -2,8 +2,9 @@ class Budgets::Budget < ActiveRecord::Base
   belongs_to :request, :class_name => "RequestsAdministration::SupportRequest", :foreign_key => "support_request_id"
   belongs_to :supplier, :class_name => "Catalogs::Supplier", :foreign_key => "supplier_id"
 # belongs_to :supplier, :class_name => 'Catalogs::Supplier'
-  
-  attr_accessor :support_type_id, :tech_description, :description_supply
+  has_many :supply, :class_name => 'Budgets::BudgetSupply',:foreign_key => "budget_id"
+
+  attr_accessor :support_type_id, :tech_description, :description_supply, :flag_create
 
 #validates_format_of :total_cost, :with => /\d{0,10}\./
 # validates_format_of :total_cost, :with => /\d{0,10}\.\d{2}/

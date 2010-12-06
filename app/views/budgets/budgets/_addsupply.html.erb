@@ -1,0 +1,35 @@
+<div id="materiales">
+  <% form_for(Budgets::BudgetSupply.new, :remote=>true) do |f2| %>
+   <table>
+     <tr>
+       <td>
+         
+        <%= f2.label :description, "Material:" %>
+        <%= select  :budgets_budget_supply , :description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione el Material'},:onclick => "document.getElementById('cantidad').value=0; return true;" %>
+       </td>
+       <td>
+        <%= f2.label :quantity, "Cantidad:" %>
+        <%= f2.text_field :quantity, :size=>"8", :style => "text-align: right", :id=>"cantidad" %>
+       </td>
+       <td>
+        <%= f2.label :unit_cost, "Importe:" %>
+        <%= f2.text_field :unit_cost, :size=>"8", :style => "text-align: right", :id=>"importe" %>
+       </td>
+       <td>
+        <%= f2.label :unit_measure, "Unidad:" %>
+        <%= f2.text_field :unit_measure, :id=>"unidad",:size=>"5" %>
+       </td>
+       <td>
+        <%= f2.hidden_field :type_supply, :id=>"type_supply", :value=>"1"  %>
+        <%= f2.hidden_field :budget_id, :id=>"budget_id", :value=>@budgets_budget.id  %>
+       </td>
+
+
+       <td><%= submit_tag "Agregar", :name=>'material' %></td>
+       
+     </tr>
+     <tr>
+     </tr>
+   </table>
+  <% end %>
+</div>

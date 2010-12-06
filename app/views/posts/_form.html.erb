@@ -1,0 +1,13 @@
+<%= form_for(@post, :remote => true) do |f| %>
+  <div id="post_errors" style="display: none;"></div>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content , :size=>'90x2' %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

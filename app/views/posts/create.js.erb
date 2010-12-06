@@ -1,0 +1,28 @@
+<% if @post.errors.any? -%>
+  //Hide the flash notice div*/
+  $("#flash_notice").hide(300);
+
+  //Update the html of the div post_errors with the new one*/
+  $("#post_errors").html("<%= escape_javascript(error_messages_for(@post))%>");
+
+  //Show the div post_errors*/
+  $("#post_errors").show(300);
+
+<% else -%>
+
+  //Replace the html of the div post_lists with the updated new one*/
+  $("#posts_list").html("<%= escape_javascript(render(:partial => "posts"))%>");
+
+  //Hide the div post_errors*/
+  $("#post_errors").hide(300);
+
+  //Update the html of the div flash_notice with the new one*/
+  $("#flash_notice").html("<%= escape_javascript(flash[:notice])%>");
+
+  //Show the flash_notice div*/
+  $("#flash_notice").show(300);
+
+  //Clear the entire form*/
+  $(":input:not(input[type=submit])").val("");
+
+<% end -%>

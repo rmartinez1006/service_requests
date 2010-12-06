@@ -4,8 +4,8 @@
     <th>Type supply</th>
     <th>Budget</th>
     <th>Descripción</th>
-    <th>Costo</th>
     <th>Cantidad</th>
+    <th>Costo</th>    
     <th>Unidad</th>
     <th>Importe</th>
     <th></th>
@@ -16,11 +16,12 @@
     <td><%= budgets_budget_supply.type_supply %></td>
     <td><%= budgets_budget_supply.budget_id %></td>
     <td><%= budgets_budget_supply.description %></td>
-    <td align="right"><%= sprintf("%0.2f",budgets_budget_supply.unit_cost) %></td>
     <td align="right"><%= budgets_budget_supply.quantity %></td>
+    <td align="right"><%= sprintf("%0.2f",budgets_budget_supply.unit_cost) %></td>
     <td><%= budgets_budget_supply.unit_measure %></td>
     <td align="right"><%= budgets_budget_supply.importe( budgets_budget_supply.unit_cost,  budgets_budget_supply.quantity )  %></td>
-    <td><%= link_to 'Borrar', budgets_budget_supply, :confirm => '¿Borrar?', :method => :delete %></td>
+    <td><%= link_to "Borrar", { :action => "delete_supply", :id=>budgets_budget_supply.id },:confirm => "¿Borrar?", :method => :delete, :remote=>true %></td>
   </tr>
 <% end %>
 </table>
+

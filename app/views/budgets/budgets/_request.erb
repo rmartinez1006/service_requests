@@ -1,5 +1,4 @@
 
-
 <table class="table1" width="950">
 <tr>
 
@@ -58,5 +57,61 @@
 </tr>
 
 </table>
+
+
+<%= form_for(@budgets_budget, :remote=> true) do |f| %>
+
+  <% if @budgets_budget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@budgets_budget.errors.count, "error") %> prohibited this budgets_budget from being saved:</h2>
+
+      <ul>
+      <% @budgets_budget.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <%=  f.text_field :support_request_id, :type => "hidden" %>
+
+<table width="950" class="table1">
+  <tr>
+    <td width="80" align="right" valign="top">
+      <b> Descripción Técnica </b>
+    </td>
+    <td align="left" colspan="3">
+      <%= f.text_area :tech_description,  :size => '98x2'  %>
+    </td>
+  </tr>
+  <tr>
+    <td width="80" align="right" valign="top">
+      <b> Descripción de Trabajos </b>
+    </td>
+    <td align="left"  colspan="3">
+      <%= f.text_area :description,  :size => '98x2'  %>
+    </td>
+  </tr>
+  <tr>
+    <td width="80" align="right">
+       <b> Tipo de Soporte:</b>
+    </td>
+    <td align="left" colspan="3">
+       <%= select :budgets_budget , :support_type_id, Catalogs::SupportType.find(:all).collect{|p| [p.name, p.id]}%>
+    </td>
+  </tr>
+</table>
+
+<%= render :partial => 'addsupply' %>
+<div id="mat_list">
+     <%= render :partial => 'supplies'%>
+</div>
+
+
+<%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('cantidad').value=-999.99; return true;"%>
+
+
+<% end %>
+
 
 

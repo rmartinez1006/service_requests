@@ -1,0 +1,5 @@
+<% if @budgets_budget_supply.errors.any? -%>
+<% else -%>
+$("#mat_list").html("<%= escape_javascript(render(:partial => "supplies"))%>");
+$("#budgets_budget_supply_description").val("");
+<% end -%>

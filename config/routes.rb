@@ -1,4 +1,5 @@
 ServiceRequests::Application.routes.draw do
+  resources :posts
 
   #get "support_request/index"
 
@@ -19,7 +20,8 @@ ServiceRequests::Application.routes.draw do
   #RMO
   namespace :budgets do 
      match 'budgets/:id/budget_fm1' => 'budgets#budget_fm1', :as => :budget_fm1
-     match 'budgets/:id/budget_fm2' => 'budgets#budget_fm2', :as => :budget_fm2     
+     match 'budgets/:id/budget_fm2' => 'budgets#budget_fm2', :as => :budget_fm2
+     match 'budgets/:id/delete_supply' => 'budgets#delete_supply', :as => :delete_supply
   end
 
   namespace :catalogs do resources :supplies end

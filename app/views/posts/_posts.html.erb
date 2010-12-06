@@ -1,0 +1,17 @@
+    <table border="1">
+  <tbody><tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+  </tr>
+<% for post in @posts %>
+  <tr>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td>
+      <td><%= link_to "Edit", edit_post_path(post), :remote => true %></td>
+      <td><%= link_to "Destroy", post, :remote => true, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  </tbody>
+<% end %>
+  </table>
