@@ -32,7 +32,6 @@ class Budgets::BudgetsController < ApplicationController
   # POST /budgets/budgets
   # POST /budgets/budgets.xml
   def create
-
       if $budget_id == 0
 #       Solo la primer vez crea el presupuesto
         @budgets_budget = Budgets::Budget.new(params[:budgets_budget])
@@ -59,7 +58,10 @@ class Budgets::BudgetsController < ApplicationController
 #     Guardar el presupuesto y salir
       @budgets_budget.save
       @budgets_budgets = Budgets::Budget.all
-      redirect_to :action => :index
+      render :update do |page|
+            page.redirect_to(:action=>"index")
+      end
+      
   end
 
   # PUT /budgets/budgets/1
@@ -94,18 +96,13 @@ class Budgets::BudgetsController < ApplicationController
 
 #     Actualizar Presupuesto
       @budgets_budget.total_cost = sum
-      respond_to do |format|
-         if @budgets_budget.update_attributes(params[:budgets_budget])
-            if params.keys[0]== 'commit'
-                @budgets_budgets = Budgets::Budget.all
-                format.html { render :action => "index" }
-                format.xml  { render :xml => @budgets_budgets }
-            end
-         else
-            format.html { render :action => "edit" }
-            format.xml  { render :xml => @budgets_budget.errors, :status => :unprocessable_entity }
-         end
-    end
+      @budgets_budget.save
+      @budgets_budgets = Budgets::Budget.all
+      render :update do |page|
+            page.redirect_to(:action=>"index")
+      end
+
+
 
   end
 
