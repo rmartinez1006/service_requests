@@ -100,13 +100,33 @@
        <%= select :budgets_budget , :support_type_id, Catalogs::SupportType.find(:all).collect{|p| [p.name, p.id]}%>
     </td>
   </tr>
+  <% if $display_supplies == 0 %>
+  <tr>
+    <td width="80" align="right">
+       <b> Empresa:</b>
+    </td>
+    <td align="left">
+       <%= select :budgets_budget , :supplier_id, Catalogs::Supplier.find(:all).collect{|p| [p.trade_name, p.id]}%>
+    </td>
+    <td align="right" width="80">
+      <b> Costo: </b>
+    </td>
+    <td align="left" width="80">
+      <%= f.text_field :total_cost, :size=>"13", :style => "text-align: right" %>
+    </td>
+  </tr>
+  <% end %>
+
+
 </table>
 
-<%= render :partial => 'addsupply' %>
-<div id="mat_list">
-     <%= render :partial => 'supplies'%>
-</div>
+  <% if $display_supplies == 1 %>
+     <%= render :partial => 'addsupply' %>
+     <div id="mat_list">
+       <%= render :partial => 'supplies'%>
+     </div>
 
+  <% end %>
 
 <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('cantidad').value=-999.99; return true;"%>
 

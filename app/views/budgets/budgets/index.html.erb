@@ -6,8 +6,7 @@
     <th>Costo Total</th>
     <th>Fecha</th>
     <th>Responsable</th>
-    <th></th>
-    <th></th>
+    <th></th>    
     <th></th>
   </tr>
 
@@ -16,14 +15,11 @@
     <td><%= budgets_budget.request.num_sequence %></td>
     <td><%= budgets_budget.total_cost %></td>
     <td><%= budgets_budget.budget_date %></td>
-    <td><%= budgets_budget.user_id %></td>
-    <td><%= link_to 'Show', budgets_budget %></td>
-    <td><%= link_to 'Edit', :controller=>'/budgets/budgets', :action => "budget_fm1",  :id => budgets_budget.support_request_id %></td>
-    <td><%= link_to 'Destroy', budgets_budget, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= budgets_budget.user_id %></td>    
+    <td><%= link_to 'Editar', :controller=>'/budgets/budgets', :action => "budget_fm1",  :id => budgets_budget.support_request_id %></td>
+    <td><%= link_to 'Borrar', budgets_budget,:remote => true, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Budget', new_budgets_budget_path %>
