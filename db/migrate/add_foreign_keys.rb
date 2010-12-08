@@ -25,7 +25,9 @@ class AddForeignKeys < ActiveRecord::Migration
       # budgets_budget_supplies
       execute "alter table budgets_budget_supplies
                add constraint fk_budget_supplies_budgets
-               foreign key (budget_id) references budgets_budgets(id)"
+               foreign key (budget_id) references budgets_budgets(id)
+               on update cascade
+               on delete cascade"
 
       # budgets_budgets
       execute "alter table budgets_budgets

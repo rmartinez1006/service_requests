@@ -25,8 +25,12 @@ class Budgets::BudgetsController < ApplicationController
   end
 
   # GET /budgets/budgets/1/edit
-  def edit
-     @budgets_budget = Budgets::Budget.find(params[:id])
+  def edit     
+     if @budgets_budget.budget_type == 1
+        $display_supplies = 1  #Mostrar area de captura de materiales
+     else
+         $display_supplies = 0  #NO Mostrar area de captura de materiales
+     end
   end
 
   # POST /budgets/budgets
@@ -56,6 +60,7 @@ class Budgets::BudgetsController < ApplicationController
       end
 
 #     Guardar el presupuesto y salir
+      @budgets_budget.budget_type= $budget_type
       @budgets_budget.save
       @budgets_budgets = Budgets::Budget.all
       render :update do |page|
@@ -96,6 +101,7 @@ class Budgets::BudgetsController < ApplicationController
 
 #     Actualizar Presupuesto
       @budgets_budget.total_cost = sum
+      @budgets_budget.budget_type= $budget_type
       @budgets_budget.save
       @budgets_budgets = Budgets::Budget.all
       render :update do |page|
@@ -109,17 +115,19 @@ class Budgets::BudgetsController < ApplicationController
   # DELETE /budgets/budgets/1
   # DELETE /budgets/budgets/1.xml
   def destroy    
-    @budgets_budget = Budgets::Budget.find(params[:id])
-    @budgets_budget_supply = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s)
-    @budgets_budget_supply.destroy
-    
+    @budgets_budget = Budgets::Budget.find(params[:id])    
     @budgets_budget.destroy
+    render :update do |page|
+          page.redirect_to(:action=>"index")
+    end
+
   end
 
     # GET /budgets/budgets/1/budget_fm1
   def budget_fm1
-    $display_supplies = 1  #Mostrar area de captura de materiales
+    $budget_type =1 # Presupuesto Interno    
     $budget_id = 0
+    $display_supplies = 1  #Mostrar area de captura de materiales
     @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
 #    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
 
@@ -139,7 +147,9 @@ class Budgets::BudgetsController < ApplicationController
       @budgets_budget.tech_description = @requests_support_request.tech_description
       $budget_id = @budgets_budget.id
     end
-#    @budgets_budget_supplies = Budgets::BudgetSupply.all
+    
+    
+
     
   end
 
@@ -148,6 +158,7 @@ class Budgets::BudgetsController < ApplicationController
 
     # GET /budgets/budgets/1/budget_fm1
   def budget_fm2
+    $budget_type =2 # Presupuesto Externo
     $budget_id = 0
     $display_supplies = 0
     @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
@@ -157,6 +168,7 @@ class Budgets::BudgetsController < ApplicationController
     @budgets_budget.support_request_id = params[:id]
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
+    $display_supplies = 0  #Mostrar area de captura de materiales
   
   end
 
@@ -168,6 +180,18 @@ class Budgets::BudgetsController < ApplicationController
     @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + $budget_id.to_s )#+
   end
 
+ # GET /budgets/budgets/1/budget_fm1_edit
+  def budget_fm1_edit
+    @requests_support_request =  RequestsAdministration::SupportRequest.find(params[:id])
+    @budgets_budget = Budgets::Budget.find(:first,:conditions => "support_request_id =" + @requests_support_request.id.to_s )
+    @budgets_budget.tech_description = @requests_support_request.tech_description
+
+#   Buscar los materiales que corresponden al presupuesto
+    @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
+    render :update do |page|
+          page.redirect_to(:action=>"edit")
+    end
+  end
 
 
 end

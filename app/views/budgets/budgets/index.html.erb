@@ -15,8 +15,14 @@
     <td><%= budgets_budget.request.num_sequence %></td>
     <td><%= budgets_budget.total_cost %></td>
     <td><%= budgets_budget.budget_date %></td>
-    <td><%= budgets_budget.user_id %></td>    
-    <td><%= link_to 'Editar', :controller=>'/budgets/budgets', :action => "budget_fm1",  :id => budgets_budget.support_request_id %></td>
+    <td><%= budgets_budget.user_id %></td>
+    <td>
+       <% if budgets_budget.budget_type == 1 %>
+         <%= link_to 'Editar', :controller=>'/budgets/budgets',  :action => "budget_fm1_edit",  :id => budgets_budget.support_request_id %>
+       <% else %>    
+         <%= link_to 'Editar', :controller=>'/budgets/budgets', :action => "budget_fm2",  :id => budgets_budget.support_request_id %>
+       <% end %>
+    </td>
     <td><%= link_to 'Borrar', budgets_budget,:remote => true, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
