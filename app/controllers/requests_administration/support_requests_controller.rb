@@ -120,8 +120,8 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
         format.xml  { render :xml => @requests_support_request, :status => :created, :location => @requests_support_request }
         # Guardar la ubicación fisica
         @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
-        request_commentary = Requests::RequestCommentary.new
-        request_commentary.request_id =  @requests_support_request.id
+        request_commentary = RequestsAdministration::Commentary.new
+        request_commentary.support_request_id =  @requests_support_request.id
         request_commentary.user_id = 0
         request_commentary.commentaries = @requests_support_request.req_ubication
         request_commentary.comment_type_id = @catalogs_comment_types.id

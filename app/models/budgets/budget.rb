@@ -1,6 +1,7 @@
 class Budgets::Budget < ActiveRecord::Base
   belongs_to :request, :class_name => "RequestsAdministration::SupportRequest", :foreign_key => "support_request_id"
   belongs_to :supplier, :class_name => "Catalogs::Supplier", :foreign_key => "supplier_id"
+  belongs_to :user, :class_name => "Administration::User", :foreign_key => "user_id"
 # belongs_to :supplier, :class_name => 'Catalogs::Supplier'
   has_many :supply, :class_name => 'Budgets::BudgetSupply',:foreign_key => "budget_id"
 

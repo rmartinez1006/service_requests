@@ -24,7 +24,7 @@ class RequestsAdministration::SupportRequest < ActiveRecord::Base
       self.request_no = request_number
     end
     if self.request_status_id == nil
-      self.status_id = 1
+      self.request_status_id = 1
 #      self.helper_id = 2
       self.status_chng_date=Time.now
     end

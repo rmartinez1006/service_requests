@@ -25,7 +25,8 @@ class Budgets::BudgetsController < ApplicationController
   end
 
   # GET /budgets/budgets/1/edit
-  def edit     
+  def edit
+    @budgets_budget = Budgets::Budget.find(params[:id])
      if @budgets_budget.budget_type == 1
         $display_supplies = 1  #Mostrar area de captura de materiales
      else
@@ -60,8 +61,24 @@ class Budgets::BudgetsController < ApplicationController
       end
 
 #     Guardar el presupuesto y salir
+
       @budgets_budget.budget_type= $budget_type
-      @budgets_budget.save
+      if $budget_type ==1     #Presupuesto Interno (Tiene Materiales y mano de obra)
+         @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
+#        Obtener el Importe Total (Gran Total)
+#        primero, buscar los materiales que corresponden al presupuesto
+         sum = 0
+         sum = @budgets_budget.suma_total(@budgets_budget_supplies)
+         @budgets_budget.total_cost = sum
+      end
+      if @budgets_budget.save
+#        Guardar el Tipo de Soporte en la Solicitud
+         @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
+         @budgets_budget.tech_description = @budgets_budget.tech_description    
+         @requests_support_request.support_type_id = @budgets_budget.support_type_id
+         @requests_support_request.save
+      end
+
       @budgets_budgets = Budgets::Budget.all
       render :update do |page|
             page.redirect_to(:action=>"index")
@@ -73,10 +90,6 @@ class Budgets::BudgetsController < ApplicationController
   # PUT /budgets/budgets/1.xml
   def update
       @budgets_budget = Budgets::Budget.find(params[:id])      
-#     Ubicar la solicitud
-      @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
-      @budgets_budget.tech_description = @requests_support_request.tech_description
-
 #     Validar el botón de "Agregar material"
       # Agregar material
       @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
@@ -86,24 +99,32 @@ class Budgets::BudgetsController < ApplicationController
             @budgets_budget_supply.budget_id = @budgets_budget.id
             @budgets_budget_supply.save
 #           Buscar los materiales que corresponden al presupuesto
-            @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )            
+            @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
             return
-
         end
       end
-#     Obtener el Importe Total (Gran Total)
-#     primero, buscar los materiales que corresponden al presupuesto
-
-      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
-      sum = 0
-      sum = @budgets_budget.suma_total(@budgets_budget_supplies)
-#@budgets_budget_supplies.inject(0) { |sum,n| n.unit_cost * n.quantity + sum  }
-
 #     Actualizar Presupuesto
-      @budgets_budget.total_cost = sum
+      
       @budgets_budget.budget_type= $budget_type
-      @budgets_budget.save
-      @budgets_budgets = Budgets::Budget.all
+      @budgets_budget.attributes =  params[:budgets_budget]
+      if $budget_type ==1     #Presupuesto Interno (Tiene Materiales y mano de obra)
+         @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
+#        Obtener el Importe Total (Gran Total)
+#        primero, buscar los materiales que corresponden al presupuesto
+         sum = 0
+         sum = @budgets_budget.suma_total(@budgets_budget_supplies)
+         @budgets_budget.total_cost = sum
+      end
+      if @budgets_budget.save
+#        Guardar el Tipo de Soporte en la Solicitud
+#        Ubicar la solicitud
+         @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
+         @budgets_budget.tech_description = @budgets_budget.tech_description
+         @requests_support_request.support_type_id = @budgets_budget.support_type_id
+         @requests_support_request.save
+      end
+      
+      #@budgets_budgets = Budgets::Budget.all
       render :update do |page|
             page.redirect_to(:action=>"index")
       end
@@ -136,40 +157,46 @@ class Budgets::BudgetsController < ApplicationController
     if @budgets_budget == nil
 #     NO existe Presupeusto: CREAR EL PRESUPUESTO
       @budgets_budget = Budgets::Budget.new
-      @budgets_budget.support_request_id = params[:id]
-      @budgets_budget.flag_create = 'create' #Bandera Indica que se debe crear el presupuesto
+      @budgets_budget.support_request_id = params[:id]      
 #     Auxiliar
       @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
     else
 #     Existe Presupuesto:
 #     Buscar los materiales que corresponden al presupuesto
       @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
-      @budgets_budget.tech_description = @requests_support_request.tech_description
       $budget_id = @budgets_budget.id
     end
-    
-    
-
+    #Tomar los datos de la Solicitud y mostrarlos
+    @budgets_budget.tech_description = @requests_support_request.tech_description
+    @budgets_budget.support_type_id = @requests_support_request.support_type_id
     
   end
 
 
 
-
-    # GET /budgets/budgets/1/budget_fm1
+  # PRESUPUESTO EXTERNO
+  # GET /budgets/budgets/1/budget_fm1
   def budget_fm2
     $budget_type =2 # Presupuesto Externo
     $budget_id = 0
     $display_supplies = 0
     @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
 
-    #Nuevo Presupuesto
-    @budgets_budget = Budgets::Budget.new
-    @budgets_budget.support_request_id = params[:id]
+#   Buscar si existe el presupeusto
+    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
+    if @budgets_budget == nil
+#     NO existe Presupeusto: CREAR EL PRESUPUESTO
+      @budgets_budget = Budgets::Budget.new
+      @budgets_budget.support_request_id = params[:id]
+#      @budgets_budget.flag_create = 'create' #Bandera Indica que se debe crear el presupuesto
+    else
+#     Existe Presupuesto:
+      $budget_id = @budgets_budget.id
+    end
+    #Tomar los datos de la Solicitud y mostrarlos
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
-    $display_supplies = 0  #Mostrar area de captura de materiales
-  
+
   end
 
 
@@ -182,15 +209,15 @@ class Budgets::BudgetsController < ApplicationController
 
  # GET /budgets/budgets/1/budget_fm1_edit
   def budget_fm1_edit
+    redirect_to budgets_budget_fm1_path(params[:id])
+    return
     @requests_support_request =  RequestsAdministration::SupportRequest.find(params[:id])
     @budgets_budget = Budgets::Budget.find(:first,:conditions => "support_request_id =" + @requests_support_request.id.to_s )
     @budgets_budget.tech_description = @requests_support_request.tech_description
 
 #   Buscar los materiales que corresponden al presupuesto
     @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
-    render :update do |page|
-          page.redirect_to(:action=>"edit")
-    end
+     redirect_to budgets_budget_fm1_path(@budgets_budget.support_request_id)
   end
 
 
