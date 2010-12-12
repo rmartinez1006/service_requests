@@ -70,18 +70,39 @@ h3{
     padding: 3px;
 }
 
-.table_content{        
+.table_content{
     text-align: center;
 }
 
 
 .table2{
-    width: 810px;    
-    border:0px solid #9a1c1c; 
+    width: 810px;
+    border:0px solid #9a1c1c;
     border-spacing: 2px;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
 }
+
+.table3{
+    /*border-collapse:collapse; */
+    width: 810px;
+    border:0px solid #9a1c1c;
+    border-spacing: 0px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+
+
+
+.table3 td{
+    border:1px solid #9a1c1c;
+    padding: 3px;
+}
+
+
 
 .cell1{
     background-color: #FCF6CF;
@@ -168,7 +189,7 @@ h3{
     text-transform: uppercase;
     color: #FFFFFF;
     font-family: Arial,Helvetica,sans-serif;
-    font-size: 12px;    
+    font-size: 12px;
 }
 
 #h-menu-options a:hover{
@@ -196,7 +217,7 @@ a.link-button {
 }
 
 input {
-    
+
 }
 
 /* OTHERS */
@@ -222,4 +243,3 @@ label{
     margin-right:auto;
     border:2px solid #9A1C1C;
 }
-

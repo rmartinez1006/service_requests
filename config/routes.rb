@@ -11,13 +11,23 @@ ServiceRequests::Application.routes.draw do
 
   #get "support_request/comment"
 
+  
   namespace :requests do resources :support_requests end
+  namespace :request do
+     resources :support_requests
+  end
 
   namespace :budgets do resources :budget_supplies end
 
   namespace :budgets do resources :budgets end
 
+  
+
   #RMO
+  #namespace :requests do
+  #   match 'support_request/index' => 'support_request/index', :as => :index
+  #end
+
   namespace :budgets do 
      match 'budgets/:id/budget_fm1' => 'budgets#budget_fm1', :as => :budget_fm1
      match 'budgets/:id/budget_fm2' => 'budgets#budget_fm2', :as => :budget_fm2

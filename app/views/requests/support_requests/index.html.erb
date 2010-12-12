@@ -1,0 +1,38 @@
+<h1 class="title">Solicitudes de soporte (Usuario)</h1>
+
+
+<div id="content_center"></div>
+
+<table class ="table1" width="950">
+  <tr >
+    <th>FECHA.</th>
+    <th width ="130">FOLIO.</th>
+    <th width ="120">SOLICITANTE</th>
+    <th width ="520">DESCRIPCION</th>
+    <th>ESTAT.</th>
+    <th></th>    
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @request_support_requests.each do |requests_support_request| %>
+  <tr>
+    <td><%= requests_support_request.created_at.strftime("%d/%m/%Y") %></td>
+    <td><%= requests_support_request.num_sequence %></td>
+    <td><%= requests_support_request.name %></td>
+    <td><%= requests_support_request.description_left(50) %></td>
+    <td align ="center" ><%= image_tag(requests_support_request.img_status(requests_support_request.request_status_id.to_i)) %></td>
+    <td><%= link_to 'Ver', requests_support_request %></td>
+    <td><%= link_to 'Modificar', edit_requests_support_request_path(requests_support_request) %></td>    
+    <td><%= link_to_if requests_support_request.valida_presupuesto(requests_support_request.id), "Presupuesto", :controller=>'/budgets/budgets' , :action => "show", :id => requests_support_request.id %></td>
+    <td><%= link_to_if requests_support_request.valida_presupuesto(requests_support_request.id), "Presup. Externo", :controller=>'/budgets/budgets', :action => "budget_fm2", :id => requests_support_request.id %></td>
+  </tr>
+<% end %>
+</table>
+
+
+<hr/>
+
+<%= link_to 'Nueva sol. de soporte', new_requests_support_request_path, :class => 'link-button' %>
+<%#=  link_to 'Nueva sol. de soporte', new_requests_administration_support_request_path, :class => 'link-button' %>

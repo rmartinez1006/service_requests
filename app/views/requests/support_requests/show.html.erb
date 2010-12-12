@@ -43,7 +43,7 @@
   <td colspan="4"></td>
 </tr>
 
-<tr class="table_content_c3">
+<tr>
   <td width="30" align=right >
     <b>Ubicación:</b>
   </td>
@@ -59,7 +59,7 @@
 </tr>
 
 
-<tr class="table_content_c2">
+<tr>
   <td width="30" align=right >
     <b>Nombre:</b>
   </td>
@@ -76,11 +76,11 @@
 
 
 <% @requests_request_req_ubication.each do |requests_request_req_ubication| %>
-  <tr class="table_content_c2">
-    <td width="80" align=right >
+  <tr>
+    <td width="80" align=right>
       <b>Ubicación Fisica:</b>
     </td>
-    <td align="left" colspan="5">
+    <td align="left" colspan="3">
       <%= raw(@requests_support_request.request_ubication(requests_request_req_ubication.commentaries)) %>
     </td>
   </tr>
@@ -88,7 +88,7 @@
 <% end %>
 
 
-<tr class="table_content_c3">
+<tr>
   <td width="80" align=right >
      <b>Tipo de soporte:</b>
   </td>
@@ -97,7 +97,7 @@
   </td>
 </tr>
 
-<tr class="table_content_c2">
+<tr>
   <td width="80" align=right >
      <b>Descripción:</b>
   </td>
@@ -124,7 +124,7 @@
 <h3>Comentarios:</h3>
 
 <% @requests_request_commentaries.each do |requests_request_commentary| %>
- <table class="table1" width="950">
+ <table class="table3"  width="950">
   <tr>
     <td rowspan="2" width="100" align="center"  class="cell1">
       <%= requests_request_commentary.created_at.strftime("%d/%m/%Y %I:%M%p") %>
@@ -137,20 +137,20 @@
     </td>
   </tr>
  
-  <tr class="table_content_c3">
+  <tr>
     <td align="left" colspan="2">
       <%= raw(requests_request_commentary.valida_comentario(requests_request_commentary.commentaries)) %>
     </td>
   </tr>
  </table>
+
 <% end %>
 
-
-
+<hr />
 
 <table class="table1" width="950">
 <%= form_for(@requests_support_request) do |f| %>
-<tr class="table_content_c2">
+<tr>
   <td width="80" align=right >
      <b>Comentario:</b>
   </td>
@@ -168,9 +168,4 @@
 
 <%= link_to 'Cambiar', edit_requests_support_request_path(@requests_support_request),:class => 'link-button' %> |
 <%= link_to 'Regresar', requests_support_requests_path,:class => 'link-button' %>
-<%= link_to 'Escalar',  
-    :controller => "support_requests",
-    :class => "link-button",
-    :action => "scale",
-    :id => @requests_support_request.id %>
 
