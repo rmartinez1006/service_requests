@@ -13,4 +13,21 @@ def valida_comentario (text)
   r
 end
 
+ # Verificar el usuario que emite el comentario
+ def verifica_usuario(user_id)
+   if self.user_id == 0
+     @request_support_requests = Requests::SupportRequest.find(self.support_request_id)
+     unless  @request_support_requests == nil
+        r = @request_support_requests.name
+     else
+        r = 'SOLICITANTE'
+     end
+
+     
+   else
+     r= self.user.name
+   end
+   r
+ end
+
 end

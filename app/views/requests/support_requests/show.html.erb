@@ -34,16 +34,6 @@
 
 
 <tr>
-  <td width="80" align=right >
-     <b>ID:</b>
-  </td>
-  <td align="left">
-     <%= @requests_support_request.request_no %>
-  </td>
-  <td colspan="4"></td>
-</tr>
-
-<tr>
   <td width="30" align=right >
     <b>Ubicación:</b>
   </td>
@@ -122,8 +112,9 @@
 
 
 <h3>Comentarios:</h3>
-
+<%= will_paginate @requests_request_commentaries %>
 <% @requests_request_commentaries.each do |requests_request_commentary| %>
+
  <table class="table3"  width="950">
   <tr>
     <td rowspan="2" width="100" align="center"  class="cell1">
@@ -133,7 +124,7 @@
       <b>Usuario:</b>
     </td>
     <td align="left">
-      <%= requests_request_commentary.user.name %>
+      <%= requests_request_commentary.verifica_usuario(requests_request_commentary.user_id) %>
     </td>
   </tr>
  
@@ -150,6 +141,26 @@
 
 <table class="table1" width="950">
 <%= form_for(@requests_support_request) do |f| %>
+  <% if @requests_support_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@requests_support_request.errors.count, "error") %> prohibited this requests_support_request from being saved:</h2>
+
+      <ul>
+      <% @requests_support_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<tr>
+   <td width="80" align=right >
+     <b>No. Solicitud:</b>
+  </td>
+  <td align="left">
+    <%= f.text_field :num_request, :size=>9 %>
+  </td>
+</tr>
 <tr>
   <td width="80" align=right >
      <b>Comentario:</b>

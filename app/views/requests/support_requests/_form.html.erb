@@ -45,7 +45,7 @@
         <%= f.label 'Ubicación:' %><br />
       </td>
       <td align="left">
-        <%= select :requests_administration_support_request , :ubication_id, Catalogs::Ubication.find(:all).collect{|p| [p.name, p.id]}%>
+        <%= select :requests_support_request , :ubication_id, Catalogs::Ubication.find(:all).collect{|p| [p.name, p.id]}%>
       </td>
     </tr>
 

@@ -12,5 +12,13 @@ def valida_comentario (text)
   end
 end
 
+ # Verificar el usuario que emite el comentario
+ def verifica_usuario(user_id)
+   if self.user_id == 0
+     r = 'SOLICITANTE'
+   else
+     r= self.user.name
+   end
+ end
 
 end

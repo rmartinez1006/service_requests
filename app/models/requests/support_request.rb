@@ -1,6 +1,9 @@
 class Requests::SupportRequest < ActiveRecord::Base
   self.table_name = 'request_support_requests'  #Nombre de la tabla
-  
+  cattr_reader :per_page
+  @@per_page = 10
+
+
   belongs_to :ubication, :class_name => 'Catalogs::Ubication'
   belongs_to :userhelper, :class_name => "Administration::User", :foreign_key => "helper_id"
   belongs_to :requests_status, :class_name => "Catalogs::RequestStatus", :foreign_key => "status_id"
@@ -10,8 +13,12 @@ class Requests::SupportRequest < ActiveRecord::Base
 
   has_many :reqdelegation, :class_name => 'Requests::ReqDelegation'
   has_many :commentary, :class_name => 'Requests::RequestCommentary'
-  
-  attr_accessor :commentaries_to_add, :notify,:req_ubication
+
+  validates :num_request , :presence=>true
+  #validates_presence_of :num_request, :message => " Se requiere el No. de Solicitud"
+  validates_presence_of :email    #, :email_format => true
+
+  attr_accessor :commentaries_to_add, :notify,:req_ubication,:num_request
 
 #HUMAN_ATTRIBUTES = {
 #    :commentaries_to_add => 'Comentario.',

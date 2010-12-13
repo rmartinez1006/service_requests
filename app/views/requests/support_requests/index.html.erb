@@ -16,6 +16,7 @@
     <th></th>
   </tr>
 
+<%= will_paginate @request_support_requests %>
 <% @request_support_requests.each do |requests_support_request| %>
   <tr>
     <td><%= requests_support_request.created_at.strftime("%d/%m/%Y") %></td>
@@ -30,7 +31,7 @@
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @request_support_requests %>
 
 <hr/>
 

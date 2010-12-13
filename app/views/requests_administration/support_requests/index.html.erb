@@ -16,7 +16,7 @@
     <th></th>
     <th></th>
   </tr>
-
+<%= will_paginate @requests_administration_support_requests %>
 <% @requests_administration_support_requests.each do |requests_administration_support_request| %>
   <tr>
     <td><%= requests_administration_support_request.created_at.strftime("%d/%m/%Y") %></td>
@@ -50,7 +50,7 @@
     <th></th>    
     <th></th>
   </tr>
-
+<%= will_paginate @requests_administration_support_requests_deleg %>
 <% @requests_administration_support_requests_deleg.each do |requests_administration_support_request_deleg| %>
   <tr>
     <td><%= requests_administration_support_request_deleg.created_at.strftime("%d/%m/%Y") %></td>

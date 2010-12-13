@@ -3,6 +3,7 @@ class Requests::SupportRequestsController < ApplicationController
   # GET /requests/support_requests.xml 
   layout "requests_user"
 
+
   def index
     #@request_support_requests = Requests::SupportRequest.all
     #@request_support_requests = Requests::SupportRequest.find(:all, :conditions => 'ubication_id = 1' )
@@ -15,10 +16,11 @@ class Requests::SupportRequestsController < ApplicationController
                INNER JOIN catalogs_ubications as c ON
                  c.id = r.ubication_id
                INNER JOIN catalogs_units as u ON
-                 u.id = r.ubication_id"
+                 u.id = r.ubication_id
+                ORDER BY created_at ASC"
                #WHERE u.id = ".concat(unit_id.to_s)
     
-    @request_support_requests = Requests::SupportRequest.find_by_sql(lv_sql)
+    @request_support_requests = Requests::SupportRequest.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>8, :order => 'created_at ASC'
 
 
 
@@ -37,9 +39,10 @@ class Requests::SupportRequestsController < ApplicationController
               WHERE support_request_id = " + params[:id] +
             " AND comment_type_id IN
                 (SELECT id FROM catalogs_comment_types
-                 WHERE abbr IN ('RESOL'))"
+                 WHERE abbr IN ('RESOL'))
+              ORDER BY created_at DESC"
   # @requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"support_request_id" = ?', params[:id]] )
-    @requests_request_commentaries = Requests::RequestCommentary.find_by_sql(lv_sql)
+    @requests_request_commentaries = Requests::RequestCommentary.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>3, :order => 'created_at ASC'
 
     # Ubicación Fisica del problema (Tabla de cometarios)
     lv_sql ="SELECT DISTINCT * FROM request_commentaries
@@ -47,7 +50,10 @@ class Requests::SupportRequestsController < ApplicationController
             " AND comment_type_id IN
                 (SELECT id FROM catalogs_comment_types
                  WHERE abbr IN ('UBICA'))"
+
+#    @products = Product.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
     @requests_request_req_ubication = Requests::RequestCommentary.find_by_sql(lv_sql)
+
 
 
     respond_to do |format|
@@ -124,7 +130,7 @@ class Requests::SupportRequestsController < ApplicationController
 
     respond_to do |format|
       if @requests_support_request.update_attributes(params[:requests_support_request])
-        format.html { redirect_to(@requests_support_request, :notice => 'Support request was successfully updated.') }
+        format.html { redirect_to(@requests_support_request, :notice => 'La solicitud fue actualizada.') }
         format.xml  { head :ok }
 
         #   Ubicar el comentario (Ubicación fisica)
@@ -144,19 +150,25 @@ class Requests::SupportRequestsController < ApplicationController
         format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
       end
     end
-#   usuario (autentificado)
-    user_id = Administration::UserSession.find.record.attributes['id']
+
+    user_id = 0
 
 #   Agregar comentario durante resolución
     if params.keys[0] == 'comment'
-
-        @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")
-        request_commentary = Requests::RequestCommentary.new
-        request_commentary.support_request_id =  @requests_support_request.id
-        request_commentary.user_id = user_id
-        request_commentary.commentaries = @requests_support_request.commentaries_to_add
-        request_commentary.comment_type_id = @catalogs_comment_types.id
-        request_commentary.save
+         
+        # Validar No. de Solicitud
+        if @requests_support_request.num_request == @requests_support_request.request_no
+           @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")
+           request_commentary = Requests::RequestCommentary.new
+           request_commentary.support_request_id =  @requests_support_request.id
+           request_commentary.user_id = user_id
+           request_commentary.commentaries = @requests_support_request.commentaries_to_add
+           request_commentary.comment_type_id = @catalogs_comment_types.id
+           request_commentary.save
+        else
+          #@requests_support_request.errors.add(:request_no, 'El numero de solicitud es incorrecto.' )
+          #format.xml  { render :xml => @requests_support_request.errors }
+        end
 
     end
 
