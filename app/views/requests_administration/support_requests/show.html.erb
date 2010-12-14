@@ -122,9 +122,9 @@
 
 
 <h3>Comentarios:</h3>
-
+<%= will_paginate @requests_request_commentaries %>
 <% @requests_request_commentaries.each do |requests_request_commentary| %>
- <table class="table1" width="950">
+ <table class="table3" width="950">
   <tr>
     <td rowspan="2" width="100" align="center"  class="cell1">
       <%= requests_request_commentary.created_at.strftime("%d/%m/%Y %I:%M%p") %>
@@ -133,7 +133,7 @@
       <b>Usuario:</b>
     </td>
     <td align="left">
-      <%= requests_request_commentary.user.name %>
+      <%= requests_request_commentary.verifica_usuario(requests_request_commentary.user_id) %>
     </td>
   </tr>
  
@@ -150,6 +150,7 @@
 
 <table class="table1" width="950">
 <%= form_for(@requests_support_request) do |f| %>
+
 <tr class="table_content_c2">
   <td width="80" align=right >
      <b>Comentario:</b>

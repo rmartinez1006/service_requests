@@ -66,6 +66,7 @@
 
 
 <% @requests_request_req_ubication.each do |requests_request_req_ubication| %>
+
   <tr>
     <td width="80" align=right>
       <b>Ubicación Fisica:</b>
@@ -172,7 +173,7 @@
 </table>
   
   <div class="actions">
-     <td  ><%= f.submit 'Agregar comentario', :name => 'comment' %></td>
+     <td  ><%= f.submit 'Agregar comentario', :name => 'comment', :method=>:get %></td>
   </div>
 
 <% end  %>

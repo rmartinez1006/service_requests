@@ -54,8 +54,6 @@ class Requests::SupportRequestsController < ApplicationController
 #    @products = Product.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
     @requests_request_req_ubication = Requests::RequestCommentary.find_by_sql(lv_sql)
 
-
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @requests_support_request }
@@ -127,11 +125,8 @@ class Requests::SupportRequestsController < ApplicationController
   def update
     @requests_support_request = Requests::SupportRequest.find(params[:id])
 
-
     respond_to do |format|
       if @requests_support_request.update_attributes(params[:requests_support_request])
-        format.html { redirect_to(@requests_support_request, :notice => 'La solicitud fue actualizada.') }
-        format.xml  { head :ok }
 
         #   Ubicar el comentario (Ubicación fisica)
         @comment =Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
@@ -146,10 +141,15 @@ class Requests::SupportRequestsController < ApplicationController
         #  Fin  Ubicar el comentario (Ubicación fisica)
 
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
+        #format.html { render :action => "show"}
+        #format.xml  { head :ok }
+        #format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
+
+        format.html { render :action => "show", :id=>params[:id], :method=>:get }
+        #format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
+        return
       end
-    end
+    #end fin del do
 
     user_id = 0
 
@@ -166,8 +166,10 @@ class Requests::SupportRequestsController < ApplicationController
            request_commentary.comment_type_id = @catalogs_comment_types.id
            request_commentary.save
         else
-          #@requests_support_request.errors.add(:request_no, 'El numero de solicitud es incorrecto.' )
-          #format.xml  { render :xml => @requests_support_request.errors }
+        #@support_request= params[:requests_support_request]
+       # format.xml  { render :xml => @requests_support_request, :notice => 'El No. de Solicitud no es correcto.' }
+        #@requests_support_request.update_attributes(@support_request)
+        #format.xml  { render :xml => @requests_support_request, :status => :created, :location => @requests_support_request }
         end
 
     end
@@ -183,6 +185,10 @@ class Requests::SupportRequestsController < ApplicationController
           requests_req_delegation.save
        end
     end
+    format.html { redirect_to(@requests_support_request, :notice => 'La solicitud fue actualizada.') }
+    format.xml  { head :ok }
+
+    end #Fin del do
   end
 
   # DELETE /requests/support_requests/1
