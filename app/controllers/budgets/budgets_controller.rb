@@ -48,16 +48,32 @@ class Budgets::BudgetsController < ApplicationController
       end
 
       # Agregar material
-      @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
-      if @budgets_budget_supply.quantity > 0
-            if @budgets_budget_supply.quantity != -999.00
-               @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
-               @budgets_budget_supply.budget_id = $budget_id   #@budgets_budget.id
-               @budgets_budget_supply.save
-#              Buscar los materiales que corresponden al presupuesto
-               @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
-               return
-           end
+      @material= params[:budgets_budget_supply]
+      if @material
+         if ( @material['quantity'].to_i > 0 ) && (@material['quantity'].to_i!=-999.00)
+            @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
+            @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
+            @budgets_budget_supply.description= @budgets_budget_supply.other_material if @budgets_budget_supply.other_material!= ""
+            @budgets_budget_supply.budget_id = $budget_id   #@budgets_budget.id
+            @budgets_budget_supply.save
+#           Buscar los materiales que corresponden al presupuesto
+            @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
+            return
+         end
+      end
+      # Agregar mano de obra
+      @workmanship = params[:budgets_budget_supply2]
+      if @workmanship
+         if ( @workmanship['quantity'].to_i > 0 ) && (@workmanship['quantity'].to_i!=-999.00)
+            @budgets_budget_supply2 = Budgets::BudgetSupply.new(params[:budgets_budget_supply2])
+            @budgets_budget_supply2 = Budgets::BudgetSupply.new(params[:budgets_budget_supply2])
+            @budgets_budget_supply2.description= @budgets_budget_supply2.other_material if @budgets_budget_supply2.other_material!= ""
+            @budgets_budget_supply2.budget_id = $budget_id   #@budgets_budget.id
+            @budgets_budget_supply2.save
+#           Buscar mano de obra que corresponden al presupuesto
+            @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions =>{ :budget_id => @budgets_budget.id, :type_supply=>2} )
+            return
+         end
       end
 
 #     Guardar el presupuesto y salir
@@ -94,21 +110,36 @@ class Budgets::BudgetsController < ApplicationController
       # Agregar material
       @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
       if @budgets_budget_supply.quantity > 0
-        if @budgets_budget_supply.quantity != -999.00
+        if @budgets_budget_supply.quantity == -999.00
             @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
+            @budgets_budget_supply.description= @budgets_budget_supply.other_material if @budgets_budget_supply.other_material!= ""
             @budgets_budget_supply.budget_id = @budgets_budget.id
             @budgets_budget_supply.save
 #           Buscar los materiales que corresponden al presupuesto
-            @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
+            @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
             return
         end
       end
-#     Actualizar Presupuesto
-      
+
+      # Agregar mano de obra
+      @budgets_budget_supply2 = Budgets::BudgetSupply.new(params[:budgets_budget_supply2])
+      if @budgets_budget_supply2.quantity > 0
+        if @budgets_budget_supply2.quantity != -999.00
+            @budgets_budget_supply2 = Budgets::BudgetSupply.new(params[:budgets_budget_supply2])
+            @budgets_budget_supply2.description= @budgets_budget_supply2.other_material if @budgets_budget_supply2.other_material!= ""
+            @budgets_budget_supply2.budget_id = @budgets_budget.id
+            @budgets_budget_supply2.save
+#           Buscar los materiales que corresponden al presupuesto
+            @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
+            return
+        end
+      end
+
+#     Actualizar Presupuesto      
       @budgets_budget.budget_type= $budget_type
       @budgets_budget.attributes =  params[:budgets_budget]
       if $budget_type ==1     #Presupuesto Interno (Tiene Materiales y mano de obra)
-         @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
+         @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id} )
 #        Obtener el Importe Total (Gran Total)
 #        primero, buscar los materiales que corresponden al presupuesto
          sum = 0
@@ -128,9 +159,6 @@ class Budgets::BudgetsController < ApplicationController
       render :update do |page|
             page.redirect_to(:action=>"index")
       end
-
-
-
   end
 
   # DELETE /budgets/budgets/1
@@ -160,10 +188,14 @@ class Budgets::BudgetsController < ApplicationController
       @budgets_budget.support_request_id = params[:id]      
 #     Auxiliar
       @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
+      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
     else
 #     Existe Presupuesto:
 #     Buscar los materiales que corresponden al presupuesto
-      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
+      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
+#     Buscar mano de obra que corresponden al presupuesto
+      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
+
       $budget_id = @budgets_budget.id
     end
     #Tomar los datos de la Solicitud y mostrarlos

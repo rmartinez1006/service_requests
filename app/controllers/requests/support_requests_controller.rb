@@ -7,9 +7,9 @@ class Requests::SupportRequestsController < ApplicationController
   def index
     #@request_support_requests = Requests::SupportRequest.all
     #@request_support_requests = Requests::SupportRequest.find(:all, :conditions => 'ubication_id = 1' )
-     user_ubication_id= Administration::UserSession.find.record.attributes['ubication_id']
-     @ubication_id = Catalogs::Ubication.find(user_ubication_id)
-     unit_id =  @ubication_id.unit_id
+    # user_ubication_id= Administration::UserSession.find.record.attributes['ubication_id']
+    # @ubication_id = Catalogs::Ubication.find(user_ubication_id)
+    #unit_id =  @ubication_id.unit_id
 
 
      lv_sql ="SELECT r.* FROM request_support_requests as r

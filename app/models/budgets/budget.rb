@@ -5,7 +5,7 @@ class Budgets::Budget < ActiveRecord::Base
 # belongs_to :supplier, :class_name => 'Catalogs::Supplier'
   has_many :supply, :class_name => 'Budgets::BudgetSupply',:foreign_key => "budget_id"
 
-  attr_accessor :support_type_id, :tech_description, :description_supply, :flag_create
+  attr_accessor :support_type_id, :tech_description, :description_supply
 
 #validates_format_of :total_cost, :with => /\d{0,10}\./
 # validates_format_of :total_cost, :with => /\d{0,10}\.\d{2}/

@@ -183,7 +183,7 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
     if params.keys[0] == 'commit'
        if @requests_support_request.helper_id != nil          
           requests_req_delegation = Requests::ReqDelegation.new
-          requests_req_delegation.request_id = @requests_support_request.id
+          requests_req_delegation.support_request_id = @requests_support_request.id
           requests_req_delegation.user_id = user_id
           requests_req_delegation.helper_id = @requests_support_request.helper_id
           requests_req_delegation.notify = @requests_support_request.notify

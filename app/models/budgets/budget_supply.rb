@@ -1,8 +1,9 @@
 class Budgets::BudgetSupply < ActiveRecord::Base
 
-  belongs_to :budget, :class_name => "Budgets::Budgets", :foreign_key => "budget_id"
+ belongs_to :budget, :class_name => "Budgets::Budgets", :foreign_key => "budget_id"
   
-
+ attr_accessor :other_material
+ 
  def importe(a, b)
   if a == nil || b== nil
     r = 0

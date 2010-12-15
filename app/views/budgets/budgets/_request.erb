@@ -121,10 +121,18 @@
 </table>
 
   <% if $display_supplies == 1 %>
+
      <%= render :partial => 'addsupply' %>
      <div id="mat_list">
        <%= render :partial => 'supplies'%>
      </div>
+
+     <%= render :partial => 'addworkmanship' %>
+     <div id="work_list">
+       <%= render :partial => 'workmanships'%>
+     </div>
+
+
 
   <% end %>
 

@@ -2,13 +2,17 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
-
-
-      $(".combo").change(function(){
-
+      $("#other_mat").hide("fast")
+      $(".combo").change(function(){        
         var temp = new Array();
         var i=0;
         b = $(".combo  option:selected").text();
+        if (b.substr(0,4) == "Otro")
+        {
+        $("#other_mat").show("fast")
+        } else $("#other_mat").hide("fast");
+
+        
         temp = b.split('$');
 
         var ls_importe =  temp[1];
@@ -41,16 +45,17 @@
 
 </head>
 
-
-
 <div id="materiales">
+  <hr />
+  <h3>Materiales</h3>
   <% form_for(Budgets::BudgetSupply.new, :remote=>true) do |f2| %>
-   <table>
+   <table class="table3">
      <tr>
        <td>
          <div class="combo">
-        <%= f2.label :description, "Material:" %> <%= select  :budgets_budget_supply , :description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione el Material'},:onclick => "document.getElementById('cantidad').value=0; return true;" %>
+         <%= select  :budgets_budget_supply , :description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione el Material'},:onclick => "document.getElementById('cantidad').value=0; return true;" %>
         </div>
+          <%= f2.text_field :other_material, :id=>'other_mat',:size=>"35"%>
        </td>
        <td>
         <%= f2.label :quantity, "Cantidad:" %>
@@ -65,8 +70,7 @@
         <%= f2.hidden_field :budget_id, :id=>"budget_id", :value=>@budgets_budget.id  %>
         <%= f2.hidden_field :unit_measure, :id=>"unit_measure" %>
        </td>
-       <td><%= submit_tag "Agregar", :name=>'material' %></td>
-       
+       <td><%= submit_tag "Agregar", :name=>'material', :remote=>true %></td>
      </tr>
      <tr>
      </tr>

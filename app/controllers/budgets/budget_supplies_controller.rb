@@ -48,8 +48,9 @@ class Budgets::BudgetSuppliesController < ApplicationController
   # POST /budgets/budget_supplies.xml
   def create
 
-    @budgets_budget_supply = Budgets::BudgetSupply.create!(params[:budgets_budget_supply])
-#    @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
+#    @budgets_budget_supply = Budgets::BudgetSupply.create!(params[:budgets_budget_supply])
+    @budgets_budget_supply = Budgets::BudgetSupply.new(params[:budgets_budget_supply])
+    return
     
       if @budgets_budget_supply.save
       else
