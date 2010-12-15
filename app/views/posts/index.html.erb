@@ -1,4 +1,16 @@
 
+<table>
+  <tr>   
+   <td><%= link_to 'Nueva sol. de soporte', new_requests_support_request_path, :class => 'link-button' %></td>
+  </tr>
+  <tr>
+   <td><%= link_to 'Ingresar al sistema', administration_users_path, :class => 'link-button' %></td>
+  </tr>
+  <tr>
+   <td><%= link_to 'Administrar Solicitudes', requests_administration_support_requests_path, :class => 'link-button' %></td>
+  </tr>
+  <tr>
+   <td><%= link_to 'Presupuestos', budgets_budgets_path, :class => 'link-button' %></td>
+  </tr>
 
-<div id="post_form"><%= render :partial => 'form' %></div>
-<div id="posts_list"><%= render :partial => 'posts' %></div>
+</table>

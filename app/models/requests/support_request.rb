@@ -15,7 +15,7 @@ class Requests::SupportRequest < ActiveRecord::Base
   has_many :commentary, :class_name => 'Requests::RequestCommentary'
 
   #validates :num_request , :presence=>true
-  validates_presence_of :num_request, :message => " Se requiere el No. de Solicitud"
+  validates_presence_of :num_request, :message => " Se requiere el No. de Solicitud",:on=>:update
   validates_presence_of :email    #, :email_format => true
 
   attr_accessor :commentaries_to_add, :notify,:req_ubication,:num_request
