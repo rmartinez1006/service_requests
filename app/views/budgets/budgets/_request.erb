@@ -1,3 +1,111 @@
+<head>
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      $("#rbt_mat").change(function(){
+         $("#materiales").show("fast")         
+         $("#workmanship").hide("fast")
+         $("#materiales").checked;
+       });
+      $("#rbt_work").change(function(){
+         $("#materiales").hide("fast")
+         $("#workmanship").show("fast")
+         $("#workmanship").checked;
+       });
+
+
+
+      $("#mat_other").hide("fast")
+      $("#work_other").hide("fast")
+
+      $(".combo").change(function(){
+        var temp = new Array();
+        var i=0;
+        b = $(".combo  option:selected").text();
+        if (b.substr(0,4) == "Otro")
+        {
+          $("#mat_other").show("fast")
+          $("#mat_unit").attr("disabled", "");
+        } else
+          {
+            $("#mat_other").hide("fast");
+            $("#mat_unit").attr("disabled", "disabled");
+          }
+
+
+        temp = b.split('$');
+
+        var ls_importe =  temp[1];
+        i = ls_importe.indexOf("|");
+        ls_importe = ls_importe.substring(0, i);
+        //alert(temp[0]);
+        var x=(document).getElementById('mat_import');
+        x.value = ls_importe;   //temp[1];
+
+
+        //--Unidad de medida
+        temp = b.split('|');
+        var x=(document).getElementById('mat_unit');
+        x.value = temp[1];
+
+        //$('.tsupplies').append("<tr><td> liliana </td></tr>");
+
+
+
+        return false;
+      });
+
+      $(".combo_work").change(function(){
+        var temp = new Array();
+        var i=0;
+        b = $(".combo_work  option:selected").text();
+        if (b.substr(0,4) == "Otro")
+        {
+          $("#work_other").show("fast")
+          $("#work_unit").attr("disabled", "");
+        }
+        else
+        {
+          $("#work_other").hide("fast");
+          $("#work_unit").attr("disabled", "disabled");
+        }
+
+
+        temp = b.split('$');
+
+        var ls_importe =  temp[1];
+        i = ls_importe.indexOf("|");
+        ls_importe = ls_importe.substring(0, i);
+        //alert(temp[0]);
+        var x=(document).getElementById('work_import');
+        x.value = ls_importe;   //temp[1];
+
+
+        //--Unidad de medida
+        temp = b.split('|');
+        var x=(document).getElementById('work_unit');
+        x.value = temp[1];
+
+        //$('.tsupplies').append("<tr><td> liliana </td></tr>");
+
+        //alert(x.value);
+        //$(this).hide() eOK
+        //$("ul").append("<li>Ultima</li>")
+        //$(".tipo").hide() OK
+
+
+        return false;
+      });
+
+
+
+    });
+    </script>
+
+</head>
+
+
+
 <% @requests_support_request.id %>
 <table class="table1" width="950">
 <tr>
@@ -121,14 +229,88 @@
 </table>
 
   <% if $display_supplies == 1 %>
+  <hr />
+  <table>
+    <%= form_tag do %>
+    <tr>
+      <td id="rbt_mat" ><%= radio_button_tag "shared_name", "1st_button",true %>Materiales</td>
+      <td id="rbt_work"><%= radio_button_tag "shared_name", "2nd_button",false %>Mano de Obra</td>
+    </tr>
+    <% end %>
+    </table>
 
-     <%= render :partial => 'addsupply' %>
+<div id="materiales">
+  
+   <table class="table3">
+     <tr>
+       <td>
+         <div class="combo">
+         <%= select  :budgets_budget , :mat_description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione el Material'},:onclick => "document.getElementById('mat_quantity').value=0; return true;" %>
+        </div>
+          <%= f.text_field :mat_other, :id=>'mat_other',:size=>"35"%>
+       </td>
+       <td>
+        <%= f.label :mat_quantity, "Cantidad:" %>
+        <%= f.text_field :mat_quantity, :size=>"8", :style => "text-align: right", :id=>"mat_quantity" %>
+       </td>
+       <td>
+        <%= f.label :mat_import, "Importe:" %>
+        <%= f.text_field :mat_import, :size=>"8", :style => "text-align: right", :id=>"mat_import" %>
+       </td>
+       <td>
+        <%= f.label :mat_unit, "Unidad:" %>
+        <%= f.text_field :mat_unit, :size=>"8", :style => "text-align: right", :id=>"mat_unit", :disabled => 'disabled' %>
+       </td>
+       <td>
+        <%= f.hidden_field :mat_type, :id=>"type_supply", :value=>"1"  %>                
+       </td>
+       <td><%= f.submit "Agregar", :name=>'material', :remote=>true %></td>
+     </tr>
+     <tr>
+     </tr>
+   </table>
+  
+</div>
+
+<div id="workmanship"  style="display :none;">
+   <table class="table3">
+     <tr>
+       <td>
+         <div class="combo_work">
+         <%= select  :budgets_budget , :work_description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 2").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione Mano de Obra'},:onclick => "document.getElementById('work_quantity').value=0; return true;" %>
+        </div>
+          <%= f.text_field :work_other, :id=>'work_other',:size=>"35", :style=>"display :none;"%>
+       </td>
+       <td>
+        <%= f.label :work_quantity, "Cantidad:" %>
+        <%= f.text_field :work_quantity, :size=>"8", :style => "text-align: right", :id=>"work_quantity" %>
+       </td>
+       <td>
+        <%= f.label :work_import, "Importe:" %>
+        <%= f.text_field :work_import, :size=>"8", :style => "text-align: right", :id=>"work_import" %>
+       </td>
+       <td>
+        <%= f.label :work_unit, "Unidad:" %>
+        <%= f.text_field :work_unit, :size=>"8", :style => "text-align: right", :id=>"work_unit", :disabled => 'disabled' %>
+       </td>
+       <td>
+        <%= f.hidden_field :work_type, :id=>"type_supply", :value=>"1"  %>
+       </td>
+       <td><%= f.submit "Agregar", :name=>'material', :remote=>true %></td>
+     </tr>
+     <tr>
+     </tr>
+   </table>
+
+</div>
+
      <div id="mat_list">
+       <h3> Materiales</h3>
        <%= render :partial => 'supplies'%>
      </div>
 
-     <%= render :partial => 'addworkmanship' %>
      <div id="work_list">
+       <h3> Mano de Obra</h3>
        <%= render :partial => 'workmanships'%>
      </div>
 

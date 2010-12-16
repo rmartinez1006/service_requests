@@ -44,35 +44,3 @@
     </script>
 </head>
 
-<div id="manworkship">
-  <hr />
-  <h3>Mano de Obra</h3>
-  <% form_for(Budgets::BudgetSupply.new, :remote=>true, :action=>'/budgets/budgets',:controller=>'/budgets/budgets') do |f3| %>
-   <table class="table3">
-     <tr>
-       <td>
-         <div class="combo_man">
-         <%= select  :budgets_budget_supply2 , :description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 2").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione Mano de Obra'},:onclick => "document.getElementById('cantidad_man').value=0; return true;" %>
-        </div>
-          <%= f3.text_field :other_material, :id=>'other_man',:size=>"35"%>
-       </td>
-       <td>
-        <%= f3.label :quantity, "Cantidad:" %>
-        <%= f3.text_field :quantity, :size=>"8", :style => "text-align: right", :id=>"cantidad_man" %>
-       </td>
-       <td>
-        <%= f3.label :unit_cost, "Importe:" %>
-        <%= f3.text_field :unit_cost, :size=>"8", :style => "text-align: right", :id=>"importe_man" %>
-       </td>
-       <td>
-        <%= f3.hidden_field :type_supply, :id=>"type_supply", :value=>"2"  %>
-        <%= f3.hidden_field :budget_id, :id=>"budget_id", :value=>@budgets_budget.id  %>
-        <%= f3.hidden_field :unit_measure, :id=>"unit_measure_man" %>
-       </td>
-       <td><%= f3.submit "Agregar", :name=>'manworkship', :remote=>true,:controller=>'/budgets/budgets' %></td>
-     </tr>
-     <tr>
-     </tr>
-   </table>
-  <% end %>  
-</div>
