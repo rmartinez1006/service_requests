@@ -3,20 +3,29 @@
     $(document).ready(function(){
 
       $("#rbt_mat").change(function(){
-         $("#materiales").show("fast")         
-         $("#workmanship").hide("fast")
+         $("#materiales").show()         
+         $("#workmanship").hide()
+         //$("#workmanship").style ="display: none";
          $("#materiales").checked;
+         var x=(document).getElementById('work_quantity');
+         x.value = 0;   // Mano de Obra Cantidad = 0
+
        });
       $("#rbt_work").change(function(){
-         $("#materiales").hide("fast")
-         $("#workmanship").show("fast")
+         $("#materiales").hide()
+         //$("#materiales").style ="display: none";
+         $("#workmanship").show()
          $("#workmanship").checked;
+         $("#mat_quantity").value = 0;
+         var x=(document).getElementById('mat_quantity');
+         x.value = 0;   // Material Cantidad = 0
+
        });
 
 
 
-      $("#mat_other").hide("fast")
-      $("#work_other").hide("fast")
+      $("#mat_other").hide()
+      $("#work_other").hide()
 
       $(".combo").change(function(){
         var temp = new Array();
@@ -241,11 +250,12 @@
 
 <div id="materiales">
   
-   <table class="table3">
+   <table>
      <tr>
        <td>
          <div class="combo">
-         <%= select  :budgets_budget , :mat_description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione el Material'},:onclick => "document.getElementById('mat_quantity').value=0; return true;" %>
+         <%= f.label :mat_description, "Material:" %>
+         <%= select  :budgets_budget , :mat_description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione el Material'},:onclick => "document.getElementById('mat_quantity').value=0; return true;",:width=>35 %>
         </div>
           <%= f.text_field :mat_other, :id=>'mat_other',:size=>"35"%>
        </td>
@@ -260,23 +270,23 @@
        <td>
         <%= f.label :mat_unit, "Unidad:" %>
         <%= f.text_field :mat_unit, :size=>"8", :style => "text-align: right", :id=>"mat_unit", :disabled => 'disabled' %>
-       </td>
-       <td>
-        <%= f.hidden_field :mat_type, :id=>"type_supply", :value=>"1"  %>                
+        <%= f.hidden_field :mat_type, :id=>"type_supply", :value=>"1"  %>
        </td>
        <td><%= f.submit "Agregar", :name=>'material', :remote=>true %></td>
      </tr>
      <tr>
      </tr>
    </table>
-  
+  <hr />
 </div>
 
+
 <div id="workmanship"  style="display :none;">
-   <table class="table3">
+   <table>
      <tr>
        <td>
          <div class="combo_work">
+         <%= f.label :work_description, "Mano de Obra:" %>
          <%= select  :budgets_budget , :work_description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 2").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione Mano de Obra'},:onclick => "document.getElementById('work_quantity').value=0; return true;" %>
         </div>
           <%= f.text_field :work_other, :id=>'work_other',:size=>"35", :style=>"display :none;"%>
@@ -292,16 +302,14 @@
        <td>
         <%= f.label :work_unit, "Unidad:" %>
         <%= f.text_field :work_unit, :size=>"8", :style => "text-align: right", :id=>"work_unit", :disabled => 'disabled' %>
-       </td>
-       <td>
-        <%= f.hidden_field :work_type, :id=>"type_supply", :value=>"1"  %>
+         <%= f.hidden_field :work_type, :id=>"type_supply", :value=>"2"  %>
        </td>
        <td><%= f.submit "Agregar", :name=>'material', :remote=>true %></td>
      </tr>
      <tr>
      </tr>
    </table>
-
+   <hr />
 </div>
 
      <div id="mat_list">
