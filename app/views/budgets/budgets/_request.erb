@@ -234,7 +234,6 @@
   </tr>
   <% end %>
 
-
 </table>
 
   <% if $display_supplies == 1 %>
@@ -272,7 +271,7 @@
         <%= f.text_field :mat_unit, :size=>"8", :style => "text-align: right", :id=>"mat_unit", :disabled => 'disabled' %>
         <%= f.hidden_field :mat_type, :id=>"type_supply", :value=>"1"  %>
        </td>
-       <td><%= f.submit "Agregar", :name=>'material', :remote=>true %></td>
+       <td><%= f.submit "Agregar", :name=>'material', :remote=>true,  :onclick => "document.getElementById('mat_unit').disabled = false; return true;" %></td>
      </tr>
      <tr>
      </tr>
@@ -304,7 +303,7 @@
         <%= f.text_field :work_unit, :size=>"8", :style => "text-align: right", :id=>"work_unit", :disabled => 'disabled' %>
          <%= f.hidden_field :work_type, :id=>"type_supply", :value=>"2"  %>
        </td>
-       <td><%= f.submit "Agregar", :name=>'material', :remote=>true %></td>
+       <td><%= f.submit "Agregar", :name=>'material', :remote=>true, :onclick => "document.getElementById('mat_unit').disabled = false; return true;" %></td>
      </tr>
      <tr>
      </tr>

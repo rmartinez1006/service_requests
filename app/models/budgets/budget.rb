@@ -6,8 +6,8 @@ class Budgets::Budget < ActiveRecord::Base
   has_many :supply, :class_name => 'Budgets::BudgetSupply',:foreign_key => "budget_id"
 
   attr_accessor :support_type_id, :tech_description, :description_supply,
-                :mat_description, :mat_quantity, :mat_cost, :mat_import,:mat_unit, :mat_type, :mat_other,
-                :work_description, :work_quantity, :work_cost, :work_import,:work_unit, :work_type, :work_other
+                :mat_unit, :mat_description, :mat_quantity, :mat_cost, :mat_import, :mat_type, :mat_other,
+                :work_unit, :work_description, :work_quantity, :work_cost, :work_import, :work_type, :work_other
 
 #validates_format_of :total_cost, :with => /\d{0,10}\./
 # validates_format_of :total_cost, :with => /\d{0,10}\.\d{2}/
