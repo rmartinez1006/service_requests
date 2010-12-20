@@ -1,0 +1,7 @@
+<% if @budgets_budget_supply.errors.any? -%>
+<% else -%>
+$("#work_list").html("<%= escape_javascript(render(:partial => "workmanships"))%>");
+//$("#budgets_budget_supply_description").val("");
+
+<% end -%>
+

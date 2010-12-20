@@ -247,31 +247,40 @@
     <% end %>
     </table>
 
-<div id="materiales">
-  
-   <table>
+<div id="materiales">  
+   <table class="table4">
      <tr>
-       <td>
-         <div class="combo">
-         <%= f.label :mat_description, "Material:" %>
-         <%= select  :budgets_budget , :mat_description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione el Material'},:onclick => "document.getElementById('mat_quantity').value=0; return true;",:width=>35 %>
-        </div>
-          <%= f.text_field :mat_other, :id=>'mat_other',:size=>"35"%>
+       <td width="100">         
+         <%= f.label :mat_description, "Material:" %>         
        </td>
+       <td width="200">
+         <div class="combo">
+         <%= select  :budgets_budget , :mat_description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione el Material'},:onclick => "document.getElementById('mat_quantity').value=0; return true;",:width=>35 %>
+         </div>
+         <%= f.text_field :mat_other, :id=>'mat_other',:size=>"35"%>
+       </td>       
        <td>
         <%= f.label :mat_quantity, "Cantidad:" %>
-        <%= f.text_field :mat_quantity, :size=>"8", :style => "text-align: right", :id=>"mat_quantity" %>
        </td>
        <td>
+        <%= f.text_field :mat_quantity, :size=>"8", :style => "text-align: right", :id=>"mat_quantity" %>
+       </td>
+     <tr>
+       <td>
         <%= f.label :mat_import, "Importe:" %>
+       </td>
+       <td>
         <%= f.text_field :mat_import, :size=>"8", :style => "text-align: right", :id=>"mat_import" %>
        </td>
        <td>
         <%= f.label :mat_unit, "Unidad:" %>
+       </td>
+       <td>
         <%= f.text_field :mat_unit, :size=>"8", :style => "text-align: right", :id=>"mat_unit", :disabled => 'disabled' %>
         <%= f.hidden_field :mat_type, :id=>"type_supply", :value=>"1"  %>
        </td>
        <td><%= f.submit "Agregar", :name=>'material', :remote=>true,  :onclick => "document.getElementById('mat_unit').disabled = false; return true;" %></td>
+     </tr>
      </tr>
      <tr>
      </tr>
@@ -281,29 +290,39 @@
 
 
 <div id="workmanship"  style="display :none;">
-   <table>
+   <table class="table4">
      <tr>
-       <td>
-         <div class="combo_work">
+       <td width="100">
          <%= f.label :work_description, "Mano de Obra:" %>
+       </td>
+       <td width="200">
+         <div class="combo_work">
          <%= select  :budgets_budget , :work_description,  Catalogs::Supply.find(:all,  :conditions => "type_supply = 2").collect{|p| [p.description + " $ " + p.unit_cost.to_s + "|" + p.unit_measure, p.description]},{:prompt => 'Seleccione Mano de Obra'},:onclick => "document.getElementById('work_quantity').value=0; return true;" %>
-        </div>
-          <%= f.text_field :work_other, :id=>'work_other',:size=>"35", :style=>"display :none;"%>
+         </div>
+         <%= f.text_field :work_other, :id=>'work_other',:size=>"35", :style=>"display :none;"%>
        </td>
        <td>
         <%= f.label :work_quantity, "Cantidad:" %>
-        <%= f.text_field :work_quantity, :size=>"8", :style => "text-align: right", :id=>"work_quantity" %>
        </td>
        <td>
+        <%= f.text_field :work_quantity, :size=>"8", :style => "text-align: right", :id=>"work_quantity" %>
+       </td>
+     </tr>
+     <tr>
+       <td>
         <%= f.label :work_import, "Importe:" %>
+       </td>
+       <td>
         <%= f.text_field :work_import, :size=>"8", :style => "text-align: right", :id=>"work_import" %>
        </td>
        <td>
         <%= f.label :work_unit, "Unidad:" %>
-        <%= f.text_field :work_unit, :size=>"8", :style => "text-align: right", :id=>"work_unit", :disabled => 'disabled' %>
-         <%= f.hidden_field :work_type, :id=>"type_supply", :value=>"2"  %>
        </td>
-       <td><%= f.submit "Agregar", :name=>'material', :remote=>true, :onclick => "document.getElementById('mat_unit').disabled = false; return true;" %></td>
+       <td>
+        <%= f.text_field :work_unit, :size=>"8", :style => "text-align: right", :id=>"work_unit", :disabled => 'disabled' %>
+        <%= f.hidden_field :work_type, :id=>"type_supply", :value=>"2"  %>
+       </td>
+       <td><%= f.submit "Agregar", :name=>'material', :remote=>true, :onclick => "document.getElementById('work_unit').disabled = false; return true;" %></td>
      </tr>
      <tr>
      </tr>
@@ -315,7 +334,7 @@
        <h3> Materiales</h3>
        <%= render :partial => 'supplies'%>
      </div>
-
+<hr />
      <div id="work_list">
        <h3> Mano de Obra</h3>
        <%= render :partial => 'workmanships'%>

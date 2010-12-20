@@ -102,6 +102,18 @@ h3{
     padding: 3px;
 }
 
+.table4{
+    /*border-collapse:collapse; */
+    width: 810px;
+    background-color: #FCF6CF;
+    border:0px solid #9a1c1c;
+    border-spacing: 0px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
 
 
 .cell1{
