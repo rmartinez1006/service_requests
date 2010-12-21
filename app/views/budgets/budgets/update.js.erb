@@ -1,7 +1,29 @@
-<% if @budgets_budget_supply.errors.any? -%>
+<% if @budgets_budget.errors.any? -%>
 <% else -%>
+
+<% if @budgets_budget_supplies != nil -%>
 $("#mat_list").html("<%= escape_javascript(render(:partial => "supplies"))%>");
-$("#budgets_budget_supply_description").val("");
+$("#mat_unit").attr("disabled", true);  // removeAttr("disabled");
+$("#mat_other").hide();
+$("#mat_other").attr('value', '');
+$("#mat_import").attr('value', '');
+$("#mat_quantity").attr('value', '');
+$("#mat_unit").attr('value', '');
+$(".combo  option:eq(0)").attr("selected", "selected");
+<% end -%>
+
+<% if @budgets_budget_supplies2 != nil -%>
+$("#work_list").html("<%= escape_javascript(render(:partial => "workmanships"))%>");
+$("#work_unit").attr("disabled", true);  // removeAttr("disabled");
+$("#work_other").hide();
+$("#work_other").attr('value', '');
+$("#work_import").attr('value', '');
+$("#work_quantity").attr('value', '');
+$("#work_unit").attr('value', '');
+$(".combo_work  option:eq(0)").attr("selected", "selected");
+<% end -%>
+
+
 <% end -%>
 
 
