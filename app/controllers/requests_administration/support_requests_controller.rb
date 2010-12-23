@@ -18,7 +18,7 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
                INNER JOIN catalogs_ubications as c ON
                  c.id = r.ubication_id
                INNER JOIN catalogs_units as u ON
-                 u.id = r.ubication_id
+                 u.id = c.unit_id
                WHERE u.id = ".concat(unit_id.to_s) +
               " UNION
                 SELECT r.* FROM request_support_requests as r
