@@ -11,16 +11,19 @@ class Administration::User < ActiveRecord::Base
 #  validates_confirmation_of :password
 #  validates_confirmation_of :password, :if => :new_password?
 
+  
+
 def permiso(id)
     r = false
     # el usuario autentificado puede editar su usuario
     if self.id == id
       r = true
     else
-      # Obtener el rol del usurio autentificado
-      lv_role_id = Administration::UserSession.find.record.attributes['role_id']
-      lv_role = Administration::UserRole.find(:first, :conditions => "id = " + lv_role_id.to_s)
-      if lv_role.rol == 'ADMIN'
+      # Obtener el rol del usuario autentificado
+      lv_role = Administration::UserSession.find.record.attributes['role']
+#      lv_role_id = Administration::UserSession.find.record.attributes['role_id']
+#      lv_role = Administration::UserRole.find(:first, :conditions => "id = " + lv_role_id.to_s)
+      if lv_role == 'ADMIN'
         r = true
       end
 

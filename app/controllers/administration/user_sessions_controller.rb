@@ -9,8 +9,14 @@ class Administration::UserSessionsController < ApplicationController
   def create
     @administration_user_session = Administration::UserSession.new(params[:administration_user_session])
     if @administration_user_session.save
+       lv_role_id = Administration::UserSession.find.record.attributes['role_id']
+       @UserRole = Administration::UserRole.find(:first, :conditions => "id = " + lv_role_id.to_s)
+       @administration_user_session.record.update_attribute(:role , @UserRole.rol)
+         #record.attributes['role'] = 'ADMIN'
+         #record.attribute(:role, @UserRole.rol)
+     
       flash[:notice] = "Sesión de usuario abierta"
-      redirect_to administration_users_path
+      redirect_to administration_users_path      
     else
       render :action => 'new'
     end

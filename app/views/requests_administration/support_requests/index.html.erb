@@ -25,7 +25,7 @@
     <td><%= requests_administration_support_request.description_left(50) %></td>
     <td align ="center" ><%= image_tag(requests_administration_support_request.img_status(requests_administration_support_request.request_status_id.to_i)) %></td>
     <td><%= link_to 'Ver', requests_administration_support_request %></td>
-    <td><%= link_to 'Modificar', edit_requests_administration_support_request_path(requests_administration_support_request) %></td>
+    <td><%= link_to_if requests_administration_support_request.helper_id == nil , "Modificar", edit_requests_administration_support_request_path(requests_administration_support_request) %></td>
     <td><%= link_to_if requests_administration_support_request.valida_escalar(), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request.id %></td>
     <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presupuesto", :controller=>'/budgets/budgets' , :action => "budget_fm1", :id => requests_administration_support_request.id %></td>
     <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presup. Externo", :controller=>'/budgets/budgets', :action => "budget_fm2", :id => requests_administration_support_request.id %></td>

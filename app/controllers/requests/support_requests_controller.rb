@@ -124,9 +124,60 @@ class Requests::SupportRequestsController < ApplicationController
   # PUT /requests/support_requests/1.xml
   def update
     @requests_support_request = Requests::SupportRequest.find(params[:id])
+    @requests_support_request.attributes = params[:requests_support_request]
 
     respond_to do |format|
+
+      if not @requests_support_request.errordatos()
+          if @requests_support_request.update_attributes(params[:requests_support_request])
+          #   Ubicar el comentario (Ubicación fisica)
+          @comment =Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
+          if @comment != nil
+              @requests_support_req_ubication = Requests::RequestCommentary.find(:first,
+                        :conditions => "support_request_id = " + params[:id] + "  AND comment_type_id = " + @comment.id.to_s)
+              if @requests_support_req_ubication != nil
+                 @requests_support_req_ubication.commentaries = @requests_support_request.req_ubication
+                 @requests_support_req_ubication.save
+              end
+          end
+          format.html { redirect_to(@requests_support_request, :notice => 'La solicitud fue actualizada.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
+        end
+      else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
+      end
+    end
+
+return
+
+
+
+
+
+
+
+
+
+
+    respond_to do |format|
+
+
       if @requests_support_request.update_attributes(params[:requests_support_request])
+
+      #Validar el No. de Folio
+      #if @requests_support_request.errordatos()
+         #format.html { redirect_to(@requests_support_request, :notice => 'La solicitud fue actualizada.') }
+      #   format.html { render :action => "edit"}
+      #   format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity } and return
+         #render :update do |page|
+         #    page.redirect_to(:action=>"edit")
+         #end
+      #   return
+      #end
 
         #   Ubicar el comentario (Ubicación fisica)
         @comment =Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
@@ -138,19 +189,15 @@ class Requests::SupportRequestsController < ApplicationController
               @requests_support_req_ubication.save
            end
         end
+        format.html { render :action => "show"}
+        format.xml  { head :ok }
         #  Fin  Ubicar el comentario (Ubicación fisica)
-
       else
-        #format.html { render :action => "show"}
-        #format.xml  { head :ok }
-        #format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
-
-        format.html { render :action => "show", :id=>params[:id], :method=>:get }
-        #format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
-        return
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
       end
     #end fin del do
-
+    return
     user_id = 0
 
 #   Agregar comentario durante resolución

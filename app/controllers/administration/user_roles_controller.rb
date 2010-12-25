@@ -3,7 +3,14 @@ class Administration::UserRolesController < ApplicationController
   # GET /administration/user_roles.xml
   before_filter :authorize
   layout "administration"
+
+  
   def index
+
+    if lv_role = Administration::UserSession.find.record.attributes['role']!= 'ADMIN'
+      redirect_to administration_users_path
+      return
+    end
     @administration_user_roles = Administration::UserRole.all
 
     respond_to do |format|

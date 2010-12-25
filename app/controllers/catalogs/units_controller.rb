@@ -4,6 +4,10 @@ class Catalogs::UnitsController < ApplicationController
   # GET /catalogs/units
   # GET /catalogs/units.xml
   def index
+    if lv_role = Administration::UserSession.find.record.attributes['role']!= 'ADMIN'
+      redirect_to administration_users_path
+      return
+    end
     @catalogs_units = Catalogs::Unit.all
 
     respond_to do |format|
