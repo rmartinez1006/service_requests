@@ -67,7 +67,9 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
                 (SELECT id FROM catalogs_comment_types
                  WHERE abbr IN ('UBICA'))"  
     @requests_request_req_ubication = RequestsAdministration::Commentary.find_by_sql(lv_sql)
-
+    if @requests_request_req_ubication.size > 0
+       @requests_support_request.req_ubication = @requests_request_req_ubication[0].commentaries       
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -152,8 +154,11 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
            @requests_support_req_ubication =  RequestsAdministration::Commentary.find(:first,
                         :conditions => "support_request_id = " + params[:id] + "  AND comment_type_id = " + @comment.id.to_s)
            if @requests_support_req_ubication != nil
-              @requests_support_req_ubication.commentaries = @requests_support_request.req_ubication
-              @requests_support_req_ubication.save
+              if ( @requests_support_request.req_ubication != nil) &
+                 (@requests_support_req_ubication.commentaries != @requests_support_request.req_ubication)
+                  @requests_support_req_ubication.commentaries = @requests_support_request.req_ubication
+                  @requests_support_req_ubication.save
+              end
            end
         end
         #  Fin  Ubicar el comentario (Ubicación fisica)

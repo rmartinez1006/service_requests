@@ -95,6 +95,8 @@ def request_ubication (ubication)
      r = '--'
   else
      r = ubication.gsub(/\n/, "<br />")
+
+  self.req_ubication = r
   r
   end
 end

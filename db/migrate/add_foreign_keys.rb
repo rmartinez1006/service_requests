@@ -32,7 +32,9 @@ class AddForeignKeys < ActiveRecord::Migration
       # budgets_budgets
       execute "alter table budgets_budgets
                add constraint fk_budgets_support_requests
-               foreign key (support_request_id) references request_support_requests(id)"
+               foreign key (support_request_id) references request_support_requests(id)
+               on update cascade
+               on delete cascade"
 
       execute "alter table budgets_budgets
                add constraint fk_budgets_support_suppliers
