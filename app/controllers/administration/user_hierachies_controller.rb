@@ -3,12 +3,13 @@ class Administration::UserHierachiesController < ApplicationController
   # GET /administration/user_hierachies.xml
   before_filter :authorize
   layout "administration"
+
   def index
     if lv_role = Administration::UserSession.find.record.attributes['role']!= 'ADMIN'
-      redirect_to administration_users_path
+      redirect_to requests_administration_support_requests_path
       return
     end    
-    @administration_user_hierachies = Administration::UserHierachy.all
+    @administration_user_hierachies = Administration::UserHierachy.find(:all, :order=>'user_id ASC')
 
     respond_to do |format|
       format.html # index.html.erb

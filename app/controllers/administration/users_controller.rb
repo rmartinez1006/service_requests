@@ -4,7 +4,7 @@ class Administration::UsersController < ApplicationController
   before_filter :authorize
   layout "administration"
   def index
-    @administration_users = Administration::User.all
+    @administration_users = Administration::User.find(:all, :order=> "name ASC")
 
     respond_to do |format|
       format.html # index.html.erb

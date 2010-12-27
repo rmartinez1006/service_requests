@@ -2,7 +2,6 @@
 
 
 <div id="content_center"></div>
-
 <table class ="table1" width="950">
   <tr >
     <th>FECHA.</th>
@@ -11,11 +10,12 @@
     <th width ="520">DESCRIPCION</th>
     <th>ESTAT.</th>
     <th></th>
+    <th></th>
     <th></th>    
     <th></th>
-    <th></th>
-    <th></th>
+    <th></th>    
   </tr>
+
 <%= will_paginate @requests_administration_support_requests %>
 <% @requests_administration_support_requests.each do |requests_administration_support_request| %>
   <tr>
@@ -27,8 +27,10 @@
     <td><%= link_to 'Ver', requests_administration_support_request %></td>
     <td><%= link_to_if requests_administration_support_request.helper_id == nil , "Modificar", edit_requests_administration_support_request_path(requests_administration_support_request) %></td>
     <td><%= link_to_if requests_administration_support_request.valida_escalar(), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request.id %></td>
-    <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presupuesto", :controller=>'/budgets/budgets' , :action => "budget_fm1", :id => requests_administration_support_request.id %></td>
-    <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presup. Externo", :controller=>'/budgets/budgets', :action => "budget_fm2", :id => requests_administration_support_request.id %></td>
+    <% if (requests_administration_support_request.valida_rol()) %>
+      <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presupuesto", :controller=>'/budgets/budgets' , :action => "budget_fm1", :id => requests_administration_support_request.id %></td>
+      <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presup. Externo", :controller=>'/budgets/budgets', :action => "budget_fm2", :id => requests_administration_support_request.id %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

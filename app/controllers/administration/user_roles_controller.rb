@@ -8,7 +8,7 @@ class Administration::UserRolesController < ApplicationController
   def index
 
     if lv_role = Administration::UserSession.find.record.attributes['role']!= 'ADMIN'
-      redirect_to administration_users_path
+      redirect_to requests_administration_support_requests_path
       return
     end
     @administration_user_roles = Administration::UserRole.all

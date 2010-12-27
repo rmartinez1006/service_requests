@@ -16,7 +16,7 @@ class Administration::UserSessionsController < ApplicationController
          #record.attribute(:role, @UserRole.rol)
      
       flash[:notice] = "Sesión de usuario abierta"
-      redirect_to administration_users_path      
+      redirect_to requests_administration_support_requests_path
     else
       render :action => 'new'
     end

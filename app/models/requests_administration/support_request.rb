@@ -163,5 +163,16 @@ end
     r
   end
 
+  # Valida el rol para determinar si tiene permisos
+  def valida_rol
+    lv_exito = false
+    r = Administration::UserSession.find.record.attributes['role']
+    # Si es administrador o Analista Prsupuestador
+    if (r == 'ADMIN' or r== 'APRE')
+      lv_exito = true
+    end
+    lv_exito
+  end
+
 
 end

@@ -154,15 +154,6 @@ class Requests::SupportRequestsController < ApplicationController
 
 return
 
-
-
-
-
-
-
-
-
-
     respond_to do |format|
 
 
