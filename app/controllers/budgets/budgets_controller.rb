@@ -1,4 +1,5 @@
 class Budgets::BudgetsController < ApplicationController
+  include Common
   before_filter :authorize
   layout "budgets"
 
@@ -95,6 +96,8 @@ class Budgets::BudgetsController < ApplicationController
          @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
          @budgets_budget.tech_description = @budgets_budget.tech_description    
          @requests_support_request.support_type_id = @budgets_budget.support_type_id
+          # Actualizar el estatus (Atendido)
+         @requests_support_request.request_status_id = get_status_id('ST07')
          @requests_support_request.save
       end
 
@@ -163,6 +166,8 @@ class Budgets::BudgetsController < ApplicationController
          @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
          @budgets_budget.tech_description = @budgets_budget.tech_description
          @requests_support_request.support_type_id = @budgets_budget.support_type_id
+          # Actualizar el estatus (Atendido)
+         @requests_support_request.request_status_id = get_status_id('ST07')
          @requests_support_request.save
       end
       
@@ -175,8 +180,13 @@ class Budgets::BudgetsController < ApplicationController
   # DELETE /budgets/budgets/1
   # DELETE /budgets/budgets/1.xml
   def destroy    
-    @budgets_budget = Budgets::Budget.find(params[:id])    
+    @budgets_budget = Budgets::Budget.find(params[:id])
+    lv_request = @budgets_budget.support_request_id
     @budgets_budget.destroy
+    # Actualizar el estatus de la solicitud => (Atendido)
+    @requests_support_request = Requests::SupportRequest.find(lv_request)
+    @requests_support_request.request_status_id = get_status_id('ST02')
+    @requests_support_request.save
     render :update do |page|
           page.redirect_to(:action=>"index")
     end

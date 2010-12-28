@@ -1,5 +1,5 @@
 class RequestsAdministration::SupportRequest < ActiveRecord::Base
-
+  include Common
   
   belongs_to :ubication, :class_name => 'Catalogs::Ubication'
   belongs_to :userhelper, :class_name => "Administration::User", :foreign_key => "helper_id"
@@ -109,15 +109,21 @@ end
 
  def img_status(status)
 
-    if status == 1 or status == nil
-      return "ST01.png"
-    else
-      if status == 2
-        return "ST02.png"
-      else
-        return "st07.png"
-      end
-    end
+    r = get_status_abbr(status)
+    return r+'.png'
+
+    #if status == 1 or status == nil
+    #  return "ST01.png"
+    #end
+
+    #if status == 2
+    #    return "ST02.png"
+    #end
+
+    #if status == 7
+    #    return "ST07.png"
+    #end
+
   end
 
 # Convertir Texto a formato html

@@ -1,8 +1,13 @@
 class RequestsAdministration::SupportRequestsController < ApplicationController
   # GET /requests/request_support_requests
   # GET /requests/request_support_requests.xml
+  #include Common
+  include Common
+
+  
   before_filter :authorize
   layout "requests"
+
 
   def index
     #@request_support_requests = Requests::SupportRequest.all
@@ -193,6 +198,9 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
           requests_req_delegation.helper_id = @requests_support_request.helper_id
           requests_req_delegation.notify = @requests_support_request.notify
           requests_req_delegation.save
+          # Actualizar el estatus (Atendido)
+          @requests_support_request.request_status_id = get_status_id('ST02')
+          @requests_support_request.save
        end
     end
 
