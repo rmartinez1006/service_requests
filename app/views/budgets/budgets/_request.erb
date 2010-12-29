@@ -2,20 +2,40 @@
   <script type="text/javascript">
     $(document).ready(function(){
 
+      
+      $('input[name=boton_mat]').attr('checked', true); //Selecionar boton de materiales
+      $('input[name=boton_work]').attr('checked', false); //Selecionar boton de mano de obra
+      $("#txt_analista").hide();
+      $('input[name=chk_analista]').attr('checked', false);
+
+      //Checkbox Autorización analista
+      $("#analista").change(function(){
+         var x = $('input[name=chk_analista]').is(':checked')
+         if (x == true)
+         {
+           $("#txt_analista").show();
+         }else $("#txt_analista").hide();
+         
+       });
+
+      //Radio button materiales
       $("#rbt_mat").change(function(){
-         $("#materiales").show()         
-         $("#workmanship").hide()
+         $("#materiales").show();
+         $("#workmanship").hide();
+         $('input[name=boton_work]').attr('checked', false); //boton de mano de obra
          //$("#workmanship").style ="display: none";
-         $("#materiales").checked;
+         //$("#materiales").attr('checked', true);
          var x=(document).getElementById('work_quantity');
          x.value = 0;   // Mano de Obra Cantidad = 0
-
        });
-      $("#rbt_work").change(function(){
+
+      //Radio button Mano de Obra
+      $("#rbt_work").click(function(){
          $("#materiales").hide()
          //$("#materiales").style ="display: none";
          $("#workmanship").show()
-         $("#workmanship").checked;
+         $('input[name=boton_mat]').attr('checked', false); //boton de mano de obra
+         //$("#workmanship").attr('checked', true);
          $("#mat_quantity").value = 0;
          var x=(document).getElementById('mat_quantity');
          x.value = 0;   // Material Cantidad = 0
@@ -69,12 +89,12 @@
         if (b.substr(0,4) == "Otro")
         {
           $("#work_other").show("fast")
-          $("#work_unit").attr("disabled", "");
+          $("#work_unit").attr("disabled", ""); //Habilitar
         }
         else
         {
           $("#work_other").hide("fast");
-          $("#work_unit").attr("disabled", "disabled");
+          $("#work_unit").attr("disabled", "disabled"); //Deshabilitar
         }
 
 
@@ -239,8 +259,8 @@
   <table>
     <%= form_tag do %>
     <tr>
-      <td id="rbt_mat" ><%= radio_button_tag "shared_name", "1st_button",true %>Materiales</td>
-      <td id="rbt_work"><%= radio_button_tag "shared_name", "2nd_button",false %>Mano de Obra</td>
+      <td id="rbt_mat" ><%= radio_button_tag "boton_mat", "1st_button",true %>Materiales</td>
+      <td id="rbt_work"><%= radio_button_tag "boton_work", "2nd_button",false %>Mano de Obra</td>
     </tr>
     <% end %>
     </table>
@@ -338,9 +358,21 @@
        <%= render :partial => 'workmanships'%>
      </div>
 
-
-
   <% end %>
+
+<div id="Autoriza_Analista">
+  <table width="950" class="Table2">
+    <tr>
+      <td> <input id="analista" type="checkbox" name="chk_analista" value=""/>Autorizar Presupuesto (Analista)</td>
+    </tr>
+    <tr id="txt_analista">
+      <td><%= f.text_area :add_aut_analista,  :size => '100%'%> </td>
+    </tr>
+  </table>
+</div>
+
+
+
 
 <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('cantidad').value=-999.99; return true;"%>
 
