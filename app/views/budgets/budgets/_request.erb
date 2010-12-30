@@ -5,10 +5,18 @@
       
       $('input[name=boton_mat]').attr('checked', true); //Selecionar boton de materiales
       $('input[name=boton_work]').attr('checked', false); //Selecionar boton de mano de obra
-      $("#txt_analista").hide();
-      $('input[name=chk_analista]').attr('checked', false);
 
-      //Checkbox Autorización analista
+      $("#txt_analista").hide(); //-- Ocultar Texto de Autorización 01 (analista)
+      $('input[name=chk_analista]').attr('checked', false); //Checked false
+
+      $("#txt_aut_02").hide(); //-- Ocultar Texto de Autorización 02 (analista)
+      $('input[name=chk_aut_02]').attr('checked', false);
+
+      $("#txt_aut_03").hide(); //-- Ocultar Texto de Autorización 03 (analista)
+      $('input[name=chk_aut_03]').attr('checked', false);
+
+
+      //Checkbox Autorización analista (Ocultar/Mostrar)
       $("#analista").change(function(){
          var x = $('input[name=chk_analista]').is(':checked')
          if (x == true)
@@ -17,6 +25,28 @@
          }else $("#txt_analista").hide();
          
        });
+
+      //Checkbox Autorización 02 coordinador (Ocultar/Mostrar)
+      $("#aut_02").change(function(){
+         var x = $('input[name=chk_aut_02]').is(':checked')
+         if (x == true)
+         {
+           $("#txt_aut_02").show();
+         }else $("#txt_aut_02").hide();
+
+       });
+
+      //Checkbox Autorización Final 03 coordinador (Ocultar/Mostrar)
+      $("#aut_03").change(function(){
+         var x = $('input[name=chk_aut_03]').is(':checked')
+         if (x == true)
+         {
+           $("#txt_aut_03").show();
+         }else $("#txt_aut_03").hide();
+
+       });
+
+
 
       //Radio button materiales
       $("#rbt_mat").change(function(){
@@ -360,13 +390,36 @@
 
   <% end %>
 
-<div id="Autoriza_Analista">
+<div id="Autoriza_01">
   <table width="950" class="Table2">
     <tr>
       <td> <input id="analista" type="checkbox" name="chk_analista" value=""/>Autorizar Presupuesto (Analista)</td>
     </tr>
     <tr id="txt_analista">
       <td><%= f.text_area :add_aut_analista,  :size => '100%'%> </td>
+    </tr>
+  </table>
+</div>
+
+
+<div id="Autoriza_02">
+  <table width="950" class="Table2">
+    <tr>
+      <td> <input id="aut_02" type="checkbox" name="chk_aut_02" value=""/>Autorizar Presupuesto (Coordinador)</td>
+    </tr>
+    <tr id="txt_aut_02">
+      <td><%= f.text_area :add_aut_02,  :size => '100%'%> </td>
+    </tr>
+  </table>
+</div>
+
+<div id="Autoriza_03">
+  <table width="950" class="Table2">
+    <tr>
+      <td> <input id="aut_03" type="checkbox" name="chk_aut_03" value=""/>Autorización Final Presupuesto (Coordinador)</td>
+    </tr>
+    <tr id="txt_aut_03">
+      <td><%= f.text_area :add_aut_03,  :size => '100%'%> </td>
     </tr>
   </table>
 </div>
