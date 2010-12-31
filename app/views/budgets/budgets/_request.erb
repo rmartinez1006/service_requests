@@ -390,6 +390,7 @@
 
   <% end %>
 
+<% if $autorizacion == 1 %>
 <div id="Autoriza_01">
   <table width="950" class="Table2">
     <tr>
@@ -400,8 +401,9 @@
     </tr>
   </table>
 </div>
+<% end %>
 
-
+<% if $autorizacion == 2 %>
 <div id="Autoriza_02">
   <table width="950" class="Table2">
     <tr>
@@ -412,7 +414,9 @@
     </tr>
   </table>
 </div>
+<% end %>
 
+<% if $autorizacion == 3 %>
 <div id="Autoriza_03">
   <table width="950" class="Table2">
     <tr>
@@ -423,7 +427,7 @@
     </tr>
   </table>
 </div>
-
+<% end %>
 
 
 

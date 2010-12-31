@@ -47,6 +47,7 @@ class Budgets::BudgetsController < ApplicationController
         @budgets_budget = Budgets::Budget.find($budget_id )
         @budgets_budget.attributes =  params[:budgets_budget] #
       end
+      $autorizacion =get_num_aut($budget_id)
 
       # Agregar material
       if (@budgets_budget.mat_quantity.to_i > 0 ) && (@budgets_budget.mat_quantity.to_i!=-999.00)
@@ -114,6 +115,7 @@ class Budgets::BudgetsController < ApplicationController
       @budgets_budget = Budgets::Budget.find(params[:id])
       if @budgets_budget!= nil
         @budgets_budget.attributes =  params[:budgets_budget]
+         $autorizacion =get_num_aut(@budgets_budget.id)
       end
 #      @budgets_budget.attributes =  params[:budgets_budget]
 #     Validar el botón de "Agregar material"
@@ -222,7 +224,8 @@ class Budgets::BudgetsController < ApplicationController
     #Tomar los datos de la Solicitud y mostrarlos
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
-    
+
+    $autorizacion =get_num_aut($budget_id)
   end
 
 
@@ -249,7 +252,7 @@ class Budgets::BudgetsController < ApplicationController
     #Tomar los datos de la Solicitud y mostrarlos
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
-
+    $autorizacion = 1
   end
 
 
@@ -269,7 +272,7 @@ class Budgets::BudgetsController < ApplicationController
 
 
  # GET /budgets/budgets/1/budget_fm1_edit
-  def budget_fm1_edit
+  def budget_fm1_edit    
     redirect_to budgets_budget_fm1_path(params[:id])
     return
     @requests_support_request =  RequestsAdministration::SupportRequest.find(params[:id])
