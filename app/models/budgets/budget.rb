@@ -8,7 +8,7 @@ class Budgets::Budget < ActiveRecord::Base
   attr_accessor :support_type_id, :tech_description, :description_supply,
                 :mat_unit, :mat_description, :mat_quantity, :mat_cost, :mat_import, :mat_type, :mat_other,
                 :work_unit, :work_description, :work_quantity, :work_cost, :work_import, :work_type, :work_other,
-                :add_aut_analista, :add_aut_02, :add_aut_03
+                :add_aut_analista, :add_aut_02, :add_aut_03, :chk_analista, :chk_aut_02, :chk_aut_03
 
 #validates_format_of :total_cost, :with => /\d{0,10}\./
 # validates_format_of :total_cost, :with => /\d{0,10}\.\d{2}/
@@ -49,6 +49,39 @@ validates_numericality_of :total_cost, :on => :create, :message => "Debe ser nú
  end
 
 
+   #-- devuelve true si existe la autorización
+   def valida_budget_aut(budget_id)
+     r = true #Tiene permiso para EDITAR
+
+     # Si existe la autorizacion 1, el ANALISTA ya no puede editar
+     lv_role = Administration::UserSession.find.record.attributes['role']
+     if lv_role == 'APRE'
+        lv_autorizacion ="='AUT-P01'"
+     end
+
+
+     # Si ya existe la autorizacion 3 el COORDINADOR ya no se puede Editar
+     if (lv_role == 'COORD') |  (lv_role == 'ADMIN')
+       lv_autorizacion = " ='AUT-P03'"
+     end
+
+
+     if lv_autorizacion == nil
+       r = false
+       return
+     end
+
+     lv_sql ="SELECT * FROM request_commentaries com, catalogs_comment_types typ
+               WHERE com.comment_type_id = typ.id
+                 AND com.budget_id =".concat(budget_id.to_s) +
+                " AND typ.abbr ".concat(lv_autorizacion)
+
+     @commentary_aut01 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
+     if not @commentary_aut01.empty?
+        r = false #SI existe YA NO PUEDE EDITAR
+     end
+     r
+   end
 
 
 end

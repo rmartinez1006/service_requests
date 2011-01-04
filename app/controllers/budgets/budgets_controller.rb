@@ -81,6 +81,7 @@ class Budgets::BudgetsController < ApplicationController
           return
       end
 
+
 #     Guardar el presupuesto y salir
 
       @budgets_budget.budget_type= $budget_type
@@ -95,12 +96,48 @@ class Budgets::BudgetsController < ApplicationController
       if @budgets_budget.save
 #        Guardar el Tipo de Soporte en la Solicitud
          @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
-         @budgets_budget.tech_description = @budgets_budget.tech_description    
+         @budgets_budget.tech_description = @budgets_budget.tech_description
          @requests_support_request.support_type_id = @budgets_budget.support_type_id
           # Actualizar el estatus (Atendido)
          @requests_support_request.request_status_id = get_status_id('ST07')
          @requests_support_request.save
       end
+      
+#     Guardar autorización (commentary)
+      lv_guardar = 0
+      if ($autorizacion == 1) & (params[:chk_analista]=='1')
+        lv_autorizacion ='AUT-P01'
+        lv_comentario = @budgets_budget.add_aut_analista
+        lv_guardar = 1
+      end
+
+      if ($autorizacion == 2) & (params[:chk_aut_02]=='1')
+         lv_autorizacion ='AUT-P02'
+         lv_comentario = @budgets_budget.add_aut_02
+         lv_guardar = 1
+      end
+      if ($autorizacion == 3) & (params[:chk_aut_03]=='1')
+         lv_autorizacion ='AUT-P03'
+         lv_comentario = @budgets_budget.add_aut_03
+         lv_guardar = 1
+      end
+
+      if (lv_guardar == 1)
+         unless lv_autorizacion == nil
+             if (lv_comentario == nil) | (lv_comentario=="" )
+                 lv_comentario = "Sin comentario."
+             end
+          end
+
+         @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = '"+ lv_autorizacion +"'")
+         request_commentary = Requests::RequestCommentary.new
+         request_commentary.budget_id =  $budget_id
+         request_commentary.user_id = Administration::UserSession.find.record.attributes['id']
+         request_commentary.commentaries = @requests_support_request.req_ubication
+         request_commentary.comment_type_id = @catalogs_comment_types.id
+         request_commentary.save
+      end
+      
 
       @budgets_budgets = Budgets::Budget.all
       render :update do |page|
@@ -172,6 +209,43 @@ class Budgets::BudgetsController < ApplicationController
          @requests_support_request.request_status_id = get_status_id('ST07')
          @requests_support_request.save
       end
+
+#     Guardar autorización (commentary)
+
+      lv_guardar = 0
+      if ($autorizacion == 1) & (params[:chk_analista]=='1')
+        lv_autorizacion ='AUT-P01'
+        lv_comentario = @budgets_budget.add_aut_analista
+        lv_guardar = 1
+      end
+
+      if ($autorizacion == 2) & (params[:chk_aut_02]=='1')
+         lv_autorizacion ='AUT-P02'
+         lv_comentario = @budgets_budget.add_aut_02
+         lv_guardar = 1
+      end
+      if ($autorizacion == 3) & (params[:chk_aut_03]=='1')
+         lv_autorizacion ='AUT-P03'
+         lv_comentario = @budgets_budget.add_aut_03
+         lv_guardar = 1
+      end
+
+      if (lv_guardar == 1)
+         unless lv_autorizacion == nil
+             if (lv_comentario == nil) | (lv_comentario=="" )
+                 lv_comentario = "Sin comentario."
+             end
+          end
+
+         @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = '"+ lv_autorizacion +"'")
+         request_commentary = Requests::RequestCommentary.new
+         request_commentary.budget_id =  $budget_id
+         request_commentary.user_id = Administration::UserSession.find.record.attributes['id']
+         request_commentary.commentaries = @requests_support_request.req_ubication
+         request_commentary.comment_type_id = @catalogs_comment_types.id
+         request_commentary.save      
+      end
+
       
       #@budgets_budgets = Budgets::Budget.all
       render :update do |page|
@@ -252,7 +326,7 @@ class Budgets::BudgetsController < ApplicationController
     #Tomar los datos de la Solicitud y mostrarlos
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
-    $autorizacion = 1
+    $autorizacion =get_num_aut($budget_id)
   end
 
 

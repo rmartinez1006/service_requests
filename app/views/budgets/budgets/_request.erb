@@ -393,11 +393,14 @@
 <% if $autorizacion == 1 %>
 <div id="Autoriza_01">
   <table width="950" class="Table2">
-    <tr>
-      <td> <input id="analista" type="checkbox" name="chk_analista" value=""/>Autorizar Presupuesto (Analista)</td>
+    <tr>      
+      <td>
+        <%= f.check_box :chk_analista, :id=>'analista', :name=>'chk_analista', :value=>"" %>
+        Autorizar presupuesto (Analista)
+      </td>
     </tr>
     <tr id="txt_analista">
-      <td><%= f.text_area :add_aut_analista,  :size => '100%'%> </td>
+      <td><%= f.text_area :add_aut_analista,  :size => '100%'%> </td>      
     </tr>
   </table>
 </div>
@@ -407,7 +410,9 @@
 <div id="Autoriza_02">
   <table width="950" class="Table2">
     <tr>
-      <td> <input id="aut_02" type="checkbox" name="chk_aut_02" value=""/>Autorizar Presupuesto (Coordinador)</td>
+      <td>        
+        <%= f.check_box :chk_aut_02, :id=>'aut_02', :name=>'chk_aut_02', :value=>"" %>
+        Autorizar Presupuesto (Coordinador)</td>
     </tr>
     <tr id="txt_aut_02">
       <td><%= f.text_area :add_aut_02,  :size => '100%'%> </td>
@@ -420,7 +425,10 @@
 <div id="Autoriza_03">
   <table width="950" class="Table2">
     <tr>
-      <td> <input id="aut_03" type="checkbox" name="chk_aut_03" value=""/>Autorización Final Presupuesto (Coordinador)</td>
+      <td>
+        <%= f.check_box :chk_aut_02, :id=>'aut_03', :name=>'chk_aut_03', :value=>"" %>
+        Autorización Final Presupuesto (Coordinador)
+      </td>
     </tr>
     <tr id="txt_aut_03">
       <td><%= f.text_area :add_aut_03,  :size => '100%'%> </td>

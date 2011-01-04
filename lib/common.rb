@@ -47,16 +47,18 @@ module Common
         r = 2
         lv_sql = lv_aux + " AND typ.abbr ='AUT-P02'"
         @commentary_aut02 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
-        if not @commentary_aut02.empty?
-           r = 3
+        if not @commentary_aut02.empty?           
            lv_sql = lv_aux + " AND typ.abbr ='AUT-P03'"
            @commentary_aut03 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
-           if not @commentary_aut03.empty
+           if @commentary_aut03.empty?
+                r= 3  #NO existe, entonces, se requiere la autorización 3
+           else
                 r = 999  #"Ya esta liberado Autorizado
            end
         end
      end
      r
    end
+
 
 end
