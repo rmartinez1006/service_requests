@@ -11,37 +11,46 @@
     </div>
   <% end %>
 
-<table width="990">
+<table width="990" class="table1">
     <tr>
       <td width="80" align="right">
-        <%= f.label 'Abreviación:' %><br />
+        <%= f.label 'No. Prov.:' %><br />
       </td>
       <td>
         <%= f.text_field :abbr , :size => 6%>
       </td>
     </tr>
     <tr>
-      <td width="80" align="right">
+      <td align="right">
+        <%= f.label 'Nombre Comercial:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :trade_name, :size=>'70%' %>
+      </td>
+    </tr>
+    <tr>
+      <td align="right">
         <%= f.label 'Razón Social:' %><br />
       </td>
       <td>
-        <%= f.text_field :trade_name %>
+        <%= f.text_field :company_name, :size=>'70%' %>
       </td>
     </tr>
+
     <tr>
-      <td width="80" align="right">
+      <td align="right">
         <%= f.label 'Contacto:' %><br />
       </td>
       <td>
-        <%= f.text_field :contact_name %>
+        <%= f.text_field :contact_name, :size=>'70%' %>
       </td>
     </tr>
     <tr>
-      <td width="80" align="right">
+      <td align="right">
         <%= f.label 'Dirección:' %><br />
       </td>
       <td>
-        <%= f.text_field :address, :rows => '5', :cols => '50' %>
+        <%= f.text_field :address, :size=> '70%' %>
       </td>
     </tr>
     <tr>
@@ -49,7 +58,7 @@
         <%= f.label 'Tel. Celular:' %><br />
       </td>
       <td>
-        <%= f.text_field :mobile_phone%>
+        <%= f.text_field :mobile_phone, :size=>'30%'%>
       </td>
     </tr>
     <tr>
@@ -57,7 +66,23 @@
         <%= f.label 'Tel. Oficina:' %><br />
       </td>
       <td>
-        <%= f.text_field :business_phone%>
+        <%= f.text_field :business_phone, :size=>'30%'%>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'R.F.C.' %><br />
+      </td>
+      <td>
+        <%= f.text_field :taxpayer_reg, :size=>'30%' %>
+      </td>
+    </tr>
+    <tr>
+      <td width="80" align="right">
+        <%= f.label 'Persona Fisica/Moral:' %><br />
+      </td>
+      <td>
+        <%= f.text_field :taxpayer_type, :size=>'20%' %>
       </td>
     </tr>
 </table>
