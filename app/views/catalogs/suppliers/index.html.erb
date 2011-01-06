@@ -1,8 +1,9 @@
 <h1>Proveedores</h1>
 
+<%= will_paginate @catalogs_suppliers %>
 <table class ="table1">
   <tr class="table_header">
-    <th>ABBR.</th>
+    <th>NO. PROV.</th>
     <th>RAZON SOCIAL</th>
     <th>TEL. CELULAR</th>
     <th>TEL. OFICINA</th>
@@ -23,7 +24,7 @@
   </tr>
 <% end %>
 </table>
-
+<%= will_paginate @catalogs_suppliers %>
 <hr />
 
 <%= link_to 'Agregar Proveedor', new_catalogs_supplier_path, :class => 'link-button' %>

@@ -1,6 +1,8 @@
 class Requests::SupportRequestsController < ApplicationController
   # GET /requests/support_requests
-  # GET /requests/support_requests.xml 
+  # GET /requests/support_requests.xml
+  include Common
+  
   layout "requests_user"
 
 

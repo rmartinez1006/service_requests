@@ -4,7 +4,7 @@ class Catalogs::SuppliersController < ApplicationController
   before_filter :authorize
   layout "catalogs"
   def index
-    @catalogs_suppliers = Catalogs::Supplier.all
+    @catalogs_suppliers = Catalogs::Supplier.all.paginate :page =>params[:page],:per_page=>25, :order => 'created_at ASC'
 
     respond_to do |format|
       format.html # index.html.erb
