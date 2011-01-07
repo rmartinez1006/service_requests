@@ -17,6 +17,37 @@ class Budgets::BudgetsController < ApplicationController
   # GET /budgets/budgets/1
   # GET /budgets/budgets/1.xml
   def show
+    $budget_type =1 # Presupuesto Interno
+    $budget_id = 0
+    $display_supplies = 1  #Mostrar area de captura de materiales
+    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
+#    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
+
+#   Buscar si existe el presupeusto
+    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
+    if @budgets_budget == nil
+#     NO existe Presupeusto: CREAR EL PRESUPUESTO
+      @budgets_budget = Budgets::Budget.new
+      @budgets_budget.support_request_id = params[:id]
+#     Auxiliar
+      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
+      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
+    else
+#     Existe Presupuesto:
+#     Buscar los materiales que corresponden al presupuesto
+      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
+#     Buscar mano de obra que corresponden al presupuesto
+      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
+
+      $budget_id = @budgets_budget.id
+    end
+    #Tomar los datos de la Solicitud y mostrarlos
+    @budgets_budget.tech_description = @requests_support_request.tech_description
+    @budgets_budget.support_type_id = @requests_support_request.support_type_id
+
+    $autorizacion =get_num_aut($budget_id)
+
+
   end
 
   # GET /budgets/budgets/new
@@ -224,9 +255,9 @@ class Budgets::BudgetsController < ApplicationController
          lv_comentario = @budgets_budget.add_aut_02
          lv_guardar = 1
       end
-      if ($autorizacion == 3) & (params[:chk_aut_03]=='1')
-         lv_autorizacion ='AUT-P03'
-         lv_comentario = @budgets_budget.add_aut_03
+      if ($autorizacion == 4) & (params[:chk_aut_04]=='1')
+         lv_autorizacion ='AUT-P04'
+         lv_comentario = @budgets_budget.add_aut_04
          lv_guardar = 1
       end
 
