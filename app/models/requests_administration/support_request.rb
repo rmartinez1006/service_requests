@@ -150,10 +150,7 @@ end
       if self.helper_id == user_id
          r = true
       end
-
     end
-
-
   end
 
 

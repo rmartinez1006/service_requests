@@ -32,6 +32,7 @@ module Common
    end
 
    # Obtener el número de autorización del presupuesto siguiente
+   # budget_id => ID del presupuesto
    # 1 = Primer autorización (Analista)
    # 2 = Segunda autorización (Coordinador) --Pre-liberación
    # 3 = Tercer autorización (Coordinador) -- Liberado (Autorización final) Coordinador

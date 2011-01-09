@@ -1,31 +1,53 @@
 <h1>Presupuesto</h1>
+<head>
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      $("#txt_aut_03").hide(); //-- Ocultar Texto de Autorización 03
+      $('input[name=chk_aut_03]').attr('checked', false);
+
+      //Checkbox Autorización 03 coordinador (Ocultar/Mostrar)
+      $("#aut_03").change(function(){
+         var x = $('input[name=chk_aut_03]').is(':checked')
+         if (x == true)
+         {
+           $("#txt_aut_03").show();
+         }else $("#txt_aut_03").hide();
+
+       });
+
+    });
+    </script>
+
+</head>
+
 <% @requests_support_request.id %>
 <table class="table1" width="950">
 <tr>
 
-  <td width="80" align=right >
+  <th width="80" align=right >
      <b>Folio:</b>
-  </td>
+  </th>
   <td align="left">
      <%= @budgets_budget.request.num_sequence %>
   </td>
 
-  <td> <b> Creado el:</b></td>
+  <th> <b> Creado el:</b></th>
   <td align="left"><%=  @budgets_budget.request.created_at.strftime("%d/%m/%Y") %></td>
-  <td> <b> Ultimo cambio:</b></td>
+  <th> <b> Ultimo cambio:</b></th>
   <td align="left"><%=  @budgets_budget.request.status_chng_date.strftime("%d/%m/%Y") %></td>
 </tr>
 
 <tr>
-  <td width="30" align=right >
+  <th width="30" align=right >
     <b>Area Resp.:</b>
-  </td>
+  </th>
   <td align="left">
     <%= @budgets_budget.request.ubication_name %>
   </td>
-  <td width="60" align=right>
+  <th width="60" align=right>
     <b>Atiende:</b>
-  </td>
+  </th>
   <td align ="left" colspan="3">
     <%= @budgets_budget.request.helper %>
   </td>
@@ -33,15 +55,15 @@
 
 
 <tr class="table_content_c2">
-  <td width="30" align=right >
+  <th width="30" align=right >
     <b>Nombre:</b>
-  </td>
+  </th>
   <td align="left">
     <%= @budgets_budget.request.name %>
   </td>
-  <td width="70" align=right>
+  <th width="70" align=right>
     <b>Correo E.:</b>
-  </td>
+  </th>
   <td align ="left" colspan="3">
     <%= @budgets_budget.request.email %>
   </td>
@@ -49,9 +71,9 @@
 
 
 <tr class="table_content_c2">
-  <td width="80" align=right >
+  <th width="80" align=right >
      <b>Descripción:</b>
-  </td>
+  </th>
   <td align="left" colspan="5">
      <%= raw(@budgets_budget.request.text_to_html(@budgets_budget.request.description)) %>
   </td>
@@ -78,42 +100,44 @@
 
 <table width="950" class="table1">
   <tr>
-    <td width="80" align="right" valign="top">
+    <th width="80" align="right" valign="top">
       <b> Descripción Técnica </b>
-    </td>
+    </th>
     <td align="left" colspan="3">
-      <%= f.text_area :tech_description,  :size => '100%'  %>
+
+       <%=  @budgets_budget.request.tech_description %>
     </td>
   </tr>
   <tr>
-    <td width="80" align="right" valign="top">
+    <th width="80" align="right" valign="top">
       <b> Descripción de Trabajos </b>
-    </td>
+    </th>
     <td align="left"  colspan="3">
       <%= @budgets_budget.description %>
     </td>
   </tr>
   <tr>
-    <td width="80" align="right">
+    <th width="80" align="right">
        <b> Tipo de Soporte:</b>
-    </td>
+    </th>
     <td align="left" colspan="3">
        <%= @budgets_budget.request.supporttype.name   %>       
     </td>
   </tr>
-  <% if $display_supplies == 0 %>
+
+  <% if $display_supplies == 2 %>
   <tr>
-    <td width="80" align="right">
+    <th width="80" align="right">
        <b> Empresa:</b>
-    </td>
+    </th>
     <td align="left">
        <%= @budgets_budget.supplier.trade_name %>       
     </td>
-    <td align="right" width="80">
+    <th align="right" width="80">
       <b> Costo: </b>
-    </td>
+    </th>
     <td align="left" width="80">
-      <%= f.text_field :total_cost, :size=>"13", :style => "text-align: right" %>
+      <%= number_to_currency(@budgets_budget.total_cost) %>
     </td>
   </tr>
   <% end %>
@@ -121,13 +145,13 @@
 </table>
 
   <% if $display_supplies == 1 %>
-  <hr />
+    <hr />
 
      <div id="mat_list">
        <h3> Materiales</h3>
        <%= render :partial => 'supplies'%>
      </div>
-<hr />
+   <hr />
      <div id="work_list">
        <h3> Mano de Obra</h3>
        <%= render :partial => 'workmanships'%>
@@ -136,24 +160,26 @@
   <% end %>
 
 
-<% if $autorizacion == 3 %>
-<div id="Autoriza_03">
-  <table width="950" class="Table2">
-    <tr>
-      <td>
-        <%= f.check_box :chk_aut_03, :id=>'aut_03', :name=>'chk_aut_03', :value=>"" %>
-        Autorización Secretario Técnico
-      </td>
-    </tr>
-    <tr id="txt_aut_03">
-      <td><%= f.text_area :add_aut_03,  :size => '100%'%> </td>
-    </tr>
-  </table>
-</div>
+  <% if $autorizacion == 3 %>
+    <div id="Autoriza_03">
+      <table width="950" class="Table2">
+        <tr>
+          <td>
+            <%= f.check_box :chk_aut_03, :id=>'aut_03', :name=>'chk_aut_03', :value=>"" %>
+             Autorización Secretario Técnico
+          </td>
+        </tr>
+        <tr id="txt_aut_03">
+          <td><%= f.text_area :add_aut_03,  :size => '100%'%> </td>
+        </tr>
+      </table>
+    </div>
+    <hr />
+    <%= f.submit 'Guardar'%><%= link_to 'Cancelar', budgets_budgets_path, :class => 'link-button' %>
+  <% else %>
+     <hr />
+     <%= link_to 'Cancelar', budgets_budgets_path, :class => 'link-button' %>
+  <% end %>
+
 <% end %>
-<% end %>
 
-
-
-<%= link_to 'Edit', edit_budgets_budget_path(@budgets_budget) %> |
-<%= link_to 'Back', budgets_budgets_path %>

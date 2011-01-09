@@ -8,13 +8,14 @@
     <th>Presupuestó</th>
     <th></th>    
     <th></th>
+    <th></th>
   </tr>
 
 <% @budgets_budgets.each do |budgets_budget| %>
   <tr>
     <td><%= budgets_budget.request.num_sequence %></td>
     <td align="right"><%= number_to_currency(budgets_budget.total_cost) %></td>
-    <td><%= budgets_budget.budget_date %></td>
+    <td><%= budgets_budget.budget_date.strftime("%d/%m/%Y") %></td>
     <td><%= budgets_budget.user.name %></td>
     <td>
        <% if budgets_budget.budget_type == 1 %>
@@ -23,6 +24,7 @@
          <%= link_to_if budgets_budget.valida_budget_aut(budgets_budget.id) ,'Editar', :controller=>'/budgets/budgets', :action => "budget_fm2",  :id => budgets_budget.support_request_id %>
        <% end %>
     </td>
+    <td><%= link_to "Mostrar", :controller=>'/budgets/budgets' , :action => "show", :id => budgets_budget.support_request_id %></td>
     <td><%= link_to_if  Administration::UserSession.find.record.attributes['role']=='ADMIN', 'Borrar', budgets_budget,:remote => true, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>

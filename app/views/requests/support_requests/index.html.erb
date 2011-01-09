@@ -13,7 +13,7 @@
     <th></th>    
     <th></th>
     <th></th>
-    <th></th>
+    
   </tr>
 
 <%= will_paginate @request_support_requests %>
@@ -26,8 +26,7 @@
     <td align ="center" ><%= image_tag(requests_support_request.img_status(requests_support_request.request_status_id.to_i)) %></td>
     <td><%= link_to 'Ver', requests_support_request %></td>
     <td><%= link_to_if requests_support_request.helper_id == nil , "Modificar", edit_requests_support_request_path(requests_support_request) %></td>
-    <td><%= link_to_if requests_support_request.valida_presupuesto(requests_support_request.id), "Presupuesto", :controller=>'/budgets/budgets' , :action => "show", :id => requests_support_request.id %></td>
-    <td><%= link_to_if requests_support_request.valida_presupuesto(requests_support_request.id), "Presup. Externo", :controller=>'/budgets/budgets', :action => "budget_fm2", :id => requests_support_request.id %></td>
+    <td><%= link_to "Presupuesto", :controller=>'/budgets/budgets' , :action => "show", :id => requests_support_request.id %></td>    
   </tr>
 <% end %>
 </table>
