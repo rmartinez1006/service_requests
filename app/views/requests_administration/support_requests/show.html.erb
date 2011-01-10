@@ -164,9 +164,9 @@
 
 <% end  %>
 
-<%= link_to 'Cambiar', edit_requests_administration_support_request_path(@requests_support_request),:class => 'link-button' %> |
+<%= link_to 'Cambiar', edit_requests_administration_support_request_path(@requests_support_request),:class => 'link-button' %> 
 <%= link_to 'Regresar', requests_administration_support_requests_path,:class => 'link-button' %>
-<%= link_to 'Escalar',  
+<%#= link_to 'Escalar',
     :controller => "support_requests",
     :class => "link-button",
     :action => "scale",

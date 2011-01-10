@@ -1,26 +1,26 @@
-<h1>Escalar solicitud de servicio</h1>
+<h1>Asignar solicitud de servicio</h1>
 
 <table width="950" class="table1">
 <tr class="table_content_c2">
 
-  <td width="80" align=right >
+  <th width="80" align=right >
      <b>Folio:</b>
-  </td>
+  </th>
   <td align="left">
      <%= @requests_support_request.num_sequence  %>
   </td>
-  <td> <b> Creado el:</b></td>
+  <th> <b> Creado el:</b></th>
   <td align="left"><%=  @requests_support_request.created_at.strftime("%m/%d/%Y") %></td>
-  <td> <b> Ultimo cambio:</b></td>
+  <th> <b> Ultimo cambio:</b></th>
   <td align="left"><%=  @requests_support_request.status_chng_date.strftime("%m/%d/%Y") %></td>
 </tr>
 </table>
 
 <table width="950" class="table1">
 <tr class="table_content_c2">
-  <td width="80" align=right >
+  <th width="80" align=right >
      <b>ID:</b>
-  </td>
+  </th>
   <td align="left">
      <%= @requests_support_request.request_no %>
   </td>
@@ -29,15 +29,15 @@
 </tr>
 
 <tr class="table_content_c3">
-  <td width="30" align=right >
+  <th width="30" align=right >
     <b>Ubicación:</b>
-  </td>
+  </th>
   <td align="left">
     <%= @requests_support_request.ubication.name %>
   </td>
-  <td width="60" align=right>
+  <th width="60" align=right>
     <b>Atiende:</b>
-  </td>
+  </th>
   <td align ="left">
     <%= @requests_support_request.helper %>
   </td>
@@ -45,15 +45,15 @@
 
 
 <tr class="table_content_c2">
-  <td width="30" align=right >
+  <th width="30" align=right >
     <b>Nombre:</b>
-  </td>
+  </th>
   <td align="left">
     <%= @requests_support_request.name %>
   </td>
-  <td width="70" align=right>
+  <th width="70" align=right>
     <b>Correo E.:</b>
-  </td>
+  </th>
   <td align ="left">
     <%= @requests_support_request.email %>
   </td>
@@ -62,18 +62,18 @@
 
 <table width="950" class="table1">
 <tr class="table_content_c3">
-  <td width="80" align=right >
+  <th width="80" align=right >
      <b>Tipo de soporte:</b>
-  </td>
+  </th>
   <td align="left">
      <%= @requests_support_request.support_type %>
   </td>
 </tr>
 
 <tr class="table_content_c2">
-  <td width="80" align=right >
+  <th width="80" align=right >
      <b>Descripción:</b>
-  </td>
+  </th>
   <td align="left">
      <%= @requests_support_request.description %>
   </td>
@@ -81,9 +81,9 @@
 
 
 <tr class="table_content_c3">
-  <td width="80" align=right >
+  <th width="80" align=right >
      <b>Descripción Técnica:</b>
-  </td>
+  </th>
   <td align="left">
      <%= @requests_support_request.tech_description %>
   </td>
@@ -91,9 +91,9 @@
 
 <%= form_for(@requests_support_request) do |f| %>
 <tr class="table_content_c2">
-  <td width="80" align=right >
-     <b>Escalar a:</b>
-  </td>
+  <th width="80" align=right >
+     <b>Asignar a:</b>
+  </th>
   <td align="left">
      <%= select :requests_administration_support_request, :helper_id,
       Administration::UserHierachy.find (:all, :conditions => {:user_id => Administration::UserSession.find.record.attributes['id']}).collect{|p| [p.userhelper.name, p.helper_id]}%>
@@ -109,14 +109,10 @@
 
 
 
-
-
-
-
 <hr/>
 
   <div class="actions">
-    <%= f.submit "Guardar"%>
+    <%= f.submit "Guardar"%><%= link_to 'Cancelar', requests_support_requests_path, :class => 'link-button' %>
   </div>
 
 
@@ -124,4 +120,4 @@
 
 <% end %>
 
-<%= link_to 'Cancelar', requests_support_requests_path %>
+

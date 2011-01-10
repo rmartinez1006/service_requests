@@ -150,7 +150,7 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
       
     respond_to do |format|
       if @requests_support_request.update_attributes(params[:requests_administration_support_request])
-        format.html { redirect_to(@requests_support_request, :notice => 'Support request was successfully updated.') }
+        format.html { redirect_to(@requests_support_request, :notice => 'La solicitud fue actualizada.') }
         format.xml  { head :ok }
 
         #   Ubicar el comentario (Ubicación fisica)

@@ -105,8 +105,15 @@ end
 # 3 = Cuarta autorización (Coordinador) -- Liberado (Autorización final) Coordinador
    def get_num_aut_req(request_id)
 
+     @budgets_budget = Budgets::Budget.find(:first,:conditions => {:support_request_id => request_id})
+     if not @budgets_budget
+       false
+       return
+     end
      autoriza = get_rol_aut
      r = 1
+
+     
      lv_aux ="SELECT com.* FROM request_commentaries com, catalogs_comment_types typ, budgets_budgets bud
                    WHERE com.comment_type_id = typ.id
                      AND com.budget_id =bud.id
