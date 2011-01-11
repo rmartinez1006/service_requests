@@ -7,7 +7,8 @@ class Budgets::BudgetsController < ApplicationController
   # GET /budgets/budgets
   # GET /budgets/budgets.xml
   def index  
-    @budgets_budgets = Budgets::Budget.all
+    @budgets_budgets = get_list_budget()
+    #@budgets_budgets = Budgets::Budget.all
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @budgets_budgets }

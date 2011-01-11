@@ -11,6 +11,8 @@ class Budgets::Budget < ActiveRecord::Base
                 :work_unit, :work_description, :work_quantity, :work_cost, :work_import, :work_type, :work_other,
                 :add_aut_analista, :add_aut_02, :add_aut_03, :add_aut_04, :chk_analista, :chk_aut_02, :chk_aut_03, :chk_aut_04
 
+include Common
+
 #validates_format_of :total_cost, :with => /\d{0,10}\./
 # validates_format_of :total_cost, :with => /\d{0,10}\.\d{2}/
 validates_numericality_of :total_cost, :on => :create, :message => "Debe ser númerico."

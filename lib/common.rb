@@ -155,5 +155,26 @@ end
      end
      exito
    end
+
+   def get_list_budget
+     user_ubication_id= Administration::UserSession.find.record.attributes['ubication_id']
+     user_id = Administration::UserSession.find.record.attributes['id']
+     role = Administration::UserSession.find.record.attributes['role']
+     if role == 'ADMIN'
+       @budgets_budgets = Budgets::Budget.all.paginate :page =>params[:page],:per_page=>22, :order => 'created_at DESC'
+       return @budgets_budgets
+     else
+       lv_sql ="SELECT * FROM budgets_budgets
+                WHERE user_id =".concat(user_id.to_s)+
+               "  OR support_request_id IN (SELECT DISTINCT support_request_id
+                               FROM request_delegations
+                              WHERE user_id = ".concat(user_id.to_s) +")
+                 ORDER BY created_at DESC "
+     end
+
+     @budgets_budgets=Budgets::Budget.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>22, :order => 'created_at DESC'
+     return  @budgets_budgets
+
+   end
    
 end
