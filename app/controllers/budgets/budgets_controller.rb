@@ -176,64 +176,66 @@ class Budgets::BudgetsController < ApplicationController
         @budgets_budget.attributes =  params[:budgets_budget]
          $autorizacion =get_num_aut(@budgets_budget.id)
       end
-#      @budgets_budget.attributes =  params[:budgets_budget]
-#     Validar el botón de "Agregar material"
-      # Agregar material
-      if (@budgets_budget.mat_quantity.to_i > 0 ) && (@budgets_budget.mat_quantity.to_i!=-999.00)
-          lv_description= @budgets_budget.mat_description
-          lv_description= @budgets_budget.mat_other if @budgets_budget.mat_other!= ""
-          @budgets_budget_supply =   Budgets::BudgetSupply.new :type_supply=> @budgets_budget.mat_type,
-                                                               :budget_id=> $budget_id,
-                                                               :description=> lv_description,
-                                                               :unit_cost=> @budgets_budget.mat_import,
-                                                               :quantity=> @budgets_budget.mat_quantity,
-                                                               :unit_measure=> @budgets_budget.mat_unit
-          @budgets_budget_supply.save
-#         Buscar los materiales que corresponden al presupuesto
-          @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
-          return
-      end
 
-      # Agregar mano de obra
-      if (@budgets_budget.work_quantity.to_i > 0 ) && (@budgets_budget.work_quantity.to_i!=-999.00)
-          lv_description= @budgets_budget.work_description
-          lv_description= @budgets_budget.work_other if @budgets_budget.work_other!= ""
-          @budgets_budget_supply =   Budgets::BudgetSupply.new :type_supply=> @budgets_budget.work_type,
-                                                               :budget_id=> $budget_id,
-                                                               :description=> lv_description,
-                                                               :unit_cost=> @budgets_budget.work_import,
-                                                               :quantity=> @budgets_budget.work_quantity,
-                                                               :unit_measure=> @budgets_budget.work_unit
-          @budgets_budget_supply.save
-#         Buscar los materiales que corresponden al presupuesto
-          @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
-          return
-      end
+      if $autorizacion != 3
+#         @budgets_budget.attributes =  params[:budgets_budget]
+#         Validar el botón de "Agregar material"
+#         Agregar material
+          if (@budgets_budget.mat_quantity.to_i > 0 ) && (@budgets_budget.mat_quantity.to_i!=-999.00)
+              lv_description= @budgets_budget.mat_description
+              lv_description= @budgets_budget.mat_other if @budgets_budget.mat_other!= ""
+              @budgets_budget_supply =   Budgets::BudgetSupply.new :type_supply=> @budgets_budget.mat_type,
+                                                                   :budget_id=> $budget_id,
+                                                                   :description=> lv_description,
+                                                                   :unit_cost=> @budgets_budget.mat_import,
+                                                                   :quantity=> @budgets_budget.mat_quantity,
+                                                                   :unit_measure=> @budgets_budget.mat_unit
+              @budgets_budget_supply.save
+#             Buscar los materiales que corresponden al presupuesto
+              @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
+              return
+          end
 
-#     Actualizar Presupuesto      
-      @budgets_budget.budget_type= $budget_type
-      @budgets_budget.attributes =  params[:budgets_budget]
-      if $budget_type ==1     #Presupuesto Interno (Tiene Materiales y mano de obra)
-         @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id} )
-#        Obtener el Importe Total (Gran Total)
-#        primero, buscar los materiales que corresponden al presupuesto
-         sum = 0
-         sum = @budgets_budget.suma_total(@budgets_budget_supplies)
-         @budgets_budget.total_cost = sum
-      end
-      if @budgets_budget.save
-#        Guardar el Tipo de Soporte en la Solicitud
-#        Ubicar la solicitud
-         @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
-         @budgets_budget.tech_description = @budgets_budget.tech_description
-         @requests_support_request.support_type_id = @budgets_budget.support_type_id
-          # Actualizar el estatus (Atendido)
-         @requests_support_request.request_status_id = get_status_id('ST07')
-         @requests_support_request.save
-      end
+#         Agregar mano de obra
+          if (@budgets_budget.work_quantity.to_i > 0 ) && (@budgets_budget.work_quantity.to_i!=-999.00)
+              lv_description= @budgets_budget.work_description
+              lv_description= @budgets_budget.work_other if @budgets_budget.work_other!= ""
+              @budgets_budget_supply =   Budgets::BudgetSupply.new :type_supply=> @budgets_budget.work_type,
+                                                                   :budget_id=> $budget_id,
+                                                                   :description=> lv_description,
+                                                                   :unit_cost=> @budgets_budget.work_import,
+                                                                   :quantity=> @budgets_budget.work_quantity,
+                                                                   :unit_measure=> @budgets_budget.work_unit
+              @budgets_budget_supply.save
+#             Buscar los materiales que corresponden al presupuesto
+              @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
+              return
+          end
+
+#         Actualizar Presupuesto
+          @budgets_budget.budget_type= $budget_type
+          @budgets_budget.attributes =  params[:budgets_budget]
+          if $budget_type ==1     #Presupuesto Interno (Tiene Materiales y mano de obra)
+             @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id} )
+#            Obtener el Importe Total (Gran Total)
+#            primero, buscar los materiales que corresponden al presupuesto
+             sum = 0
+             sum = @budgets_budget.suma_total(@budgets_budget_supplies)
+             @budgets_budget.total_cost = sum
+          end
+          if @budgets_budget.save
+#            Guardar el Tipo de Soporte en la Solicitud
+#            Ubicar la solicitud
+             @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
+             @budgets_budget.tech_description = @budgets_budget.tech_description
+             @requests_support_request.support_type_id = @budgets_budget.support_type_id
+#            Actualizar el estatus (Atendido)
+             @requests_support_request.request_status_id = get_status_id('ST07')
+             @requests_support_request.save
+          end
 
 #     Guardar autorización (commentary)
-
+      end # Si es $Autorizacion = 3 (Autorizacion del Secretario Tecnico)
       lv_guardar = 0
       if ($autorizacion == 1) & (params[:chk_analista]=='1')
         lv_autorizacion ='AUT-P01'
@@ -244,6 +246,12 @@ class Budgets::BudgetsController < ApplicationController
       if ($autorizacion == 2) & (params[:chk_aut_02]=='1')
          lv_autorizacion ='AUT-P02'
          lv_comentario = @budgets_budget.add_aut_02
+         lv_guardar = 1
+      end
+
+      if ($autorizacion == 3) & (params[:chk_aut_03]=='1')
+         lv_autorizacion ='AUT-P03'
+         lv_comentario = @budgets_budget.add_aut_03
          lv_guardar = 1
       end
       if ($autorizacion == 4) & (params[:chk_aut_04]=='1')
@@ -263,7 +271,7 @@ class Budgets::BudgetsController < ApplicationController
          request_commentary = Requests::RequestCommentary.new
          request_commentary.budget_id =  $budget_id
          request_commentary.user_id = Administration::UserSession.find.record.attributes['id']
-         request_commentary.commentaries = @requests_support_request.req_ubication
+         request_commentary.commentaries = lv_comentario
          request_commentary.comment_type_id = @catalogs_comment_types.id
          request_commentary.save      
       end

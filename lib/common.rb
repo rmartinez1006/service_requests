@@ -82,10 +82,12 @@ def get_rol_aut
     r={'aut02'=> 2, 'aut04'=> 4}
     autoriza << { :aut => 2 }
     autoriza << { :aut => 4 }
+
   end
   if role == 'SECTEC'
     r={'aut03'=> 3} # No. de autorización que tiene que realizar
     autoriza << { :aut => 3 }
+    autoriza << { :aut => 4 }
   end
   if role=='ADMIN'
     r={'aut01'=> 1,'aut02'=> 2, 'aut03'=> 3,'aut04'=> 4}
@@ -110,7 +112,7 @@ end
        false
        return
      end
-     autoriza = get_rol_aut
+     autoriza = get_rol_aut  #autoriza es un array con las autorizaciones a las que tiene acceso
      r = 1
 
      

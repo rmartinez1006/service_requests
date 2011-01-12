@@ -63,7 +63,7 @@ validates_numericality_of :total_cost, :on => :create, :message => "Debe ser nú
      end
 
 
-     # Si ya existe la autorizacion 3 el COORDINADOR ya no se puede Editar
+     # Si esta pendiente la autorizacion 3  no se puede Editar el presupuesto
      if (lv_role == 'COORD') |  (lv_role == 'ADMIN')
        lv_autorizacion = " ='AUT-P03'"
      end
@@ -80,8 +80,8 @@ validates_numericality_of :total_cost, :on => :create, :message => "Debe ser nú
                 " AND typ.abbr ".concat(lv_autorizacion)
 
      @commentary_aut01 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
-     if not @commentary_aut01.empty?
-        r = false #SI existe YA NO PUEDE EDITAR
+     if @commentary_aut01.empty?
+        r = false #SI NO existe NO PUEDE EDITAR, ya que
      end
      r
    end

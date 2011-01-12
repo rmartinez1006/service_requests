@@ -1,4 +1,5 @@
 <head>
+  
   <script type="text/javascript">
     $(document).ready(function(){
 
@@ -154,11 +155,18 @@
         return false;
       });
 
-
-
     });
-    </script>
 
+
+</script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+        //Calendario
+      $(function (){
+        $("#budgets_ending_date").datepicker();
+      });
+</script>
 </head>
 
 
@@ -432,13 +440,21 @@
         Autorización Final Presupuesto (Coordinador)
       </td>
     </tr>
-    <tr id="txt_aut_03">
+    
+    <tr id="txt_aut_04">
       <td><%= f.text_area :add_aut_04,  :size => '100%'%> </td>
+      <td>Fecha de Termino:<%= f.text_field :ending_date, :size=>'10', :id=>'budgets_ending_date'%> </td>
+      <%#= calendar_date_select_tag "e_date", nil, :embedded => true, :year_range => 10.years.ago..0.years.ago %>
     </tr>
+    
+    
+      
+    
+
+
   </table>
 </div>
 <% end %>
-
 
 
 <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('cantidad').value=-999.99; return true;"%>

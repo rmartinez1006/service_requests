@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110105053852) do
+ActiveRecord::Schema.define(:version => 20110112030137) do
 
   create_table "administration_user_hierachies", :force => true do |t|
     t.integer  "user_id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20110105053852) do
     t.datetime "updated_at"
     t.text     "description"
     t.integer  "budget_type"
+    t.date     "ending_date"
   end
 
   create_table "catalogs_comment_types", :force => true do |t|
