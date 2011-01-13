@@ -160,11 +160,33 @@
 
 </script>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.3/jquery-ui.min.js"></script>
+<%= javascript_include_tag 'jquery-ui-1.8.7.js' %>
 <script type="text/javascript">
+  //-- Calendario en Español
+  jQuery(function($){
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '&#x3c;Ant',
+		nextText: 'Sig&#x3e;',
+		currentText: 'Hoy',
+		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+		'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+		monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+		'Jul','Ago','Sep','Oct','Nov','Dic'],
+		dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+		dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''};
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+         });
         //Calendario
       $(function (){
-        $("#budgets_ending_date").datepicker();
+        $("#budgets_ending_date").datepicker({ showButtonPanel: true , autoSize: true });
       });
 </script>
 </head>
@@ -433,6 +455,9 @@
 
 <% if $autorizacion == 4 %>
 <div id="Autoriza_04">
+  <hr />
+  <td>Fecha de Termino:<%= f.text_field :ending_date, :size=>'9', :id=>'budgets_ending_date'%> </td>
+  
   <table width="950" class="Table2">
     <tr>
       <td>
@@ -442,21 +467,14 @@
     </tr>
     
     <tr id="txt_aut_04">
-      <td><%= f.text_area :add_aut_04,  :size => '100%'%> </td>
-      <td>Fecha de Termino:<%= f.text_field :ending_date, :size=>'10', :id=>'budgets_ending_date'%> </td>
+      <td><%= f.text_area :add_aut_04,  :size => '100%'%> </td>      
       <%#= calendar_date_select_tag "e_date", nil, :embedded => true, :year_range => 10.years.ago..0.years.ago %>
-    </tr>
-    
-    
-      
-    
-
-
+    </tr>           
   </table>
 </div>
 <% end %>
 
-
+<hr />
 <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('cantidad').value=-999.99; return true;"%>
 
 

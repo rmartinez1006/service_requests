@@ -30,6 +30,15 @@ module Common
      end
      r
    end
+ 
+   # Asignar el estatus a la solicitud
+   def set_status_id_req(support_request_id, status)
+     @requests_support_request = RequestsAdministration::SupportRequest.find(support_request_id)
+     unless @requests_support_request.empty?
+        @requests_support_request.request_status_id = get_status_id(status)
+        @requests_support_request
+     end   
+   end
 
    # Obtener el número de autorización siguiente del presupuesto (Por ID de Presupuesto)
    # budget_id => ID del presupuesto

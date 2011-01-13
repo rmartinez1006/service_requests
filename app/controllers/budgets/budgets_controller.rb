@@ -173,6 +173,7 @@ class Budgets::BudgetsController < ApplicationController
   def update
       @budgets_budget = Budgets::Budget.find(params[:id])
       if @budgets_budget!= nil
+        lv_req_id = @budgets_budget.support_request_id
         @budgets_budget.attributes =  params[:budgets_budget]
          $autorizacion =get_num_aut(@budgets_budget.id)
       end
@@ -241,23 +242,27 @@ class Budgets::BudgetsController < ApplicationController
         lv_autorizacion ='AUT-P01'
         lv_comentario = @budgets_budget.add_aut_analista
         lv_guardar = 1
+        lv_status = 'ST08'
       end
 
       if ($autorizacion == 2) & (params[:chk_aut_02]=='1')
          lv_autorizacion ='AUT-P02'
          lv_comentario = @budgets_budget.add_aut_02
          lv_guardar = 1
+         lv_status = 'ST09'
       end
 
       if ($autorizacion == 3) & (params[:chk_aut_03]=='1')
          lv_autorizacion ='AUT-P03'
          lv_comentario = @budgets_budget.add_aut_03
          lv_guardar = 1
+         lv_status='ST10'
       end
       if ($autorizacion == 4) & (params[:chk_aut_04]=='1')
          lv_autorizacion ='AUT-P04'
          lv_comentario = @budgets_budget.add_aut_04
          lv_guardar = 1
+         lv_status = 'ST11'
       end
 
       if (lv_guardar == 1)
@@ -273,7 +278,10 @@ class Budgets::BudgetsController < ApplicationController
          request_commentary.user_id = Administration::UserSession.find.record.attributes['id']
          request_commentary.commentaries = lv_comentario
          request_commentary.comment_type_id = @catalogs_comment_types.id
-         request_commentary.save      
+         request_commentary.save
+         # Actualizar Status de solicitud
+         @budgets_budget.set_status_id_req(support_request_id, status)
+
       end
 
       
