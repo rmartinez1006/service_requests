@@ -34,9 +34,9 @@ module Common
    # Asignar el estatus a la solicitud
    def set_status_id_req(support_request_id, status)
      @requests_support_request = RequestsAdministration::SupportRequest.find(support_request_id)
-     unless @requests_support_request.empty?
+     if @requests_support_request
         @requests_support_request.request_status_id = get_status_id(status)
-        @requests_support_request
+        @requests_support_request.save
      end   
    end
 
@@ -77,51 +77,92 @@ module Common
 
 
 # Obtener las autorizaciones que puede (tiene acceso) realizar según el rol
-def get_rol_aut
-  r = nil
+# pm_tipo: (E) Edición, (V) Visualización
+def get_rol_aut(pm_tipo)
+  
 
   autoriza = Array.new
 
   role = Administration::UserSession.find.record.attributes['role']
-  if role=='APRE'
-    r = {'aut01'=> 1}   # No. de autorización que tiene que realizar
-    autoriza << { :aut => 1 }
-  end
-  if role=='COORD'
-    r={'aut02'=> 2, 'aut04'=> 4}
-    autoriza << { :aut => 2 }
-    autoriza << { :aut => 4 }
+  # -- PERMISO DE EDICION (CAMBIOS) PRESUPUESTO
+  if pm_tipo == "E"
+    # -- ADMINISTRADOR
+    if role=='ADMIN'  
+       autoriza << { :aut => 1 }
+       autoriza << { :aut => 2 }
+       #autoriza << { :aut => 3 }
+       autoriza << { :aut => 4 }
+    end
 
+    # -- COORDINADOR
+    if role=='COORD'
+       autoriza << { :aut => 1 }
+       autoriza << { :aut => 2 }
+       autoriza << { :aut => 4 }
+    end
+
+    # -- ANALISTA PRESUPUESTADOR
+    if role=='APRE'       
+       autoriza << { :aut => 1 }
+    end
+
+    # -- SECRETARIO TECNICO
+    if role == 'SECTEC'       
+       autoriza << { :aut => 3 }       
+    end
   end
-  if role == 'SECTEC'
-    r={'aut03'=> 3} # No. de autorización que tiene que realizar
-    autoriza << { :aut => 3 }
-    autoriza << { :aut => 4 }
+
+  # -- PERMISO DE VISUALIZACION DE PRESUPUESTO
+  if pm_tipo == "V"
+    # -- ADMINISTRADOR
+    if role=='ADMIN'
+       autoriza << { :aut => 1 }
+       autoriza << { :aut => 2 }
+       autoriza << { :aut => 3 }
+       autoriza << { :aut => 4 }
+    end
+
+    # -- COORDINADOR
+    if role=='COORD'
+       autoriza << { :aut => 1 }
+       autoriza << { :aut => 2 }
+       autoriza << { :aut => 3 }
+       autoriza << { :aut => 4 }
+    end
+
+    # -- ANALISTA PRESUPUESTADOR
+    if role=='APRE'
+       autoriza << { :aut => 1 }
+       autoriza << { :aut => 2 }
+       autoriza << { :aut => 3 }
+       autoriza << { :aut => 4 }
+    end
+
+    # -- SECRETARIO TECNICO
+    if role == 'SECTEC'
+       autoriza << { :aut => 3 }
+       autoriza << { :aut => 4 }
+    end
   end
-  if role=='ADMIN'
-    r={'aut01'=> 1,'aut02'=> 2, 'aut03'=> 3,'aut04'=> 4}
-    autoriza << { :aut => 1 }
-    autoriza << { :aut => 2 }
-    autoriza << { :aut => 3 }
-    autoriza << { :aut => 4 }
-  end
+  #---
   autoriza
 end
 
-# Obtener el número de autorización siguiente del presupuesto (Por ID de Solicitud)
-# budget_id => ID del presupuesto
+# Devuelve Verdadero si tiene permiso para Editar (E) o Visualizar (V), o falso si no tiene permiso
+# requets_id => ID del presupuesto
 # 1 = Primer autorización (Analista)
 # 2 = Segunda autorización (Coordinador) --Pre-liberación
 # 3 = Tercer Autorización del Secretario tecnico responsable de la dependencia
 # 3 = Cuarta autorización (Coordinador) -- Liberado (Autorización final) Coordinador
-   def get_num_aut_req(request_id)
+   def get_num_aut_req(request_id, pm_tipo)
 
      @budgets_budget = Budgets::Budget.find(:first,:conditions => {:support_request_id => request_id})
      if not @budgets_budget
        false
        return
      end
-     autoriza = get_rol_aut  #autoriza es un array con las autorizaciones a las que tiene acceso
+     # pm_tipo = 'E' Edicion, 'V' Visualización
+     autoriza = get_rol_aut(pm_tipo)  #autoriza es un array con las autorizaciones a las que tiene acceso
      r = 1
 
      

@@ -28,9 +28,9 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
               " UNION
                 SELECT r.* FROM request_support_requests as r
                  WHERE r.helper_id = ".concat(user_id.to_s)+
-              "ORDER BY created_at ASC"
+              "ORDER BY created_at DESC"
     
-    @requests_administration_support_requests = RequestsAdministration::SupportRequest.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>10, :order => 'created_at ASC'
+    @requests_administration_support_requests = RequestsAdministration::SupportRequest.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>9, :order => 'created_at DESC'
     
 #   Solicitudes en la que esta involucrado
      lv_sql ="SELECT DISTINCT s.*
@@ -39,9 +39,9 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
                   ON s.id = r.support_request_id
                WHERE s.helper_id <> r.helper_id
                  AND r.helper_id = ".concat(user_id.to_s)+
-               "ORDER BY created_at ASC"
+               "ORDER BY created_at DESC"
 
-    @requests_administration_support_requests_deleg = RequestsAdministration::SupportRequest.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>4, :order => 'created_at ASC'
+    @requests_administration_support_requests_deleg = RequestsAdministration::SupportRequest.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>4, :order => 'created_at DESC'
 
 
     respond_to do |format|

@@ -74,6 +74,8 @@ validates_numericality_of :total_cost, :on => :create, :message => "Debe ser nú
        return
      end
 
+     lv_numaut = get_num_aut(budget_id)
+
      lv_sql ="SELECT * FROM request_commentaries com, catalogs_comment_types typ
                WHERE com.comment_type_id = typ.id
                  AND com.budget_id =".concat(budget_id.to_s) +

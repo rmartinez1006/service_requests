@@ -160,7 +160,7 @@
   <% end %>
 
 
-  <% if $autorizacion == 3 %>
+  <% if $permiso %>
     <div id="Autoriza_03">
       <table width="950" class="Table2">
         <tr>
@@ -175,10 +175,10 @@
       </table>
     </div>
     <hr />
-    <%= f.submit 'Guardar'%><%= link_to 'Cancelar', budgets_budgets_path, :class => 'link-button' %>
+    <%= f.submit 'Guardar'%><%= link_to 'Cancelar', :back, :class => 'link-button' %>
   <% else %>
      <hr />
-     <%= link_to 'Cancelar', budgets_budgets_path, :class => 'link-button' %>
+     
   <% end %>
 
 <% end %>
