@@ -166,8 +166,9 @@ class Budgets::BudgetsController < ApplicationController
          request_commentary = Requests::RequestCommentary.new
          request_commentary.budget_id =  $budget_id
          request_commentary.user_id = Administration::UserSession.find.record.attributes['id']
-         request_commentary.commentaries = @requests_support_request.req_ubication
+         request_commentary.commentaries = lv_comentario
          request_commentary.comment_type_id = @catalogs_comment_types.id
+         request_commentary.support_request_id = @budgets_budget.support_request_id
          request_commentary.save
          # Actualizar Status de solicitud
          @budgets_budget.set_status_id_req(@requests_support_request.id, lv_status)
@@ -293,6 +294,7 @@ class Budgets::BudgetsController < ApplicationController
          request_commentary.user_id = Administration::UserSession.find.record.attributes['id']
          request_commentary.commentaries = lv_comentario
          request_commentary.comment_type_id = @catalogs_comment_types.id
+         request_commentary.support_request_id = @budgets_budget.support_request_id
          request_commentary.save
          # Actualizar Status de solicitud
          @budgets_budget.set_status_id_req(@budgets_budget.support_request_id, lv_status)

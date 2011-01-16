@@ -197,7 +197,12 @@ end
      # R tiene el No. de autorización actual
      exito = false
      if r == 999
-        exito = true
+        if pm_tipo=="E" #Edicion
+          exito = false
+        else  
+          exito = true
+        end
+        
      else
         for p in 0..autoriza.length-1
           if autoriza[p][:aut]==r

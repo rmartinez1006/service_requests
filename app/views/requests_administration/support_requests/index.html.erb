@@ -22,9 +22,9 @@
   <tr>
     <td><%= requests_administration_support_request.created_at.strftime("%d/%m/%Y") %></td>
     <td><%= requests_administration_support_request.num_sequence %></td>
-    <td><%= requests_administration_support_request.name %></td>
-    <td><%= requests_administration_support_request.description_left(50) %></td>
-    <td align ="center" ><%= image_tag(requests_administration_support_request.img_status(requests_administration_support_request.request_status_id.to_i)) %></td>
+    <td><%= requests_administration_support_request.name %></td>    
+    <td><%= requests_administration_support_request.description_left(50) %></td>    
+    <td align ="center" ><%= image_tag(requests_administration_support_request.img_status(requests_administration_support_request.request_status_id.to_i))  %></td>
     <td><%= link_to 'Ver', requests_administration_support_request %></td>
     <td><%= link_to_if requests_administration_support_request.helper_id == nil , "Modificar", edit_requests_administration_support_request_path(requests_administration_support_request) %></td>
     <td><%= link_to_if requests_administration_support_request.valida_escalar(), 'Asignar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request.id %></td>
