@@ -88,5 +88,12 @@ validates_numericality_of :total_cost, :on => :create, :message => "Debe ser nú
      r
    end
 
+   def fn_ending_date(lv_date)
+     r =''
+     if lv_date != nil
+      r = lv_date.strftime("%d/%m/%Y")
+     end
+     r
+   end
 
 end

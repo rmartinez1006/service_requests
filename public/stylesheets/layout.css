@@ -120,7 +120,20 @@ h3{
     background-color: #FCF6CF;
 }
 
+/* Comentarios durante resolución */
+.RESOL{
+    background-color: #FCF6CF;
+}
 
+/* Comentario de Autorización de Coordinador, espera Autorización Sec. Tecnico */
+.AUT-P02{
+    background-color: #C9EC96;
+}
+
+/* Commentario de Autorización del secretario Tecnico */
+.AUT-P03{
+    background-color: #FFA300;
+}
 
 
 

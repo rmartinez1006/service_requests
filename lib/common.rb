@@ -233,5 +233,17 @@ end
      return  @budgets_budgets
 
    end
-   
+
+   # Obtener la clave (ABBR) de un tipo de comentario
+   def get_abbr_comment(id)
+     r = ""
+     lv_sql = "SELECT abbr FROM catalogs_comment_types
+                WHERE id = ".concat(id.to_s)
+     @comment_types=Catalogs::CommentType.find_by_sql(lv_sql)
+     if @comment_types
+       r =  @comment_types[0].abbr
+     end
+     r
+   end
+
 end

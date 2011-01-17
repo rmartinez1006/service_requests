@@ -60,8 +60,9 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
               WHERE support_request_id = " + params[:id] +
             " AND comment_type_id IN
                 (SELECT id FROM catalogs_comment_types
-                 WHERE abbr IN ('RESOL','AUT-P02'))
+                 WHERE abbr IN ('RESOL','AUT-P02','AUT-P03'))
               ORDER BY created_at DESC"
+    
   #@requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"support_request_id" = ?', params[:id]] )
     @requests_request_commentaries = RequestsAdministration::Commentary.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>4, :order => 'created_at ASC'
 

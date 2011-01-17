@@ -1,4 +1,5 @@
 class RequestsAdministration::CommentariesController < ApplicationController
+  include Common
   # GET /requests/request_commentaries
   # GET /requests/request_commentaries.xml
   before_filter :authorize

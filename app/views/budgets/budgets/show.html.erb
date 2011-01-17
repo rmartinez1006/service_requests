@@ -78,7 +78,6 @@
      <%= raw(@budgets_budget.request.text_to_html(@budgets_budget.request.description)) %>
   </td>
 </tr>
-
 </table>
 
 
@@ -125,6 +124,7 @@
     </td>
   </tr>
 
+
   <% if $display_supplies == 2 %>
   <tr>
     <th width="80" align="right">
@@ -141,6 +141,14 @@
     </td>
   </tr>
   <% end %>
+  <tr>
+    <th width="80" align=right >
+      <b>Fecha de Termino:</b>
+    </th>
+    <td align="left" colspan="5">
+      <%= @budgets_budget.fn_ending_date(@budgets_budget.ending_date) %>
+    </td>
+  </tr>
 
 </table>
 
@@ -175,10 +183,10 @@
       </table>
     </div>
     <hr />
-    <%= f.submit 'Guardar'%><%= link_to 'Cancelar', :back, :class => 'link-button' %>
+    <%= f.submit 'Guardar'%>
   <% else %>
      <hr />
-     
+     <%= link_to 'Salir', :back, :class => 'link-button' %>
   <% end %>
 
 <% end %>

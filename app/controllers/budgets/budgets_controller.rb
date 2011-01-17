@@ -231,6 +231,10 @@ class Budgets::BudgetsController < ApplicationController
 #         Actualizar Presupuesto
           @budgets_budget.budget_type= $budget_type
           @budgets_budget.attributes =  params[:budgets_budget]
+          lv_ending_date = params[:budgets_budget][:ending_date]
+          if lv_ending_date!=nil
+             @budgets_budget.ending_date = Date.strptime(lv_ending_date, "%d/%m/%Y")
+          end
           if $budget_type ==1     #Presupuesto Interno (Tiene Materiales y mano de obra)
              @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id} )
 #            Obtener el Importe Total (Gran Total)
