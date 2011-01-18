@@ -13,6 +13,16 @@ class Budgets::BudgetSupply < ActiveRecord::Base
   r
  end
 
+   #-- Valida si en el materia/mano de obra puede borrar
+   def fn_borrar()
+     role = Administration::UserSession.find.record.attributes['role']
+     r= false
+     case role
+     when 'ADMIN','APRE','COORD'
+       r = true
+     end
+     r
+   end
 
 
 end

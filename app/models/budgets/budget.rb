@@ -96,4 +96,5 @@ validates_numericality_of :total_cost, :on => :create, :message => "Debe ser nú
      r
    end
 
+
 end
