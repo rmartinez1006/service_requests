@@ -6,6 +6,7 @@
     <th>Costo Total</th>
     <th>Fecha</th>
     <th>Presupuestó</th>
+    <th>Estatus</th>
     <th></th>    
     <th></th>
     <th></th>
@@ -18,6 +19,7 @@
     <td align="right"><%= number_to_currency(budgets_budget.total_cost) %></td>
     <td><%= budgets_budget.budget_date.strftime("%d/%m/%Y") %></td>
     <td><%= budgets_budget.user.name %></td>
+    <td align ="center" ><%= image_tag(budgets_budget.request.img_status(budgets_budget.request.request_status_id.to_i))  %></td>
     <td>
        <% if budgets_budget.budget_type == 1 %>
          <%= link_to_if budgets_budget.get_num_aut_req(budgets_budget.support_request_id, "E") ,'Editar', :controller=>'/budgets/budgets',  :action => "budget_fm1_edit",  :id => budgets_budget.support_request_id %>

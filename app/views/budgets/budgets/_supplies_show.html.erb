@@ -5,8 +5,7 @@
     <th>Cantidad</th>
     <th>Costo</th>    
     <th>Unidad</th>    
-    <th>Importe</th>
-    <th></th>
+    <th>Importe</th>    
   </tr>
 
 <% @budgets_budget_supplies.each do |budgets_budget_supply| %>
@@ -15,8 +14,7 @@
     <td align="right"><%= budgets_budget_supply.quantity %></td>
     <td align="right"><%= number_to_currency(budgets_budget_supply.unit_cost) %></td>
     <td><%= budgets_budget_supply.unit_measure %></td>
-    <td align="right"><%= number_to_currency(budgets_budget_supply.importe( budgets_budget_supply.unit_cost,  budgets_budget_supply.quantity ))  %></td>    
-    <td><%= link_to "Borrar", { :action => "delete_supply", :id=>budgets_budget_supply.id },:confirm => "¿Borrar?", :method => :delete, :remote=>true %></td>    
+    <td align="right"><%= number_to_currency(budgets_budget_supply.importe( budgets_budget_supply.unit_cost,  budgets_budget_supply.quantity ))  %></td>        
   </tr>
 <% end %>
 </table>

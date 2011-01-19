@@ -1,0 +1,20 @@
+<table class ="table1" width="950">
+  <tr>
+    <th>Descripción</th>
+    <th>Cantidad</th>
+    <th>Costo</th>
+    <th>Unidad</th>
+    <th>Importe</th>    
+  </tr>
+
+<% @budgets_budget_supplies2.each do |budgets_budget_supply2| %>
+  <tr>
+    <td><%= budgets_budget_supply2.description %></td>
+    <td align="right"><%= budgets_budget_supply2.quantity %></td>
+    <td align="right"><%= number_to_currency(budgets_budget_supply2.unit_cost) %></td>
+    <td><%= budgets_budget_supply2.unit_measure %></td>
+    <td align="right"><%= number_to_currency(budgets_budget_supply2.importe( budgets_budget_supply2.unit_cost,  budgets_budget_supply2.quantity ))  %></td>    
+  </tr>
+<% end %> 
+</table>
+<hr />

@@ -126,28 +126,29 @@
 
 
   <% if $display_supplies == 2 %>
-  <tr>
-    <th width="80" align="right">
-       <b> Empresa:</b>
-    </th>
-    <td align="left">
-       <%= @budgets_budget.supplier.trade_name %>       
-    </td>
-    <th align="right" width="80">
-      <b> Costo: </b>
-    </th>
-    <td align="left" width="80">
-      <%= number_to_currency(@budgets_budget.total_cost) %>
-    </td>
+  <tr>    
+      <th width="80" align="right">
+          <b> Empresa:</b>
+      </th>
+      <td align="left" colspan="3">
+          <%= @budgets_budget.supplier.trade_name %>
+      </td>    
   </tr>
   <% end %>
   <tr>
     <th width="80" align=right >
       <b>Fecha de Termino:</b>
     </th>
-    <td align="left" colspan="5">
+    <td align="left">
       <%= @budgets_budget.fn_ending_date(@budgets_budget.ending_date) %>
     </td>
+    <th align="right" width="80">
+      <b> Costo Total: </b>
+    </th>
+    <td align="left" width="80">
+      <%= number_to_currency(@budgets_budget.total_cost) %>
+    </td>
+
   </tr>
 
 </table>
@@ -157,12 +158,12 @@
 
      <div id="mat_list">
        <h3> Materiales</h3>
-       <%= render :partial => 'supplies'%>
+       <%= render :partial => 'supplies_show'%>
      </div>
    <hr />
      <div id="work_list">
        <h3> Mano de Obra</h3>
-       <%= render :partial => 'workmanships'%>
+       <%= render :partial => 'workmanships_show'%>
      </div>
 
   <% end %>
