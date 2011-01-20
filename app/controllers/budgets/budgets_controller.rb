@@ -63,8 +63,13 @@ class Budgets::BudgetsController < ApplicationController
       if $budget_id == 0
 #       Solo la primer vez crea el presupuesto
         @budgets_budget = Budgets::Budget.new(params[:budgets_budget])
-        @budgets_budget.save
-        $budget_id = @budgets_budget.id
+        if @budgets_budget.save
+           $budget_id = @budgets_budget.id
+        else
+           #@budgets_budget.errors.add(:total_cost, 'El costo total debe ser numerico mayor de cero.' )
+           #render "shared/error_messages", :target => @budgets_budget
+           return;
+        end
       else
         @budgets_budget = Budgets::Budget.find($budget_id )
         @budgets_budget.attributes =  params[:budgets_budget] #

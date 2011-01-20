@@ -256,6 +256,8 @@
 
 <%= form_for(@budgets_budget, :remote=> true) do |f| %>
 
+ <div id="errors"></div>
+
   <% if @budgets_budget.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@budgets_budget.errors.count, "error") %> prohibited this budgets_budget from being saved:</h2>
@@ -475,7 +477,6 @@
 
 <hr />
 <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('cantidad').value=-999.99; return true;"%>
-
 
 <% end %>
 
