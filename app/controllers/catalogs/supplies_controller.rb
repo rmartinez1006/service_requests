@@ -5,9 +5,9 @@ class Catalogs::SuppliesController < ApplicationController
   layout "catalogs"
   def index
     # Materiales
-    @catalogs_supplies = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1")
+    @catalogs_supplies = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").paginate :page =>params[:page],:per_page=>11, :order => 'created_at DESC'
     # Mano de Obra
-    @catalogs_workmanship = Catalogs::Supply.find(:all,  :conditions => "type_supply = 2")
+    @catalogs_workmanship = Catalogs::Supply.find(:all,  :conditions => "type_supply = 2").paginate :page =>params[:page],:per_page=>11, :order => 'created_at DESC'
 
 
     respond_to do |format|

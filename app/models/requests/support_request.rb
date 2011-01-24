@@ -22,7 +22,7 @@ class Requests::SupportRequest < ActiveRecord::Base
   validates :name , :presence=> true
   validates :req_ubication , :presence=> true
   validates :ubication_id , :presence=> true
-  validates :commentaries_to_add , :presence=> true
+  validates :description , :presence=> true
   
 
  attr_accessor :commentaries_to_add, :notify,:req_ubication,:num_request
@@ -32,7 +32,9 @@ class Requests::SupportRequest < ActiveRecord::Base
     :name => 'Nombre',
     :req_ubication => 'Ubicación Fisica',
     :ubication_id => 'Ubicación',
-    :commentaries_to_add => 'Descripción'
+    :description => 'Descripción',
+    :num_request => 'Folio'
+
   }
 
   def self.human_attribute_name(attr, options={})
@@ -193,7 +195,7 @@ end
   def errordatos()
     r = false
     if self.request_no != self.num_request.to_i
-       errors.add(:num_request, "El numero de folio es incorrecto." )
+       errors.add(:num_request, "El numero es incorrecto." )
        r = true
     end
     r

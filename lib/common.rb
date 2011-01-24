@@ -218,7 +218,7 @@ end
      user_id = Administration::UserSession.find.record.attributes['id']
      role = Administration::UserSession.find.record.attributes['role']
      if role == 'ADMIN'
-       @budgets_budgets = Budgets::Budget.all.paginate :page =>params[:page],:per_page=>22, :order => 'created_at DESC'
+       @budgets_budgets = Budgets::Budget.find(:all, :order=>"created_at DESC").paginate :page =>params[:page],:per_page=>22, :order => 'created_on DESC'
        return @budgets_budgets
      else
        lv_sql ="SELECT * FROM budgets_budgets
@@ -226,7 +226,7 @@ end
                "  OR support_request_id IN (SELECT DISTINCT support_request_id
                                FROM request_delegations
                               WHERE user_id = ".concat(user_id.to_s) +")
-                 ORDER BY created_at DESC "
+                 ORDER BY created_at DESC"
      end
 
      @budgets_budgets=Budgets::Budget.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>22, :order => 'created_at DESC'

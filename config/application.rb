@@ -9,6 +9,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+
+
 module ServiceRequests
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -44,6 +46,10 @@ module ServiceRequests
 
     # Para incluir libreria "Common" de /libs/Common.rb
     config.autoload_paths += %W(#{config.root}/lib)
+
+    # RMO: Generar PDFs
+    config.middleware.use "PDFKit::Middleware"
+   
 
   end
 end

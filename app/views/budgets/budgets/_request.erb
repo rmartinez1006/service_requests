@@ -94,8 +94,12 @@
         temp = b.split('$');
 
         var ls_importe =  temp[1];
-        i = ls_importe.indexOf("|");
-        ls_importe = ls_importe.substring(0, i);
+        if (ls_importe != null)
+        {
+           i = ls_importe.indexOf("|");
+           ls_importe = ls_importe.substring(0, i);
+        }else
+          ls_importe = 0;
         //alert(temp[0]);
         var x=(document).getElementById('mat_import');
         x.value = ls_importe;   //temp[1];
@@ -105,8 +109,12 @@
         temp = b.split('|');
         var x=(document).getElementById('mat_unit');
         x.value = temp[1];
+ 
 
-        //$('.tsupplies').append("<tr><td> liliana </td></tr>");
+
+
+        //var x=(document).getElementById('mat_quantity');
+        //x.value = 1;
 
 
 
@@ -132,8 +140,13 @@
         temp = b.split('$');
 
         var ls_importe =  temp[1];
-        i = ls_importe.indexOf("|");
-        ls_importe = ls_importe.substring(0, i);
+        if (ls_importe != null)
+        {
+          i = ls_importe.indexOf("|");
+          ls_importe = ls_importe.substring(0, i);
+        }
+        else
+          ls_importe = 0;
         //alert(temp[0]);
         var x=(document).getElementById('work_import');
         x.value = ls_importe;   //temp[1];
@@ -143,7 +156,7 @@
         temp = b.split('|');
         var x=(document).getElementById('work_unit');
         x.value = temp[1];
-
+ 
         //$('.tsupplies').append("<tr><td> liliana </td></tr>");
 
         //alert(x.value);
