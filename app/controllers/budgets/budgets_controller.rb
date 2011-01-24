@@ -257,6 +257,9 @@ class Budgets::BudgetsController < ApplicationController
 #            Actualizar el estatus (Atendido)
              @requests_support_request.request_status_id = get_status_id('ST07')
              @requests_support_request.save
+          else #cuando error
+            return;
+
           end
 
 #     Guardar autorización (commentary)

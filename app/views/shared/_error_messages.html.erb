@@ -1,6 +1,6 @@
   <% if target.errors.any? %>
-   <div id="errorExplanation">
-     <h1><%= pluralize(target.errors.count, "") %> Error(es). No se guardó el presupuesto:</h1>
+   <div id="error_explanation">
+     <h2><%= pluralize(target.errors.count, "Error(es).") %> No se guardó la información:</h2>
      <ul>
      <% target.errors.full_messages.each do |msg| %>
        <li><%= msg %></li>

@@ -17,15 +17,29 @@ class Requests::SupportRequest < ActiveRecord::Base
 
   #validates :num_request , :presence=>true
   #validates_presence_of :num_request, :message => " Se requiere el No. de Solicitud",:on=>:update
-  validates_presence_of :email    #, :email_format => true
 
-  attr_accessor :commentaries_to_add, :notify,:req_ubication,:num_request
+  validates :email , :presence=> true
+  validates :name , :presence=> true
+  validates :req_ubication , :presence=> true
+  validates :ubication_id , :presence=> true
+  validates :commentaries_to_add , :presence=> true
+  
 
-#HUMAN_ATTRIBUTES = {
-#    :commentaries_to_add => 'Comentario.',
-#    :req_ubication => 'Ubicación',
-#    :notify => 'Notificar.'
-#  }
+ attr_accessor :commentaries_to_add, :notify,:req_ubication,:num_request
+
+ HUMANIZED_ATTRIBUTES = {
+    :email => 'Correo E.',
+    :name => 'Nombre',
+    :req_ubication => 'Ubicación Fisica',
+    :ubication_id => 'Ubicación',
+    :commentaries_to_add => 'Descripción'
+  }
+
+  def self.human_attribute_name(attr, options={})
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
+
+
 
   def before_save
     if  self.request_no == nil

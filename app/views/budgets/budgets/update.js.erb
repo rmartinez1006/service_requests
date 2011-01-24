@@ -1,4 +1,6 @@
 <% if @budgets_budget.errors.any? -%>
+   $("#errors").html("<%= escape_javascript(render "shared/error_messages", :target => @budgets_budget) %>");
+   $("#errors").show(300);
 <% else -%>
 
 <% if @budgets_budget_supplies != nil -%>

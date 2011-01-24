@@ -104,7 +104,7 @@ class Requests::SupportRequestsController < ApplicationController
 
     respond_to do |format|
       if @requests_support_request.save
-        format.html { redirect_to(@requests_support_request, :notice => 'Su solicitud se dio de alta.') }
+        format.html { redirect_to(@requests_support_request, :notice => 'Su solicitud fue registrada') }
         format.xml  { render :xml => @requests_support_request, :status => :created, :location => @requests_support_request }
         # Guardar la ubicación fisica
         @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")

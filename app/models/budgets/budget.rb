@@ -15,7 +15,18 @@ include Common
 
 #validates_format_of :total_cost, :with => /\d{0,10}\./
 # validates_format_of :total_cost, :with => /\d{0,10}\.\d{2}/
-validates_numericality_of :total_cost, :on => :create, :message => "Debe ser númerico."
+validates_numericality_of :total_cost,  :message => "Debe ser númerico."
+
+HUMANIZED_ATTRIBUTES = {
+    :total_cost    => 'Costo'
+  }
+
+  def self.human_attribute_name(attr, options={})
+    HUMANIZED_ATTRIBUTES[attr.to_sym] || super
+  end
+
+
+
 
   def before_save
     lv_user_id = Administration::UserSession.find.record.attributes['id']

@@ -1,16 +1,5 @@
 <%= form_for(@requests_support_request) do |f| %>
-  <% if @requests_support_request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@requests_support_request.errors.count, "error") %> prohibited this requests_support_request from being saved:</h2>
-
-      <ul>
-      <% @requests_support_request.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= render "shared/error_messages", :target => @requests_support_request %>
 
 <table class="table1" width="950">
 
