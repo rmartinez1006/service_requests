@@ -13,8 +13,11 @@
       $("#txt_aut_02").hide(); //-- Ocultar Texto de Autorización 02 
       $('input[name=chk_aut_02]').attr('checked', false);
 
-      $("#txt_aut_04").hide(); //-- Ocultar Texto de Autorización 04
+      $("#txt_aut_03").hide(); //-- Ocultar Texto de Autorización 03
       $('input[name=chk_aut_04]').attr('checked', false);
+
+      $("#txt_aut_05").hide(); //-- Ocultar Texto de Autorización 05
+      $('input[name=chk_aut_05]').attr('checked', false);
 
 
       //Checkbox Autorización analista (Ocultar/Mostrar)
@@ -37,13 +40,24 @@
 
        });
 
-      //Checkbox Autorización Final 03 coordinador (Ocultar/Mostrar)
-      $("#aut_04").change(function(){
-         var x = $('input[name=chk_aut_04]').is(':checked')
+      //Checkbox Autorización 02 coordinador (Ocultar/Mostrar)
+      $("#aut_02").change(function(){
+         var x = $('input[name=chk_aut_02]').is(':checked')
          if (x == true)
          {
-           $("#txt_aut_04").show();
-         }else $("#txt_aut_04").hide();
+           $("#txt_aut_02").show();
+         }else $("#txt_aut_02").hide();
+
+       });
+
+
+      //Checkbox Autorización 04 coordinador (Ocultar/Mostrar)
+      $("#aut_03").change(function(){
+         var x = $('input[name=chk_aut_03]').is(':checked')
+         if (x == true)
+         {
+           $("#txt_aut_03").show();
+         }else $("#txt_aut_03").hide();
 
        });
 
@@ -431,7 +445,7 @@
     <tr>      
       <td>
         <%= f.check_box :chk_analista, :id=>'analista', :name=>'chk_analista', :value=>"" %>
-        Autorizar presupuesto (Analista)
+        Liberar presupuesto (Analista)
       </td>
     </tr>
     <tr id="txt_analista">
@@ -447,7 +461,7 @@
     <tr>
       <td>        
         <%= f.check_box :chk_aut_02, :id=>'aut_02', :name=>'chk_aut_02', :value=>"" %>
-        Autorizar Presupuesto (Coordinador)</td>
+        Vo. Bo. Jefe de Unidad</td>
     </tr>
     <tr id="txt_aut_02">
       <td><%= f.text_area :add_aut_02,  :size => '100%'%> </td>
@@ -456,20 +470,37 @@
 </div>
 <% end %>
 
-<% if $autorizacion == 4 %>
-<div id="Autoriza_04">
+<% if $autorizacion == 3 %>
+<div id="Autoriza_03">
+  <table width="950" class="Table2">
+    <tr>
+      <td>
+        <%= f.check_box :chk_aut_03, :id=>'aut_03', :name=>'chk_aut_03', :value=>"" %>
+        Autorizar Presupuesto (Coordinador)</td>
+    </tr>
+    <tr id="txt_aut_02">
+      <td><%= f.text_area :add_aut_03,  :size => '100%'%> </td>
+    </tr>
+  </table>
+</div>
+<% end %>
+
+
+
+<% if $autorizacion == 5 %>
+<div id="Autoriza_05">
   <hr />
   <td>Fecha de Termino:<%= f.text_field :ending_date, :size=>'9', :id=>'budgets_ending_date'%> </td>
   
   <table width="950" class="Table2">
     <tr>
       <td>
-        <%= f.check_box :chk_aut_04, :id=>'aut_04', :name=>'chk_aut_04', :value=>"" %>
+        <%= f.check_box :chk_aut_05, :id=>'aut_05', :name=>'chk_aut_05', :value=>"" %>
         Autorización Final Presupuesto (Coordinador)
       </td>
     </tr>
     
-    <tr id="txt_aut_04">
+    <tr id="txt_aut_05">
       <td><%= f.text_area :add_aut_04,  :size => '100%'%> </td>      
       <%#= calendar_date_select_tag "e_date", nil, :embedded => true, :year_range => 10.years.ago..0.years.ago %>
     </tr>           

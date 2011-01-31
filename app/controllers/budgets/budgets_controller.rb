@@ -159,7 +159,13 @@ class Budgets::BudgetsController < ApplicationController
          lv_status = 'ST11'
       end
 
-
+      if ($autorizacion == 5) & (params[:chk_aut_05]=='1')
+         lv_autorizacion ='AUT-P05'
+         lv_comentario = @budgets_budget.add_aut_05
+         lv_guardar = 1
+         lv_status = 'ST12'
+      end
+    
       if (lv_guardar == 1)
          unless lv_autorizacion == nil
              if (lv_comentario == nil) | (lv_comentario=="" )
@@ -198,7 +204,7 @@ class Budgets::BudgetsController < ApplicationController
          $autorizacion =get_num_aut(@budgets_budget.id)
       end
 
-      if $autorizacion != 3
+      if $autorizacion != 4
 #         @budgets_budget.attributes =  params[:budgets_budget]
 #         Validar el botón de "Agregar material"
 #         Agregar material
@@ -292,6 +298,14 @@ class Budgets::BudgetsController < ApplicationController
          lv_guardar = 1
          lv_status = 'ST11'
       end
+
+      if ($autorizacion == 5) & (params[:chk_aut_05]=='1')
+         lv_autorizacion ='AUT-P05'
+         lv_comentario = @budgets_budget.add_aut_05
+         lv_guardar = 1
+         lv_status = 'ST12'
+      end
+
 
       if (lv_guardar == 1)
          unless lv_autorizacion == nil

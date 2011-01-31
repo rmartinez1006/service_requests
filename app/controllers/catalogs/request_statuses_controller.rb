@@ -4,7 +4,7 @@ class Catalogs::RequestStatusesController < ApplicationController
   before_filter :authorize
   layout "catalogs"
   def index
-    @catalogs_request_statuses = Catalogs::RequestStatus.all
+    @catalogs_request_statuses = Catalogs::RequestStatus.find(:all,:order=>"id ASC")
 
     respond_to do |format|
       format.html # index.html.erb

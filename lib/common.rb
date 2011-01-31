@@ -62,12 +62,17 @@ module Common
            lv_sql = lv_aux + " AND typ.abbr ='AUT-P03'"
            @commentary_aut03 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
            if not @commentary_aut03.empty?
+               r= 4  #NO existe, entonces, se requiere la autorización 4
                lv_sql = lv_aux + " AND typ.abbr ='AUT-P04'"
                @commentary_aut04 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
-               if @commentary_aut04.empty?
-                   r= 4  #NO existe, entonces, se requiere la autorización 4
-               else
-                   r = 999  #"Ya esta liberado Autorizado
+               if not @commentary_aut04.empty?
+                  lv_sql = lv_aux + " AND typ.abbr ='AUT-P05'"
+                  @commentary_aut05 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
+                  if @commentary_aut05.empty?
+                    r= 5
+                   else
+                    r = 999  #"Ya esta liberado Autorizado
+                  end
                end
            end
         end
@@ -90,16 +95,24 @@ def get_rol_aut(pm_tipo)
     if role=='ADMIN'  
        autoriza << { :aut => 1 }
        autoriza << { :aut => 2 }
-       #autoriza << { :aut => 3 }
-       autoriza << { :aut => 4 }
+       autoriza << { :aut => 3 }
+       autoriza << { :aut => 5 }
     end
 
     # -- COORDINADOR
     if role=='COORD'
        autoriza << { :aut => 1 }
        autoriza << { :aut => 2 }
-       autoriza << { :aut => 4 }
+       autoriza << { :aut => 3 }
+       autoriza << { :aut => 5 }
     end
+
+    # -- JEFE DE UNIDAD DE OBRAS
+    if role=='JEFUNI'
+       autoriza << { :aut => 1 }
+       autoriza << { :aut => 2 }
+    end
+
 
     # -- ANALISTA PRESUPUESTADOR
     if role=='APRE'       
@@ -108,7 +121,7 @@ def get_rol_aut(pm_tipo)
 
     # -- SECRETARIO TECNICO
     if role == 'SECTEC'       
-       autoriza << { :aut => 3 }       
+       autoriza << { :aut => 4 }
     end
   end
 
@@ -120,6 +133,7 @@ def get_rol_aut(pm_tipo)
        autoriza << { :aut => 2 }
        autoriza << { :aut => 3 }
        autoriza << { :aut => 4 }
+       autoriza << { :aut => 5 }
     end
 
     # -- COORDINADOR
@@ -128,6 +142,16 @@ def get_rol_aut(pm_tipo)
        autoriza << { :aut => 2 }
        autoriza << { :aut => 3 }
        autoriza << { :aut => 4 }
+       autoriza << { :aut => 5 }
+    end
+
+    # -- JEFE DE UNIDAD DE OBRAS
+    if role=='JEFUNI'
+       autoriza << { :aut => 1 }
+       autoriza << { :aut => 2 }
+       autoriza << { :aut => 3 }
+       autoriza << { :aut => 4 }
+       autoriza << { :aut => 5 }
     end
 
     # -- ANALISTA PRESUPUESTADOR
@@ -136,12 +160,13 @@ def get_rol_aut(pm_tipo)
        autoriza << { :aut => 2 }
        autoriza << { :aut => 3 }
        autoriza << { :aut => 4 }
+       autoriza << { :aut => 5 }
     end
 
     # -- SECRETARIO TECNICO
     if role == 'SECTEC'
-       autoriza << { :aut => 3 }
        autoriza << { :aut => 4 }
+       autoriza << { :aut => 5 }
     end
   end
   #---
@@ -182,12 +207,17 @@ end
            lv_sql = lv_aux + " AND typ.abbr ='AUT-P03'"
            @commentary_aut03 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
            if not @commentary_aut03.empty?
+               r = 4
                lv_sql = lv_aux + " AND typ.abbr ='AUT-P04'"
                @commentary_aut04 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
-               if @commentary_aut04.empty?
-                   r= 4  #NO existe, entonces, se requiere la autorización 4
-               else
-                   r = 999  #"Ya esta liberado Autorizado
+               if not @commentary_aut04.empty?
+                   lv_sql = lv_aux + " AND typ.abbr ='AUT-P05'"
+                   @commentary_aut05 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
+                   if @commentary_aut05.empty?
+                       r= 5  #NO existe, entonces, se requiere la autorización 4
+                   else
+                       r = 999  #"Ya esta liberado Autorizado
+                   end
                end
            end
         end

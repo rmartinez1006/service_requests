@@ -9,7 +9,8 @@ class Budgets::Budget < ActiveRecord::Base
   attr_accessor :support_type_id, :tech_description, :description_supply,
                 :mat_unit, :mat_description, :mat_quantity, :mat_cost, :mat_import, :mat_type, :mat_other,
                 :work_unit, :work_description, :work_quantity, :work_cost, :work_import, :work_type, :work_other,
-                :add_aut_analista, :add_aut_02, :add_aut_03, :add_aut_04, :chk_analista, :chk_aut_02, :chk_aut_03, :chk_aut_04
+                :add_aut_analista, :add_aut_02, :add_aut_03, :add_aut_04,:add_aut_05, :chk_analista, :chk_aut_02, 
+                :chk_aut_03, :chk_aut_04, :chk_aut_05
 
 include Common
 

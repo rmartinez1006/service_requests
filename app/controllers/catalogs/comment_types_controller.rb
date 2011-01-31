@@ -4,7 +4,7 @@ class Catalogs::CommentTypesController < ApplicationController
   layout "catalogs"
   before_filter :authorize
   def index
-    @catalogs_comment_types = Catalogs::CommentType.all
+    @catalogs_comment_types = Catalogs::CommentType.find(:all,:order=>"id ASC")
 
     respond_to do |format|
       format.html # index.html.erb
