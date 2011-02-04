@@ -243,6 +243,7 @@ class Budgets::BudgetsController < ApplicationController
           @budgets_budget.budget_type= $budget_type
           @budgets_budget.attributes =  params[:budgets_budget]
           lv_ending_date = params[:budgets_budget][:ending_date]
+          #lv_ending_date = lv_ending_date.gsub("-","/") Date.strptime(params[:budgets_budget][:ending_date], "%d/%m/%Y")
           if lv_ending_date!=nil
              @budgets_budget.ending_date = Date.strptime(lv_ending_date, "%d/%m/%Y")
           end
@@ -254,6 +255,14 @@ class Budgets::BudgetsController < ApplicationController
              sum = @budgets_budget.suma_total(@budgets_budget_supplies)
              @budgets_budget.total_cost = sum
           end
+
+#         Validar que el importe sea mayor a cero
+          if @budgets_budget.total_cost <= 0
+            @budgets_budget.errors.add(:total_cost, '-debe ser numerico mayor de cero.')
+            return
+          end
+
+
           if @budgets_budget.save
 #            Guardar el Tipo de Soporte en la Solicitud
 #            Ubicar la solicitud
@@ -399,9 +408,9 @@ class Budgets::BudgetsController < ApplicationController
 #     NO existe Presupeusto: CREAR EL PRESUPUESTO
       @budgets_budget = Budgets::Budget.new
       @budgets_budget.support_request_id = params[:id]
-#      @budgets_budget.flag_create = 'create' #Bandera Indica que se debe crear el presupuesto
     else
 #     Existe Presupuesto:
+      @budgets_budget.ending_date = @budgets_budget.ending_date.strftime("%d/%m/%Y") if @budgets_budget.ending_date != nil
       $budget_id = @budgets_budget.id
     end
     #Tomar los datos de la Solicitud y mostrarlos

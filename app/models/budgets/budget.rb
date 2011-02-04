@@ -35,6 +35,12 @@ HUMANIZED_ATTRIBUTES = {
       self.budget_date = Time.now
       self.user_id = lv_user_id
     end
+
+#    if self.total_cost <= 0
+#      self.errors.add(:total_cost, 'El costo total debe ser numerico mayor de cero.' )
+#      raise "error"
+#    end
+
   end
 
 
