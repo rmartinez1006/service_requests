@@ -36,7 +36,8 @@ class Budgets::BudgetsController < ApplicationController
       $budget_id = @budgets_budget.id
     end
 
-    $permiso =get_num_aut_req(@budgets_budget.support_request_id,"E") #get_num_aut($budget_id)
+    $permiso =get_num_aut_req(@budgets_budget.support_request_id,"V") #get_num_aut($budget_id)
+    $autorizacion =get_num_aut(@budgets_budget.id)
     $display_supplies =@budgets_budget.budget_type
 
   end
@@ -448,5 +449,43 @@ class Budgets::BudgetsController < ApplicationController
      redirect_to budgets_budget_fm1_path(@budgets_budget.support_request_id)
   end
 
+
+
+# GET /budgets/budgets/1/budget_fm1
+  def budget_fm1
+    $budget_type =1 # Presupuesto Interno
+    $budget_id = 0
+    $display_supplies = 1  #Mostrar area de captura de materiales
+    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
+#    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
+
+#   Buscar si existe el presupeusto
+    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
+    if @budgets_budget == nil
+#     NO existe Presupeusto: CREAR EL PRESUPUESTO
+      @budgets_budget = Budgets::Budget.new
+      @budgets_budget.support_request_id = params[:id]
+#     Auxiliar
+      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
+      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
+    else
+#     Existe Presupuesto:
+#     Buscar los materiales que corresponden al presupuesto
+      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
+#     Buscar mano de obra que corresponden al presupuesto
+      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
+
+      $budget_id = @budgets_budget.id
+    end
+    #Tomar los datos de la Solicitud y mostrarlos
+    @budgets_budget.tech_description = @requests_support_request.tech_description
+    @budgets_budget.support_type_id = @requests_support_request.support_type_id
+
+    $autorizacion =get_num_aut($budget_id)
+  end
+
+
+
+  
 
 end

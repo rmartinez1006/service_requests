@@ -51,13 +51,24 @@
        });
 
 
-      //Checkbox Autorización 04 coordinador (Ocultar/Mostrar)
+      //Checkbox Autorización 03 coordinador (Ocultar/Mostrar)
       $("#aut_03").change(function(){
          var x = $('input[name=chk_aut_03]').is(':checked')
          if (x == true)
          {
            $("#txt_aut_03").show();
          }else $("#txt_aut_03").hide();
+
+       });
+
+
+      //Checkbox Autorización 05 coordinador (Ocultar/Mostrar)
+      $("#aut_05").change(function(){
+         var x = $('input[name=chk_aut_05]').is(':checked')
+         if (x == true)
+         {
+           $("#txt_aut_05").show();
+         }else $("#txt_aut_05").hide();
 
        });
 
@@ -420,7 +431,7 @@
         <%= f.text_field :work_unit, :size=>"8", :style => "text-align: right", :id=>"work_unit", :disabled => 'disabled' %>
         <%= f.hidden_field :work_type, :id=>"type_supply", :value=>"2"  %>
        </td>
-       <td><%= f.submit "Agregar", :name=>'material', :remote=>true, :onclick => "document.getElementById('work_unit').disabled = false; return true;" %></td>
+       <td><%= f.submit "Agregar", :name=>'m_obra', :remote=>true, :onclick => "document.getElementById('work_unit').disabled = false; return true;" %></td>
      </tr>
      <tr>
      </tr>
@@ -478,7 +489,7 @@
         <%= f.check_box :chk_aut_03, :id=>'aut_03', :name=>'chk_aut_03', :value=>"" %>
         Autorizar Presupuesto (Coordinador)</td>
     </tr>
-    <tr id="txt_aut_02">
+    <tr id="txt_aut_03">
       <td><%= f.text_area :add_aut_03,  :size => '100%'%> </td>
     </tr>
   </table>
@@ -502,7 +513,7 @@
     </tr>
     
     <tr id="txt_aut_05">
-      <td><%= f.text_area :add_aut_04,  :size => '100%'%> </td>      
+      <td><%= f.text_area :add_aut_05,  :size => '100%'%> </td>
       <%#= calendar_date_select_tag "e_date", nil, :embedded => true, :year_range => 10.years.ago..0.years.ago %>
     </tr>           
   </table>
@@ -510,9 +521,13 @@
 <% end %>
 
 <hr />
-<%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('cantidad').value=-999.99; return true;"%>
-
+<% if $display_supplies == 1 %>
+     <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('work_quantity').value=-999.99;document.getElementById('mat_quantity').value=-999.99; return true;"%>
+<% else %>
+    <%= f.submit 'Guardar Presupuesto'%>
 <% end %>
 
 
+<% end %>
 
+<%= button_to("BAnd Name") %>

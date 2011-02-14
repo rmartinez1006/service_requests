@@ -60,7 +60,7 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
               WHERE support_request_id = " + params[:id] +
             " AND comment_type_id IN
                 (SELECT id FROM catalogs_comment_types
-                 WHERE abbr IN ('RESOL','AUT-P02','AUT-P03'))
+                 WHERE abbr IN ('RESOL','AUT-P02','AUT-P03','AUT-P04','AUT-P05'))
               ORDER BY created_at DESC"
     
   #@requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"support_request_id" = ?', params[:id]] )

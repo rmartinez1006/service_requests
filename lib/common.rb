@@ -120,9 +120,9 @@ def get_rol_aut(pm_tipo)
     end
 
     # -- SECRETARIO TECNICO
-    if role == 'SECTEC'       
-       autoriza << { :aut => 4 }
-    end
+    #if role == 'SECTEC'
+    #   autoriza << { :aut => 4 }
+    #end
   end
 
   # -- PERMISO DE VISUALIZACION DE PRESUPUESTO
@@ -214,7 +214,7 @@ end
                    lv_sql = lv_aux + " AND typ.abbr ='AUT-P05'"
                    @commentary_aut05 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
                    if @commentary_aut05.empty?
-                       r= 5  #NO existe, entonces, se requiere la autorización 4
+                       r= 5  #NO existe, entonces, se requiere la autorización 5
                    else
                        r = 999  #"Ya esta liberado Autorizado
                    end

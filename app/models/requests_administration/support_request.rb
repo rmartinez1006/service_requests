@@ -171,7 +171,7 @@ end
     lv_exito = false
     r = Administration::UserSession.find.record.attributes['role']
     # Si es administrador o Analista Prsupuestador
-    if (r == 'ADMIN' or r== 'APRE')
+    if (r == 'ADMIN' or r== 'APRE' or r=='JEFUNI' or r=='COORD')
       lv_exito = true
     end
     lv_exito
