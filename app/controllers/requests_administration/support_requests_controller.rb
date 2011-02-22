@@ -5,6 +5,7 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
   include Common
 
   
+  
   before_filter :authorize
   layout "requests"
 
@@ -147,69 +148,70 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
   # PUT /requests/request_support_requests/1
   # PUT /requests/request_support_requests/1.xml
   def update
-    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
-      
-    respond_to do |format|
-      if @requests_support_request.update_attributes(params[:requests_administration_support_request])
-        format.html { redirect_to(@requests_support_request, :notice => 'La solicitud fue actualizada.') }
-        format.xml  { head :ok }
+   @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
 
-        #   Ubicar el comentario (Ubicación fisica)
-        @comment =Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
-        if @comment != nil
-           @requests_support_req_ubication =  RequestsAdministration::Commentary.find(:first,
+       respond_to do |format|
+           if @requests_support_request.update_attributes(params[:requests_administration_support_request])
+              format.html { redirect_to(@requests_support_request, :notice => 'La solicitud fue actualizada.') }
+              format.xml  { head :ok }
+
+              #   Ubicar el comentario (Ubicación fisica)
+              @comment =Catalogs::CommentType.find(:first, :conditions => "abbr = 'UBICA'")
+              if @comment != nil
+                 @requests_support_req_ubication =  RequestsAdministration::Commentary.find(:first,
                         :conditions => "support_request_id = " + params[:id] + "  AND comment_type_id = " + @comment.id.to_s)
-           if @requests_support_req_ubication != nil
-              if ( @requests_support_request.req_ubication != nil) &
-                 (@requests_support_req_ubication.commentaries != @requests_support_request.req_ubication)
-                  @requests_support_req_ubication.commentaries = @requests_support_request.req_ubication
-                  @requests_support_req_ubication.save
-              end
-           end
-        end
-        #  Fin  Ubicar el comentario (Ubicación fisica)
+                 if @requests_support_req_ubication != nil
+                     if ( @requests_support_request.req_ubication != nil) &
+                        (@requests_support_req_ubication.commentaries != @requests_support_request.req_ubication)
+                            @requests_support_req_ubication.commentaries = @requests_support_request.req_ubication
+                           @requests_support_req_ubication.save
+                     end
+                 end
+               end
+               #  Fin  Ubicar el comentario (Ubicación fisica)
 
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
-      end
-    end
+           else
+              format.html { render :action => "edit" }
+              format.xml  { render :xml => @requests_support_request.errors, :status => :unprocessable_entity }
+           end
+        end  #respond do
+
 #   usuario (autentificado)
     user_id = Administration::UserSession.find.record.attributes['id']
 
-#   Agregar comentario durante resolución
-    if params.keys[0] == 'comment'
+       #   Agregar comentario durante resolución
+       if params.keys[0] == 'comment'
+           if @requests_support_request.commentaries_to_add.length <= 0
+              @requests_support_request.errors.add(:commentaries_to_add, '-Es necesario anotar un comentario.')
+              return
+           end
 
-        @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")                
-        request_commentary = RequestsAdministration::Commentary.new
-        request_commentary.support_request_id =  @requests_support_request.id
-        request_commentary.user_id = user_id
-        request_commentary.commentaries = @requests_support_request.commentaries_to_add
-        request_commentary.comment_type_id = @catalogs_comment_types.id
-        request_commentary.save
+           @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")
+           request_commentary = RequestsAdministration::Commentary.new
+           request_commentary.support_request_id =  @requests_support_request.id
+           request_commentary.user_id = user_id
+           request_commentary.commentaries = @requests_support_request.commentaries_to_add
+           request_commentary.comment_type_id = @catalogs_comment_types.id
+           request_commentary.save
 
-    end
-
-#   Guardar movimientos de escalado de solicitud
-    if params.keys[0] == 'commit'
-       if @requests_support_request.helper_id != nil          
-          requests_req_delegation = Requests::ReqDelegation.new
-          requests_req_delegation.support_request_id = @requests_support_request.id
-          requests_req_delegation.user_id = user_id
-          requests_req_delegation.helper_id = @requests_support_request.helper_id
-          requests_req_delegation.notify = @requests_support_request.notify
-          requests_req_delegation.save
-          # Actualizar el estatus (Atendido)
-          @requests_support_request.request_status_id = get_status_id('ST02')
-          @requests_support_request.save
        end
-    end
 
-    
+#      Guardar movimientos de escalado de solicitud
+       if params.keys[0] == 'commit'
+          if @requests_support_request.helper_id != nil
+             requests_req_delegation = Requests::ReqDelegation.new
+             requests_req_delegation.support_request_id = @requests_support_request.id
+             requests_req_delegation.user_id = user_id
+             requests_req_delegation.helper_id = @requests_support_request.helper_id
+             requests_req_delegation.notify = @requests_support_request.notify
+             requests_req_delegation.save
+             # Actualizar el estatus (Atendido)
+             @requests_support_request.request_status_id = get_status_id('ST02')
+             @requests_support_request.save
+          end
+       end
 
-
-
-  end
+ end
 
   # DELETE /requests/request_support_requests/1
   # DELETE /requests/request_support_requests/1.xml

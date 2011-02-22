@@ -1,13 +1,19 @@
+
 class Budgets::BudgetsController < ApplicationController
   include Common
   before_filter :authorize
   layout "budgets"
+  
 
   
+ 
+
   # GET /budgets/budgets
   # GET /budgets/budgets.xml
-  def index  
+  def index
+  
     @budgets_budgets = get_list_budget()
+
     #@budgets_budgets = Budgets::Budget.all
     respond_to do |format|
       format.html # index.html.erb

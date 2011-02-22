@@ -45,6 +45,7 @@ doc\:clobber_rails=
 doc\:guides=
 doc\:plugins=
 doc\:plugins\:dynamic_form=
+doc\:plugins\:rexcel=
 doc\:rails=
 doc\:reapp=
 doc\:rerails=

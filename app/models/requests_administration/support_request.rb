@@ -13,6 +13,8 @@ class RequestsAdministration::SupportRequest < ActiveRecord::Base
   
   attr_accessor :commentaries_to_add, :notify,:req_ubication
 
+  validates :commentaries_to_add, :presence => true, :on => :show
+
 #HUMAN_ATTRIBUTES = {
 #    :commentaries_to_add => 'Comentario.',
 #    :req_ubication => 'Ubicación',

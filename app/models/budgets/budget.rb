@@ -14,6 +14,7 @@ class Budgets::Budget < ActiveRecord::Base
 
 include Common
 
+
 #validates_format_of :total_cost, :with => /\d{0,10}\./
 # validates_format_of :total_cost, :with => /\d{0,10}\.\d{2}/
 validates_numericality_of :total_cost,  :message => "Debe ser númerico."
