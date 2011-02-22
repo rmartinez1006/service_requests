@@ -353,7 +353,7 @@
       <td id="rbt_mat" ><%= radio_button_tag "boton_mat", "1st_button",true %>Materiales</td>
       <td id="rbt_work"><%= radio_button_tag "boton_work", "2nd_button",false %>Mano de Obra</td>
     </tr>
-    <% end %>
+    <%# end %>
     </table>
 
 <div id="materiales">  
@@ -438,6 +438,7 @@
    </table>
    <hr />
 </div>
+  <%end%>
      <h3> Materiales</h3>
      <div id="mat_list">       
        <%= render :partial => 'supplies'%>
@@ -530,4 +531,3 @@
 
 <% end %>
 
-<%= button_to("BAnd Name") %>
