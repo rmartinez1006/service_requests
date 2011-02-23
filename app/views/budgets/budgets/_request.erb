@@ -322,9 +322,10 @@
        <b> Tipo de Soporte:</b>
      </th>
      <td align="left" colspan="3">
-       <%= select :budgets_budget , :support_type_id, Catalogs::SupportType.find(:all).collect{|p| [p.name, p.id]}%>
+       <%= select :budgets_budget , :support_type_id, Catalogs::SupportType.find(:all).collect{|p| [p.name, p.id]}%>       
      </td>
    </tr>
+  
    <!-- Inicia If -->
    <% if $display_supplies == 0 %>
      <tr>
@@ -340,15 +341,26 @@
      <td align="left" width="80">
        <%= f.text_field :total_cost, :size=>"13", :style => "text-align: right" %>
      </td>
+
     </tr>
     </table>
    <% end %>
    <!-- Fin de if -->
-
+   <table>
+     <tr>
+     <td>
+       <% if $display_supplies == 1 %>
+          <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('work_quantity').value=-999.99;document.getElementById('mat_quantity').value=-999.99; return true;"%>
+       <% else %>
+          <%= f.submit 'Guardar Presupuesto'%>
+       <% end %>         
+     </td>
+     </tr>
+   </table>
    <!-- 1) Mostrar datos si es un presupuesto interno -->
    <% if $display_supplies == 1 %>
      <hr />
-     <%= form_tag do %>
+     <%= form_tag do %>     
        <table>
         <tr>
           <td id="rbt_mat" ><%= radio_button_tag "boton_mat", "1st_button",true %>Materiales</td>
@@ -447,13 +459,12 @@
        <%= render :partial => 'workmanships'%>
       </div>
     <%end%>
-    <!-- Fin de form do-->
-  <% end %>
   <!-- Fin de If Presupuesto Interno -->
+  <% end %> <!-- Fin de form do-->
 
   <!-- Zona de Autorizaciones -->
   <% if $autorizacion == 1 %>
-<div id="Autoriza_01">
+  <div id="Autoriza_01">
   <table width="950" class="Table2">
     <tr>      
       <td>
@@ -465,11 +476,12 @@
       <td><%= f.text_area :add_aut_analista,  :size => '100%'%> </td>      
     </tr>
   </table>
-</div>
-<% end %>
+  </div>
+  <% end %>
+  <!-- Fin de If Autorización = 1 -->
 
-<% if $autorizacion == 2 %>
-<div id="Autoriza_02">
+  <% if $autorizacion == 2 %>
+  <div id="Autoriza_02">
   <table width="950" class="Table2">
     <tr>
       <td>        
@@ -480,11 +492,12 @@
       <td><%= f.text_area :add_aut_02,  :size => '100%'%> </td>
     </tr>
   </table>
-</div>
-<% end %>
+  </div>
+  <% end %>
+  <!-- Fin de If autorizacion = 2 -->
 
-<% if $autorizacion == 3 %>
-<div id="Autoriza_03">
+  <% if $autorizacion == 3 %>
+  <div id="Autoriza_03">
   <table width="950" class="Table2">
     <tr>
       <td>
@@ -495,18 +508,17 @@
       <td><%= f.text_area :add_aut_03,  :size => '100%'%> </td>
     </tr>
   </table>
-</div>
-<% end %>
+  </div>
+  <% end %>
+  <!-- Fin de if Autorizacion == 3 -->
 
 
-
-<% if $autorizacion == 5 %>
-<div id="Autoriza_05">
-  <hr />
+  <% if $autorizacion == 5 %>
+  <div id="Autoriza_05">
+    <hr />
+    <td>Fecha de Termino:<%= f.text_field  :ending_date, :size=>'9', :id=>'budgets_ending_date' %> </td>
   
-  <td>Fecha de Termino:<%= f.text_field  :ending_date, :size=>'9', :id=>'budgets_ending_date' %> </td>
-  
-  <table width="950" class="Table2">
+    <table width="950" class="Table2">
     <tr>
       <td>
         <%= f.check_box :chk_aut_05, :id=>'aut_05', :name=>'chk_aut_05', :value=>"" %>
@@ -519,17 +531,10 @@
       <%#= calendar_date_select_tag "e_date", nil, :embedded => true, :year_range => 10.years.ago..0.years.ago %>
     </tr>           
   </table>
-</div>
-<% end %>
-
-<hr />
-<% if $display_supplies == 1 %>
-     <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('work_quantity').value=-999.99;document.getElementById('mat_quantity').value=-999.99; return true;"%>
-<% else %>
-    <%= f.submit 'Guardar Presupuesto'%>
-<% end %>
-
-
+  </div>
+  <% end %>
+  <!-- Fin de if autorización == 5 -->
+  <hr />  
 
 <% end %>
 
