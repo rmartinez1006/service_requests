@@ -4,16 +4,14 @@ class Budgets::BudgetsController < ApplicationController
   before_filter :authorize
   layout "budgets"
   
-
-  
- 
-
   # GET /budgets/budgets
   # GET /budgets/budgets.xml
   def index
   
     @budgets_budgets = get_list_budget()
 
+    
+    
     #@budgets_budgets = Budgets::Budget.all
     respond_to do |format|
       format.html # index.html.erb
@@ -285,7 +283,7 @@ class Budgets::BudgetsController < ApplicationController
           end
 
 #     Guardar autorización (commentary)
-      end # Si es $Autorizacion = 3 (Autorizacion del Secretario Tecnico)
+      end # Si es $Autorizacion = 4 (Autorizacion del Secretario Tecnico)
       lv_guardar = 0
       if ($autorizacion == 1) & (params[:chk_analista]=='1')
         lv_autorizacion ='AUT-P01'

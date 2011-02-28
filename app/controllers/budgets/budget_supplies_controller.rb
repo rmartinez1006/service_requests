@@ -8,6 +8,9 @@ class Budgets::BudgetSuppliesController < ApplicationController
   def index
     
     @budgets_budget_supplies = Budgets::BudgetSupply.all
+    
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.rss

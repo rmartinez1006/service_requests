@@ -114,6 +114,8 @@ class Requests::SupportRequestsController < ApplicationController
         request_commentary.commentaries = @requests_support_request.req_ubication
         request_commentary.comment_type_id = @catalogs_comment_types.id
         request_commentary.save
+        #-- Notificar via e-mail la recepción de la solicitud
+        Notifier.order_request(@requests_support_request).deliver
 
       else
         format.html { render :action => "new" }
