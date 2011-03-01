@@ -347,15 +347,92 @@
    <% end %>
    <!-- Fin de if -->
    <table>
-     <tr>
+    <!-- Autorizaciones -->
+    <tr>
      <td>
-       <% if $display_supplies == 1 %>
-          <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('work_quantity').value=-999.99;document.getElementById('mat_quantity').value=-999.99; return true;"%>
-       <% else %>
-          <%= f.submit 'Guardar Presupuesto'%>
-       <% end %>         
-     </td>
+       <!-- Zona de Autorizaciones -->
+       <% if $autorizacion == 1 %>
+        <div id="Autoriza_01">
+        <table width="950" class="Table2">
+        <tr>
+          <td>
+          <%= f.check_box :chk_analista, :id=>'analista', :name=>'chk_analista', :value=>"" %>
+           Liberar presupuesto (Analista)
+          </td>
+        </tr>
+        <tr id="txt_analista">
+          <td><%= f.text_area :add_aut_analista,  :size => '98%'%> </td>
+        </tr>
+        </table>
+        </div>
+       <% end %>
+       <!-- Fin de If Autorización = 1 -->
+
+       <% if $autorizacion == 2 %>
+         <div id="Autoriza_02">
+         <table width="950" class="Table2">
+          <tr>
+            <td>
+            <%= f.check_box :chk_aut_02, :id=>'aut_02', :name=>'chk_aut_02', :value=>"" %>
+            Vo. Bo. Jefe de Unidad</td>
+          </tr>
+          <tr id="txt_aut_02">
+            <td><%= f.text_area :add_aut_02,  :size => '98%'%> </td>
+          </tr>
+         </table>
+         </div>
+       <% end %>
+       <!-- Fin de If autorizacion = 2 -->
+
+       <% if $autorizacion == 3 %>
+         <div id="Autoriza_03">
+         <table width="950" class="Table2">
+          <tr>
+            <td>
+            <%= f.check_box :chk_aut_03, :id=>'aut_03', :name=>'chk_aut_03', :value=>"" %>
+            Autorizar Presupuesto (Coordinador)</td>
+          </tr>
+          <tr id="txt_aut_03">
+            <td><%= f.text_area :add_aut_03,  :size => '98%'%> </td>
+          </tr>
+         </table>
+         </div>
+       <% end %>
+       <!-- Fin de if Autorizacion == 3 -->
+
+       <% if $autorizacion == 5 %>
+         <div id="Autoriza_05">
+         <table width="950" class="Table2">
+           <tr>
+             <td>Fecha de Termino:<%= f.text_field  :ending_date, :size=>'9', :id=>'budgets_ending_date' %> </td>
+           </tr>
+           <tr>
+             <td>
+               <%= f.check_box :chk_aut_05, :id=>'aut_05', :name=>'chk_aut_05', :value=>"" %>
+               Autorización Final Presupuesto (Coordinador)
+             </td>
+          </tr>
+
+         <tr id="txt_aut_05">
+           <td><%= f.text_area :add_aut_05,  :size => '98%'%> </td>
+           <%#= calendar_date_select_tag "e_date", nil, :embedded => true, :year_range => 10.years.ago..0.years.ago %>
+         </tr>
+         </table>
+         </div>
+       <% end %>
+       <!-- Fin de if autorización == 5 -->
+       </td>
      </tr>
+     <tr>
+       <td>
+         <% if $display_supplies == 1 %>
+            <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('work_quantity').value=-999.99;document.getElementById('mat_quantity').value=-999.99; return true;"%>
+         <% else %>
+            <%= f.submit 'Guardar Presupuesto'%>
+         <% end %>
+       </td>
+     </tr>
+
    </table>
    <!-- 1) Mostrar datos si es un presupuesto interno -->
    <% if $display_supplies == 1 %>
@@ -462,78 +539,6 @@
   <!-- Fin de If Presupuesto Interno -->
   <% end %> <!-- Fin de form do-->
 
-  <!-- Zona de Autorizaciones -->
-  <% if $autorizacion == 1 %>
-  <div id="Autoriza_01">
-  <table width="950" class="Table2">
-    <tr>      
-      <td>
-        <%= f.check_box :chk_analista, :id=>'analista', :name=>'chk_analista', :value=>"" %>
-        Liberar presupuesto (Analista)
-      </td>
-    </tr>
-    <tr id="txt_analista">
-      <td><%= f.text_area :add_aut_analista,  :size => '100%'%> </td>      
-    </tr>
-  </table>
-  </div>
-  <% end %>
-  <!-- Fin de If Autorización = 1 -->
-
-  <% if $autorizacion == 2 %>
-  <div id="Autoriza_02">
-  <table width="950" class="Table2">
-    <tr>
-      <td>        
-        <%= f.check_box :chk_aut_02, :id=>'aut_02', :name=>'chk_aut_02', :value=>"" %>
-        Vo. Bo. Jefe de Unidad</td>
-    </tr>
-    <tr id="txt_aut_02">
-      <td><%= f.text_area :add_aut_02,  :size => '100%'%> </td>
-    </tr>
-  </table>
-  </div>
-  <% end %>
-  <!-- Fin de If autorizacion = 2 -->
-
-  <% if $autorizacion == 3 %>
-  <div id="Autoriza_03">
-  <table width="950" class="Table2">
-    <tr>
-      <td>
-        <%= f.check_box :chk_aut_03, :id=>'aut_03', :name=>'chk_aut_03', :value=>"" %>
-        Autorizar Presupuesto (Coordinador)</td>
-    </tr>
-    <tr id="txt_aut_03">
-      <td><%= f.text_area :add_aut_03,  :size => '100%'%> </td>
-    </tr>
-  </table>
-  </div>
-  <% end %>
-  <!-- Fin de if Autorizacion == 3 -->
-
-
-  <% if $autorizacion == 5 %>
-  <div id="Autoriza_05">
-    <hr />
-    <td>Fecha de Termino:<%= f.text_field  :ending_date, :size=>'9', :id=>'budgets_ending_date' %> </td>
-  
-    <table width="950" class="Table2">
-    <tr>
-      <td>
-        <%= f.check_box :chk_aut_05, :id=>'aut_05', :name=>'chk_aut_05', :value=>"" %>
-        Autorización Final Presupuesto (Coordinador)
-      </td>
-    </tr>
-    
-    <tr id="txt_aut_05">
-      <td><%= f.text_area :add_aut_05,  :size => '100%'%> </td>
-      <%#= calendar_date_select_tag "e_date", nil, :embedded => true, :year_range => 10.years.ago..0.years.ago %>
-    </tr>           
-  </table>
-  </div>
-  <% end %>
-  <!-- Fin de if autorización == 5 -->
   <hr />  
 
 <% end %>
