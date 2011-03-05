@@ -1,0 +1,179 @@
+<h1>Presupuesto</h1>
+<head>
+
+
+</head>
+
+<% @requests_support_request.id %>
+<table class="table1" width="950">
+<tr>
+
+  <th width="80" align=right >
+     <b>Folio:</b>
+  </th>
+  <td align="left">
+     <%= @budgets_budget.request.num_sequence %>
+  </td>
+
+  <th> <b> Creado el:</b></th>
+  <td align="left"><%=  @budgets_budget.request.created_at.strftime("%d/%m/%Y") %></td>
+  <th> <b> Ultimo cambio:</b></th>
+  <td align="left"><%=  @budgets_budget.request.status_chng_date.strftime("%d/%m/%Y") %></td>
+</tr>
+
+<tr>
+  <th width="30" align=right >
+    <b>Area Resp.:</b>
+  </th>
+  <td align="left">
+    <%= @budgets_budget.request.ubication_name %>
+  </td>
+  <th width="60" align=right>
+    <b>Atiende:</b>
+  </th>
+  <td align ="left" colspan="3">
+    <%= @budgets_budget.request.helper %>
+  </td>
+</tr>
+
+
+<tr class="table_content_c2">
+  <th width="30" align=right >
+    <b>Nombre:</b>
+  </th>
+  <td align="left">
+    <%= @budgets_budget.request.name %>
+  </td>
+  <th width="70" align=right>
+    <b>Correo E.:</b>
+  </th>
+  <td align ="left" colspan="3">
+    <%= @budgets_budget.request.email %>
+  </td>
+</tr>
+
+
+<tr class="table_content_c2">
+  <th width="80" align=right >
+     <b>Descripción:</b>
+  </th>
+  <td align="left" colspan="5">
+     <%= raw(@budgets_budget.request.text_to_html(@budgets_budget.request.description)) %>
+  </td>
+</tr>
+</table>
+
+
+<%= form_for(@budgets_budget, :remote=> true) do |f| %>
+
+  <% if @budgets_budget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@budgets_budget.errors.count, "error") %> prohibited this budgets_budget from being saved:</h2>
+
+      <ul>
+      <% @budgets_budget.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <%=  f.text_field :support_request_id, :type => "hidden" %>
+
+<table width="950" class="table1">
+  <tr>
+    <th width="80" align="right" valign="top">
+      <b> Descripción Técnica </b>
+    </th>
+    <td align="left" colspan="3">
+
+       <%=  @budgets_budget.request.tech_description %>
+    </td>
+  </tr>
+  <tr>
+    <th width="80" align="right" valign="top">
+      <b> Descripción de Trabajos </b>
+    </th>
+    <td align="left"  colspan="3">
+      <%= @budgets_budget.description %>
+    </td>
+  </tr>
+  <tr>
+    <th width="80" align="right">
+       <b> Tipo de Soporte:</b>
+    </th>
+    <td align="left" colspan="3">
+       <%= @budgets_budget.request.supporttype.name   %>
+    </td>
+  </tr>
+
+
+  <% if $display_supplies == 2 %>
+  <tr>
+      <th width="80" align="right">
+          <b> Empresa:</b>
+      </th>
+      <td align="left" colspan="3">
+          <%= @budgets_budget.supplier.trade_name %>
+      </td>
+  </tr>
+  <% end %>
+  <tr>
+    <th width="80" align=right >
+      <b>Fecha de Termino:</b>
+    </th>
+    <td align="left">
+      <%= @budgets_budget.fn_ending_date(@budgets_budget.ending_date) %>
+      <%= @budgets_budget.num2letra(4567.90).upcase.concat(" ") << ("4567.90".to_s.split(".")[1] || 0).rjust(2,'0')<< "/100 M.N." %>
+    </td>
+    <th align="right" width="80">
+      <b> Costo Total: </b>
+    </th>
+    <td align="left" width="80">
+      <%= number_to_currency(@budgets_budget.total_cost) %>
+    </td>
+
+  </tr>
+
+</table>
+
+  <% if $display_supplies == 1 %>
+    <hr />
+
+     <div id="mat_list">
+       <h3> Materiales</h3>
+       <%= render :partial => 'supplies_show'%>
+     </div>
+   <hr />
+     <div id="work_list">
+       <h3> Mano de Obra</h3>
+       <%= render :partial => 'workmanships_show'%>
+     </div>
+
+  <% end %>
+
+
+  <% if $autorizacion==4 && $permiso %>
+    <div id="Autoriza_04">
+      <table width="950" class="Table2">
+        <tr>
+          <td>
+            <%= f.check_box :chk_aut_04, :id=>'aut_04', :name=>'chk_aut_04', :value=>"" %>
+             Autorización Secretario Técnico
+          </td>
+        </tr>
+        <tr id="txt_aut_04">
+          <td><%= f.text_area :add_aut_04,  :size => '100%'%> </td>
+        </tr>
+      </table>
+    </div>
+    
+    <hr />
+    <%= f.submit 'Guardar'%>
+  <% else %>
+     <hr />
+     <%= link_to 'Salir', :back, :class => 'link-button' %>
+  <% end %>
+
+<% end %>
+

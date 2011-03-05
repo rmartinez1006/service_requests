@@ -1,22 +1,48 @@
+require 'fastercsv'
+
+
 
 class Budgets::BudgetsController < ApplicationController
   include Common
   before_filter :authorize
-  layout "budgets"
+  layout "budgets", :except => [:order]
+  #layout 'login', :only => 'login'
   
+
   # GET /budgets/budgets
   # GET /budgets/budgets.xml
   def index
   
     @budgets_budgets = get_list_budget()
-
-    
+  
     
     #@budgets_budgets = Budgets::Budget.all
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @budgets_budgets }
     end
+
+
+#    csv_string = FasterCSV.generate do |csv|
+#      csv << ["budget_date", "total_cost" ]
+
+#      @presup =  Budgets::Budget.find(:all);
+   
+#      csv << [@presup[0].budget_date,  @presup[0].total_cost]
+#    end
+   
+#  FasterCSV.open("C:/file.csv", "w") do |csv|
+#    csv << ["row", "of"]
+#    csv << ["another", "row"]
+#  end
+
+
+ #   filename = "/home/martinezo/rmo.csv"
+ #   send_data(csv_string,
+ #     :type => 'text/csv; charset=utf-8; header=present',
+ #     :filename => filename)
+
+    
   end
 
   # GET /budgets/budgets/1
@@ -488,7 +514,30 @@ class Budgets::BudgetsController < ApplicationController
     $autorizacion =get_num_aut($budget_id)
   end
 
+  def order
+    $budget_type =1 # Presupuesto Interno
+    $budget_id = 0
+    $display_supplies = 1  #Mostrar area de captura de materiales
+    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
+#    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
 
+#   Buscar si existe el presupeusto
+    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
+    if @budgets_budget == nil
+    else
+#     Buscar los materiales que corresponden al presupuesto
+      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
+#     Buscar mano de obra que corresponden al presupuesto
+      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
+
+      $budget_id = @budgets_budget.id
+    end
+
+    $permiso =get_num_aut_req(@budgets_budget.support_request_id,"V") #get_num_aut($budget_id)
+    $autorizacion =get_num_aut(@budgets_budget.id)
+    $display_supplies =@budgets_budget.budget_type
+    render :layout => "budget_order"
+  end
 
   
 

@@ -6,6 +6,11 @@ body {
     background: url(/images/img01.jpg) repeat-x #F5F5F5
 }
 
+#body-order {
+    background: #FFF;
+    margin: 0;
+    padding: 0;
+}
 
 /* HEADERS */
 
@@ -147,6 +152,8 @@ h3{
 }
 
 
+
+
 /* PAGE LAYOUT */
 
 #wrapper {
@@ -159,6 +166,13 @@ h3{
     background: url(/images/csaj_header.png) no-repeat;
     height: 125px;
 }
+
+#header-logo2 { 
+    background: url(/images/logo_unam1.png) no-repeat;
+    height: 152px;
+}
+
+
 #unam-logo {
     float: right;
     width: 100px;
@@ -172,6 +186,14 @@ h3{
     width: 810px;
     height: 800px;
     padding: 0px 10px 0px 10px;
+}
+
+#page_order {
+    background: #FFF;
+    float:  right;
+    width: 990px;
+    height: 800px;
+    padding: 20px 10px 10px 10px;
 }
 
 #footer {

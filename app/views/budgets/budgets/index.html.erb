@@ -10,6 +10,7 @@
     <th></th>    
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <%= will_paginate @budgets_budgets %>
@@ -28,7 +29,8 @@
        <% end %>
     </td>
     <td><%= link_to_if  budgets_budget.get_num_aut_req(budgets_budget.support_request_id,"V"),"Mostrar", :controller=>'/budgets/budgets' , :action => "show", :id => budgets_budget.support_request_id %></td>
-    <td><%= link_to_if  Administration::UserSession.find.record.attributes['role']=='ADMIN', 'Borrar', budgets_budget,:remote => true, :confirm => 'Are you sure?', :method => :delete %></td>    
+    <td><%= link_to_if  Administration::UserSession.find.record.attributes['role']=='ADMIN', 'Borrar', budgets_budget,:remote => true, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Orden', :controller=>'/budgets/budgets',  :action => "order",  :id => budgets_budget.support_request_id %> </td>
   </tr>
 <% end %>
 </table>
