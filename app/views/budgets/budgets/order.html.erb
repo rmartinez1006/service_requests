@@ -4,6 +4,62 @@
 
 </head>
 
+<table class="table-order">
+  <tr>
+    <td width="300">ORDEN DE TRABAJO NÚMERO:</td>
+    <td>XXXXX</td>
+  </tr>
+  <tr>
+    <td align="center" colspan="2">DATOS DEL PRESTADOR</td>
+  </tr>
+  <tr>
+    <td>A) NOMBRE O RAZÓN SOCIAL:</td>
+    <td>XXXXX</td>
+  </tr>
+  <tr>
+    <td>B) REGISTRO FEDERAL DE CONTRIBUYENTES:</td>
+    <td>XXXXX</td>
+  </tr>
+  <tr>
+    <td>C) DOMICILIO FISCAL:</td>
+    <td>XXXXX</td>
+  </tr>
+  <tr>
+    <td>D) REPRESENTANTE LEGAL:</td>
+    <td>XXXXX</td>
+  </tr>
+  <tr><td colspan="2">&nbsp; </td></tr>
+
+  <tr>
+    <td align="center" colspan="2">CARACTERÍSTICAS</td>
+  </tr>
+
+</table>
+
+<table class="table-order">
+  <tr>
+    <td width="100">OBJETO:</td>
+    <td>
+      La Universidad Nacional Autónoma de México, encomienda y el prestador se obliga a realizar los siguientes servicios profesionales.:
+      <b><%=  @budgets_budget.request.tech_description.upcase %></b> Especificaciones y características de los trabajos a ejecutar,
+      corren agregados como anexo I, a esta orden de trabajo y se entenderán que forman parte integral del mismo.
+    </td>
+  </tr>
+  <tr>
+    <td width="100">PRECIO CONVENIDO:</td>
+    <td>
+       El importe de los servicios objeto de esta orden de trabajo, es por la cantidad de:
+       <%= number_to_currency(@budgets_budget.total_cost) %> (<%= @budgets_budget.num2letra(@budgets_budget.total_cost).upcase.concat(" ") << (@budgets_budget.total_cost.to_s.split(".")[1] || 0).rjust(2,'0')<< "/100 M.N.)" %>,
+       más la cantidad de: $ 1,107.52 ( MIL CIENTO SIETE PESOS 52/100 M.N.), por concepto del impuesto al valor agregado (IVA), lo que hace un total de: $ 8,029.52 (   OCHO MIL VEINTINUEVE
+        PESOS 52/100 M.N ); la cantidad señalada se pagará de la siguiente manera: SOLO PAGO AL-TERMINO DE LOS TRABAJOS y le compensará al prestador por los materiales; Insumos; sueldos, honorarios, organización, dirección técnica y administrativa, prestaciones sociales y laborales a su personal; "El Prestador" será el único responsable del personal que emplee con motivo de los trabajos a los que se refiere esta orden de trabajo, exime a "LA UNIVERSIDAD .NACIONAL AUTÓNOMA DE MÉXICO" de cualquier responsabilidad derivada de los trabajos objeto de esta orden, ya sea penal, laboral, civil, o de cualquier otra índole que se derive de la relación laboral con sus trabajadores.
+    </td>
+  </tr>
+
+</table>
+
+<hr/>
+
+
 <% @requests_support_request.id %>
 <table class="table1" width="950">
 <tr>
