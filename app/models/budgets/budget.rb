@@ -172,4 +172,23 @@ def centena_a_palabras(numero)
 end
 
 
+#Obtener el costo sin iva (antes de iva)
+ def costo_sin_iva()
+   r=0
+   if self.total_cost > 0
+      r = self.total_cost / 1.16   #16% de iva      
+   end
+   r
+ end
+
+ #Calcular solo iva (16%)
+ def solo_iva()
+   r=0
+   if self.costo_sin_iva() > 0
+      r = self.costo_sin_iva() * 0.16   #16% de iva
+   end
+   r
+ end
+
+
 end

@@ -14,7 +14,7 @@
   </tr>
   <tr>
     <td>A) NOMBRE O RAZÓN SOCIAL:</td>
-    <td>XXXXX</td>
+    <td>XXX</td>
   </tr>
   <tr>
     <td>B) REGISTRO FEDERAL DE CONTRIBUYENTES:</td>
@@ -49,11 +49,25 @@
     <td width="100">PRECIO CONVENIDO:</td>
     <td>
        El importe de los servicios objeto de esta orden de trabajo, es por la cantidad de:
-       <%= number_to_currency(@budgets_budget.total_cost) %> (<%= @budgets_budget.num2letra(@budgets_budget.total_cost).upcase.concat(" ") << (@budgets_budget.total_cost.to_s.split(".")[1] || 0).rjust(2,'0')<< "/100 M.N.)" %>,
-       más la cantidad de: $ 1,107.52 ( MIL CIENTO SIETE PESOS 52/100 M.N.), por concepto del impuesto al valor agregado (IVA), lo que hace un total de: $ 8,029.52 (   OCHO MIL VEINTINUEVE
-        PESOS 52/100 M.N ); la cantidad señalada se pagará de la siguiente manera: SOLO PAGO AL-TERMINO DE LOS TRABAJOS y le compensará al prestador por los materiales; Insumos; sueldos, honorarios, organización, dirección técnica y administrativa, prestaciones sociales y laborales a su personal; "El Prestador" será el único responsable del personal que emplee con motivo de los trabajos a los que se refiere esta orden de trabajo, exime a "LA UNIVERSIDAD .NACIONAL AUTÓNOMA DE MÉXICO" de cualquier responsabilidad derivada de los trabajos objeto de esta orden, ya sea penal, laboral, civil, o de cualquier otra índole que se derive de la relación laboral con sus trabajadores.
+       <%= number_to_currency(@budgets_budget.costo_sin_iva) %> (<%= @budgets_budget.num2letra(@budgets_budget.costo_sin_iva).upcase.concat(" PESOS ") << (@budgets_budget.costo_sin_iva.to_s.split(".")[1]).slice(0,2).ljust(2,'0')<< "/100 M.N.)" %>,
+       más la cantidad de: <%=number_to_currency(@budgets_budget.solo_iva)%> ( <%= @budgets_budget.num2letra(@budgets_budget.solo_iva()).upcase.concat(" PESOS ") << (@budgets_budget.solo_iva.to_s.split(".")[1]).slice(0,2).ljust(2,'0')<< "/100 M.N.)" %>,
+       por concepto del impuesto al valor agregado (IVA), lo que hace un total de: <%= number_to_currency(@budgets_budget.total_cost) %> (
+       <%= @budgets_budget.num2letra(@budgets_budget.total_cost).upcase.concat(" PESOS ") << (@budgets_budget.total_cost.to_s.split(".")[1]).slice(0,2).ljust(2,'0')<< "/100 M.N.)" %>;
+       la cantidad señalada se pagará de la siguiente manera: SOLO PAGO AL-TERMINO DE LOS TRABAJOS y le compensará al prestador por los materiales; Insumos; sueldos, honorarios, organización, dirección técnica y administrativa, prestaciones sociales y laborales a su personal; "El Prestador" será el único responsable del personal que emplee con motivo de los trabajos a los que se refiere esta orden de trabajo, exime a "LA UNIVERSIDAD .NACIONAL AUTÓNOMA DE MÉXICO" de cualquier responsabilidad derivada de los trabajos objeto de esta orden, ya sea penal, laboral, civil, o de cualquier otra índole que se derive de la relación laboral con sus trabajadores.
     </td>
   </tr>
+
+  <tr>
+    <td width="100">FORMA DE PAGO:</td>
+    <td>
+      LA UNAM", únicamente pagará lo que está señalado en la cotización autorizada por el Coordinador de
+      Servicios Administrativos del Campus UNAM Junquilla, a través de su Unidad de Obras y Servicios de Apoyo.
+      En el caso de la compra de insumos, refacciones, o alguna otro bien necesario para el buen funcionamiento
+      de los equipos, "LA UNAM", cubrirá el monto de los mismos, previa verificación, estudio y autorización del
+      Unidad de Obras y Servicios de Apoyo de la Coordinación de Servicios Administrativos del Campus UNAM Junquilla.
+    </td>
+  </tr>
+
 
 </table>
 
