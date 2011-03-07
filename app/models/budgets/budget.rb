@@ -140,7 +140,10 @@ def num2letra(numero)
     end
   end
 
-  palabras.compact.reverse.join(' ')
+  r= palabras.compact.reverse.join(' ')
+
+  r.upcase.concat(" PESOS ") << (numero.to_s.split(".")[1]).slice(0,2).ljust(2,'0')<< "/100 M.N."
+
 end
 
 def centena_a_palabras(numero)
@@ -176,7 +179,8 @@ end
  def costo_sin_iva()
    r=0
    if self.total_cost > 0
-      r = self.total_cost / 1.16   #16% de iva      
+      r = self.total_cost / 1.16   #16% de iva
+      r = "%.2f" % r      
    end
    r
  end
@@ -184,11 +188,39 @@ end
  #Calcular solo iva (16%)
  def solo_iva()
    r=0
-   if self.costo_sin_iva() > 0
-      r = self.costo_sin_iva() * 0.16   #16% de iva
+   lv_sin_iva = self.costo_sin_iva().to_f
+   if lv_sin_iva > 0
+      r =  lv_sin_iva.to_f * 0.16   #16% de iva
+      r = "%.2f" % r
    end
-   r
+   r.to_f
  end
 
+#Proveedor
+  def supplier_name()
+    if  self.supplier.trade_name == nil
+      r = "..."
+    else
+      r=self.supplier.trade_name
+    end
+  end
 
+#Proveedor Registro Federal del Contribuyente
+  def supplier_rfc()
+    if  self.supplier.taxpayer_reg == nil
+      r = "..."
+    else
+      r=self.supplier.taxpayer_reg
+    end
+  end
+
+# Dirección
+  def supplier_address()
+    if  self.supplier.address == nil
+      r = "..."
+    else
+      r=self.supplier.address
+    end
+
+  end
 end
