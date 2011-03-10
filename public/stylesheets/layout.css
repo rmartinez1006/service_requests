@@ -123,7 +123,33 @@ h3{
 .table-order{
     /*border-collapse:collapse; */
     width: 900px;
-    border:0px solid #9a1c1c;
+    /*border:0px solid #9a1c1c;*/
+    border-spacing: 0px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.table-order th{
+    /*border:1px solid #9a1c1c;*/
+    padding: 3px;
+    text-align: left;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+.table-order td{
+    /*border:1px solid #9a1c1c;*/
+    padding: 3px;
+    text-align: justify;
+}
+
+
+.table-signature{
+    /*border-collapse:collapse; */
+    width: 900px;
+    /*border:0px solid #9a1c1c;*/
     border-spacing: 0px;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
@@ -134,10 +160,11 @@ h3{
 
 
 
-.table-order td{
-    border:1px solid #9a1c1c;
+.table-signature td{
+    /*border:0px solid #9a1c1c;*/
     padding: 3px;
 }
+
 
 
 .cell1{

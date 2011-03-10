@@ -1,6 +1,6 @@
-<h1>Presupuesto</h1>
-<head>
 
+<head>
+<LINK title="Version imprimible PDF" type="application/pdf" rel="alternate" media="print"	href="version_imprimir.pdf">
 
 </head>
 
@@ -25,8 +25,8 @@
     <td><%= @budgets_budget.supplier_address()%></td>
   </tr>
   <tr>
-    <td>D) REPRESENTANTE LEGAL:</td>
-    <td>XXXXX</td>
+    <td>D) <%= @budgets_budget.supplier_type()%></td>
+    <td></td>
   </tr>
   <tr><td colspan="2">&nbsp; </td></tr>
 
@@ -38,212 +38,131 @@
 
 <table class="table-order">
   <tr>
-    <td width="100">OBJETO:</td>
+    <th width="100">OBJETO:</th>
     <td>
       La Universidad Nacional Autónoma de México, encomienda y el prestador se obliga a realizar los siguientes servicios profesionales.:
       <b><%=  @budgets_budget.request.tech_description.upcase %></b> Especificaciones y características de los trabajos a ejecutar,
       corren agregados como anexo I, a esta orden de trabajo y se entenderán que forman parte integral del mismo.
+      <p>
     </td>
   </tr>
   <tr>
-    <td width="100">PRECIO CONVENIDO:</td>
+    <th width="100">PRECIO CONVENIDO:</th>
     <td>
-       El importe de los servicios objeto de esta orden de trabajo, es por la cantidad de: <%= number_to_currency(@budgets_budget.costo_sin_iva()) %>
-       (<%= @budgets_budget.num2letra(@budgets_budget.costo_sin_iva())%>),
-       más la cantidad de: <%=number_to_currency(@budgets_budget.solo_iva())%>  (<%= @budgets_budget.num2letra(@budgets_budget.solo_iva)%>),
-       por concepto del impuesto al valor agregado (IVA), lo que hace un total de: <%= number_to_currency(@budgets_budget.total_cost) %>
-       (<%= @budgets_budget.num2letra(@budgets_budget.total_cost)%>);
+       El importe de los servicios objeto de esta orden de trabajo, es por la cantidad de:<b> <%= number_to_currency(@budgets_budget.costo_sin_iva()) %></b>
+       (<b><%= @budgets_budget.num2letra(@budgets_budget.costo_sin_iva())%></b>),
+       más la cantidad de: <b><%=number_to_currency(@budgets_budget.solo_iva())%></b>  (<b><%= @budgets_budget.num2letra(@budgets_budget.solo_iva)%></b>),
+       por concepto del impuesto al valor agregado (IVA), lo que hace un total de: <b><%= number_to_currency(@budgets_budget.total_cost) %></b>
+       (<b><%= @budgets_budget.num2letra(@budgets_budget.total_cost)%></b>);
        la cantidad señalada se pagará de la siguiente manera: SOLO PAGO AL TERMINO DE LOS TRABAJOS y le compensará al prestador por los materiales; Insumos; sueldos, honorarios, organización, dirección técnica y administrativa, prestaciones sociales y laborales a su personal; "El Prestador" será el único responsable del personal que emplee con motivo de los trabajos a los que se refiere esta orden de trabajo, exime a "LA UNIVERSIDAD .NACIONAL AUTÓNOMA DE MÉXICO" de cualquier responsabilidad derivada de los trabajos objeto de esta orden, ya sea penal, laboral, civil, o de cualquier otra índole que se derive de la relación laboral con sus trabajadores.
+       <p>
     </td>
   </tr>
 
   <tr>
-    <td width="100">FORMA DE PAGO:</td>
+    <th width="100">FORMA DE PAGO:</th>
     <td>
       LA UNAM", únicamente pagará lo que está señalado en la cotización autorizada por el Coordinador de
       Servicios Administrativos del Campus UNAM Junquilla, a través de su Unidad de Obras y Servicios de Apoyo.
       En el caso de la compra de insumos, refacciones, o alguna otro bien necesario para el buen funcionamiento
       de los equipos, "LA UNAM", cubrirá el monto de los mismos, previa verificación, estudio y autorización del
       Unidad de Obras y Servicios de Apoyo de la Coordinación de Servicios Administrativos del Campus UNAM Junquilla.
+      <p>
     </td>
   </tr>
 
+  <tr>
+    <th width="100">VIGENCIA:</th>
+    <td>
+      La presente orden de trabajo, tendrá una vigencia por el tiempo que dure la prestación exclusivamente,
+      empezando a surtir sus efectos a partir de la siguiente fecha: <b><%= Time.now.strftime("%d/%m/%Y") %></b>
+      <p>
+    </td>
+  </tr>
+
+  <tr>
+    <th width="100">RESPONSABILIDADES:</th>
+    <td>
+       El prestador del servicio, será responsable de los daños y perjuicios que se causen a "LA UNAM"
+       o a terceros, con motivo de la ejecución de los trabajos aquí consignados, cuando resulten de
+       su incumplimiento en los términos y condiciones establecidos en el anexo I de esta orden de trabajo,
+       de la inobservancia a las recomendaciones que le haga el Unidad de Obras y Servicios de Apoyo por escrito,
+       y en aquellos casos que resulten por omisiones que le sean imputables.
+       <p>
+    </td>
+  </tr>
+
+  <tr>
+    <th width="100">CESIÓN DE DERECHOS Y OBLIGACIONES:</th>
+    <td>
+      El prestador del servicio, no podrá transferir en forma alguna a terceros los derechos
+      y obligaciones concertados en esta orden de trabajo bajo ninguna circunstancia.
+      En caso de rescisión, o de terminación anticipada, se obliga a entregar los equipos, partes o
+      materiales propiedad de "LA UNAM", relacionados con los servicios de la presente orden de trabajo,
+      así mismo finiquitará los servicios de manera adecuada dando aviso a "LA UNAM", con un mínimo
+      de diez días hábiles de anticipación.
+      <p>
+    </td>
+  </tr>
+
+  <tr>
+    <th width="100">SUBSISTENCIA DE LAS OBLIGACIONES:</th>
+    <td>
+      Las partes acuerdan que la rescisión o terminación anticipada de esta orden de trabajo, no afecta de manera
+      alguna la validez o exigibilidad de las obligaciones contraídas con anterioridad a la celebración de esta orden de trabajo.
+      <p>
+    </td>
+  </tr>
+
+  <tr>
+    <th width="100">JURISDICCIÓN:</th>
+    <td>
+      Para la interpretación y cumplimiento de la presente orden de trabajo, las partes se someten a la jurisdicción
+      y competencia de los tribunales federales con residencia en la ciudad de Querétaro, Querétaro, por lo que renuncian
+      al fuero que por razón de su domicilio presente o futuro, pudiera corresponderles. Leída que fue la presente orden de
+      trabajo y enteradas las partes de su contenido y alcances legales, lo firman en la ciudad de Querétaro. Qro.
+      <b><%= Time.now.strftime("%d/%m/%Y") %></b>
+      <p>
+    </td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
 
 </table>
+<!-- Firmas -->
+<table class="table-signature">
+  <tr>
+    <td width="45%" align="center">
+      <b>POR "LA UNAM"</b><br /><br /><br /><br /><br />
 
+      <b>ARQ. PEDRO EDUARDO BEGUERISSE ORTIZ</b><br />
+      Coordinador de Servicios Administrativos<br />
+      del Campus UNAM-Juriquilla
+    </td>
+    <td width="10%"></td>
+    <td width="45%" align="center">
+      <b>POR "EL PRESTADOR"</b><br /><br /><br /><br /><br />
+      <b><%= @budgets_budget.supplier_responsible() %></b>
+    </td>
+  </tr>
+
+  <tr>
+    <td width="45%" align="center">
+      <br /><br /><br /><br /><br />
+      <b>ARQ. VICTOR CASTILLO SANCHEZ</b><br />
+      Jefe de Unidad de Obras y Servicios de Apoyo de la <br />
+      Coordinación de Servicios Administrativos del Campus<br />
+      UNAM-Juriquilla
+    </td>
+    <td width="10%"></td>
+    <td width="45%" align="center">
+      <br /><br /><br /><br /><br />
+      <b>LIC. ERIKA TIRADO CERVANTES</b><br />
+      Jefa de la Unidad de presupuesto de. Coordinación de<br />
+      Servicios Administrativos del Campus UNAM-Juriquilla
+    </td>
+  </tr>
+
+</table>
 <hr/>
-
-
-<% @requests_support_request.id %>
-<table class="table1" width="950">
-<tr>
-
-  <th width="80" align=right >
-     <b>Folio:</b>
-  </th>
-  <td align="left">
-     <%= @budgets_budget.request.num_sequence %>
-  </td>
-
-  <th> <b> Creado el:</b></th>
-  <td align="left"><%=  @budgets_budget.request.created_at.strftime("%d/%m/%Y") %></td>
-  <th> <b> Ultimo cambio:</b></th>
-  <td align="left"><%=  @budgets_budget.request.status_chng_date.strftime("%d/%m/%Y") %></td>
-</tr>
-
-<tr>
-  <th width="30" align=right >
-    <b>Area Resp.:</b>
-  </th>
-  <td align="left">
-    <%= @budgets_budget.request.ubication_name %>
-  </td>
-  <th width="60" align=right>
-    <b>Atiende:</b>
-  </th>
-  <td align ="left" colspan="3">
-    <%= @budgets_budget.request.helper %>
-  </td>
-</tr>
-
-
-<tr class="table_content_c2">
-  <th width="30" align=right >
-    <b>Nombre:</b>
-  </th>
-  <td align="left">
-    <%= @budgets_budget.request.name %>
-  </td>
-  <th width="70" align=right>
-    <b>Correo E.:</b>
-  </th>
-  <td align ="left" colspan="3">
-    <%= @budgets_budget.request.email %>
-  </td>
-</tr>
-
-
-<tr class="table_content_c2">
-  <th width="80" align=right >
-     <b>Descripción:</b>
-  </th>
-  <td align="left" colspan="5">
-     <%= raw(@budgets_budget.request.text_to_html(@budgets_budget.request.description)) %>
-  </td>
-</tr>
-</table>
-
-
-<%= form_for(@budgets_budget, :remote=> true) do |f| %>
-
-  <% if @budgets_budget.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@budgets_budget.errors.count, "error") %> prohibited this budgets_budget from being saved:</h2>
-
-      <ul>
-      <% @budgets_budget.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
- <%=  f.text_field :support_request_id, :type => "hidden" %>
-
-<table width="950" class="table1">
-  <tr>
-    <th width="80" align="right" valign="top">
-      <b> Descripción Técnica </b>
-    </th>
-    <td align="left" colspan="3">
-
-       <%=  @budgets_budget.request.tech_description %>
-    </td>
-  </tr>
-  <tr>
-    <th width="80" align="right" valign="top">
-      <b> Descripción de Trabajos </b>
-    </th>
-    <td align="left"  colspan="3">
-      <%= @budgets_budget.description %>
-    </td>
-  </tr>
-  <tr>
-    <th width="80" align="right">
-       <b> Tipo de Soporte:</b>
-    </th>
-    <td align="left" colspan="3">
-       <%= @budgets_budget.request.supporttype.name   %>
-    </td>
-  </tr>
-
-
-  <% if $display_supplies == 2 %>
-  <tr>
-      <th width="80" align="right">
-          <b> Empresa:</b>
-      </th>
-      <td align="left" colspan="3">
-          <%= @budgets_budget.supplier.trade_name %>
-      </td>
-  </tr>
-  <% end %>
-  <tr>
-    <th width="80" align=right >
-      <b>Fecha de Termino:</b>
-    </th>
-    <td align="left">
-      <%= @budgets_budget.fn_ending_date(@budgets_budget.ending_date) %>
-      <%= @budgets_budget.num2letra(4567.90).upcase.concat(" ") << ("4567.90".to_s.split(".")[1] || 0).rjust(2,'0')<< "/100 M.N." %>
-    </td>
-    <th align="right" width="80">
-      <b> Costo Total: </b>
-    </th>
-    <td align="left" width="80">
-      <%= number_to_currency(@budgets_budget.total_cost) %>
-    </td>
-
-  </tr>
-
-</table>
-
-  <% if $display_supplies == 1 %>
-    <hr />
-
-     <div id="mat_list">
-       <h3> Materiales</h3>
-       <%= render :partial => 'supplies_show'%>
-     </div>
-   <hr />
-     <div id="work_list">
-       <h3> Mano de Obra</h3>
-       <%= render :partial => 'workmanships_show'%>
-     </div>
-
-  <% end %>
-
-
-  <% if $autorizacion==4 && $permiso %>
-    <div id="Autoriza_04">
-      <table width="950" class="Table2">
-        <tr>
-          <td>
-            <%= f.check_box :chk_aut_04, :id=>'aut_04', :name=>'chk_aut_04', :value=>"" %>
-             Autorización Secretario Técnico
-          </td>
-        </tr>
-        <tr id="txt_aut_04">
-          <td><%= f.text_area :add_aut_04,  :size => '100%'%> </td>
-        </tr>
-      </table>
-    </div>
-    
-    <hr />
-    <%= f.submit 'Guardar'%>
-  <% else %>
-     <hr />
-     <%= link_to 'Salir', :back, :class => 'link-button' %>
-  <% end %>
-
-<% end %>
+<%= link_to '<<', :back%>
 
