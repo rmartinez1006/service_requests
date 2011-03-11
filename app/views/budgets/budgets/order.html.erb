@@ -6,45 +6,51 @@
 <br />
 <br />
 <br />
-<table class="table-order">
+<table class="table-order-body">
   <tr>
-    <td width="300">ORDEN DE TRABAJO NÚMERO:</td>
+    <th width="300">ORDEN DE TRABAJO NÚMERO:</th>
     <td><%= @budgets_budget.request.ubication_name %></td>
   </tr>
+</table >
+<br />
+<table class="table-order-title">
   <tr>
-    <td align="center" colspan="2">DATOS DEL PRESTADOR</td>
+    <th align="center">DATOS DEL PRESTADOR</th>
   </tr>
-  <tr>
-    <td>A) NOMBRE O RAZÓN SOCIAL:</td>
+</table>
+
+<table class="table-order-body">
+
+ <tr>
+    <th width="300">A) NOMBRE O RAZÓN SOCIAL:</th>
     <td><%= @budgets_budget.supplier_name()%></td>
   </tr>
   <tr>
-    <td>B) REGISTRO FEDERAL DE CONTRIBUYENTES:</td>
+    <th>B) REGISTRO FEDERAL DE CONTRIBUYENTES:</th>
     <td><%= @budgets_budget.supplier_rfc()%></td>
   </tr>
   <tr>
-    <td>C) DOMICILIO FISCAL:</td>
+    <th>C) DOMICILIO FISCAL:</th>
     <td><%= @budgets_budget.supplier_address()%></td>
   </tr>
   <tr>
-    <td>D) <%= @budgets_budget.supplier_type()%></td>
+    <th>D) <%= @budgets_budget.supplier_type()%></th>
     <td></td>
-  </tr>
-  <tr><td colspan="2">&nbsp; </td></tr>
-
-  <tr>
-    <td align="center" colspan="2">CARACTERÍSTICAS</td>
-  </tr>
-<br />
-<br />
+  </tr>  
 </table>
-
-<table class="table-order">
+  
+<table class="table-order-body">
   <tr>
+    <td align="center" colspan="2"><b>CARACTERÍSTICAS</b></td>
+  </tr>
+<br />
+<br />
+
+<tr>
     <th width="100">OBJETO:</th>
     <td>
       La Universidad Nacional Autónoma de México, encomienda y el prestador se obliga a realizar los siguientes servicios profesionales.:
-      <b><%=  @budgets_budget.request.tech_description.upcase %></b> Especificaciones y características de los trabajos a ejecutar,
+      <b><%=  @budgets_budget.description.upcase %></b> Especificaciones y características de los trabajos a ejecutar,
       corren agregados como anexo I, a esta orden de trabajo y se entenderán que forman parte integral del mismo.
       <p>
     </td>
