@@ -16,8 +16,8 @@
   </div>
   <!-- TOP MENU -->
   <div id="h-menu">
-    <div id="username">
-      <%= Administration::UserSession.find.record.attributes['name']%>
+    <div id="username">     
+      <%= Administration::UserSession.find.record.attributes['name']%>      
     </div>
     <div id="h-menu-options">
        <%= render :partial => 'layouts/menu' %>

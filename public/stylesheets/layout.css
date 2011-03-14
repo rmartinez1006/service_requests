@@ -257,7 +257,7 @@ h3{
     height: 14px;
     padding: 8px 10px 5px 10px;
     margin: 0px 0 3px 0;
-    background: #C90;
+    background: #C90;    
 }
 
 #h-menu-options {
@@ -292,7 +292,7 @@ h3{
     text-transform: uppercase;
     color: #FFFFFF;
     font-family: Arial,Helvetica,sans-serif;
-    font-size: 10px;
+    font-size: 11px;
 }
 
 #h-menu-options a:hover{
@@ -330,7 +330,7 @@ input {
     text-transform: uppercase;
     color: #ffdcdc;
     font-family: Arial,Helvetica,sans-serif;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 label{

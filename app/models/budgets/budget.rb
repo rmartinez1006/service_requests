@@ -226,11 +226,11 @@ end
 
 # Persona Fisica (company_name)
   def supplier_responsible()
-    if  self.supplier.taxpayer_type == '1'
+    if  self.supplier.taxpayer_type == 1
      #PERSONA FISICA
      r = self.supplier.company_name
     end
-    if self.supplier.taxpayer_type == '2'
+    if self.supplier.taxpayer_type == 2
       #PERSONA MORAL
       r = self.supplier.trade_name
     end
@@ -239,10 +239,10 @@ end
 
 # Persona 1-Fisica / 2-Moral
   def supplier_type()
-    if  self.supplier.taxpayer_type == '1'
+    if  self.supplier.taxpayer_type == 1
       r = "PERSONA FISICA"
     end
-    if self.supplier.taxpayer_type == '2'
+    if self.supplier.taxpayer_type == 2
       r= "PERSONA MORAL"
     end
     r

@@ -1,0 +1,27 @@
+<h1>Listing administration_configurations</h1>
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+    <th>Key Group</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @administration_configurations.each do |administration_configuration| %>
+  <tr>
+    <td><%= administration_configuration.key %></td>
+    <td><%= administration_configuration.value %></td>
+    <td><%= administration_configuration.key_group %></td>
+    <td><%= link_to 'Show', administration_configuration %></td>
+    <td><%= link_to 'Edit', edit_administration_configuration_path(administration_configuration) %></td>
+    <td><%= link_to 'Destroy', administration_configuration, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Configuration', new_administration_configuration_path %>

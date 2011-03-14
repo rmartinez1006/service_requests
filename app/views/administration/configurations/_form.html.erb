@@ -1,0 +1,29 @@
+<%= form_for(@administration_configuration) do |f| %>
+  <% if @administration_configuration.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@administration_configuration.errors.count, "error") %> prohibited this administration_configuration from being saved:</h2>
+
+      <ul>
+      <% @administration_configuration.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :key %><br />
+    <%= f.text_field :key %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :key_group %><br />
+    <%= f.text_field :key_group %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

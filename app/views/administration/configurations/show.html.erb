@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Key:</b>
+  <%= @administration_configuration.key %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @administration_configuration.value %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @administration_configuration.key_group %>
+</p>
+
+
+<%= link_to 'Edit', edit_administration_configuration_path(@administration_configuration) %> |
+<%= link_to 'Back', administration_configurations_path %>

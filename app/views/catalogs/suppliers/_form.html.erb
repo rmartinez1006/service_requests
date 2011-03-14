@@ -81,8 +81,9 @@
       <td width="80" align="right">
         <%= f.label 'Persona Fisica/Moral:' %><br />
       </td>
-      <td>
-        <%= f.text_field :taxpayer_type, :size=>'20%' %>
+      <td>        
+         <%= select :catalogs_supplier, :taxpayer_type, Administration::Configuration.find(:all,:conditions => ["key_group = ?",'taxpayer_type']).collect{|p| [p.value, p.key]} %>
+        
       </td>
     </tr>
 </table>

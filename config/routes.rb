@@ -1,4 +1,6 @@
 ServiceRequests::Application.routes.draw do
+  namespace :administration do resources :configurations end
+
   resources :posts
 
   #get "support_request/index"
