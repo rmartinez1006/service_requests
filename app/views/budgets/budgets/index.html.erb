@@ -29,9 +29,8 @@
        <% end %>
     </td>
     <td><%= link_to_if  budgets_budget.get_num_aut_req(budgets_budget.support_request_id,"V"),"Mostrar", :controller=>'/budgets/budgets' , :action => "show", :id => budgets_budget.support_request_id %></td>
-    <td><%= link_to_if  Administration::UserSession.find.record.attributes['role']=='ADMIN', 'Borrar', budgets_budget,:remote => true, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to_if  Administration::UserSession.find.record.attributes['role']=='ADMIN', 'Borrar', budgets_budget,:remote => true, :confirm => '¿Continuar?', :method => :delete %></td>
     
-
     <td>
        <% if budgets_budget.budget_type == 2 %>
          <%= link_to_if budgets_budget.get_num_aut_req(budgets_budget.support_request_id,"I") ,'Orden', :controller=>'/budgets/budgets', :action => "order",  :id => budgets_budget.support_request_id %>

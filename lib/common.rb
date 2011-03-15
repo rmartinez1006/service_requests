@@ -170,6 +170,22 @@ def get_rol_aut(pm_tipo)
     end
   end
   #---
+
+  # Impresion de Orde de servicio
+  #COORDINADOR
+  if pm_tipo == "I"
+    if role=='COORD'
+      autoriza << { :aut => 999 }
+    end
+    # JEFE DE UNIDAD
+    if role=='JEFUNI'
+      autoriza << { :aut => 999 }
+    end
+    # -- ANALISTA PRESUPUESTADOR
+    if role=='APRE'
+       autoriza << { :aut => 999 }
+    end
+  end
   autoriza
 end
 
@@ -229,8 +245,16 @@ end
      if r == 999
         if pm_tipo=="E" #Edicion
           exito = false
-        else  
-          exito = true
+        else
+          if pm_tipo=="I" # Impresion
+             for p in 0..autoriza.length-1
+                if autoriza[p][:aut]==r
+                  exito = true
+                end
+             end
+          else
+            exito = true
+          end
         end
         
      else
@@ -248,7 +272,7 @@ end
      user_id = Administration::UserSession.find.record.attributes['id']
      role = Administration::UserSession.find.record.attributes['role']
      if role == 'ADMIN'
-       @budgets_budgets = Budgets::Budget.find(:all, :order=>"created_at DESC").paginate :page =>params[:page],:per_page=>22, :order => 'created_on DESC'
+       @budgets_budgets = Budgets::Budget.find(:all, :order=>"created_at DESC").paginate :page =>params[:page],:per_page=>20, :order => 'created_on DESC'
        return @budgets_budgets
      else
        lv_sql ="SELECT * FROM budgets_budgets

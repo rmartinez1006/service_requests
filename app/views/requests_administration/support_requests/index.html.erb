@@ -61,7 +61,7 @@
     <td><%= requests_administration_support_request_deleg.description_left(50) %></td>
     <td align ="center" ><%= image_tag(requests_administration_support_request_deleg.img_status(requests_administration_support_request_deleg.request_status_id.to_i)) %></td>
     <td><%= link_to 'Ver', requests_administration_support_request_deleg %></td>
-    <td><%= link_to_if Administration::UserSession.find.record.attributes['role']= 'ADMIN', 'Modificar', edit_requests_administration_support_request_path(requests_administration_support_request_deleg) %></td>
+    <td><%= link_to_if requests_administration_support_request_deleg.valida_modificar(), 'Modificar', edit_requests_administration_support_request_path(requests_administration_support_request_deleg) %></td>
     <td><%= link_to_if requests_administration_support_request_deleg.valida_escalar(), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request_deleg.id %></td>
   </tr>
 <% end %>

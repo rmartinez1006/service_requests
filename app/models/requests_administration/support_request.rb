@@ -156,6 +156,26 @@ end
   end
 
 
+# Validación para determinar activar el link de modificar
+  def valida_modificar
+    user_id = Administration::UserSession.find.record.attributes['id']
+    id_req= self.id
+    r = false
+#   Si no esta asignado un responsable: Se puede modificar
+    if self.helper_id == nil
+       r = true
+    else
+#     Si es el usuario actual(de la sesion) es el que esta asigando para su atención
+      if self.helper_id == user_id
+         r = true
+      end
+    end
+
+    #El administrador si tiene permiso de modificar
+    r = true if Administration::UserSession.find.record.attributes['role']== 'ADMIN'
+
+  end  
+
 # Validación para determinar activar el link de Presupesto
 # Si no existe presupuesto, entonces, activar el link, si existe no activar
   def valida_presupuesto(req_id)

@@ -147,8 +147,9 @@ h3{
 
 .table-order-hdr th{
     /*border:0px solid #9a1c1c;*/
-    text-align: right;
+    text-align: center;
     padding: 3px;
+    font-size: 70%
 }
 
 .table-order-hdr td{

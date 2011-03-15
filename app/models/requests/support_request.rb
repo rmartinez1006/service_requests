@@ -37,10 +37,10 @@ class Requests::SupportRequest < ActiveRecord::Base
 
   }
 
+
   def self.human_attribute_name(attr, options={})
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
-
 
 
   def before_save
