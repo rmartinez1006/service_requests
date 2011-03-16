@@ -195,6 +195,19 @@ class Budgets::BudgetsController < ApplicationController
          lv_comentario = @budgets_budget.add_aut_05
          lv_guardar = 1
          lv_status = 'ST12'
+         # Validar que exista fecha de Termino
+         if @budgets_budget.ending_date == nil or @budgets_budget.ending_date == ''
+            @budgets_budget.errors.add(:ending_date, '-Es un dato requerido.')
+            return
+         end
+         # Validar que exista el número de Orden
+         if $budget_type == 2
+            if @budgets_budget.order_num == nil or @budgets_budget.order_num.empty?
+               @budgets_budget.errors.add(:order_num, '-Es un dato requerido.')
+               return
+            end
+         end
+
       end
     
       if (lv_guardar == 1)
@@ -275,7 +288,7 @@ class Budgets::BudgetsController < ApplicationController
           @budgets_budget.attributes =  params[:budgets_budget]
           lv_ending_date = params[:budgets_budget][:ending_date]
           #lv_ending_date = lv_ending_date.gsub("-","/") Date.strptime(params[:budgets_budget][:ending_date], "%d/%m/%Y")
-          if lv_ending_date!=nil
+          if lv_ending_date != nil and lv_ending_date!=''
              @budgets_budget.ending_date = Date.strptime(lv_ending_date, "%d/%m/%Y")
           end
           if $budget_type ==1     #Presupuesto Interno (Tiene Materiales y mano de obra)
@@ -344,6 +357,18 @@ class Budgets::BudgetsController < ApplicationController
          lv_comentario = @budgets_budget.add_aut_05
          lv_guardar = 1
          lv_status = 'ST12'
+         # Validar que exista fecha de Termino
+         if @budgets_budget.ending_date == nil or @budgets_budget.ending_date == ''
+            @budgets_budget.errors.add(:ending_date, '-Es un dato requerido.')
+            return
+         end
+         # Validar que exista el número de Orden
+         if $budget_type == 2
+            if @budgets_budget.order_num == nil or @budgets_budget.order_num.empty?
+               @budgets_budget.errors.add(:order_num, '-Es un dato requerido.')
+               return
+            end
+         end   
       end
 
 

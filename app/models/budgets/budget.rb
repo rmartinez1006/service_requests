@@ -20,7 +20,9 @@ include Common
 validates_numericality_of :total_cost,  :message => "Debe ser númerico."
 
 HUMANIZED_ATTRIBUTES = {
-    :total_cost    => 'Costo'
+    :total_cost    => 'Costo',
+    :ending_date => 'Fecha de Término',
+    :order_num=> 'Número de Orden'
   }
 
   def self.human_attribute_name(attr, options={})

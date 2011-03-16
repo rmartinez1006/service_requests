@@ -406,12 +406,17 @@
            <tr>
              <td>Fecha de Termino:<%= f.text_field  :ending_date, :size=>'9', :id=>'budgets_ending_date' %> </td>
            </tr>
+           <% if $display_supplies == 0 %>
+           <tr>
+             <td>Orden de Trabajo Num:<%= f.text_field  :order_num, :size=>'50'%></td>
+           </tr>
+           <%end%>
            <tr>
              <td>
                <%= f.check_box :chk_aut_05, :id=>'aut_05', :name=>'chk_aut_05', :value=>"" %>
                Autorización Final Presupuesto (Coordinador)
              </td>
-          </tr>
+           </tr>
 
          <tr id="txt_aut_05">
            <td><%= f.text_area :add_aut_05,  :size => '98%'%> </td>
