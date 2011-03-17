@@ -2,7 +2,8 @@ class Notifier < ActionMailer::Base
   default :from => "rmo1006@gmail.com"
 
   def path_url
-    return '192.168.1.74:3000'
+    #return '192.168.1.74:3000'
+    return '132.248.142.10:3051'
   end
 
 

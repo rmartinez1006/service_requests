@@ -15,6 +15,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <%= will_paginate @requests_administration_support_requests %>
@@ -33,6 +34,11 @@
       <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presupuesto", :controller=>'/budgets/budgets' , :action => "budget_fm1", :id => requests_administration_support_request.id %></td>
       <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presup. Externo", :controller=>'/budgets/budgets', :action => "budget_fm2", :id => requests_administration_support_request.id %></td>      
     <% end %>
+    
+    <% if (Administration::UserSession.find.record.attributes['role']=='ADMIN') %>
+      <td><%= link_to_if  Administration::UserSession.find.record.attributes['role']=='ADMIN', 'Borrar', requests_administration_support_request, :confirm => '¿Borrar solicitud?', :method => :delete %></td>
+    <%end%>
+
   </tr>
 <% end %>
 </table>
