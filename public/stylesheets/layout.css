@@ -165,6 +165,29 @@ h3{
     padding: 3px;
 }
 
+.table-amount{
+    border-collapse:collapse; 
+    width: 810px;
+    border:1px solid #9a1c1c;
+    border-spacing: 0px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    padding-top: 5px;
+    padding-bottom: 5px;   
+}
+
+.table-amount th{
+    /*border:0px solid #9a1c1c;*/
+    text-align: right;
+    padding: 3px;
+    font-size: 70%
+}
+
+.table-amount td{
+    border:1px solid #9a1c1c;
+    text-align: right;
+    padding: 3px;
+}
 
 
 .cell1{

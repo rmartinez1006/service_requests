@@ -25,6 +25,7 @@ $("#work_unit").attr('value', '');
 $(".combo_work  option:eq(0)").attr("selected", "selected");
 <% end -%>
 
+$("#total_amount").html("<%= escape_javascript(render(:partial => "amount"))%>");
 
 <% end -%>
 

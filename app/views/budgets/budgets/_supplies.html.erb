@@ -18,6 +18,7 @@
     <td align="right"><%= number_to_currency(budgets_budget_supply.importe( budgets_budget_supply.unit_cost,  budgets_budget_supply.quantity ))  %></td>    
     <td><%= link_to "Borrar", { :action => "delete_supply", :id=>budgets_budget_supply.id },:confirm => "¿Borrar?", :method => :delete, :remote=>true %></td>    
   </tr>
-<% end %>
+<% end %>  
 </table>
+
 
