@@ -229,7 +229,20 @@ class Budgets::BudgetsController < ApplicationController
          @budgets_budget.set_status_id_req(@requests_support_request.id, lv_status)
 
       end
-      
+      # Instrucciones (Comentario)
+      if (@budgets_budget.chk_instruc == '1')
+         @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'INSTR'")
+         request_commentary = Requests::RequestCommentary.new
+         request_commentary.budget_id =  $budget_id
+         request_commentary.user_id = Administration::UserSession.find.record.attributes['id']
+         request_commentary.commentaries = lv_comentario
+         request_commentary.comment_type_id = @catalogs_comment_types.id
+         request_commentary.support_request_id = @budgets_budget.support_request_id
+         request_commentary.save
+         # Actualizar Status de solicitud
+         @budgets_budget.set_status_id_req(@requests_support_request.id, lv_status)
+      end
+    
 
       @budgets_budgets = Budgets::Budget.all
       render :update do |page|
@@ -390,6 +403,11 @@ class Budgets::BudgetsController < ApplicationController
          # Actualizar Status de solicitud
          @budgets_budget.set_status_id_req(@budgets_budget.support_request_id, lv_status)
 
+      end
+
+      # Instrucciones (Comentario)
+      if (params[:chk_instruc] == '1')
+         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id,@requests_support_request,@budgets_budget)
       end
 
       

@@ -2,6 +2,7 @@
 
 <table class="table1">
   <tr>
+    <th>Presup.</th>
     <th>Solicitud</th>
     <th>Costo Total</th>
     <th>Fecha</th>
@@ -16,6 +17,7 @@
 <%= will_paginate @budgets_budgets %>
 <% @budgets_budgets.each do |budgets_budget| %>
   <tr>
+    <td><%= budgets_budget.id %></td>
     <td><%= budgets_budget.request.num_sequence %></td>
     <td align="right"><%= number_to_currency(budgets_budget.total_cost) %></td>
     <td><%= budgets_budget.budget_date.strftime("%d/%m/%Y") %></td>

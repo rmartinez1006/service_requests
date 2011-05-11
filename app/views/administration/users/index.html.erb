@@ -29,5 +29,6 @@
 </table>
 
 <hr />
-
-<%= link_to 'Nuevo usuario', new_administration_user_path, :class => 'link-button' %>
+<% if (Administration::UserSession.find.record.attributes['role']=='ADMIN') %>
+  <%= link_to 'Nuevo usuario', new_administration_user_path, :class => 'link-button' %>
+<%end%>

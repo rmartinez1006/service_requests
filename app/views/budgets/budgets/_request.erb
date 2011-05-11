@@ -2,7 +2,6 @@
   
   <script type="text/javascript">
     $(document).ready(function(){
-
       
       $('input[name=boton_mat]').attr('checked', true); //Selecionar boton de materiales
       $('input[name=boton_work]').attr('checked', false); //Selecionar boton de mano de obra
@@ -18,6 +17,10 @@
 
       $("#txt_aut_05").hide(); //-- Ocultar Texto de Autorización 05
       $('input[name=chk_aut_05]').attr('checked', false);
+
+      $("#txt_instruc").hide(); //-- Ocultar Texto de Autorización 05
+      $('input[name=chk_instruc]').attr('checked', false);
+
 
 
       //Checkbox Autorización analista (Ocultar/Mostrar)
@@ -72,6 +75,15 @@
 
        });
 
+      //Checkbox Instrucciones
+      $("#chk_instruc").change(function(){
+         var x = $('input[name=chk_instruc]').is(':checked')
+         if (x == true)
+         {
+           $("#txt_instruc").show();
+         }else $("#txt_instruc").hide();
+
+       });
 
 
       //Radio button materiales
@@ -353,11 +365,11 @@
        <!-- Zona de Autorizaciones -->
        <% if $autorizacion == 1 %>
         <div id="Autoriza_01">
-        <table width="950" class="Table2">
+        <table width="950" class="table2">
         <tr>
           <td>
-          <%= f.check_box :chk_analista, :id=>'analista', :name=>'chk_analista', :value=>"" %>
-           Liberar presupuesto (Analista)
+          <%=f.check_box :chk_analista, :id=>'analista', :name=>'chk_analista', :value=>""%>
+          Liberar presupuesto (Analista)
           </td>
         </tr>
         <tr id="txt_analista">
@@ -370,7 +382,7 @@
 
        <% if $autorizacion == 2 %>
          <div id="Autoriza_02">
-         <table width="950" class="Table2">
+         <table width="950" class="table2">
           <tr>
             <td>
             <%= f.check_box :chk_aut_02, :id=>'aut_02', :name=>'chk_aut_02', :value=>"" %>
@@ -386,7 +398,7 @@
 
        <% if $autorizacion == 3 %>
          <div id="Autoriza_03">
-         <table width="950" class="Table2">
+         <table width="950" class="table2">
           <tr>
             <td>
             <%= f.check_box :chk_aut_03, :id=>'aut_03', :name=>'chk_aut_03', :value=>"" %>
@@ -402,7 +414,7 @@
 
        <% if $autorizacion == 5 %>
          <div id="Autoriza_05">
-         <table width="950" class="Table2">
+         <table width="950" class="table2">
            <tr>
              <td>Fecha de Termino:<%= f.text_field  :ending_date, :size=>'9', :id=>'budgets_ending_date' %> </td>
            </tr>
@@ -428,17 +440,42 @@
        <!-- Fin de if autorización == 5 -->
        </td>
      </tr>
-     <tr>
-       <td>
-         <% if $display_supplies == 1 %>
-            <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('work_quantity').value=-999.99;document.getElementById('mat_quantity').value=-999.99; return true;"%>
-         <% else %>
-            <%= f.submit 'Guardar Presupuesto'%>
-         <% end %>
-       </td>
-     </tr>
 
    </table>
+
+
+   <!-- INI Zona de Instrucciones -->
+   <table width="950" class="table2">
+     <tr>
+       <td>
+        <div id="Instrucciones">
+          <table width="950" class="table2">
+            <tr>
+              <td>
+               <%= f.check_box :chk_instruc, :id=>'chk_instruc', :name=>'chk_instruc', :value=>""%>
+               Instrucciones
+              </td>
+           </tr>
+
+           <tr id="txt_instruc">
+             <td><%= f.text_area :add_instruc,  :size => '98%'%> </td>
+          </tr>
+          <tr>
+             <td>
+             <% if $display_supplies == 1 %>
+               <%= f.submit 'Guardar Presupuesto', :onclick => "document.getElementById('work_quantity').value=-999.99;document.getElementById('mat_quantity').value=-999.99; return true;"%>
+             <% else %>
+               <%= f.submit 'Guardar Presupuesto'%>
+             <% end %>
+             </td>
+          </tr>
+       </table>
+      </div>
+     </td>
+    </tr>
+   </table>
+   <!-- FIN Zona de Instrucciones -->
+
    <!-- 1) Mostrar datos si es un presupuesto interno -->
    <% if $display_supplies == 1 %>
      <hr />
@@ -544,9 +581,6 @@
   <!-- Fin de If Presupuesto Interno -->
   <% end %> <!-- Fin de form do-->
 
-  <!--div id="total_amount">
-  <!--%= render :partial => 'amount'%>
-  <!--/div-->
   <hr />  
 
 <% end %>

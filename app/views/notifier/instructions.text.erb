@@ -1,7 +1,4 @@
 
-
-
-Su Solicitud ha sido registrada en el sistema.
 --------------------------------------------------------
 Solicitud:  <%=@requests_support_request.num_sequence%>
 Fecha:      <%=@requests_support_request.created_at.strftime("%d/%m/%Y")%>
@@ -9,17 +6,10 @@ Solicita:   <%=@requests_support_request.name%>
 --------------------------------------------------------
 Descripción:
 <%=@requests_support_request.description%>
+
+Instrucciones:
+<%= @budgets_budget.add_instruc %>
 --------------------------------------------------------
 Su solicitud: <%= requests_support_request_url(@requests_support_request, :host => @url) %>
-
-
-COORDINACIÓN DE
-SERVICIOS ADMINISTRATIVOS
-CAMPUS UNAM JURIQUILLA
-
-UNIDAD DE OBRAS Y SERVICIOS DE APOYO
-
-
-
 
 
