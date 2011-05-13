@@ -37,6 +37,7 @@ ServiceRequests::Application.routes.draw do
      match 'budgets/:id/delete_supply2' => 'budgets#delete_supply2', :as => :delete_supply2
      match 'budgets/:id/budget_fm1_edit' => 'budgets#budget_fm1_edit', :as => :budget_fm1_edit
      match 'budgets/:id/order' => 'budgets#order', :as => :order
+     match 'budgets/:id/info' => 'budgets#info', :as => :info
   end
 
   namespace :catalogs do resources :supplies end

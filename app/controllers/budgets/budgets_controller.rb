@@ -1,7 +1,5 @@
 #require 'fastercsv'
 
-
-
 class Budgets::BudgetsController < ApplicationController
   include Common
   before_filter :authorize
@@ -582,6 +580,43 @@ class Budgets::BudgetsController < ApplicationController
     render :layout => "budget_order"
   end
 
-  
+# Comentarios e instrucciones
+  def info
+
+    # Obtener COMENTARIOS
+    lv_sql ="SELECT * FROM request_commentaries
+              WHERE support_request_id = " + params[:id] +
+            " AND comment_type_id IN
+                (SELECT id FROM catalogs_comment_types
+                 WHERE abbr IN ('RESOL','AUT-P02','AUT-P03','AUT-P04','AUT-P05'))
+              ORDER BY created_at DESC"
+
+  #@requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"support_request_id" = ?', params[:id]] )
+    @requests_request_commentaries = RequestsAdministration::Commentary.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>5, :order => 'created_at ASC'
+
+ # Obtener INSTRUCCIONES
+ # Solo se podran leer las instrucciones si el usuario actual pertenece a la misma
+ # Ubicación que el usuario que emitio la instrucción
+
+   user_id = Administration::UserSession.find.record.attributes['id']  #Usuario Actual
+   ubicat_id = 0
+
+   @user_act = user_info(user_id)
+   @user_act.each do |user|
+     ubicat_id = user.attributes['ubication_id']
+   end
+
+   lv_sql ="SELECT * FROM request_commentaries
+              WHERE support_request_id = " + params[:id] +
+            " AND comment_type_id IN
+                (SELECT id FROM catalogs_comment_types
+                 WHERE abbr IN ('INSTR'))
+              AND user_id IN (SELECT id FROM administration_users WHERE ubication_id = "+ ubicat_id.to_s() +")
+              ORDER BY created_at DESC"
+
+  #@requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"support_request_id" = ?', params[:id]] )
+   @requests_request_comm_instr = RequestsAdministration::Commentary.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>5, :order => 'created_at ASC'
+    
+  end
 
 end

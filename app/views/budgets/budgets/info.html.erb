@@ -1,0 +1,55 @@
+
+<div>
+<h3>Comentarios:</h3>
+
+<%= will_paginate @requests_request_commentaries %>
+<% @requests_request_commentaries.each do |commentary| %>
+ <table class="table3" width="950">
+  <tr>
+    <td rowspan="2" width="100" align="center"  class="<%=commentary.get_abbr_comment(commentary.comment_type_id)%>">
+      <%= commentary.created_at.strftime("%d/%m/%Y %I:%M%p") %>
+    </td>
+    <td width="80" align=right >
+      <b>Usuario:</b>
+    </td>
+    <td align="left">
+      <%= commentary.verifica_usuario(commentary.user_id) %>
+    </td>
+  </tr>
+
+  <tr class="table_content_c3">
+    <td align="left" colspan="2">
+      <%= raw(commentary.valida_comentario(commentary.commentaries)) %>
+    </td>
+  </tr>
+ </table>
+<% end %>
+</div>
+
+<div>
+<h3>Instrucciones:</h3>
+<%= will_paginate @requests_request_comm_instr %>
+<% @requests_request_comm_instr.each do |commentary| %>
+ <table class="table3" width="950">
+  <tr>
+    <td rowspan="2" width="100" align="center"  class="<%=commentary.get_abbr_comment(commentary.comment_type_id)%>">
+      <%= commentary.created_at.strftime("%d/%m/%Y %I:%M%p") %>
+    </td>
+    <td width="80" align=right >
+      <b>Usuario:</b>
+    </td>
+    <td align="left">
+      <%= commentary.verifica_usuario(commentary.user_id) %>
+    </td>
+  </tr>
+
+  <tr class="table_content_c3">
+    <td align="left" colspan="2">
+      <%= raw(commentary.valida_comentario(commentary.commentaries)) %>
+    </td>
+  </tr>
+ </table>
+<% end %>
+</div>
+
+

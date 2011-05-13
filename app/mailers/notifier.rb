@@ -1,4 +1,6 @@
 class Notifier < ActionMailer::Base
+  include Common
+
   default :from => "rmo1006@gmail.com"
 
   def path_url
@@ -42,20 +44,23 @@ class Notifier < ActionMailer::Base
     user_ubication_id = Administration::UserSession.find.record.attributes['ubication_id']
     user_id = Administration::UserSession.find.record.attributes['id']
     req_admin_id = @requests_support_request.id
-    lv_sql = 'SELECT DISTINCT dl.user_id,us.name,us.ubication_id, us.email
-                FROM request_delegations dl, administration_users us
-               WHERE dl.user_id = us.id
-                 AND dl.support_request_id='+ req_admin_id.to_s() +
-                 ' AND dl.user_id <> '+ user_id.to_s() +
-                 ' AND us.ubication_id ='+user_ubication_id.to_s()+
-               ' UNION
-              SELECT DISTINCT dl.helper_id user_id,us.name,us.ubication_id,us.email
-                FROM request_delegations dl, administration_users us
-               WHERE dl.helper_id = us.id
-                 AND dl.support_request_id='+req_admin_id.to_s()+
-                 ' AND dl.helper_id <> '+user_id.to_s() +
-                 ' AND us.ubication_id ='+user_ubication_id.to_s()
-    @users = Administration::User.find_by_sql(lv_sql)
+
+    @users = involved(req_admin_id,user_id,user_ubication_id)
+
+#    lv_sql = 'SELECT DISTINCT dl.user_id,us.name,us.ubication_id, us.email
+#                FROM request_delegations dl, administration_users us
+#               WHERE dl.user_id = us.id
+#                 AND dl.support_request_id='+ req_admin_id.to_s() +
+#                 ' AND dl.user_id <> '+ user_id.to_s() +
+#                 ' AND us.ubication_id ='+user_ubication_id.to_s()+
+#               ' UNION
+#              SELECT DISTINCT dl.helper_id user_id,us.name,us.ubication_id,us.email
+#                FROM request_delegations dl, administration_users us
+#               WHERE dl.helper_id = us.id
+#                 AND dl.support_request_id='+req_admin_id.to_s()+
+#                 ' AND dl.helper_id <> '+user_id.to_s() +
+#                 ' AND us.ubication_id ='+user_ubication_id.to_s()
+#    @users = Administration::User.find_by_sql(lv_sql)
 
     # Enviar a cada uno de los involucrados
     @users.each do |users|      

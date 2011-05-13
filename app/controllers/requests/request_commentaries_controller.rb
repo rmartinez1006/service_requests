@@ -1,6 +1,8 @@
 class Requests::RequestCommentariesController < ApplicationController
   # GET /requests/request_commentaries
   # GET /requests/request_commentaries.xml
+  include Common
+  
   before_filter :authorize
   def index
     @requests_request_commentaries = Requests::RequestCommentary.all

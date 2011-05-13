@@ -3,6 +3,7 @@ class Requests::RequestCommentary < ActiveRecord::Base
   belongs_to :request, :class_name => "Requests::SupportRequest", :foreign_key => "request_id"
   belongs_to :user, :class_name => "Administration::User", :foreign_key => "user_id"
 
+include Common
 # Convertir Texto a formato html
 def valida_comentario (text)
   if text == nil
@@ -29,5 +30,19 @@ end
    end
    r
  end
+
+   # Obtener la clave (ABBR) de un tipo de comentario
+   def get_abbr_comment(id)
+     r = ""
+     lv_sql = "SELECT abbr FROM catalogs_comment_types
+                WHERE id = ".concat(id.to_s)
+     @comment_types=Catalogs::CommentType.find_by_sql(lv_sql)
+     if @comment_types
+       r =  @comment_types[0].abbr
+     end
+     r
+   end
+
+
 
 end

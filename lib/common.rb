@@ -319,5 +319,32 @@ end
 
    end
 
+   # Obtiene los involucrados en la atención de una solicitud
+   def involved(req_admin_id,user_id,user_ubication_id)
+      lv_sql = 'SELECT DISTINCT dl.user_id,us.name,us.ubication_id, us.email
+                FROM request_delegations dl, administration_users us
+               WHERE dl.user_id = us.id
+                 AND dl.support_request_id='+ req_admin_id.to_s() +
+                 ' AND dl.user_id <> '+ user_id.to_s() +
+                 ' AND us.ubication_id ='+user_ubication_id.to_s()+
+               ' UNION
+              SELECT DISTINCT dl.helper_id user_id,us.name,us.ubication_id,us.email
+                FROM request_delegations dl, administration_users us
+               WHERE dl.helper_id = us.id
+                 AND dl.support_request_id='+req_admin_id.to_s()+
+                 ' AND dl.helper_id <> '+user_id.to_s() +
+                 ' AND us.ubication_id ='+user_ubication_id.to_s()
+      r = Administration::User.find_by_sql(lv_sql)
+   end
+
+   # Obtener información del usuario
+   def user_info(user_id)
+     lv_sql = 'SELECT *
+                 FROM administration_users
+                WHERE id = '+ user_id.to_s()
+     r = Administration::User.find_by_sql(lv_sql)
+   end
+
+
 
 end
