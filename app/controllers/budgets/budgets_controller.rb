@@ -49,13 +49,15 @@ class Budgets::BudgetsController < ApplicationController
     $budget_type =1 # Presupuesto Interno
     $budget_id = 0
     $display_supplies = 1  #Mostrar area de captura de materiales
-    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
+    
 #    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
 
 #   Buscar si existe el presupeusto
-    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
+    @budgets_budget = Budgets::Budget.find(params[:id])
     if @budgets_budget == nil
     else
+#     Solicitud
+     @requests_support_request = RequestsAdministration::SupportRequest.find(:first, :conditions => "id ="+ @budgets_budget.support_request_id.to_s)
 #     Buscar los materiales que corresponden al presupuesto
       @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
 #     Buscar mano de obra que corresponden al presupuesto
@@ -64,7 +66,7 @@ class Budgets::BudgetsController < ApplicationController
       $budget_id = @budgets_budget.id
     end
 
-    $permiso =get_num_aut_req(@budgets_budget.support_request_id,"V") #get_num_aut($budget_id)
+    $permiso =get_num_aut_req(@budgets_budget.id,"V") #get_num_aut($budget_id)
     $autorizacion =get_num_aut(@budgets_budget.id)
     $display_supplies =@budgets_budget.budget_type
 
@@ -431,66 +433,6 @@ class Budgets::BudgetsController < ApplicationController
 
   end
 
-    # GET /budgets/budgets/1/budget_fm1
-  def budget_fm1
-    $budget_type =1 # Presupuesto Interno    
-    $budget_id = 0
-    $display_supplies = 1  #Mostrar area de captura de materiales
-    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
-#    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
-
-#   Buscar si existe el presupeusto
-    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
-    if @budgets_budget == nil
-#     NO existe Presupeusto: CREAR EL PRESUPUESTO
-      @budgets_budget = Budgets::Budget.new
-      @budgets_budget.support_request_id = params[:id]      
-#     Auxiliar
-      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
-      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
-    else
-#     Existe Presupuesto:
-#     Buscar los materiales que corresponden al presupuesto
-      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
-#     Buscar mano de obra que corresponden al presupuesto
-      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
-
-      $budget_id = @budgets_budget.id
-    end
-    #Tomar los datos de la Solicitud y mostrarlos
-    @budgets_budget.tech_description = @requests_support_request.tech_description
-    @budgets_budget.support_type_id = @requests_support_request.support_type_id
-
-    $autorizacion =get_num_aut($budget_id)
-  end
-
-
-
-  # PRESUPUESTO EXTERNO
-  # GET /budgets/budgets/1/budget_fm1
-  def budget_fm2
-    $budget_type =2 # Presupuesto Externo
-    $budget_id = 0
-    $display_supplies = 0
-    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
-
-#   Buscar si existe el presupeusto
-    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
-    if @budgets_budget == nil
-#     NO existe Presupeusto: CREAR EL PRESUPUESTO
-      @budgets_budget = Budgets::Budget.new
-      @budgets_budget.support_request_id = params[:id]
-    else
-#     Existe Presupuesto:
-      @budgets_budget.ending_date = @budgets_budget.ending_date.strftime("%d/%m/%Y") if @budgets_budget.ending_date != nil
-      $budget_id = @budgets_budget.id
-    end
-    #Tomar los datos de la Solicitud y mostrarlos
-    @budgets_budget.tech_description = @requests_support_request.tech_description
-    @budgets_budget.support_type_id = @requests_support_request.support_type_id
-    $autorizacion =get_num_aut($budget_id)
-  end
-
 
 
   def delete_supply #Borra Material
@@ -506,54 +448,78 @@ class Budgets::BudgetsController < ApplicationController
   end
 
 
-
- # GET /budgets/budgets/1/budget_fm1_edit
-  def budget_fm1_edit    
-    redirect_to budgets_budget_fm1_path(params[:id])
-    return
-    @requests_support_request =  RequestsAdministration::SupportRequest.find(params[:id])
-    @budgets_budget = Budgets::Budget.find(:first,:conditions => "support_request_id =" + @requests_support_request.id.to_s )
-    @budgets_budget.tech_description = @requests_support_request.tech_description
-
-#   Buscar los materiales que corresponden al presupuesto
-    @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =" + @budgets_budget.id.to_s )
-     redirect_to budgets_budget_fm1_path(@budgets_budget.support_request_id)
-  end
-
-
-
 # GET /budgets/budgets/1/budget_fm1
   def budget_fm1
     $budget_type =1 # Presupuesto Interno
     $budget_id = 0
     $display_supplies = 1  #Mostrar area de captura de materiales
-    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
+    lv_new = params[:new]   #1 = Es nuevo presupuesto
+#    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
 #    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
 
-#   Buscar si existe el presupeusto
-    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
-    if @budgets_budget == nil
-#     NO existe Presupeusto: CREAR EL PRESUPUESTO
+#   ACTUALIZACION (Se pasa el ID del PRESUPUESTO como parametro)
+    if lv_new != '1'
+       @budgets_budget = Budgets::Budget.find(:first, :conditions => "id ="+ params[:id])
+       @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
+       if @budgets_budget == nil
+          lv_new = 1
+       end
+      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
+#     Buscar mano de obra que corresponden al presupuesto
+      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
+      $budget_id = @budgets_budget.id
+    end
+
+#   NUEVO PRESUPUESTO (se pasa el ID de las SOLICITUD como parametro)
+    if lv_new == '1'
       @budgets_budget = Budgets::Budget.new
       @budgets_budget.support_request_id = params[:id]
 #     Auxiliar
       @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
       @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => "budget_id =-1")
-    else
-#     Existe Presupuesto:
-#     Buscar los materiales que corresponden al presupuesto
-      @budgets_budget_supplies = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>1} )
-#     Buscar mano de obra que corresponden al presupuesto
-      @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
-
-      $budget_id = @budgets_budget.id
+      @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
     end
     #Tomar los datos de la Solicitud y mostrarlos
     @budgets_budget.tech_description = @requests_support_request.tech_description
     @budgets_budget.support_type_id = @requests_support_request.support_type_id
-
     $autorizacion =get_num_aut($budget_id)
   end
+
+
+  # PRESUPUESTO EXTERNO
+  # GET /budgets/budgets/1/budget_fm1
+  def budget_fm2
+    $budget_type =2 # Presupuesto Externo
+    $budget_id = 0
+    $display_supplies = 0
+    lv_new = params[:new]   #1 = Es nuevo presupuesto
+
+
+#   ACTUALIZACION (Se pasa el ID del PRESUPUESTO como parametro)
+    if lv_new != '1'
+       @budgets_budget = Budgets::Budget.find(:first, :conditions => "id ="+ params[:id])
+       @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.support_request_id)
+       if @budgets_budget == nil
+          lv_new = 1
+       end
+      @budgets_budget.ending_date = @budgets_budget.ending_date.strftime("%d/%m/%Y") if @budgets_budget.ending_date != nil
+      $budget_id = @budgets_budget.id
+    end
+
+
+#   NUEVO PRESUPUESTO (Se pasa como parametro el ID de SOLICITUD)
+    if lv_new == '1'
+      @budgets_budget = Budgets::Budget.new
+      @budgets_budget.support_request_id = params[:id]
+      @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
+    end
+
+    #Tomar los datos de la Solicitud y mostrarlos
+    @budgets_budget.tech_description = @requests_support_request.tech_description
+    @budgets_budget.support_type_id = @requests_support_request.support_type_id
+    $autorizacion =get_num_aut($budget_id)
+  end
+
 
   def order
     $budget_type =1 # Presupuesto Interno
@@ -582,21 +548,10 @@ class Budgets::BudgetsController < ApplicationController
 
 # Comentarios e instrucciones
   def info
-
-    # Obtener COMENTARIOS
-    lv_sql ="SELECT * FROM request_commentaries
-              WHERE support_request_id = " + params[:id] +
-            " AND comment_type_id IN
-                (SELECT id FROM catalogs_comment_types
-                 WHERE abbr IN ('RESOL','AUT-P02','AUT-P03','AUT-P04','AUT-P05'))
-              ORDER BY created_at DESC"
-
-  #@requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"support_request_id" = ?', params[:id]] )
-    @requests_request_commentaries = RequestsAdministration::Commentary.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>5, :order => 'created_at ASC'
-
- # Obtener INSTRUCCIONES
- # Solo se podran leer las instrucciones si el usuario actual pertenece a la misma
- # Ubicación que el usuario que emitio la instrucción
+   @requests_support_request = Requests::SupportRequest.find(params[:id])
+   @budgets_budget = Budgets::Budget.find(params[:budget_id])
+   lv_support_request_id = params[:id]
+   $budget_id = @budgets_budget.id
 
    user_id = Administration::UserSession.find.record.attributes['id']  #Usuario Actual
    ubicat_id = 0
@@ -606,17 +561,51 @@ class Budgets::BudgetsController < ApplicationController
      ubicat_id = user.attributes['ubication_id']
    end
 
+   lv_budget_id = params[:budget_id]
+
+   # Obtener COMENTARIOS
    lv_sql ="SELECT * FROM request_commentaries
-              WHERE support_request_id = " + params[:id] +
+             WHERE (budget_id = " + lv_budget_id.to_s() + " OR support_request_id = " + lv_support_request_id +")"+
+           "   AND comment_type_id IN
+                (SELECT id FROM catalogs_comment_types
+                 WHERE abbr IN ('RESOL','AUT-P02','AUT-P03','AUT-P04','AUT-P05'))"
+
+   lv_sql =lv_sql + " UNION SELECT * FROM request_commentaries
+              WHERE budget_id = " + lv_budget_id.to_s() +
             " AND comment_type_id IN
                 (SELECT id FROM catalogs_comment_types
                  WHERE abbr IN ('INSTR'))
               AND user_id IN (SELECT id FROM administration_users WHERE ubication_id = "+ ubicat_id.to_s() +")
               ORDER BY created_at DESC"
 
+
   #@requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"support_request_id" = ?', params[:id]] )
-   @requests_request_comm_instr = RequestsAdministration::Commentary.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>5, :order => 'created_at ASC'
+  @requests_request_commentaries = RequestsAdministration::Commentary.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>5, :order => 'created_at ASC'
+
     
   end
 
+  
+  def comment
+     #@budgets_budget = Budgets::Budget.find(params[:id])
+
+     if params[:add_comment].length <= 0
+              @budgets_budget.errors.add(:add_comment, '-Es necesario anotar un comentario.')
+              return
+      end
+
+      user_id = Administration::UserSession.find.record.attributes['id']
+      @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")
+      request_commentary = RequestsAdministration::Commentary.new
+      request_commentary.support_request_id =  params[:id]
+      request_commentary.budget_id =  $budget_id
+      request_commentary.user_id = user_id
+      request_commentary.commentaries = params[:add_comment]
+      request_commentary.comment_type_id = @catalogs_comment_types.id
+      request_commentary.save
+
+      redirect_to :action => "info",:budget_id=> $budget_id
+
+  end
+  
 end

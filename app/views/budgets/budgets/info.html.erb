@@ -1,6 +1,98 @@
+<h1>Solicitud de servicio</h1>
+
+
+
+
+
+
+<table class="table1"  width="950">
+<tr>
+  <td width="80" align=right >
+     <b>Folio:</b>
+  </td>
+  <td align="left">
+     <%= @requests_support_request.num_sequence  %>
+  </td>
+  <td> <b> Creado el:</b></td>
+  <td align="left"><%=  @requests_support_request.created_at.strftime("%d/%m/%Y") %></td>
+  <td> <b> Ultimo cambio:</b></td>
+  <td align="left"><%=  @requests_support_request.status_chng_date.strftime("%d/%m/%Y") %></td>
+</tr>
+
+
+<tr>
+  <td width="80" align=right >
+     <b>ID:</b>
+  </td>
+  <td align="left">
+     <%= @requests_support_request.request_no %>
+  </td>
+  <td colspan="4"></td>
+</tr>
+
+<tr class="table_content_c3">
+  <td width="30" align=right >
+    <b>Ubicación:</b>
+  </td>
+  <td align="left">
+    <%= @requests_support_request.ubication_name %>
+  </td>
+  <td width="60" align=right>
+    <b>Atiende:</b>
+  </td>
+  <td align ="left" colspan="3">
+    <%= @requests_support_request.helper %>
+  </td>
+</tr>
+
+
+<tr class="table_content_c2">
+  <td width="30" align=right >
+    <b>Nombre:</b>
+  </td>
+  <td align="left">
+    <%= @requests_support_request.name %>
+  </td>
+  <td width="70" align=right>
+    <b>Correo E.:</b>
+  </td>
+  <td align ="left" colspan="5">
+    <%= @requests_support_request.email %>
+  </td>
+</tr>
+
+<tr class="table_content_c3">
+  <td width="80" align=right >
+     <b>Tipo de soporte:</b>
+  </td>
+  <td align="left" colspan="5">
+     <%= @requests_support_request.support_type %>
+  </td>
+</tr>
+
+<tr class="table_content_c2">
+  <td width="80" align=right >
+     <b>Descripción:</b>
+  </td>
+  <td align="left" colspan="5">
+     <%= raw(@requests_support_request.text_to_html(@requests_support_request.description)) %>
+  </td>
+</tr>
+
+
+<tr>
+  <td width="80" align=right >
+     <b>Descripción Técnica:</b>
+  </td>
+  <td align="left" colspan="5">
+     <%= raw(@requests_support_request.text_to_html(@requests_support_request.tech_description)) %>
+  </td>
+</tr>
+</table>
+
 
 <div>
-<h3>Comentarios:</h3>
+<h3>Comentarios/Instrucciones:</h3>
 
 <%= will_paginate @requests_request_commentaries %>
 <% @requests_request_commentaries.each do |commentary| %>
@@ -18,7 +110,12 @@
   </tr>
 
   <tr class="table_content_c3">
-    <td align="left" colspan="2">
+
+    <% if commentary.get_abbr_comment(commentary.comment_type_id)=='INSTR' %>
+      <td align="left" colspan="2" class="<%=commentary.get_abbr_comment(commentary.comment_type_id)%>">
+    <%else%>
+      <td align="left" colspan="2">
+    <%end%>
       <%= raw(commentary.valida_comentario(commentary.commentaries)) %>
     </td>
   </tr>
@@ -26,30 +123,28 @@
 <% end %>
 </div>
 
-<div>
-<h3>Instrucciones:</h3>
-<%= will_paginate @requests_request_comm_instr %>
-<% @requests_request_comm_instr.each do |commentary| %>
- <table class="table3" width="950">
-  <tr>
-    <td rowspan="2" width="100" align="center"  class="<%=commentary.get_abbr_comment(commentary.comment_type_id)%>">
-      <%= commentary.created_at.strftime("%d/%m/%Y %I:%M%p") %>
-    </td>
-    <td width="80" align=right >
-      <b>Usuario:</b>
-    </td>
-    <td align="left">
-      <%= commentary.verifica_usuario(commentary.user_id) %>
-    </td>
-  </tr>
+<form action = "comment" >
+<table class="table1" width="950">
 
-  <tr class="table_content_c3">
-    <td align="left" colspan="2">
-      <%= raw(commentary.valida_comentario(commentary.commentaries)) %>
-    </td>
-  </tr>
- </table>
-<% end %>
-</div>
+ <tr class="table_content_c2">
+  <td align=right >
+     <b>Comentario:</b>
+  </td>
+  <td align="left">
+    <textarea name ="add_comment" cols='87%' rows='5'> </textarea>
+  </td>
+</tr>
+</table>
+  <input type="submit" value="Enviar Comentario" budget_id="<%@budgets_budget.id%>" id="<%@requests_support_request.id%>"/>
+</form>
+
+
+
+
+
+
+<%#= link_to "Comentario", {:action => "comment", :id=>@budgets_budget.id},:class => 'link-button' %>
+<%= link_to 'Salir', budgets_budgets_path, :class => 'link-button' %>
+
 
 

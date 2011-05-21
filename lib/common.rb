@@ -197,8 +197,8 @@ end
 # 3 = Cuarta autorización (Coordinador) -- Liberado (Autorización final) Coordinador
    def get_num_aut_req(request_id, pm_tipo)
 
-     @budgets_budget = Budgets::Budget.find(:first,:conditions => {:support_request_id => request_id})
-     if not @budgets_budget
+     @budgets_bud = Budgets::Budget.find(:first,:conditions => {:support_request_id => request_id})
+     if not @budgets_bud
        false
        return
      end
@@ -344,7 +344,5 @@ end
                 WHERE id = '+ user_id.to_s()
      r = Administration::User.find_by_sql(lv_sql)
    end
-
-
 
 end

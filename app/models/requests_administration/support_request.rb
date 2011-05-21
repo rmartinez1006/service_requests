@@ -1,5 +1,5 @@
 class RequestsAdministration::SupportRequest < ActiveRecord::Base
-  include Common
+  
   
   belongs_to :ubication, :class_name => 'Catalogs::Ubication'
   belongs_to :userhelper, :class_name => "Administration::User", :foreign_key => "helper_id"
@@ -8,6 +8,8 @@ class RequestsAdministration::SupportRequest < ActiveRecord::Base
 
 #  has_many :ubications, :class_name => 'Catalogs::Ubication'
 
+  include Common
+  
   has_many :reqdelegation, :class_name => 'Requests::ReqDelegation'
   has_many :commentary, :class_name => 'Requests::RequestCommentary'
   
@@ -182,7 +184,7 @@ end
     @budget = Budgets::Budget.find(:all, :conditions => "support_request_id = " + req_id.to_s)
     r = true
 #   Si NO EXISTE (Se puede crear)
-    if @budget.size >0
+    if @budget.size >3
        r = false
     end
     r
@@ -198,6 +200,5 @@ end
     end
     lv_exito
   end
-
 
 end

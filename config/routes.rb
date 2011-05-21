@@ -31,14 +31,25 @@ ServiceRequests::Application.routes.draw do
   #end
 
   namespace :budgets do 
-     match 'budgets/:id/budget_fm1' => 'budgets#budget_fm1', :as => :budget_fm1
+     match 'budgets/:id/budget_fm1' => 'budgets#budget_fm1', :as => :budget_fm1     
      match 'budgets/:id/budget_fm2' => 'budgets#budget_fm2', :as => :budget_fm2
      match 'budgets/:id/delete_supply' => 'budgets#delete_supply', :as => :delete_supply
      match 'budgets/:id/delete_supply2' => 'budgets#delete_supply2', :as => :delete_supply2
      match 'budgets/:id/budget_fm1_edit' => 'budgets#budget_fm1_edit', :as => :budget_fm1_edit
      match 'budgets/:id/order' => 'budgets#order', :as => :order
      match 'budgets/:id/info' => 'budgets#info', :as => :info
+     match 'budgets/:id/comment' => 'budgets#comment', :as => :comment
+     #match 'budgets/comment' => 'budgets#comment', :as => :comment
   end
+  #match 'budgets/:id/comment' => 'budgets#comment', :as => :comment
+  #                                controller#accion
+
+  # Ejemplo:
+  #    match "/about" => "info#about", :as => :about
+  #     Adding :as makes it a named route so that we can use about_path or about_url in our application.
+
+
+
 
   namespace :catalogs do resources :supplies end
 
