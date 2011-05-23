@@ -10,8 +10,10 @@ class Budgets::BudgetsController < ApplicationController
   # GET /budgets/budgets
   # GET /budgets/budgets.xml
   def index
-  
-    @budgets_budgets = get_list_budget()
+
+    lv_request_id = params[:request_id] # Si el parametro es mayor a cero entonces solo obtiene los presupuestos
+                                # para la solicitud
+    @budgets_budgets = get_list_budget(lv_request_id)
   
     
     #@budgets_budgets = Budgets::Budget.all
@@ -48,12 +50,10 @@ class Budgets::BudgetsController < ApplicationController
   def show
     $budget_type =1 # Presupuesto Interno
     $budget_id = 0
-    $display_supplies = 1  #Mostrar area de captura de materiales
-    
-#    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
-
-#   Buscar si existe el presupeusto
-    @budgets_budget = Budgets::Budget.find(params[:id])
+    $display_supplies = 1  #Mostrar area de captura de materiales   
+    lv_budget_id = params[:id]
+#   Buscar el presupuesto
+    @budgets_budget = Budgets::Budget.find(lv_budget_id)
     if @budgets_budget == nil
     else
 #     Solicitud

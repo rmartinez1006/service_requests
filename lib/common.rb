@@ -267,7 +267,7 @@ end
      exito
    end
 
-   def get_list_budget
+   def get_list_budget(pm_request_id)
      user_ubication_id= Administration::UserSession.find.record.attributes['ubication_id']
      user_id = Administration::UserSession.find.record.attributes['id']
      role = Administration::UserSession.find.record.attributes['role']
@@ -275,12 +275,24 @@ end
        @budgets_budgets = Budgets::Budget.find(:all, :order=>"created_at DESC").paginate :page =>params[:page],:per_page=>20, :order => 'created_on DESC'
        return @budgets_budgets
      else
+       lv_subquery= "SELECT DISTINCT support_request_id
+                          FROM request_delegations
+                         WHERE user_id = ".concat(user_id.to_s)
+
+       if pm_request_id != nil
+         lv_subquery = lv_subquery + ' AND support_request_id = '+ pm_request_id.to_s()
+       end
+
        lv_sql ="SELECT * FROM budgets_budgets
-                WHERE user_id =".concat(user_id.to_s)+
-               "  OR support_request_id IN (SELECT DISTINCT support_request_id
-                               FROM request_delegations
-                              WHERE user_id = ".concat(user_id.to_s) +")
-                 ORDER BY created_at DESC"
+                WHERE user_id =".concat(user_id.to_s)
+       if pm_request_id != nil
+          lv_sql= lv_sql + " AND support_request_id ="+ pm_request_id.to_s()
+       end
+
+
+       lv_sql= lv_sql + "  OR support_request_id IN ("+lv_subquery +")
+                           ORDER BY created_at DESC"
+
      end
 
      @budgets_budgets=Budgets::Budget.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>22, :order => 'created_at DESC'
@@ -345,4 +357,22 @@ end
      r = Administration::User.find_by_sql(lv_sql)
    end
 
+   # Obtiene el Presupuesto con un estatus, en base al num. de solicitud
+   # Obtiene el Id Budget de request id que se pasa como parametro,con el estatus
+   # que se indica
+
+   def get_id_budget(support_req_id, list_status)
+     r = 0
+     lv_aux ="SELECT * FROM request_commentaries com, catalogs_comment_types typ
+                   WHERE com.comment_type_id = typ.id
+                     AND com.support_request_id =".concat(support_req_id.to_s)
+     lv_sql = lv_aux + " AND typ.abbr IN ("+list_status+")"
+
+     @commentary = RequestsAdministration::Commentary.find_by_sql(lv_sql)
+     if not @commentary.empty?
+       r=@commentary.budget_id
+     end
+     r
+   end
+   
 end

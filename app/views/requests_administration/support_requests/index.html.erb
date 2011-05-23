@@ -29,7 +29,7 @@
     <td><%= link_to 'Ver', requests_administration_support_request %></td>
     <td><%= link_to_if requests_administration_support_request.helper_id == nil , "Modificar", edit_requests_administration_support_request_path(requests_administration_support_request) %></td>
     <td><%= link_to_if requests_administration_support_request.valida_escalar(), 'Asignar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request.id %></td>
-    <td><%= link_to_if requests_administration_support_request.get_num_aut_req(requests_administration_support_request.id,"V"), "Ver Presup.", :controller=>'/budgets/budgets' , :action => "show", :id => requests_administration_support_request.id %></td>
+    <td><%= link_to  "Ver Presup.", :controller=>'/budgets/budgets', :action => "index", :request_id => requests_administration_support_request.id %></td>
     <% if (requests_administration_support_request.valida_rol()) %>
       <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presupuesto", :controller=>'/budgets/budgets' , :action => "budget_fm1", :id => requests_administration_support_request.id, :new=>1 %></td>
       <td><%= link_to_if requests_administration_support_request.valida_presupuesto(requests_administration_support_request.id), "Presup. Externo", :controller=>'/budgets/budgets', :action => "budget_fm2", :id => requests_administration_support_request.id, :new=>1 %></td>
