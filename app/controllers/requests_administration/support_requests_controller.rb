@@ -224,4 +224,56 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  # Dialogo de Cancelación de Solicitud
+  def dialog_cancel
+   @requests_support_request = Requests::SupportRequest.find(params[:id])
+   lv_support_request_id = params[:id]
+
+
+   user_id = Administration::UserSession.find.record.attributes['id']  #Usuario Actual
+   ubicat_id = 0
+
+   @user_act = user_info(user_id)
+   @user_act.each do |user|
+     ubicat_id = user.attributes['ubication_id']
+   end
+
+
+
+   # Obtener COMENTARIOS
+   lv_sql ="SELECT * FROM request_commentaries
+             WHERE support_request_id = " + lv_support_request_id.to_s() +
+           "   AND comment_type_id IN
+                (SELECT id FROM catalogs_comment_types
+                 WHERE abbr = 'CANC')
+              ORDER BY created_at DESC"
+
+
+  #@requests_request_commentaries = Requests::RequestCommentary.find( :all, :conditions params[:id]=> ['"support_request_id" = ?', params[:id]] )
+  @requests_request_commentaries = RequestsAdministration::Commentary.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>5, :order => 'created_at ASC'
+
+  end
+
+  #Proceso de Cancelación de Solicitud
+  def cancel
+     # Guardar comentario sobre la cancelación
+     if params[:commentaries_to_add].length > 0
+         user_id = Administration::UserSession.find.record.attributes['id']
+         @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'CANC'")
+         request_commentary = RequestsAdministration::Commentary.new
+         request_commentary.support_request_id =  params[:id]
+         request_commentary.budget_id =  0
+         request_commentary.user_id = user_id
+         request_commentary.commentaries = params[:commentaries_to_add]
+         request_commentary.comment_type_id = @catalogs_comment_types.id
+         request_commentary.save
+     end
+     @requests_support_request = Requests::SupportRequest.find(params[:id])
+     @requests_support_request.request_status_id = get_status_id('CANC')
+     @requests_support_request.save
+      redirect_to :action => "index",:id=> params[:id]
+
+  end
+
 end

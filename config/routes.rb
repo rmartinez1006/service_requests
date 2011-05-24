@@ -43,13 +43,14 @@ ServiceRequests::Application.routes.draw do
   end
   #match 'budgets/:id/comment' => 'budgets#comment', :as => :comment
   #                                controller#accion
-
   # Ejemplo:
   #    match "/about" => "info#about", :as => :about
   #     Adding :as makes it a named route so that we can use about_path or about_url in our application.
 
-
-
+  namespace :requests_administration do
+     match 'support_requests/:id/dialog_cancel' => 'support_requests#dialog_cancel', :as => :dialog_cancel
+     match 'support_requests/:id/cancel' => 'support_requests#cancel', :as => :cancel
+  end
 
   namespace :catalogs do resources :supplies end
 

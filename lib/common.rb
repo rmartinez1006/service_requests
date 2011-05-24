@@ -195,9 +195,9 @@ end
 # 2 = Segunda autorización (Coordinador) --Pre-liberación
 # 3 = Tercer Autorización del Secretario tecnico responsable de la dependencia
 # 3 = Cuarta autorización (Coordinador) -- Liberado (Autorización final) Coordinador
-   def get_num_aut_req(request_id, pm_tipo)
+   def get_num_aut_req(budget_id, pm_tipo)
 
-     @budgets_bud = Budgets::Budget.find(:first,:conditions => {:support_request_id => request_id})
+     @budgets_bud = Budgets::Budget.find(:first,:conditions => {:id => budget_id})
      if not @budgets_bud
        false
        return
@@ -210,7 +210,7 @@ end
      lv_aux ="SELECT com.* FROM request_commentaries com, catalogs_comment_types typ, budgets_budgets bud
                    WHERE com.comment_type_id = typ.id
                      AND com.budget_id =bud.id
-                     AND bud.support_request_id =".concat(request_id.to_s)
+                     AND bud.id =".concat(budget_id.to_s)
      lv_sql = lv_aux + " AND typ.abbr ='AUT-P01'"
 
      @commentary_aut01 = RequestsAdministration::Commentary.find_by_sql(lv_sql)
