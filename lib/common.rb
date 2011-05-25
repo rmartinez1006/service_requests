@@ -374,5 +374,16 @@ end
      end
      r
    end
-   
+
+   def allows_to_cancel(pm_request_status_id)
+     r = false
+     if pm_request_status_id != get_status_id('ST03')
+        role = Administration::UserSession.find.record.attributes['role']
+        if role == 'JEFUNI' or role == 'ADMIN' or role == 'COORD'
+          r = true
+        end
+     end
+     r
+   end
+
 end

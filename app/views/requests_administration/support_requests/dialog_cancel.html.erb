@@ -118,6 +118,8 @@
 <% end %>
 </div>
 
+<% if @requests_support_request.allows_to_cancel(@requests_support_request.request_status_id) %>
+
 <form action = "cancel" >
 <table class="table1" width="950">
 
@@ -126,17 +128,17 @@
      <b>Comentario:</b>
   </td>
   <td align="left">
-    <textarea name ="commentaries_to_add" cols='87%' rows='5'> </textarea>
+    <textarea name ="commentaries_to_add" cols='87%' rows='7'> </textarea>
   </td>
 </tr>
 </table>
   <input type="submit" value="Proceder" request_id="<%@requests_support_request.id%>"/>
 </form>
+<%end%>
 
 
 
-
-<%= link_to 'Salir', requests_administration_support_request_path, :class => 'link-button' %>
+<%= link_to 'Salir', requests_administration_support_requests_path, :class => 'link-button' %>
 
 
 

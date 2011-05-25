@@ -258,7 +258,7 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
   #Proceso de Cancelación de Solicitud
   def cancel
      # Guardar comentario sobre la cancelación
-     if params[:commentaries_to_add].length > 0
+     if params[:commentaries_to_add].lstrip.rstrip.length > 0
          user_id = Administration::UserSession.find.record.attributes['id']
          @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'CANC'")
          request_commentary = RequestsAdministration::Commentary.new
@@ -269,11 +269,10 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
          request_commentary.comment_type_id = @catalogs_comment_types.id
          request_commentary.save
      end
-     @requests_support_request = Requests::SupportRequest.find(params[:id])
-     @requests_support_request.request_status_id = get_status_id('CANC')
-     @requests_support_request.save
-      redirect_to :action => "index",:id=> params[:id]
-
+     requests_support_request = Requests::SupportRequest.find(params[:id])
+     requests_support_request.update_attribute :request_status_id, get_status_id("ST03") #Cancelado
+     requests_support_request.save
+     redirect_to :action => "index"   #,:id=> params[:id]
   end
 
 end
