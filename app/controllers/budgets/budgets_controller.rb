@@ -94,6 +94,7 @@ class Budgets::BudgetsController < ApplicationController
       if $budget_id == 0
 #       Solo la primer vez crea el presupuesto
         @budgets_budget = Budgets::Budget.new(params[:budgets_budget])
+        @budgets_budget.status_id = get_status_id('ST07')
         if @budgets_budget.save
            $budget_id = @budgets_budget.id
         else
@@ -149,7 +150,8 @@ class Budgets::BudgetsController < ApplicationController
 #        primero, buscar los materiales que corresponden al presupuesto
          sum = 0
          sum = @budgets_budget.suma_total(@budgets_budget_supplies)
-         @budgets_budget.total_cost = sum
+         @budgets_budget.total_cost = sum         
+
       end
       if @budgets_budget.save
 #        Guardar el Tipo de Soporte en la Solicitud
@@ -227,20 +229,12 @@ class Budgets::BudgetsController < ApplicationController
          request_commentary.save
          # Actualizar Status de solicitud
          @budgets_budget.set_status_id_req(@requests_support_request.id, lv_status)
-
+         @budgets_budget.status_id = get_status_id(lv_status)
+         @budgets_budget.save
       end
       # Instrucciones (Comentario)
-      if (@budgets_budget.chk_instruc == '1')
-         @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'INSTR'")
-         request_commentary = Requests::RequestCommentary.new
-         request_commentary.budget_id =  $budget_id
-         request_commentary.user_id = Administration::UserSession.find.record.attributes['id']
-         request_commentary.commentaries = lv_comentario
-         request_commentary.comment_type_id = @catalogs_comment_types.id
-         request_commentary.support_request_id = @budgets_budget.support_request_id
-         request_commentary.save
-         # Actualizar Status de solicitud
-         @budgets_budget.set_status_id_req(@requests_support_request.id, lv_status)
+      if (params[:chk_instruc] == '1')
+         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id,@requests_support_request,@budgets_budget)
       end
     
 
@@ -299,6 +293,7 @@ class Budgets::BudgetsController < ApplicationController
 #         Actualizar Presupuesto
           @budgets_budget.budget_type= $budget_type
           @budgets_budget.attributes =  params[:budgets_budget]
+          @budgets_budget.status_id = get_status_id('ST07')
           lv_ending_date = params[:budgets_budget][:ending_date]
           #lv_ending_date = lv_ending_date.gsub("-","/") Date.strptime(params[:budgets_budget][:ending_date], "%d/%m/%Y")
           if lv_ending_date != nil and lv_ending_date!=''
@@ -402,7 +397,8 @@ class Budgets::BudgetsController < ApplicationController
          request_commentary.save
          # Actualizar Status de solicitud
          @budgets_budget.set_status_id_req(@budgets_budget.support_request_id, lv_status)
-
+         @budgets_budget.status_id = get_status_id(lv_status)
+         @budgets_budget.save
       end
 
       # Instrucciones (Comentario)

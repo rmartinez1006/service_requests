@@ -34,6 +34,11 @@ class RequestsAdministration::SupportRequest < ActiveRecord::Base
     end
   end
 
+  def before_destroy
+    # Borrar todos los comentarios de la solicitud
+    RequestsAdministration::Commentary.destroy_all :support_request_id => self.id
+  end
+
   def description_left(l)
     r=self.description
     if r.length > l
@@ -184,7 +189,7 @@ end
     @budget = Budgets::Budget.find(:all, :conditions => "support_request_id = " + req_id.to_s)
     r = true
 #   Si NO EXISTE (Se puede crear)
-    if @budget.size >3
+    if @budget.size >=3
        r = false
     end
     r

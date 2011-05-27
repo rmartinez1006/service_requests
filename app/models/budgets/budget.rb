@@ -30,7 +30,10 @@ HUMANIZED_ATTRIBUTES = {
   end
 
 
-
+  def before_destroy
+    # Borrar todos los comentarios de este presupuesto
+    RequestsAdministration::Commentary.destroy_all :budget_id => self.id
+  end
 
   def before_save
     lv_user_id = Administration::UserSession.find.record.attributes['id']

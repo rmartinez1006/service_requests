@@ -23,7 +23,7 @@
     <td align="right"><%= number_to_currency(budgets_budget.total_cost) %></td>
     <td><%= budgets_budget.budget_date.strftime("%d/%m/%Y") %></td>
     <td><%= budgets_budget.user.name %></td>
-    <td align ="center" ><%= image_tag(budgets_budget.request.img_status(budgets_budget.request.request_status_id.to_i))  %></td>
+    <td align ="center" ><%= image_tag(budgets_budget.request.img_status(budgets_budget.status_id.to_i))  %></td>
     <td> <%= link_to 'Info', :controller=>'/budgets/budgets' , :action => "info", :id => budgets_budget.support_request_id, :budget_id=>budgets_budget.id  %></td>
     <td>
        <% if budgets_budget.budget_type == 1 %>

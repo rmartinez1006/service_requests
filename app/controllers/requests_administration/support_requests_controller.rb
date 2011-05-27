@@ -272,7 +272,13 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
      requests_support_request = Requests::SupportRequest.find(params[:id])
      requests_support_request.update_attribute :request_status_id, get_status_id("ST03") #Cancelado
      requests_support_request.save
-     redirect_to :action => "index"   #,:id=> params[:id]
+
+     # Cambiar el status de todos los presupuestos
+     Budgets::Budget.update_all("support_request_id = "+ self.id.to_s, "status_id =" + get_status_id("ST03").to_s)
+
+     redirect_to :action => "index"   
   end
 
 end
+
+

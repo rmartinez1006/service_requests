@@ -326,8 +326,7 @@ end
        
        
        #-- Notificar via e-mail a involucrados del area
-        Notifier.instructions(requests_support_request,budget_budgets).deliver  # Se envia la orden
-
+       Notifier.instructions(requests_support_request,budget_budgets).deliver  # Se envia la orden
 
    end
 

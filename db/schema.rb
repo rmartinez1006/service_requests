@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110315211234) do
+ActiveRecord::Schema.define(:version => 20110527021552) do
 
   create_table "administration_configurations", :force => true do |t|
     t.integer  "key"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20110315211234) do
     t.integer  "budget_type"
     t.date     "ending_date"
     t.string   "order_num"
+    t.integer  "status_id"
   end
 
   create_table "catalogs_comment_types", :force => true do |t|
