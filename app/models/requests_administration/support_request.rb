@@ -147,7 +147,7 @@ end
  
 
 # Validación para determinar activar el link de escalar
-  def valida_escalar
+  def valida_escalar(req_id)
     user_id = Administration::UserSession.find.record.attributes['id']
     id_req= self.id
     r = false
@@ -160,6 +160,12 @@ end
          r = true
       end
     end
+# Validar que no este cancelada la solicitud
+    @requests_support_request = RequestsAdministration::SupportRequest.find(req_id)
+    if get_status_abbr(@requests_support_request.request_status_id)=='ST03'
+      r = false
+    end
+   r
   end
 
 
@@ -185,14 +191,19 @@ end
 
 # Validación para determinar activar el link de Presupesto
 # Si no existe presupuesto, entonces, activar el link, si existe no activar
-  def valida_presupuesto(req_id)
-    @budget = Budgets::Budget.find(:all, :conditions => "support_request_id = " + req_id.to_s)
-    r = true
-#   Si NO EXISTE (Se puede crear)
-    if @budget.size >=3
-       r = false
-    end
-    r
+def valida_presupuesto(req_id)
+ @budget = Budgets::Budget.find(:all, :conditions => "support_request_id = " + req_id.to_s)
+ r = true
+ # No se puede presupuestar una solicitud cancelada
+ @requests_support_request = RequestsAdministration::SupportRequest.find(req_id)
+ if get_status_abbr(@requests_support_request.request_status_id)=='ST03'
+   r = false
+ end
+ #   Si NO EXISTE (Se puede crear)
+ if @budget.size >=3
+    r = false
+ end
+ r
   end
 
   # Valida el rol para determinar si tiene permisos

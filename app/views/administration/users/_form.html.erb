@@ -54,6 +54,7 @@
         <%= f.text_field :email, :size =>35 %>
       </td>
     </tr>
+    <% if (Administration::UserSession.find.record.attributes['role']=='ADMIN') %>
     <tr>
       <td width="80" align="right">
         <%= f.label 'Rol:' %><br />
@@ -62,6 +63,7 @@
         <%= select :administration_user , :role_id, Administration::UserRole.find(:all).collect{|p| [p.description, p.id]}%>
       </td>
     </tr>
+    
     <tr>
       <td width="80" align="right">
         <%= f.label 'Ubicación:' %><br />
@@ -70,7 +72,7 @@
         <%= select :administration_user , :ubication_id, Catalogs::Ubication.find(:all).collect{|p| [p.name, p.id]}%>
       </td>
     </tr>
-
+    <%end%>
 
   </table>
 

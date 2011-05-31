@@ -29,7 +29,7 @@
     <td align ="center" ><%= image_tag(requests_administration_support_request.img_status(requests_administration_support_request.request_status_id.to_i))  %></td>
     <td><%= link_to 'Ver', requests_administration_support_request %></td>
     <td><%= link_to_if requests_administration_support_request.helper_id == nil , "Modificar", edit_requests_administration_support_request_path(requests_administration_support_request) %></td>
-    <td><%= link_to_if requests_administration_support_request.valida_escalar(), 'Asignar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request.id %></td>
+    <td><%= link_to_if requests_administration_support_request.valida_escalar(requests_administration_support_request.id), 'Asignar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request.id %></td>
     <td><%= link_to  "Ver Presup.", :controller=>'/budgets/budgets', :action => "index", :request_id => requests_administration_support_request.id %></td>
     <td> <%= link_to 'Cancelar', :controller=>'/requests_administration/support_requests' , :action => "dialog_cancel", :id => requests_administration_support_request.id  %></td>
     <% if (requests_administration_support_request.valida_rol()) %>
@@ -57,6 +57,7 @@
     <th width ="520">DESCRIPCION</th>
     <th>ESTAT.</th>
     <th></th>
+    <th></th>
     <th></th>    
     <th></th>
   </tr>
@@ -69,8 +70,9 @@
     <td><%= requests_administration_support_request_deleg.description_left(50) %></td>
     <td align ="center" ><%= image_tag(requests_administration_support_request_deleg.img_status(requests_administration_support_request_deleg.request_status_id.to_i)) %></td>
     <td><%= link_to 'Ver', requests_administration_support_request_deleg %></td>
+    <td><%= link_to  "Ver Presup.", :controller=>'/budgets/budgets', :action => "index", :request_id => requests_administration_support_request_deleg.id %></td>
     <td><%= link_to_if requests_administration_support_request_deleg.valida_modificar(), 'Modificar', edit_requests_administration_support_request_path(requests_administration_support_request_deleg) %></td>
-    <td><%= link_to_if requests_administration_support_request_deleg.valida_escalar(), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request_deleg.id %></td>
+    <td><%= link_to_if requests_administration_support_request_deleg.valida_escalar(requests_administration_support_request_deleg.id), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request_deleg.id %></td>
   </tr>
 <% end %>
 </table>
