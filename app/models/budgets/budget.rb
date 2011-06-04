@@ -18,9 +18,13 @@ include Common
 #validates_format_of :total_cost, :with => /\d{0,10}\./
 # validates_format_of :total_cost, :with => /\d{0,10}\.\d{2}/
 validates_numericality_of :total_cost,  :message => "Debe ser númerico."
+validates_numericality_of :unit_cost,  :message => "Debe ser númerico."
+validates_numericality_of :quantity,  :message => "Debe ser númerico."
 
 HUMANIZED_ATTRIBUTES = {
     :total_cost    => 'Costo',
+    :unit_cost   => 'Costo Unitario',
+    :quantity => 'Cantidad',
     :ending_date => 'Fecha de Término',
     :order_num=> 'Número de Orden'
   }

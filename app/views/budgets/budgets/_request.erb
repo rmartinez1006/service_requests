@@ -317,7 +317,7 @@
       <b>Descripción Técnica: </b>
       </th>
       <td align="left" colspan="3">
-      <%= f.text_area :tech_description,  :size => '87%'  %>
+      <%= f.text_area :tech_description,  :size => '85%'  %>
       </td>
     </tr>
     <tr>
@@ -325,7 +325,7 @@
        <b> Descripción de Trabajos: </b>
       </th>
       <td align="left" colspan="3">
-       <%= f.text_area :description,  :size => '87%' %>
+       <%= f.text_area :description,  :size => '85%' %>
       </td>
    </tr>
 
@@ -333,28 +333,37 @@
      <th width="80" align="right">
        <b> Tipo de Soporte:</b>
      </th>
-     <td align="left" colspan="3">
-       <%= select :budgets_budget , :support_type_id, Catalogs::SupportType.find(:all).collect{|p| [p.name, p.id]}%>       
+     <td align="left">
+       <%= select :budgets_budget , :support_type_id, Catalogs::SupportType.find(:all).collect{|p| [p.name, p.id]}%>
      </td>
    </tr>
-  
+ </table>
    <!-- Inicia If -->
    <% if $display_supplies == 0 %>
+   <table class="table1">
+    <tr>
+      <th width="80" align="right"><b> Precio Unitario:</b></th>
+      <td width="80" ><%= f.text_field :unit_cost, :size=>"10", :style => "text-align: right" %></td>
+      <th width="30" align="right"><b> Cantidad:</b></th>
+      <td width="80"><%= f.text_field :quantity, :size=>"13", :style => "text-align: right" %></td>
+      <th width="40"align="right"><b> Unidad:</b></th>
+      <td><%= f.text_field :unit_measure, :size=>"20" %></td>
+    </tr>
      <tr>
      <th width="80" align="right">
        <b> Empresa:</b>
      </th>
-     <td align="left">
+     <td colspan="3" align="left">
        <%= select :budgets_budget , :supplier_id, Catalogs::Supplier.find(:all).collect{|p| [p.trade_name, p.id]}%>
      </td>
-     <th align="right" width="80">
+     <th  align="right" width="80">
        <label for="total_cost">Costo:</label>
      </th>
      <td align="left" width="80">
-       <%= f.text_field :total_cost, :size=>"13", :style => "text-align: right" %>
+       <%= f.text_field :total_cost, :size=>"13", :style => "text-align: right",:disabled => true %>
      </td>
-
     </tr>
+
     </table>
    <% end %>
    <!-- Fin de if -->

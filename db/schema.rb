@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110527021552) do
+ActiveRecord::Schema.define(:version => 20110603033429) do
 
   create_table "administration_configurations", :force => true do |t|
     t.integer  "key"
@@ -72,6 +72,9 @@ ActiveRecord::Schema.define(:version => 20110527021552) do
     t.date     "ending_date"
     t.string   "order_num"
     t.integer  "status_id"
+    t.decimal  "unit_cost",          :precision => 10, :scale => 2, :default => 0.0
+    t.decimal  "quantity",           :precision => 10, :scale => 2, :default => 0.0
+    t.string   "unit_measure"
   end
 
   create_table "catalogs_comment_types", :force => true do |t|
