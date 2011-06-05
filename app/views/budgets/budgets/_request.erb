@@ -357,7 +357,7 @@
        <%= select :budgets_budget , :supplier_id, Catalogs::Supplier.find(:all).collect{|p| [p.trade_name, p.id]}%>
      </td>
      <th  align="right" width="80">
-       <label for="total_cost">Costo:</label>
+       <b>Costo:<b>
      </th>
      <td align="left" width="80">
        <%= f.text_field :total_cost, :size=>"13", :style => "text-align: right",:disabled => true %>

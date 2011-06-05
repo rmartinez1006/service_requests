@@ -150,8 +150,9 @@ class Budgets::BudgetsController < ApplicationController
 #        primero, buscar los materiales que corresponden al presupuesto
          sum = 0
          sum = @budgets_budget.suma_total(@budgets_budget_supplies)
-         @budgets_budget.total_cost = sum         
-
+         @budgets_budget.total_cost = sum
+      else
+         @budgets_budget.total_cost = @budgets_budget.unit_cost  * @budgets_budget.quantity
       end
       if @budgets_budget.save
 #        Guardar el Tipo de Soporte en la Solicitud
@@ -306,6 +307,8 @@ class Budgets::BudgetsController < ApplicationController
              sum = 0
              sum = @budgets_budget.suma_total(@budgets_budget_supplies)
              @budgets_budget.total_cost = sum
+          else
+            @budgets_budget.total_cost = @budgets_budget.unit_cost  * @budgets_budget.quantity
           end
 
 #         Validar que el importe sea mayor a cero
