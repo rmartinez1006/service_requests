@@ -257,5 +257,13 @@ end
     r
   end
 
-
+# Convertir Texto a formato html
+def text_to_html (text1)
+  if text1 == nil
+     r = '--'
+  else
+     r = text1.gsub(/\n/, "<br />")
+  r
+  end
+end
 end

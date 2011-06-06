@@ -12,7 +12,7 @@
     <th></th>    
     <th></th>
     <th></th>
-    <th></th>
+    <th></th>    
   </tr>
 
 <%= will_paginate @budgets_budgets %>
@@ -40,6 +40,7 @@
          <%= link_to_if budgets_budget.get_num_aut_req(budgets_budget.support_request_id,"I") ,'Orden', :controller=>'/budgets/budgets', :action => "order",  :id => budgets_budget.support_request_id %>
        <% end %>
     </td>
+    
   </tr>
 <% end %>
 </table>

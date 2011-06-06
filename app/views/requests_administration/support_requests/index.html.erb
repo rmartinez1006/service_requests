@@ -17,6 +17,7 @@
     <th></th>
     <th></th>
     <th></th>
+    <th></th>
   </tr>
 
 <%= will_paginate @requests_administration_support_requests %>
@@ -40,7 +41,7 @@
     <% if (Administration::UserSession.find.record.attributes['role']=='ADMIN') %>
       <td><%= link_to_if  Administration::UserSession.find.record.attributes['role']=='ADMIN', 'Borrar', requests_administration_support_request, :confirm => '¿Borrar solicitud?', :method => :delete %></td>
     <%end%>
-
+    <td><%= link_to 'Propuesta', :controller=>'/budgets/budgets' , :action => "proposal", :id => requests_administration_support_request.id %></td>
   </tr>
 <% end %>
 </table>
@@ -60,6 +61,7 @@
     <th></th>
     <th></th>    
     <th></th>
+    <th></th>
   </tr>
 <%= will_paginate @requests_administration_support_requests_deleg %>
 <% @requests_administration_support_requests_deleg.each do |requests_administration_support_request_deleg| %>
@@ -73,6 +75,7 @@
     <td><%= link_to  "Ver Presup.", :controller=>'/budgets/budgets', :action => "index", :request_id => requests_administration_support_request_deleg.id %></td>
     <td><%= link_to_if requests_administration_support_request_deleg.valida_modificar(), 'Modificar', edit_requests_administration_support_request_path(requests_administration_support_request_deleg) %></td>
     <td><%= link_to_if requests_administration_support_request_deleg.valida_escalar(requests_administration_support_request_deleg.id), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request_deleg.id %></td>
+    <td><%= link_to 'Propuesta', :controller=>'/budgets/budgets' , :action => "proposal", :id => requests_administration_support_request_deleg.id %></td>
   </tr>
 <% end %>
 </table>

@@ -606,5 +606,29 @@ class Budgets::BudgetsController < ApplicationController
       redirect_to :action => "info",:budget_id=> $budget_id
 
   end
-  
+
+
+  #Mostrar la propuesta de presupuestos
+  def proposal
+    lvRequest_id = params[:id]
+
+    # Presupuestos Externos (budget_type = 2)
+    # Estatus = Autorizado por coordinador (ST10)
+    lvsql ="SELECT rq.id,rq.tech_description description,pa.unit_measure,pa.quantity,sp.trade_name,
+            pa.unit_cost, pa.total_cost, (pa.total_cost * 0.16) as iva, (pa.total_cost * 0.16) + pa.total_cost as total
+              FROM budgets_budgets pa, request_support_requests rq, catalogs_suppliers sp, catalogs_request_statuses st
+             WHERE pa.support_request_id = rq.id
+               AND pa.budget_type = 2
+               AND pa.status_id = st.id
+               AND st.abbr='ST10'
+               AND pa.supplier_id = sp.id
+               AND pa.support_request_id="+ lvRequest_id
+
+    @budgets_budget = Budgets::Budget.find_by_sql(lvsql)
+
+    lvsql = ""
+
+              
+  end
+
 end

@@ -1,1 +1,38 @@
+<h1>Propuesta</h1>
+
+<% if !@budgets_budget.empty? %>
+<table class="table1" width="950">
+<tr>
+    <th>Concepto</th>
+    <th>Unidad</th>
+    <th>Cantidad</th>
+    <th>Proveedor</th>
+    <th>Precio Unit.</th>
+    <th>SubTotal</th>
+    <th>IVA</th>
+    <th>Total</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td rowspan="4"> <%= @budgets_budget[0].description %> </td>
+    <td rowspan="4"> <%= @budgets_budget[0].unit_measure %> </td>
+    <td rowspan="4"> <%= @budgets_budget[0].quantity %> </td>
+  </tr>
+<% @budgets_budget.each do |budget| %>
+  <tr>           
+    <td><%= budget.trade_name %></td>
+    <td lign="right"><%= number_to_currency(budget.unit_cost) %></td>
+    <td lign="right"><%= number_to_currency(budget.total_cost) %></td>
+    <td lign="right"><%= number_to_currency(budget.iva) %></td>
+    <td lign="right"><b><%= number_to_currency(budget.total)%><b></td>
+    <td><%= link_to  "Detalle", :class => 'link-button', :controller=>'/budgets/budgets', :action => "index", :request_id => budget.id %></td>
+  </tr>
+<% end %>
+ </table>
+
+<%end%>
+<hr /> 
+<%= link_to 'Regresar', requests_administration_support_requests_path,:class => 'link-button' %>
+
+
 
