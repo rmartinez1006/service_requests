@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603033429) do
+ActiveRecord::Schema.define(:version => 20110607014923) do
 
   create_table "administration_configurations", :force => true do |t|
     t.integer  "key"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20110603033429) do
     t.integer  "unit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "available"
   end
 
   create_table "catalogs_units", :force => true do |t|
