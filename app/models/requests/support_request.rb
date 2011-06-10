@@ -217,5 +217,4 @@ def valida_presupuesto(req_id)
     return lvsql
   end
 
-
 end

@@ -19,7 +19,16 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
 #    Usuario
      user_id = Administration::UserSession.find.record.attributes['id']
 
+     role = Administration::UserSession.find.record.attributes['role']
+    if role=='ADMIN'
+       lv_sql ="SELECT r.* FROM request_support_requests as r
+                 INNER JOIN catalogs_ubications as c ON
+                  c.id = r.ubication_id
+                 INNER JOIN catalogs_units as u ON
+                   u.id = c.unit_id
+                ORDER BY created_at DESC"
 
+    else
      lv_sql ="SELECT r.* FROM request_support_requests as r
                INNER JOIN catalogs_ubications as c ON
                  c.id = r.ubication_id
@@ -30,9 +39,10 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
                 SELECT r.* FROM request_support_requests as r
                  WHERE r.helper_id = ".concat(user_id.to_s)+
               "ORDER BY created_at DESC"
-    
+  
+    end
     @requests_administration_support_requests = RequestsAdministration::SupportRequest.find_by_sql(lv_sql).paginate :page =>params[:page],:per_page=>9, :order => 'created_at DESC'
-    
+
 #   Solicitudes en la que esta involucrado
      lv_sql ="SELECT DISTINCT s.*
                 FROM request_support_requests as s
