@@ -211,9 +211,9 @@ def valida_presupuesto(req_id)
   end
 
   def conditions_ubic
-    user_ubication_id= Administration::UserSession.find.record.attributes['ubication_id']
+    #user_ubication_id= Administration::UserSession.find.record.attributes['ubication_id']
     lvsql="SELECT * FROM catalogs_ubications
-            WHERE (available is null) or (available = '') or (available = '"+ user_ubication_id.to_s() +"')"
+            WHERE (available is null) or (available = '')"
     return lvsql
   end
 
