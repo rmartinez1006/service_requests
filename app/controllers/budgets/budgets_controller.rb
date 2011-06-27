@@ -235,7 +235,8 @@ class Budgets::BudgetsController < ApplicationController
       end
       # Instrucciones (Comentario)
       if (params[:chk_instruc] == '1')
-         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id,@requests_support_request,@budgets_budget)
+         lv_user_id = Administration::UserSession.find.record.attributes['id']
+         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id,@requests_support_request,@budgets_budget, lv_user_id)
       end
     
 
@@ -406,7 +407,8 @@ class Budgets::BudgetsController < ApplicationController
 
       # Instrucciones (Comentario)
       if (params[:chk_instruc] == '1')
-         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id,@requests_support_request,@budgets_budget)
+         lv_user_id = Administration::UserSession.find.record.attributes['id']
+         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id,@requests_support_request,@budgets_budget,lv_user_id)
       end
 
       
