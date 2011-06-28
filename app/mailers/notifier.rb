@@ -37,9 +37,12 @@ class Notifier < ActionMailer::Base
 
 
   #Envío de Correo con instrucciones
-  def instructions(requests_support_request,budgets_budget)
-    @requests_support_request = requests_support_request
-    @budgets_budget = budgets_budget
+  def instructions(pm_request_id,pm_budget_id, pm_instruction)
+
+    @requests_support_request = RequestsAdministration::SupportRequest.find(pm_request_id)
+    @budgets_budget = Budgets::Budget.find(pm_budget_id)
+    @budgets_budget.add_instruc = pm_instruction
+
     @url = path_url
     user_ubication_id = Administration::UserSession.find.record.attributes['ubication_id']
     user_id = Administration::UserSession.find.record.attributes['id']

@@ -236,7 +236,7 @@ class Budgets::BudgetsController < ApplicationController
       # Instrucciones (Comentario)
       if (params[:chk_instruc] == '1')
          lv_user_id = Administration::UserSession.find.record.attributes['id']
-         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id,@requests_support_request,@budgets_budget, lv_user_id)
+         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id, lv_user_id)
       end
     
 
@@ -408,7 +408,7 @@ class Budgets::BudgetsController < ApplicationController
       # Instrucciones (Comentario)
       if (params[:chk_instruc] == '1')
          lv_user_id = Administration::UserSession.find.record.attributes['id']
-         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id,@requests_support_request,@budgets_budget,lv_user_id)
+         comment_save("INSTR", $budget_id, @budgets_budget.support_request_id,lv_user_id)
       end
 
       
@@ -591,11 +591,13 @@ class Budgets::BudgetsController < ApplicationController
      #@budgets_budget = Budgets::Budget.find(params[:id])
 
      if params[:add_comment].length <= 0
-              @budgets_budget.errors.add(:add_comment, '-Es necesario anotar un comentario.')
+              #@budgets_budget = Budgets::Budget.find(params[:id])
+              #@budgets_budget.errors.add(:add_comment, '-Es necesario anotar un comentario.')
+              redirect_to :action => "info",:budget_id=> $budget_id
               return
       end
 
-      user_id = Administration::UserSession.find.record.attributes['id']
+      user_id = Administration::UserSession.find.record.attributes['budget_id']
       @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = 'RESOL'")
       request_commentary = RequestsAdministration::Commentary.new
       request_commentary.support_request_id =  params[:id]
@@ -608,6 +610,9 @@ class Budgets::BudgetsController < ApplicationController
       redirect_to :action => "info",:budget_id=> $budget_id
 
   end
+
+  
+
 
 
   #Mostrar la propuesta de presupuestos

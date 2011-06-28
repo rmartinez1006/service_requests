@@ -10,7 +10,7 @@ class Budgets::Budget < ActiveRecord::Base
                 :mat_unit, :mat_description, :mat_quantity, :mat_cost, :mat_import, :mat_type, :mat_other,
                 :work_unit, :work_description, :work_quantity, :work_cost, :work_import, :work_type, :work_other,
                 :add_aut_analista, :add_aut_02, :add_aut_03, :add_aut_04,:add_aut_05, :chk_analista, :chk_aut_02, 
-                :chk_aut_03, :chk_aut_04, :chk_aut_05, :chk_instruc, :add_instruc, :add_comment
+                :chk_aut_03, :chk_aut_04, :chk_aut_05, :chk_instruc, :add_instruc, :add_comment, :add_instruc
 
 include Common
 
@@ -267,6 +267,14 @@ def text_to_html (text1)
   end
 end
 
+def display_instruc()
+  f = false
+  role = Administration::UserSession.find.record.attributes['role']
+  if role == 'JEFUNI' or role == 'ADMIN' or role == 'COORD'
+     r = true
+  end
+  r
+end
 
 
 end

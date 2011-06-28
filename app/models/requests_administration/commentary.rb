@@ -16,7 +16,7 @@ end
 
  # Verificar el usuario que emite el comentario
  def verifica_usuario(user_id)
-   if self.user_id == 0
+   if self.user_id == 0 or self.user_id == nil
      r = 'SOLICITANTE'
    else
      r= self.user.name

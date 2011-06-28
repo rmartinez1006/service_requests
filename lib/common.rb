@@ -369,24 +369,24 @@ end
    end
 
 
-   def comment_save(pm_abbr, pm_budget_id, pm_request_id,requests_support_request,budget_budgets, pm_user_id)
+   def comment_save(pm_abbr, pm_budget_id, pm_request_id,pm_user_id)
 
-
-       @requests_support_request = requests_support_request
-       @budget_budgets = budget_budgets
+       @requests_support_request = RequestsAdministration::SupportRequest.find(pm_request_id)
+       
        # Comentario
        @catalogs_comment_types = Catalogs::CommentType.find(:first, :conditions => "abbr = '"+ pm_abbr +"'")
        request_commentary = Requests::RequestCommentary.new
        request_commentary.budget_id =  pm_budget_id
        request_commentary.user_id = pm_user_id
-       request_commentary.commentaries = @budget_budgets.add_instruc
+       request_commentary.commentaries = @budgets_budget.add_instruc
        request_commentary.comment_type_id = @catalogs_comment_types.id
        request_commentary.support_request_id = pm_request_id
        request_commentary.save
 
 
        #-- Notificar via e-mail a involucrados del area
-       Notifier.instructions(@requests_support_request,@budget_budgets).deliver  # Se envia la orden
+       lvInstruction = @budgets_budget.add_instruc
+       Notifier.instructions(pm_request_id,pm_budget_id,lvInstruction).deliver  # Se envia la orden
 
    end
 

@@ -39,6 +39,7 @@ ServiceRequests::Application.routes.draw do
      match 'budgets/:id/order' => 'budgets#order', :as => :order
      match 'budgets/:id/info' => 'budgets#info', :as => :info
      match 'budgets/:id/comment' => 'budgets#comment', :as => :comment
+     match 'budgets/:id/instructions' => 'budgets#instructions', :as => :instructions
      match 'budgets/:id/proposal' => 'budgets#proposal', :as => :proposal
      #match 'budgets/comment' => 'budgets#comment', :as => :comment
   end

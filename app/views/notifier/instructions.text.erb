@@ -1,8 +1,8 @@
-
 --------------------------------------------------------
-Solicitud:  <%=@requests_support_request.num_sequence%>
-Fecha:      <%=@requests_support_request.created_at.strftime("%d/%m/%Y")%>
-Solicita:   <%=@requests_support_request.name%>
+Solicitud:    <%=@requests_support_request.num_sequence%>
+Fecha:        <%=@requests_support_request.created_at.strftime("%d/%m/%Y")%>
+Solicita:     <%=@requests_support_request.name%>
+Presupuesto:  <%= @budgets_budget.id%>
 --------------------------------------------------------
 Descripción:
 <%=@requests_support_request.description%>
