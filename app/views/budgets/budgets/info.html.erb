@@ -6,7 +6,7 @@
      <b>Folio:</b>
   </td>
   <td align="left">
-     <%= @requests_support_request.num_sequence  %>
+     <%= link_to @requests_support_request.num_sequence, :controller=>'/budgets/budgets' , :action => "involved_people", :id => @requests_support_request.id  %>     
   </td>
   <td> <b> Creado el:</b></td>
   <td align="left"><%=  @requests_support_request.created_at.strftime("%d/%m/%Y") %></td>

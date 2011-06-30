@@ -586,7 +586,17 @@ class Budgets::BudgetsController < ApplicationController
     
   end
 
+  # Listado de Personal Involucrado
+  def involved_people
+
+    support_req_id = params[:id]
+    user_ubication_id = Administration::UserSession.find.record.attributes['ubication_id']
+    user_id = Administration::UserSession.find.record.attributes['id']    
+    @users = involved(support_req_id,user_id,user_ubication_id)
+
+  end
   
+
   def comment
      #@budgets_budget = Budgets::Budget.find(params[:id])
 

@@ -383,11 +383,18 @@ end
        request_commentary.support_request_id = pm_request_id
        request_commentary.save
 
-
+       lv_instruction = @budgets_budget.add_instruc
+       
        #-- Notificar via e-mail a involucrados del area
-       lvInstruction = @budgets_budget.add_instruc
-       Notifier.instructions(pm_request_id,pm_budget_id,lvInstruction).deliver  # Se envia la orden
+    user_ubication_id = Administration::UserSession.find.record.attributes['ubication_id']
+    user_id = Administration::UserSession.find.record.attributes['id']
+       @users = involved(pm_request_id,user_id,user_ubication_id)
+       @users.each do |user|         
+         Notifier.instructions(user,pm_request_id,pm_budget_id,lv_instruction).deliver  # Se envia la orden
+       end
 
-   end
+  end
+
+
 
 end
