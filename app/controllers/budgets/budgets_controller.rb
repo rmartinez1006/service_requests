@@ -151,6 +151,9 @@ class Budgets::BudgetsController < ApplicationController
          sum = 0
          sum = @budgets_budget.suma_total(@budgets_budget_supplies)
          @budgets_budget.total_cost = sum
+         #se agregaron estos campos (para presupuesto externo)
+         @budgets_budget.unit_cost = 1
+         @budgets_budget.quantity = 1
       else
          @budgets_budget.total_cost = @budgets_budget.unit_cost  * @budgets_budget.quantity
       end
@@ -308,6 +311,9 @@ class Budgets::BudgetsController < ApplicationController
              sum = 0
              sum = @budgets_budget.suma_total(@budgets_budget_supplies)
              @budgets_budget.total_cost = sum
+             #se agregaron estos campos (para presupuesto externo)
+             @budgets_budget.unit_cost = 1
+             @budgets_budget.quantity = 1
           else
             @budgets_budget.total_cost = @budgets_budget.unit_cost  * @budgets_budget.quantity
           end
@@ -592,7 +598,7 @@ class Budgets::BudgetsController < ApplicationController
     support_req_id = params[:id]
     user_ubication_id = Administration::UserSession.find.record.attributes['ubication_id']
     user_id = Administration::UserSession.find.record.attributes['id']    
-    @users = involved(support_req_id,user_id,user_ubication_id)
+    @users = involved_all(support_req_id)
 
   end
   
@@ -628,10 +634,12 @@ class Budgets::BudgetsController < ApplicationController
   #Mostrar la propuesta de presupuestos
   def proposal
     lvRequest_id = params[:id]
+    # Obtener datos de la solicitud
+    @requests_support_request = Requests::SupportRequest.find(lvRequest_id)
 
     # Presupuestos Externos (budget_type = 2)
     # Estatus = Autorizado por coordinador (ST10)
-    lvsql ="SELECT rq.id,rq.tech_description description,pa.unit_measure,pa.quantity,sp.trade_name,
+    lvsql ="SELECT rq.id as support_request_id,rq.tech_description description,pa.unit_measure,pa.quantity,sp.trade_name,
             pa.unit_cost, pa.total_cost, (pa.total_cost * 0.16) as iva, (pa.total_cost * 0.16) + pa.total_cost as total
               FROM budgets_budgets pa, request_support_requests rq, catalogs_suppliers sp, catalogs_request_statuses st
              WHERE pa.support_request_id = rq.id
