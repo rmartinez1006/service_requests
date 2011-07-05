@@ -54,10 +54,11 @@
     </tr>
     <tr>
       <td width="80" align="right">
-        <%= f.label 'Acceso directo a:' %><br />
+        <%= f.label 'Acceso directo:' %><br />
       </td>
       <td>
-        <%= select :catalogs_ubication , :available, Catalogs::Ubication.find(:all).collect{|p| [p.id.to_s() + "-" + p.name, p.id]}%>        
+        <%= f.check_box :available %>
+        <%#= select :catalogs_ubication , :available, Catalogs::Ubication.find(:all).collect{|p| [p.id.to_s() + "-" + p.name, p.id]}%>
       </td>
       
     </tr>

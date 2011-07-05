@@ -46,7 +46,7 @@ class Catalogs::UbicationsController < ApplicationController
 
     respond_to do |format|
       if @catalogs_ubication.save
-        format.html { redirect_to(@catalogs_ubication, :notice => 'Ubication was successfully created.') }
+        format.html { redirect_to(@catalogs_ubication, :notice => 'La ubicación fue creada.') }
         format.xml  { render :xml => @catalogs_ubication, :status => :created, :location => @catalogs_ubication }
       else
         format.html { render :action => "new" }
@@ -59,10 +59,16 @@ class Catalogs::UbicationsController < ApplicationController
   # PUT /catalogs/ubications/1.xml
   def update
     @catalogs_ubication = Catalogs::Ubication.find(params[:id])
-
+    #@catalogs_ubication.attributes = params[:catalogs_ubication]
+    #if @catalogs_ubication.available == "1"
+    #   @catalogs_ubication.available = "1"
+    #else
+    #   @catalogs_ubication.available = nil
+    #end
+    
     respond_to do |format|
       if @catalogs_ubication.update_attributes(params[:catalogs_ubication])
-        format.html { redirect_to(@catalogs_ubication, :notice => 'Ubication was successfully updated.') }
+        format.html { redirect_to(@catalogs_ubication, :notice => 'La ubicación fue actualizada.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -5,15 +5,14 @@ class Catalogs::Ubication < ActiveRecord::Base
 
   belongs_to :unit, :class_name => 'Catalogs::Unit'
 
-#  attr_accessor :available_list,:available_once
+  attr_accessor :notify
 
 
 
-#  def before_save
-#    self.available = self.available_once
-#    if !self.available_list.empty?
-#      self.available = self.available_list
-#    end
-#  end
+  def before_save    
+    if self.available == "0"
+      self.available = nil
+    end
+  end
 
 end
