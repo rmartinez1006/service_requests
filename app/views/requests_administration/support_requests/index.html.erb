@@ -59,6 +59,7 @@
     <th>ESTAT.</th>
     <th></th>
     <th></th>
+    <th></th>
     <th></th>    
     <th></th>
     <th></th>
@@ -73,8 +74,9 @@
     <td align ="center" ><%= image_tag(requests_administration_support_request_deleg.img_status(requests_administration_support_request_deleg.request_status_id.to_i)) %></td>
     <td><%= link_to 'Ver', requests_administration_support_request_deleg %></td>
     <td><%= link_to  "Ver Presup.", :controller=>'/budgets/budgets', :action => "index", :request_id => requests_administration_support_request_deleg.id %></td>
+    <td> <%= link_to 'Cancelar', :controller=>'/requests_administration/support_requests' , :action => "dialog_cancel", :id => requests_administration_support_request_deleg.id  %></td>
     <td><%= link_to_if requests_administration_support_request_deleg.valida_modificar(), 'Modificar', edit_requests_administration_support_request_path(requests_administration_support_request_deleg) %></td>
-    <td><%= link_to_if requests_administration_support_request_deleg.valida_escalar(requests_administration_support_request_deleg.id), 'Escalar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request_deleg.id %></td>
+    <td><%= link_to_if requests_administration_support_request_deleg.valida_escalar(requests_administration_support_request_deleg.id), 'Asignar', :controller => "support_requests", :action => "scale", :id => requests_administration_support_request_deleg.id %></td>
     <td><%= link_to 'Propuesta', :controller=>'/budgets/budgets' , :action => "proposal", :id => requests_administration_support_request_deleg.id %></td>
   </tr>
 <% end %>

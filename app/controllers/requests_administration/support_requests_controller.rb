@@ -284,7 +284,7 @@ class RequestsAdministration::SupportRequestsController < ApplicationController
      requests_support_request.save
 
      # Cambiar el status de todos los presupuestos
-     Budgets::Budget.update_all("support_request_id = "+ self.id.to_s, "status_id =" + get_status_id("ST03").to_s)
+     Budgets::Budget.update_all("status_id =" + get_status_id("ST03").to_s,"support_request_id = "+ params[:id].to_s)
 
      redirect_to :action => "index"   
   end

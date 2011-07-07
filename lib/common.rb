@@ -202,6 +202,12 @@ end
        false
        return
      end
+     # si el presupuesto esta cancelado: No permitir edición
+     if @budgets_bud.status_id == get_status_id("ST03")
+       false
+       return
+     end
+
      # pm_tipo = 'E' Edicion, 'V' Visualización
      autoriza = get_rol_aut(pm_tipo)  #autoriza es un array con las autorizaciones a las que tiene acceso
      r = 1
@@ -376,8 +382,16 @@ end
 
    def allows_to_cancel(pm_request_status_id)
      r = false
-     if pm_request_status_id != get_status_id('ST03')
+     lv_cancel = get_status_id('ST03')
+
+     if pm_request_status_id != lv_cancel  #Si no esta Cancelada la solicitud
         role = Administration::UserSession.find.record.attributes['role']
+
+        lv_noasignado = get_status_id('ST01')
+        if role == 'SECTEC' and pm_request_status_id == lv_noasignado
+          r = true
+        end
+
         if role == 'JEFUNI' or role == 'ADMIN' or role == 'COORD'
           r = true
         end
