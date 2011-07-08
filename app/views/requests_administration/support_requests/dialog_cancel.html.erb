@@ -128,17 +128,21 @@
      <b>Comentario:</b>
   </td>
   <td align="left">
-    <textarea name ="commentaries_to_add" cols='87%' rows='7'> </textarea>
+    <textarea name ="commentaries_to_add" cols='87%' rows='5'> </textarea>
   </td>
 </tr>
 </table>
-  <input type="submit" value="Proceder" request_id="<%@requests_support_request.id%>"/>
+<hr/>
+<input type="submit" value="Proceder" data-confirm="Are you sure?" request_id="<%@requests_support_request.id%>"/>
+
+
+
 </form>
+
 <%end%>
 
 
-
-<%= link_to 'Salir', requests_administration_support_requests_path, :class => 'link-button' %>
+<%= link_to 'Salir', requests_administration_support_requests_path, :class => 'link-button2' %>
 
 
 

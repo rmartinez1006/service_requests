@@ -345,6 +345,19 @@ a.link-button {
     font-size: 14px;
     text-decoration: none;
 }
+a.link-button2 {
+    color: black;
+    border: 2px outset;
+    border-color:gray;
+    padding: 2px 4px 2px 4px;
+    text-decoration: none;
+    background-color: lightgray;
+    float: right;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+}
+
 
 input {
 
