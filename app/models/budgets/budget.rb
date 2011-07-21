@@ -59,10 +59,15 @@ HUMANIZED_ATTRIBUTES = {
 #       Obtene clave de estatus "ST07"
         @status_req = Catalogs::RequestStatus.find(:first, :conditions => "abbr = 'ST07'")
         lv_status_id = @status_req.id
+        self.request.support_type_id
 #       Actuself.support_request_idalizar la descripción Tecnica y Tipo de Soporte
         @requests_support_request = RequestsAdministration::SupportRequest.find(self.support_request_id)
         @requests_support_request.tech_description = self.tech_description
-        @requests_support_request.support_type_id = self.support_type_id
+        if self.support_type_id == nil
+           @requests_support_request.support_type_id = self.request.support_type_id
+        else
+           @requests_support_request.support_type_id = self.support_type_id
+        end
         @requests_support_request.request_status_id = lv_status_id
         @requests_support_request.save
     end
