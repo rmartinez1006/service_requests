@@ -334,7 +334,11 @@ end
                WHERE dl.helper_id = us.id
                  AND dl.support_request_id='+req_admin_id.to_s()+
                  ' AND dl.helper_id <> '+user_id.to_s() +
-                 ' AND us.ubication_id ='+user_ubication_id.to_s()
+                 ' AND us.ubication_id ='+user_ubication_id.to_s() +
+                 ' UNION
+                 SELECT 0 as user_id,name,0 as ubication_id,email FROM request_support_requests
+                  WHERE  id = ' + req_admin_id.to_s();
+
       r = Administration::User.find_by_sql(lv_sql)
    end
 
@@ -348,7 +352,10 @@ end
               SELECT DISTINCT dl.helper_id user_id,us.name,us.ubication_id,us.email
                 FROM request_delegations dl, administration_users us
                WHERE dl.helper_id = us.id
-                 AND dl.support_request_id='+req_admin_id.to_s()
+                 AND dl.support_request_id='+req_admin_id.to_s() +
+               ' UNION
+                 SELECT 0 as user_id,name,0 as ubication_id,email FROM request_support_requests
+                  WHERE  id = ' + req_admin_id.to_s();
       r = Administration::User.find_by_sql(lv_sql)
    end
 
