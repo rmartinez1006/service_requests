@@ -320,7 +320,7 @@ end
 
 
    # Obtiene los involucrados en la atención de una solicitud
-   # Solo de la coordinación
+   # Solo de la coordinación (Para enviar e-mail)
    def involved(req_admin_id,user_id,user_ubication_id)
       lv_sql = 'SELECT DISTINCT dl.user_id,us.name,us.ubication_id, us.email
                 FROM request_delegations dl, administration_users us
@@ -334,15 +334,13 @@ end
                WHERE dl.helper_id = us.id
                  AND dl.support_request_id='+req_admin_id.to_s()+
                  ' AND dl.helper_id <> '+user_id.to_s() +
-                 ' AND us.ubication_id ='+user_ubication_id.to_s() +
-                 ' UNION
-                 SELECT 0 as user_id,name,0 as ubication_id,email FROM request_support_requests
-                  WHERE  id = ' + req_admin_id.to_s();
+                 ' AND us.ubication_id ='+user_ubication_id.to_s() 
 
       r = Administration::User.find_by_sql(lv_sql)
    end
 
    # Obtiene los involucrados en la atención de una solicitud
+
    def involved_all(req_admin_id)
       lv_sql = 'SELECT DISTINCT dl.user_id,us.name,us.ubication_id, us.email
                 FROM request_delegations dl, administration_users us
