@@ -37,7 +37,7 @@
     
     <td>
        <% if budgets_budget.budget_type == 2 %>
-         <%= link_to_if budgets_budget.get_num_aut_req(budgets_budget.support_request_id,"I") ,'Orden', :controller=>'/budgets/budgets', :action => "order",  :id => budgets_budget.support_request_id %>
+         <%= link_to_if budgets_budget.get_num_aut_req(budgets_budget.id,"I") ,'Orden', :controller=>'/budgets/budgets', :action => "order",  :id => budgets_budget.id %>
        <% end %>
     </td>
     

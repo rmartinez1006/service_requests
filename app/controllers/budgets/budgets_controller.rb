@@ -532,11 +532,9 @@ class Budgets::BudgetsController < ApplicationController
     $budget_type =1 # Presupuesto Interno
     $budget_id = 0
     $display_supplies = 1  #Mostrar area de captura de materiales
-    @requests_support_request = RequestsAdministration::SupportRequest.find(params[:id])
-#    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
 
 #   Buscar si existe el presupeusto
-    @budgets_budget = Budgets::Budget.find(:first, :conditions => "support_request_id ="+ params[:id] )
+    @budgets_budget = Budgets::Budget.find(:first, :conditions => "id ="+ params[:id] )
     if @budgets_budget == nil
     else
 #     Buscar los materiales que corresponden al presupuesto
@@ -545,6 +543,11 @@ class Budgets::BudgetsController < ApplicationController
       @budgets_budget_supplies2 = Budgets::BudgetSupply.find(:all,:conditions => {:budget_id => @budgets_budget.id, :type_supply=>2} )
 
       $budget_id = @budgets_budget.id
+
+     @requests_support_request = RequestsAdministration::SupportRequest.find(@budgets_budget.request.id)
+#    @combo = Catalogs::Supply.find(:all,  :conditions => "type_supply = 1").collect{|p| [p.description, p.unit_cost.to_s, p.description]}
+
+
     end
 
     $permiso =get_num_aut_req(@budgets_budget.support_request_id,"V") #get_num_aut($budget_id)
